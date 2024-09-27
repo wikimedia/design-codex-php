@@ -29,14 +29,23 @@ that allows methods to progressively customize components before rendering.
 ### Example
 
 ```php
-$accordion = $codex->Accordion()
-    ->setTitle( 'Accordion Example' )
-    ->setDescription( 'This is an example of an accordion.' )
-    ->setContentText( 'This is the content of the accordion' )
-    ->setOpen( false )
-    ->setAttributes( [ 'id' => 'example-accordion' ] )
-    ->build()
-    ->getHtml();
+$accordion = $codex
+			->accordion()
+			->setTitle( "Accordion Example" )
+			->setDescription( "This is an example of an accordion." )
+			->setContentHtml(
+				$codex
+					->htmlSnippet()
+					->setContent( "<p>This is the content of the accordion.</p>" )
+					->build()
+			)
+			->setOpen( false )
+			->setAttributes( [
+				"class" => "foo",
+				"bar" => "baz",
+			] )
+			->build()
+			->getHtml();
 
 echo $accordion;
 ```
@@ -76,14 +85,23 @@ use Wikimedia\Codex\Utility\Codex
 
 $codex = new Codex();
 
-$accordion = $codex->Accordion()
-    ->setTitle('CSS-only Accordion Title')
-    ->setDescription('CSS-only Accordion Description')
-    ->setContent('<p>Lorem ipsum dolor sic amet....</p>')
-    ->setOpen(false)
-    ->setAttributes(['id' => 'example-accordion'])
-    ->build()
-    ->getHtml();
+$accordion = $codex
+			->accordion()
+			->setTitle( "Accordion Example" )
+			->setDescription( "This is an example of an accordion." )
+			->setContentHtml(
+				$codex
+					->htmlSnippet()
+					->setContent( "<p>This is the content of the accordion.</p>" )
+					->build()
+			)
+			->setOpen( false )
+			->setAttributes( [
+				"class" => "foo",
+				"bar" => "baz",
+			] )
+			->build()
+			->getHtml();
 
 echo $accordion;
 ?>
