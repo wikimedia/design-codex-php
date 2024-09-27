@@ -1,0 +1,845 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+<section class="section" id="usage">
+	<h1>Usage</h1>
+	<p>This documentation provides a comprehensive guide on how to use the <code>Codex</code> PHP library to build various UI components using the builder pattern.</p>
+	<div class="phpdocumentor-admonition important">
+		<svg class="phpdocumentor-admonition__icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+			<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+		</svg>
+		<article>
+			<p><strong>Using Codex in MediaWiki?</strong></p>
+			<p>Visit the <a href="https://www.mediawiki.org/wiki/Codex">Codex docs on mediawiki.org</a> for more instructions specific to use of the library within MediaWiki.</p>
+		</article>
+	</div> <pre class="language-php"><code class="line-numbers language-php" data-start="1"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
+// Use the Codex class
+use Wikimedia\Codex\Utility\Codex;
+
+// Initialize the Codex instance
+$codex = new Codex();</span>
+</code></pre>
+	<div class="phpdocumentor-admonition important">
+		<svg class="phpdocumentor-admonition__icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+			<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+		</svg>
+		<article>
+			<p>The following classes, such as <strong>WebRequestAdapter</strong>, <strong>SimpleWebRequest</strong>, <strong>WebRequestCallbacks</strong>, and <strong>IWebRequest</strong>, are essential when using Codex with callbacks.</p>
+		</article>
+	</div>
+	<h3 id="simple-web-request">SimpleWebRequest Class</h3>
+	<p>The <code>SimpleWebRequest</code> class implements the <code>IWebRequest</code> interface and provides a basic way to handle request data:</p> <pre class="language-php"><code class="line-numbers language-php" data-start="1"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
+
+use Wikimedia\Codex\Contract\IWebRequest;
+
+class SimpleWebRequest implements IWebRequest {
+    protected array $data;
+
+    public function __construct(array $data) {
+        $this->data = $data;
+    }
+
+    public function getVal(string $name, $default = null) {
+        return $this->data[$name] ?? $default;
+    }
+}</span></code></pre>
+	<h3 id="web-web-request-adapter">WebRequestAdapter</h3>
+	<p>The <code>WebRequestAdapter</code> class is used to adapt the <code>SimpleWebRequest</code> object, making it compatible with Codex components:</p> <pre class="language-php"><code class="language-php">use Wikimedia\Codex\Adapter\WebRequestAdapter;
+
+$request = new SimpleWebRequest($_GET);
+$requestAdapter = new WebRequestAdapter($request);
+</code></pre>
+	<h3 id="web-web-request-callbacks">WebRequestCallbacks</h3>
+	<p>The <code>WebRequestCallbacks</code> class is used to manage the request parameters consistently across the application:</p> <pre class="language-php"><code class="language-php">use Wikimedia\Codex\Utility\WebRequestCallbacks;
+
+$callbacks = new WebRequestCallbacks($requestAdapter);
+</code></pre>
+	<h2 id="builder-usage">Builder Usage</h2>
+	<p>Codex PHP follows a builder pattern approach, which allows you to create and customize components in a structured manner. Below are examples of how to use this pattern effectively:</p>
+	<h3 id="accordion">Accordion</h3>
+	<p>An Accordion is an expandable and collapsible section of content, often featured in a vertically stacked list with other Accordions. Accordions are commonly used to organize content into collapsed sections, making the interface easier to navigate.</p> <pre class="language-php"><code class="language-php">$accordion = $codex->Accordion()
+    ->setTitle('Accordion Example')
+    ->setDescription('This is an example of an accordion.')
+    ->setContent('&lt;p&gt;This is the content of the accordion.&lt;/p&gt;')
+    ->setOpen(false)
+    ->setAttributes(['id' => 'example-accordion']);
+</code></pre>
+	<h3 id="button">Button</h3>
+	<p>A Button triggers an action when the user clicks or taps on it.</p> <pre class="language-php"><code class="language-php">$button = $codex->Button()
+    ->setLabel('Click Me')
+    ->setAction('progressive')
+    ->setWeight('primary')
+    ->setSize('medium')
+    ->setIconOnly(false)
+    ->setAttributes([
+        'id' => 'example-button',
+        'aria-label' => 'Click Me Button',
+        'data-toggle' => 'example-action'
+    ]);
+</code></pre>
+	<h3 id="card">Card</h3>
+	<p>A Card is used to group information and actions related to a single topic. Cards can be clickable and offer a way to navigate to the content they represent (e.g. Wikipedia articles).</p> <pre class="language-php"><code class="language-php">$card = $codex->Card()
+    ->setTitle('Codex Card Example')
+    ->setDescription('This is an example card using the Codex design system.')
+    ->setSupportingText('Additional supporting text goes here.')
+    ->setUrl('https://www.example.com')
+    ->setIconClass('cdx-icon-example')
+    ->setThumbnailBackgroundImage('https://www.example.com/thumbnail.jpg')
+    ->setAttributes(['id' => 'example-card', 'data-custom' => 'custom-data']);
+</code></pre>
+	<h3 id="checkbox">Checkbox</h3>
+	<p>A Checkbox is a binary input that can appear by itself or in a multiselect group. Checkboxes can be selected, unselected or in an indeterminate state.</p> <pre class="language-php"><code class="language-php">$checkbox = $codex->Checkbox()
+	->setId( 'checkbox-description-css-only-1' )
+	->setLabel(
+		$codex->Label()
+		->setText( 'Send password reset emails only when both email address and username are provided.' )
+		->setDescription( 'This improves privacy and helps prevent unsolicited emails.' )
+		->setDescriptionId( 'cdx-description-css-1' )
+	);
+</code></pre>
+	<h3 id="field">Field</h3>
+	<p>A form field with a label, an input or control, and an optional validation message.</p> <pre class="language-php"><code class="language-php">$fieldSet = $codex->Field()
+	->setLegendText( 'User Information' )
+	->setDescription( 'Please fill out the details below.' )
+	->setOptionalFlag( true )
+	->setFields( [ $checkbox ] )
+	->setIsFieldset( true )
+	->setAttributes( [
+		'id' => 'user-info-fieldset',
+		'data-category' => 'user-data',
+		'aria-labelledby' => 'legend-user-info'
+	] );
+</code></pre>
+	<h3 id="info-chip">InfoChip</h3>
+	<p>An InfoChip is a non-interactive item that provides information.</p> <pre class="language-php"><code class="language-php">$infoChip = $codex->InfoChip()
+    ->setText('Server is running smoothly')
+    ->setStatus('success')
+    ->setIcon('icon-checkmark')
+    ->setAttributes(['id' => 'status-chip', 'data-category' => 'status-info']);
+</code></pre>
+	<h3 id="label">Label</h3>
+	<p>A Label provides a descriptive title for a form input. Having labels is essential when filling out a form, since each field is associated with its label.</p> <pre class="language-php"><code class="language-php">$label = $codex->Label()
+    ->setLabelText('Email Address')
+    ->setInputId('email')
+    ->setOptionalFlag(true)
+    ->setDescriptionText('Please enter a valid email address.')
+    ->setIcon('icon-email')
+    ->setAttributes([
+        'class' => 'custom-label-class',
+        'id' => 'email-label',
+        'data-info' => 'email-input-label'
+    ]);
+</code></pre>
+	<h3 id="message">Message</h3>
+	<p>A Message provides system feedback for users. Messages can be provided as a prominently-displayed banner with a longer explanation, or as inline validation feedback.</p> <pre class="language-php"><code class="language-php">$message = $codex->Message()
+    ->setContent('Your form has been submitted successfully.')
+    ->setType('success')
+    ->setHeading('Success')
+    ->setIcon('icon-checkmark')
+    ->setFadeIn(true)
+    ->setAriaLive('polite')
+    ->setAttributes(['id' => 'success-message', 'data-type' => 'confirmation']);
+</code></pre>
+	<h3 id="progress-bar">ProgressBar</h3>
+	<p>A ProgressBar is a visual element used to indicate the progress of an action or process.</p> <pre class="language-php"><code class="language-php">$progressBar = $codex->ProgressBar()
+	->setLabel( 'Loading content...' )
+	->setInline( false)
+	->setDisabled(false)
+	->setAttributes( [ 'id' => 'content-loading-progress', 'data-loading' => 'true' ] );
+</code></pre>
+	<h3 id="radio">Radio</h3>
+	<p>A Radio is a binary input that is usually combined in a group of two or more options. They signal a pattern where users can only select one of the available options. Radios are also known as “radio buttons”.</p> <pre class="language-php"><code class="language-php">$radio = $codex->Radio()
+	->setId( 'radio-option-1' )
+	->setName( 'options' )
+	->setLabel(
+		$codex->Label()
+			->setText( 'Send password reset emails only when both email address and username are provided.' )
+			->setDescription( 'This improves privacy and helps prevent unsolicited emails.' )
+			->setDescriptionId( 'cdx-description-css-1' )
+	)
+	->setValue( 'option1' )
+	->setChecked( true )
+	->setInline( true )
+	->setAttributes( [
+		'data-toggle' => 'radio-option',
+		'aria-label' => 'Radio Option 1'
+	] );
+</code></pre>
+	<h3 id="select">Select</h3>
+	<p>A Select is an input with a dropdown menu of predefined, selectable items.</p> <pre class="language-php"><code class="language-php">$select = $codex->Select()
+    ->setOptions([
+       'val1' => 'Standalone Option 1', // Simple key-value pair for options
+       'val2' => 'Standalone Option 2'
+    ])
+    ->setOptGroups([
+        'Group 1' => [
+            'val3' => 'Option in Group 1', // Simple key-value pair in optGroup
+            ['value' => 'val4', 'text' => 'Another Option in Group 1', 'selected' => true] // Complex array option
+        ],
+        'Group 2' => [
+            'val5' => 'Option in Group 2',
+            ['value' => 'val6', 'text' => 'Another Option in Group 2']
+        ]
+    ])
+    ->setAttributes([
+        'id' => 'example-select',
+        'name' => 'exampleSelection',
+        'data-category' => 'selection'
+    ])
+    ->setDisabled(false);
+</code></pre>
+	<h3 id="table">Table</h3>
+	<p>A Table is a structural component used to arrange data in rows and columns to facilitate the comparison, analysis and management of information.</p>
+	<div class="phpdocumentor-admonition warning">
+		<svg class="phpdocumentor-admonition__icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+			<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+		</svg>
+		<article>
+			<p>The <strong>Table</strong> component requires the use of <strong>$callbacks</strong> to manage pagination and data retrieval effectively.</p>
+		</article>
+	</div>
+	<pre class="language-php"><code class="line-numbers language-php" data-start="1"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
+namespace Wikimedia\Codex\Sandbox\Example;
+
+use DateInterval;
+use DateTime;
+use Wikimedia\Codex\Utility\Codex;
+use Wikimedia\Codex\Utility\WebRequestCallbacks;
+
+class TableExample {
+
+	/**
+	 * @param Codex $codex
+	 * @param WebRequestCallbacks $callbacks
+	 * @return string
+	 */
+	public static function create( Codex $codex, WebRequestCallbacks $callbacks ): string {
+		$sampleData = self::sampleData();
+
+		//phpcs:ignore
+		$limit = isset( $_GET['limit'] ) ? (int)$_GET['limit'] : 5;
+		$allowedLimits = [ 5, 10, 25, 50, 100, ];
+		if ( !in_array( $limit, $allowedLimits ) ) {
+			$limit = 5;
+		}
+		//phpcs:ignore
+		$offset = $_GET['offset'] ?? null;
+		//phpcs:ignore
+		$sortColumn = $_GET['sort'] ?? 'creation_date';
+
+		$cursorColumn = 'creation_date';
+		//phpcs:ignore
+		$sortDirection = isset( $_GET['desc'] ) && $_GET['desc'] === '1' ? 'desc' : 'asc';
+
+		$currentOffset = self::getCurrentOffset( $offset );
+		$offsetFormatted =
+			$currentOffset !== null ? DateTime::createFromFormat( 'Y-m-d H:i:s', $currentOffset )->format( 'YmdHis' )
+				: null;
+
+		$sampleData = self::sortData( $sampleData, $sortColumn, $sortDirection );
+		$totalRecords = count( $sampleData );
+		$totalPages = ceil( $totalRecords / $limit );
+
+		$paginatedData = self::paginateData( $sampleData, $currentOffset, $limit, $sortDirection, $cursorColumn );
+		$offsets = self::calculateOffsets(
+			$sampleData,
+			$paginatedData,
+			$currentOffset,
+			$sortDirection,
+			$limit,
+			$cursorColumn
+		);
+
+		$startOrdinal = self::calculateStartOrdinal( $sampleData, $currentOffset, $sortDirection, $cursorColumn );
+		$endOrdinal = min( $startOrdinal + $limit - 1, $totalRecords );
+
+		//phpcs:ignore
+		$queryParams = array_filter( $_GET, fn ( $value ) => $value !== '' );
+		$requestUri = filter_var( $_SERVER['REQUEST_URI'], FILTER_SANITIZE_URL );
+		$finalUrl = strtok( $requestUri, '?' ) . '?' . http_build_query( $queryParams );
+
+		return self::generateTable(
+			$codex,
+			$callbacks,
+			$paginatedData,
+			$finalUrl,
+			$offsetFormatted,
+			$totalPages,
+			$totalRecords,
+			$limit,
+			$offsets,
+			$sortColumn,
+			$sortDirection,
+			$startOrdinal,
+			$endOrdinal
+		);
+	}
+
+	/**
+	 * Return the current offset based on the input.
+	 */
+	private static function getCurrentOffset( ?string $offset ): ?string {
+		if ( $offset !== null ) {
+			$offsetDateTime = DateTime::createFromFormat( 'YmdHis', $offset );
+			if ( $offsetDateTime !== false ) {
+				return $offsetDateTime->format( 'Y-m-d H:i:s' );
+			}
+		}
+
+		return null;
+	}
+
+	/**
+	 * Sort the data by the given column and direction.
+	 */
+	private static function sortData( array $data, string $sortColumn, string $sortDirection ): array {
+		usort( $data, static function ( $a, $b ) use ( $sortColumn, $sortDirection ) {
+			return ( $sortDirection === 'asc' )
+				? ( $a[$sortColumn] <=> $b[$sortColumn] ) : ( $b[$sortColumn]
+					<=>
+					$a[$sortColumn] );
+		} );
+
+		return $data;
+	}
+
+	/**
+	 * Paginate the data based on the current offset.
+	 */
+	private static function paginateData(
+		array $data,
+		?string $currentOffset,
+		int $limit,
+		string $sortDirection,
+		string $cursorColumn
+	): array {
+		if ( $currentOffset !== null ) {
+			$filteredData = array_filter(
+				$data, static function ( $item ) use ( $currentOffset, $sortDirection, $cursorColumn ) {
+					return $sortDirection === 'asc'
+					? $item[$cursorColumn] > $currentOffset : $item[$cursorColumn] <
+					$currentOffset;
+				}
+			);
+
+			return array_slice( array_values( $filteredData ), 0, $limit );
+		}
+
+		return array_slice( $data, 0, $limit );
+	}
+
+	/**
+	 * Calculate offsets for pagination.
+	 */
+	private static function calculateOffsets(
+		array $sampleData,
+		array $paginatedData,
+		?string $currentOffset,
+		string $sortDirection,
+		int $limit,
+		string $cursorColumn
+	): array {
+		$prevOffset = self::calculatePrevOffset( $sampleData, $currentOffset, $sortDirection, $limit, $cursorColumn );
+
+		$nextOffset = null;
+		if ( count( $paginatedData ) === $limit ) {
+			$lastItem = end( $paginatedData );
+			if ( !empty( $lastItem[$cursorColumn] ) ) {
+				$nextOffset = DateTime::createFromFormat(
+					'Y-m-d H:i:s',
+					$lastItem[$cursorColumn]
+				)->format( 'YmdHis' );
+			}
+		}
+
+		return [
+			'firstOffset' => null,
+			'prevOffset' => $prevOffset,
+			'nextOffset' => $nextOffset,
+			'lastOffset' => count( $sampleData ) > $limit ? DateTime::createFromFormat(
+				'Y-m-d H:i:s',
+				$sampleData[count( $sampleData ) - $limit - 1][$cursorColumn] ?? ''
+			)->format( 'YmdHis' ) : null,
+		];
+	}
+
+	/**
+	 * Calculate the previous offset for pagination.
+	 */
+	private static function calculatePrevOffset(
+		array $sampleData,
+		?string $currentOffset,
+		string $sortDirection,
+		int $limit,
+		string $cursorColumn
+	): ?string {
+		if ( $currentOffset === null ) {
+			return null;
+		}
+
+		$prevData =
+			array_filter( $sampleData, static function ( $item ) use ( $currentOffset, $sortDirection, $cursorColumn ) {
+				return $sortDirection === 'asc'
+					? $item[$cursorColumn] < $currentOffset : $item[$cursorColumn] >
+					$currentOffset;
+			} );
+
+		$prevData = array_slice( array_values( $prevData ), -$limit );
+
+		if ( count( $prevData ) > 0 ) {
+			$firstItem = reset( $sampleData );
+			$firstItemOffset = DateTime::createFromFormat(
+				'Y-m-d H:i:s',
+				$firstItem[$cursorColumn]
+			)->format( 'YmdHis' );
+			$prevOffset = DateTime::createFromFormat(
+				'Y-m-d H:i:s',
+				reset( $prevData )[$cursorColumn]
+			)->format( 'YmdHis' );
+
+			if ( $prevOffset === $firstItemOffset ) {
+				$firstItemDateTime = DateTime::createFromFormat( 'YmdHis', $firstItemOffset );
+				$interval = new DateInterval( 'P1D' );
+				$firstItemDateTime->sub( $interval );
+				/* TODO: When upgraded to 8.3, use $firstItemDateTime->modify('-1 day') instead of the code above */
+
+				return $firstItemDateTime->format( 'YmdHis' );
+			}
+
+			return $prevOffset;
+		}
+
+		return null;
+	}
+
+	private static function calculateStartOrdinal(
+		array $data,
+		?string $currentOffset,
+		string $sortDirection,
+		string $cursorColumn
+	): int {
+		if ( $currentOffset === null ) {
+			return 1;
+		}
+		$ordinal = 1;
+		foreach ( $data as $item ) {
+			if (
+				( $sortDirection === 'asc' && $item[$cursorColumn] > $currentOffset ) ||
+				( $sortDirection === 'desc' && $item[$cursorColumn] < $currentOffset )
+			) {
+				break;
+			}
+			$ordinal++;
+		}
+
+		return $ordinal;
+	}
+
+	/**
+	 * Generate the table with the given data and configuration.
+	 */
+	private static function generateTable(
+		Codex $codex,
+		WebRequestCallbacks $callbacks,
+		array $paginatedData,
+		string $finalUrl,
+		?string $offsetFormatted,
+		int $totalPages,
+		int $totalRecords,
+		int $limit,
+		array $offsets,
+		string $sortColumn,
+		string $sortDirection,
+		int $startOrdinal,
+		int $endOrdinal
+	): string {
+		return $codex->Table()
+			->setCallbacks( $callbacks )
+			->setCaption( 'Articles' )
+			->setHideCaption( false )
+			->setHeaderContent( 'List of the articles' )
+			->setColumns( self::getColumns() )
+			->setData( $paginatedData )
+			->setPager(
+				$codex->Pager()
+					->setUrl( $finalUrl )
+					->setTotalPages( $totalPages )
+					->setTotalResults( $totalRecords )
+					->setLimit( $limit )
+					->setCurrentOffset( $offsetFormatted )
+					->setFirstOffset( $offsets['firstOffset'] ?? null )
+					->setPrevOffset( $offsets['prevOffset'] ?? null )
+					->setNextOffset( $offsets['nextOffset'] ?? null )
+					->setLastOffset( $offsets['lastOffset'] ?? null )
+					->setOrdinals( $startOrdinal, $endOrdinal )
+					->setPaginationSizeOptions( [ 5,10,25,50,100, ] )
+					->setPaginationSizeDefault( 5 )
+					->setIconClasses( self::getIconClasses() )
+			)
+			->setCurrentSortColumn( $sortColumn )
+			->setCurrentSortDirection( $sortDirection )
+			->setIconClasses( self::getIconClasses() )
+			->setShowVerticalBorders( true )
+			->setPaginationPosition( 'bottom' )
+			->setFooter( 'Displaying sample data for demonstration purposes.' );
+	}
+
+	/**
+	 * Get the columns for the table.
+	 */
+	private static function getColumns(): array {
+		return [
+			[
+				'id' => 'title',
+				'label' => 'Title',
+				'sortable' => true,
+			],
+			[
+				'id' => 'page_id',
+				'label' => 'Page ID',
+				'sortable' => true,
+			],
+			[
+				'id' => 'diameter_km',
+				'label' => 'Diameter (km)',
+				'sortable' => true,
+			],
+			[
+				'id' => 'distance_from_sun_million_km',
+				'label' => 'Distance from Sun (m. km)',
+				'sortable' => true,
+			],
+			[
+				'id' => 'creation_date',
+				'label' => 'Creation Date',
+				'sortable' => true,
+			],
+		];
+	}
+
+	/**
+	 * Get the icon classes for the table pagination.
+	 */
+	private static function getIconClasses(): array {
+		return [
+			'first' => 'cdx-demo-css-icon--move-first',
+			'previous' => 'cdx-demo-css-icon--previous',
+			'next' => 'cdx-demo-css-icon--next',
+			'last' => 'cdx-demo-css-icon--move-last',
+			'sort-ascending' => 'cdx-icon--sort-ascending',
+			'sort-descending' => 'cdx-icon--sort-descending',
+			'unsorted' => 'cdx-icon--unsorted',
+		];
+	}
+
+	/**
+	 * Get the sample data for the table.
+	 */
+	public static function sampleData(): array {
+		return [
+			[
+				'title' => 'Mercury',
+				'page_id' => 1,
+				'diameter_km' => 4879,
+				'distance_from_sun_million_km' => 57.9,
+				'creation_date' => '2024-01-01 12:00:00',
+			],
+			[
+				'title' => 'Venus',
+				'page_id' => 2,
+				'diameter_km' => 12104,
+				'distance_from_sun_million_km' => 108.2,
+				'creation_date' => '2024-01-05 14:30:00',
+			],
+			[
+				'title' => 'Earth',
+				'page_id' => 3,
+				'diameter_km' => 12742,
+				'distance_from_sun_million_km' => 149.6,
+				'creation_date' => '2024-01-10 10:00:00',
+			],
+			[
+				'title' => 'Mars',
+				'page_id' => 4,
+				'diameter_km' => 6779,
+				'distance_from_sun_million_km' => 227.9,
+				'creation_date' => '2024-02-01 16:15:00',
+			],
+			[
+				'title' => 'Jupiter',
+				'page_id' => 5,
+				'diameter_km' => 139820,
+				'distance_from_sun_million_km' => 778.5,
+				'creation_date' => '2024-02-05 08:45:00',
+			],
+			[
+				'title' => 'Saturn',
+				'page_id' => 6,
+				'diameter_km' => 116460,
+				'distance_from_sun_million_km' => 1434,
+				'creation_date' => '2024-02-15 19:30:00',
+			],
+			[
+				'title' => 'Uranus',
+				'page_id' => 7,
+				'diameter_km' => 50724,
+				'distance_from_sun_million_km' => 2871,
+				'creation_date' => '2024-03-01 12:00:00',
+			],
+			[
+				'title' => 'Neptune',
+				'page_id' => 8,
+				'diameter_km' => 49244,
+				'distance_from_sun_million_km' => 4495,
+				'creation_date' => '2024-03-10 18:00:00',
+			],
+			[
+				'title' => 'Pluto',
+				'page_id' => 9,
+				'diameter_km' => 2376,
+				'distance_from_sun_million_km' => 5906,
+				'creation_date' => '2024-04-01 10:00:00',
+			],
+			[
+				'title' => 'Ceres',
+				'page_id' => 10,
+				'diameter_km' => 946,
+				'distance_from_sun_million_km' => 414,
+				'creation_date' => '2024-04-10 13:00:00',
+			],
+			[
+				'title' => 'Haumea',
+				'page_id' => 11,
+				'diameter_km' => 1632,
+				'distance_from_sun_million_km' => 6484,
+				'creation_date' => '2024-05-01 11:00:00',
+			],
+			[
+				'title' => 'Makemake',
+				'page_id' => 12,
+				'diameter_km' => 1434,
+				'distance_from_sun_million_km' => 6795,
+				'creation_date' => '2024-05-05 15:00:00',
+			],
+			[
+				'title' => 'Eris',
+				'page_id' => 13,
+				'diameter_km' => 2326,
+				'distance_from_sun_million_km' => 10105,
+				'creation_date' => '2024-06-01 09:00:00',
+			],
+			[
+				'title' => 'Europa',
+				'page_id' => 14,
+				'diameter_km' => 3122,
+				'distance_from_sun_million_km' => 778.5,
+				'creation_date' => '2024-06-10 10:30:00',
+			],
+			[
+				'title' => 'Ganymede',
+				'page_id' => 15,
+				'diameter_km' => 5268,
+				'distance_from_sun_million_km' => 778.5,
+				'creation_date' => '2024-07-01 14:15:00',
+			],
+			[
+				'title' => 'Callisto',
+				'page_id' => 16,
+				'diameter_km' => 4821,
+				'distance_from_sun_million_km' => 778.5,
+				'creation_date' => '2024-07-15 16:00:00',
+			],
+			[
+				'title' => 'Titan',
+				'page_id' => 17,
+				'diameter_km' => 5150,
+				'distance_from_sun_million_km' => 1434,
+				'creation_date' => '2024-08-01 09:45:00',
+			],
+			[
+				'title' => 'Enceladus',
+				'page_id' => 18,
+				'diameter_km' => 504,
+				'distance_from_sun_million_km' => 1434,
+				'creation_date' => '2024-08-15 13:30:00',
+			],
+			[
+				'title' => 'Triton',
+				'page_id' => 19,
+				'diameter_km' => 2707,
+				'distance_from_sun_million_km' => 4495,
+				'creation_date' => '2024-09-01 11:15:00',
+			],
+			[
+				'title' => 'Charon',
+				'page_id' => 20,
+				'diameter_km' => 1212,
+				'distance_from_sun_million_km' => 5906,
+				'creation_date' => '2024-09-15 17:00:00',
+			],
+			[
+				'title' => 'Oberon',
+				'page_id' => 21,
+				'diameter_km' => 1523,
+				'distance_from_sun_million_km' => 2871,
+				'creation_date' => '2024-10-01 14:00:00',
+			],
+			[
+				'title' => 'Rhea',
+				'page_id' => 22,
+				'diameter_km' => 1528,
+				'distance_from_sun_million_km' => 1434,
+				'creation_date' => '2024-10-05 20:00:00',
+			],
+			[
+				'title' => 'Dione',
+				'page_id' => 23,
+				'diameter_km' => 1122,
+				'distance_from_sun_million_km' => 1434,
+				'creation_date' => '2024-10-10 13:30:00',
+			],
+			[
+				'title' => 'Iapetus',
+				'page_id' => 24,
+				'diameter_km' => 1469,
+				'distance_from_sun_million_km' => 1434,
+				'creation_date' => '2024-10-15 15:00:00',
+			],
+			[
+				'title' => 'Tethys',
+				'page_id' => 25,
+				'diameter_km' => 1060,
+				'distance_from_sun_million_km' => 1434,
+				'creation_date' => '2024-10-20 10:00:00',
+			],
+			[
+				'title' => 'Umbriel',
+				'page_id' => 26,
+				'diameter_km' => 1190,
+				'distance_from_sun_million_km' => 2871,
+				'creation_date' => '2024-10-25 12:00:00',
+			],
+			[
+				'title' => 'Ariel',
+				'page_id' => 27,
+				'diameter_km' => 1158,
+				'distance_from_sun_million_km' => 2871,
+				'creation_date' => '2024-11-01 14:30:00',
+			],
+			[
+				'title' => 'Miranda',
+				'page_id' => 28,
+				'diameter_km' => 471,
+				'distance_from_sun_million_km' => 2871,
+				'creation_date' => '2024-11-05 09:00:00',
+			],
+			[
+				'title' => 'Phobos',
+				'page_id' => 29,
+				'diameter_km' => 22.4,
+				'distance_from_sun_million_km' => 227.9,
+				'creation_date' => '2024-11-10 16:30:00',
+			],
+			[
+				'title' => 'Deimos',
+				'page_id' => 30,
+				'diameter_km' => 12.4,
+				'distance_from_sun_million_km' => 227.9,
+				'creation_date' => '2024-11-15 18:00:00',
+			],
+		];
+	}
+}
+</span>
+</code></pre>
+	<h3 id="tabs">Tabs</h3>
+	<p>Tabs consist of two or more tab items created for navigating between different sections of content.</p>
+	<div class="phpdocumentor-admonition warning">
+		<svg class="phpdocumentor-admonition__icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+			<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+		</svg>
+		<article>
+			<p>The <strong>Tabs</strong> component also relies on <strong>$callbacks</strong> for managing multiple tabs and their content.</p>
+		</article>
+	</div> <pre class="language-php"><code class="language-php">$tab1 = $codex->Tab()
+    ->setName('tab1')
+    ->setLabel('Tab 1')
+    ->setContent('&lt;p&gt;Content 1&lt;/p&gt;')
+    ->setSelected(true);
+
+$tab2 = $codex->Tab()
+    ->setName('tab2')
+    ->setLabel('Tab 2')
+    ->setContent('&lt;p&gt;Content 2&lt;/p&gt;');
+
+$tab3 = $codex->Tab()
+    ->setName('tab3')
+    ->setLabel('Tab 3')
+    ->setContent('&lt;p&gt;Content 3&lt;/p&gt;');
+
+$tabsHtml = $codex->Tabs()
+
+    ->setCallbacks($callbacks)
+    ->setTab([$tab1, $tab2, $tab3])
+    ->setAction('/');
+</code></pre>
+	<h3 id="textarea">TextArea</h3>
+	<p>A TextArea is a multi-line text input that allows manual resizing if needed.</p> <pre class="language-php"><code class="language-php">$textArea = $codex->TextArea()
+    ->setName('user_message')
+    ->setPlaceholder('Enter your message...')
+    ->setValue('This is a default message.')
+    ->setAttributes(['id' => 'message-area', 'data-category' => 'feedback']);
+</code></pre>
+	<h3 id="textinput">TextInput</h3>
+	<p>A text input is a form element that lets users input and edit a single-line text value.</p> <pre class="language-php"><code class="language-php">$textInput = $codex->TextInput()
+    ->setType('text')
+    ->setName('username')
+    ->setId('username-input')
+    ->setPlaceholder('Enter your username')
+    ->setHasStartIcon(false)
+    ->setHasEndIcon(false)
+    ->setDisabled(false)
+    ->setHasError(false);
+</code></pre>
+	<h3 id="thumbnail">Thumbnail</h3>
+	<p>A Thumbnail is a visual element used to display a small preview of an image. Thumbnails provide users with a quick glimpse of the associated content.</p>
+<pre class="language-php "><code class="language-php ">$thumbnail = $codex->Thumbnail()
+    ->setBackgroundImage('https://example.com/image.jpg')
+    ->setPlaceholderClass('custom-placeholder-icon')
+    ->setUseDefaultPlaceholder(false)
+    ->setAttributes(['id' => 'thumbnail-id', 'data-category' => 'images']);
+</code></pre>
+
+
+</section>
+{% endblock %}
+
+{% block on_this_page %}
+    <section class="phpdocumentor-on-this-page__content">
+        <strong class="phpdocumentor-on-this-page__title">On this page</strong>
+
+        <ul class="phpdocumentor-list -clean">
+            <li><a href="guide/getting-started/usage.html#usage">Usage</a></li>
+            <li><a href="guide/getting-started/usage.html#simple-web-request">SimpleWebRequest Class</a></li>
+            <li><a href="guide/getting-started/usage.html#web-web-request-adapter">WebRequestAdapter</a></li>
+            <li><a href="guide/getting-started/usage.html#web-web-request-callbacks">WebRequestCallbacks</a></li>
+            <li><a href="guide/getting-started/usage.html#component-usage">Builder Usage</a></li>
+            <li><a href="guide/getting-started/usage.html#accordion">Accordion</a></li>
+            <li><a href="guide/getting-started/usage.html#button">Button</a></li>
+            <li><a href="guide/getting-started/usage.html#card">Card</a></li>
+            <li><a href="guide/getting-started/usage.html#checkbox">Checkbox</a></li>
+            <li><a href="guide/getting-started/usage.html#field">Field</a></li>
+            <li><a href="guide/getting-started/usage.html#info-chip">InfoChip</a></li>
+            <li><a href="guide/getting-started/usage.html#label">Label</a></li>
+            <li><a href="guide/getting-started/usage.html#message">Message</a></li>
+            <li><a href="guide/getting-started/usage.html#progress-bar">ProgressBar</a></li>
+            <li><a href="guide/getting-started/usage.html#radio">Radio</a></li>
+            <li><a href="guide/getting-started/usage.html#select">Select</a></li>
+            <li><a href="guide/getting-started/usage.html#table">Table</a></li>
+            <li><a href="guide/getting-started/usage.html#tabs">Tabs</a></li>
+            <li><a href="guide/getting-started/usage.html#textarea">TextArea</a></li>
+            <li><a href="guide/getting-started/usage.html#textinput">TextInput</a></li>
+            <li><a href="guide/getting-started/usage.html#thumbnail">Thumbnail</a></li>
+        </ul>
+    </section>
+{% endblock %}

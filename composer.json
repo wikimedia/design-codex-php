@@ -1,0 +1,73 @@
+{
+	"name": "wikimedia/codex",
+	"description": "A PHP library for building UI components using the Codex design system and a builder pattern.",
+	"type": "library",
+	"version": "0.1.0",
+	"keywords": [
+		"wikimedia",
+		"codex"
+	],
+	"homepage": "https://doc.wikimedia.org/codex/",
+	"authors": [
+		{
+			"name": "Doğu Abaris",
+			"email": "abaris@null.net"
+		}
+	],
+	"license": "GPL-2.0-or-later",
+	"support": {
+		"issues": "https://phabricator.wikimedia.org/tag/codex/"
+	},
+	"require": {
+		"php": "^7.4 || ^8.0",
+		"ext-json": "*",
+		"ext-intl": "*",
+		"krinkle/intuition": "^2.3",
+		"mustache/mustache": "^2.14",
+		"ezyang/htmlpurifier": "^4.17"
+	},
+	"require-dev": {
+		"mediawiki/mediawiki-phan-config": "0.14.0",
+		"mediawiki/minus-x": "1.1.3",
+		"php-parallel-lint/php-console-highlighter": "1.0.0",
+		"php-parallel-lint/php-parallel-lint": "1.4.0",
+		"phpunit/phpunit": "^9.6",
+		"phpdocumentor/phpdocumentor": "^3.1",
+		"mediawiki/mediawiki-codesniffer": "^44.0"
+	},
+	"autoload": {
+		"psr-4": {
+			"Wikimedia\\Codex\\": "src/"
+		}
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"Wikimedia\\Codex\\Tests\\": "tests/",
+			"Wikimedia\\Codex\\Sandbox\\": ".sandbox/src/"
+		}
+	},
+	"scripts": {
+		"test": [
+			"parallel-lint . --exclude vendor",
+			"@phpcs",
+			"minus-x check ."
+		],
+		"fix": [
+			"phpcbf",
+			"minus-x fix ."
+		],
+		"phan": "phan -d . --long-progress-bar",
+		"phpcs": "phpcs -sp --cache",
+		"docs": "php phpDocumentor.phar -d src -t docs",
+		"start-sandbox": [
+			"cd .sandbox && npm install",
+			"php -S localhost:8000 -t .sandbox"
+		]
+	},
+	"config": {
+		"allow-plugins": {
+			"dealerdirect/phpcodesniffer-composer-installer": true,
+			"symfony/flex": true
+		}
+	}
+}

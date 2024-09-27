@@ -1,0 +1,25 @@
+<div class="cdx-table-pager cdx-table__pagination--{{ position }}{{#additionalClasses}} {{additionalClasses}}{{/additionalClasses}}"{{! }}{{#id}} id="{{ id }}"{{/id}}>
+  <div class="cdx-table-pager__start">
+    {{{ select }}}
+  </div>
+  <div class="cdx-table-pager__status">
+    {{ paginationStatus }}
+  </div>
+  <div class="cdx-table-pager__end">
+    {{#firstButton}}
+      {{> button }}
+    {{/firstButton}}
+    {{#prevButton}}
+      {{> button }}
+    {{/prevButton}}
+    {{#nextButton}}
+      {{> button }}
+    {{/nextButton}}
+    {{#lastButton}}
+      {{> button }}
+    {{/lastButton}}
+  </div>
+  {{#hiddenFields}}
+    <input type="hidden" name="{{ key }}" value="{{ value }}">
+  {{/hiddenFields}}
+</div>

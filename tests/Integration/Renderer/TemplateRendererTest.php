@@ -1,0 +1,93 @@
+<?php
+/**
+ * TemplateRendererTest.php
+ *
+ * This class contains unit tests to verify the correct behavior of the TemplateRenderer class,
+ * including rendering templates with dynamic classes, attributes, and Mustache logic sections.
+ *
+ * @category Tests\Integration\Renderer
+ * @package  Codex\Tests\Integration\Renderer
+ * @since    0.1.0
+ * @author   Doğu Abaris <abaris@null.net>
+ * @license  https://www.gnu.org/copyleft/gpl.html GPL-2.0-or-later
+ * @link     https://doc.wikimedia.org/codex/main/ Codex Documentation
+ */
+
+namespace Wikimedia\Codex\Tests\Integration\Renderer;
+
+use PHPUnit\Framework\TestCase;
+use Wikimedia\Codex\Infrastructure\CodexServices;
+
+/**
+ * TemplateRendererTest
+ *
+ * This test verifies the TemplateRenderer class's behavior with a complex HTML template.
+ *
+ * @category Tests\Integration\Renderer
+ * @package  Codex\Tests\Integration\Renderer
+ * @since    0.1.0
+ * @author   Doğu Abaris <abaris@null.net>
+ * @license  https://www.gnu.org/copyleft/gpl.html GPL-2.0-or-later
+ * @link     https://doc.wikimedia.org/codex/main/ Codex Documentation
+ */
+class TemplateRendererTest extends TestCase {
+
+	/**
+	 * Provides data for testing different scenarios of rendering Mustache templates.
+	 *
+	 * @since 0.1.0
+	 * @return array
+	 */
+	public function templateDataProvider(): array {
+		return [
+			'success status with icon' => [
+				[
+					'status' => 'success',
+					'attributes' => 'id="info-chip" role="status"',
+					'icon' => 'icon-check',
+					'text' => 'Operation completed',
+				],
+				'<div class="cdx-info-chip cdx-info-chip--success" id="info-chip" role="status">
+                    <span class="cdx-info-chip--icon icon-check" aria-hidden="true"></span>
+                    <span class="cdx-info-chip--text">Operation completed</span>
+                </div>',
+			],
+			'warning status without icon' => [
+				[
+					'status' => 'warning',
+					'attributes' => 'id="info-chip" role="status"',
+					'icon' => false,
+					'text' => 'Operation pending',
+				],
+				'<div class="cdx-info-chip cdx-info-chip--warning" id="info-chip" role="status">
+                    <span class="cdx-info-chip--text">Operation pending</span>
+                </div>',
+			],
+		];
+	}
+
+	/**
+	 * Test rendering a complex HTML template from a Mustache file with data provided by the data provider.
+	 *
+	 * @since 0.1.0
+	 * @covers \Wikimedia\Codex\Renderer\TemplateRenderer::render
+	 * @dataProvider templateDataProvider
+	 * @param array $data The input data to be rendered in the Mustache template.
+	 * @param string $expectedOutput The expected HTML output.
+	 * @return void
+	 */
+	public function testRenderComplexHtmlTemplateFromFile( array $data, string $expectedOutput ): void {
+		// Retrieve the TemplateRenderer service from CodexServices singleton instance
+		$renderer = CodexServices::getInstance()->getService( 'TemplateRenderer' );
+
+		// Render the 'info-chip.mustache' template using the provided data
+		$result = $renderer->render( 'info-chip.mustache', $data );
+
+		// Normalize whitespace in both the expected and actual output for comparison purposes
+		$normalizedExpectedOutput = preg_replace( '/\s+/', ' ', trim( $expectedOutput ) );
+		$normalizedResult = preg_replace( '/\s+/', ' ', trim( $result ) );
+
+		// Verify that the normalized actual output matches the expected output
+		$this->assertSame( $normalizedExpectedOutput, $normalizedResult );
+	}
+}

@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+<section class="section" id="installation">
+    <h1>Installation</h1>
+    <p>To get started with Codex PHP, you'll need to install it in your project. Follow the instructions below to set up Codex PHP in your environment.</p>
+    <h2 id="requirements">System Requirements</h2>
+    <p>Before installing Codex PHP, make sure your environment meets the following requirements:</p>
+    <ul>
+        <li>PHP 7.4 or higher</li>
+        <li>Composer installed</li>
+        <li>A web server or local development environment like XAMPP, MAMP, or similar</li>
+    </ul>
+    <h2 id="using-composer">Using Composer</h2>
+    <p>You can install Codex PHP via Composer, which is the recommended method:</p>
+    <pre class="language-none"><code class="language-none">$ composer require wikimedia/codex</code></pre>
+    <p>This command will add Codex PHP to your project's dependencies and make it available for use in your PHP scripts.</p>
+</section>
+{% endblock %}
+
+{% block on_this_page %}
+    <section class="phpdocumentor-on-this-page__content">
+        <strong class="phpdocumentor-on-this-page__title">On this page</strong>
+        <ul class="phpdocumentor-list -clean">
+            <li><a href="guide/getting-started/installing.html#installation">Installation</a></li>
+            <li><a href="guide/getting-started/installing.html#requirements">System Requirements</a></li>
+            <li><a href="guide/getting-started/installing.html#using-composer">Using Composer</a></li>
+        </ul>
+    </section>
+{% endblock %}

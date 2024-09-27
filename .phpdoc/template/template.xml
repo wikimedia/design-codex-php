@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<template>
+    <name>Codex</name>
+    <author>Doğu Abaris</author>
+    <email>abaris@null.net</email>
+    <version>1.0.0</version>
+    <extends>default</extends>
+    <transformations>
+        <transformation writer="twig" source="templates/default/index.html.twig" artifact="index2.html"/>
+        <transformation writer="twig" source="templates/default/guide/getting-started/index.html.twig" artifact="guide/getting-started/index.html" />
+        <transformation writer="twig" source="templates/default/guide/getting-started/installing.html.twig" artifact="guide/getting-started/installing.html" />
+        <transformation writer="twig" source="templates/default/guide/getting-started/usage.html.twig" artifact="guide/getting-started/usage.html" />
+    </transformations>
+</template>

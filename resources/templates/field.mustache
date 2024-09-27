@@ -1,0 +1,10 @@
+<{{#isFieldset}}fieldset{{/isFieldset}}{{^isFieldset}}div{{/isFieldset}} class="cdx-field{{#additionalClasses}} {{additionalClasses}}{{/additionalClasses}}"{{! }}{{#id}} id="{{ id }}"{{/id}}{{! }}{{#attributes}} {{{ attributes }}}{{/attributes}}>
+  {{#label}}
+    {{> label }}
+  {{/label}}
+  <div class="cdx-field__control">
+    {{#fields}}
+      {{{.}}}
+    {{/fields}}
+  </div>
+</{{#isFieldset}}fieldset{{/isFieldset}}{{^isFieldset}}div{{/isFieldset}}>
