@@ -31,6 +31,7 @@ use Wikimedia\Codex\Renderer\ButtonRenderer;
  * @author   Doğu Abaris <abaris@null.net>
  * @license  https://www.gnu.org/copyleft/gpl.html GPL-2.0-or-later
  * @link     https://doc.wikimedia.org/codex/main/ Codex Documentation
+ * @coversDefaultClass \Wikimedia\Codex\Builder\ButtonBuilder
  */
 class ButtonBuilderTest extends TestCase {
 
@@ -116,18 +117,18 @@ class ButtonBuilderTest extends TestCase {
 	}
 
 	/**
-	 * Test converting a Button to a string via __toString using provided data.
+	 * Test converting a Button to a string via build using provided data.
 	 *
 	 * This test ensures that the Button class generates the correct HTML output based on the input properties.
 	 *
 	 * @since 0.1.0
-	 * @covers ::__toString
+	 * @covers ::build
 	 * @dataProvider templateDataProvider
 	 * @param array $data The input data for the Button.
 	 * @param string $expectedOutput The expected HTML output.
 	 * @return void
 	 */
-	public function testToString( array $data, string $expectedOutput ): void {
+	public function testBuild( array $data, string $expectedOutput ): void {
 		$renderer = CodexServices::getInstance()->getService( 'TemplateRenderer' );
 		$sanitizer = CodexServices::getInstance()->getService( 'Sanitizer' );
 		$buttonRenderer = new ButtonRenderer( $sanitizer, $renderer );

@@ -31,6 +31,7 @@ use Wikimedia\Codex\Renderer\ProgressBarRenderer;
  * @author   Doğu Abaris <abaris@null.net>
  * @license  https://www.gnu.org/copyleft/gpl.html GPL-2.0-or-later
  * @link     https://doc.wikimedia.org/codex/main/ Codex Documentation
+ * @coversDefaultClass \Wikimedia\Codex\Builder\ProgressBarBuilder
  */
 class ProgressBarBuilderTest extends TestCase {
 
@@ -93,16 +94,16 @@ class ProgressBarBuilderTest extends TestCase {
 	}
 
 	/**
-	 * Test converting an ProgressBar to a string via __toString using provided data.
+	 * Test converting an ProgressBar to a string via build using provided data.
 	 *
 	 * @since 0.1.0
-	 * @covers ::__toString
+	 * @covers ::build
 	 * @dataProvider templateDataProvider
 	 * @param array $data The input data for the ProgressBar.
 	 * @param string $expectedOutput The expected HTML output.
 	 * @return void
 	 */
-	public function testToString( array $data, string $expectedOutput ): void {
+	public function testBuild( array $data, string $expectedOutput ): void {
 		$renderer = CodexServices::getInstance()->getService( 'TemplateRenderer' );
 		$sanitizer = CodexServices::getInstance()->getService( 'Sanitizer' );
 		$progressBarRenderer = new ProgressBarRenderer( $sanitizer, $renderer );

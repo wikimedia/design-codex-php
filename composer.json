@@ -33,7 +33,8 @@
 		"php-parallel-lint/php-parallel-lint": "1.4.0",
 		"phpunit/phpunit": "^9.6",
 		"phpdocumentor/phpdocumentor": "^3.1",
-		"mediawiki/mediawiki-codesniffer": "^44.0"
+		"mediawiki/mediawiki-codesniffer": "^44.0",
+		"ockcyp/covers-validator": "1.6.0"
 	},
 	"autoload": {
 		"psr-4": {
@@ -49,6 +50,10 @@
 	"scripts": {
 		"test": [
 			"parallel-lint . --exclude vendor",
+			"php -d 'extension=pcov.so' vendor/bin/phpunit",
+			"covers-validator",
+			"phpcs -sp",
+			"phan --allow-polyfill-parser --long-progress-bar",
 			"@phpcs",
 			"minus-x check ."
 		],
