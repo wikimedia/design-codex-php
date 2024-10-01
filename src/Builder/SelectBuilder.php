@@ -123,7 +123,7 @@ class SelectBuilder {
 	 * @throws InvalidArgumentException If no options are provided.
 	 */
 	public function setOptions( array $options ): self {
-		if ( empty( $options ) ) {
+		if ( !$options ) {
 			throw new InvalidArgumentException( 'At least one option is required for the select element.' );
 		}
 

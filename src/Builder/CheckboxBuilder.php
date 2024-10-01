@@ -262,7 +262,7 @@ class CheckboxBuilder {
 	 * @throws InvalidArgumentException If required fields are missing or invalid.
 	 */
 	public function build(): Checkbox {
-		if ( empty( $this->inputId ) ) {
+		if ( !$this->inputId ) {
 			throw new InvalidArgumentException( "The 'id' is required for Checkbox." );
 		}
 

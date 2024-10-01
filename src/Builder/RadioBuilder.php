@@ -271,7 +271,7 @@ class RadioBuilder {
 	 * @throws InvalidArgumentException If required fields are missing or invalid.
 	 */
 	public function build(): Radio {
-		if ( empty( $this->inputId ) ) {
+		if ( !$this->inputId ) {
 			throw new InvalidArgumentException( "The 'id' is required for Radio." );
 		}
 

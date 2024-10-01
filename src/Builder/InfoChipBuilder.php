@@ -144,7 +144,7 @@ class InfoChipBuilder {
 	 * @return $this Returns the InfoChip instance for method chaining.
 	 */
 	public function setIcon( ?string $icon ): self {
-		$this->icon = $icon !== null ? $icon : null;
+		$this->icon = $icon;
 
 		return $this;
 	}

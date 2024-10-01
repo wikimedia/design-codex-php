@@ -439,7 +439,7 @@ class PagerBuilder {
 	 * @throws InvalidArgumentException If the pagination size options array is empty.
 	 */
 	public function setPaginationSizeOptions( array $paginationSizeOptions ): self {
-		if ( empty( $paginationSizeOptions ) ) {
+		if ( !$paginationSizeOptions ) {
 			throw new InvalidArgumentException( 'Pagination size options cannot be empty.' );
 		}
 		$this->paginationSizeOptions = $paginationSizeOptions;

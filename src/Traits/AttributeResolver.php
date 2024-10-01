@@ -45,7 +45,7 @@ trait AttributeResolver {
 	 */
 	public function resolve( array $attributes ): string {
 		// Return an empty string if there are no attributes
-		if ( empty( $attributes ) ) {
+		if ( !$attributes ) {
 			return '';
 		}
 

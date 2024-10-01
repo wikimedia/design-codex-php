@@ -120,7 +120,7 @@ class MessageBuilder {
 	 *
 	 * @since 0.1.0
 	 * @param string $content The plain text content to be displayed inside the message box.
-	 * @param-taint $text escapes_html
+	 * @param-taint $content escapes_html
 	 * @return $this Returns the Message instance for method chaining.
 	 */
 	public function setContentText( string $content ): self {
@@ -137,7 +137,7 @@ class MessageBuilder {
 	 *
 	 * @since 0.1.0
 	 * @param HtmlSnippet $content The HTML content to be displayed inside the message box.
-	 * @param-taint $html exec_html
+	 * @param-taint $content exec_html
 	 * @return $this Returns the Message instance for method chaining.
 	 */
 	public function setContentHtml( HtmlSnippet $content ): self {

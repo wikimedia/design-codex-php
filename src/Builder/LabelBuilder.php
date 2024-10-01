@@ -339,7 +339,7 @@ class LabelBuilder {
 	 * @throws InvalidArgumentException If required fields are missing or invalid.
 	 */
 	public function build(): Label {
-		if ( empty( $this->labelText ) ) {
+		if ( !$this->labelText ) {
 			throw new InvalidArgumentException( "The 'labelText' is required for Label." );
 		}
 
