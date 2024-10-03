@@ -7,14 +7,14 @@
     <span class="cdx-label__label">
       {{#icon}}<span class="cdx-label__label__icon {{ icon }}"></span>{{/icon}}{{!
       }}<span class="cdx-label__label__text">{{ labelText }}</span>{{!
-      }}{{#optionalFlag}}<span class="cdx-label__label__optional-flag">{{ langOptionalFlag }}</span>{{/optionalFlag}}
+      }}{{#optionalFlag}}<span class="cdx-label__label__optional-flag">{{#i18n}}cdx-label-optional-flag{{/i18n}}</span>{{/optionalFlag}}
     </span>
   {{/isLegend}}
   {{^isLegend}}
     <label {{#inputId}}for="{{ inputId }}" {{/inputId}}class="cdx-label__label">
       {{#icon}}<span class="cdx-label__label__icon {{ icon }}"></span>{{/icon}}{{!
       }}<span class="cdx-label__label__text">{{ labelText }}</span>{{!
-      }}{{#optionalFlag}}<span class="cdx-label__label__optional-flag">{{ langOptionalFlag }}</span>{{/optionalFlag}}
+      }}{{#optionalFlag}}<span class="cdx-label__label__optional-flag">{{#i18n}}cdx-label-optional-flag{{/i18n}}</span>{{/optionalFlag}}
     </label>
   {{/isLegend}}
   {{#description}}

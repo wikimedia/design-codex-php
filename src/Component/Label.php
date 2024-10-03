@@ -16,7 +16,6 @@
 
 namespace Wikimedia\Codex\Component;
 
-use Krinkle\Intuition\Intuition;
 use Wikimedia\Codex\Contract\Renderer\IRenderer;
 
 /**
@@ -91,11 +90,6 @@ class Label {
 	protected ?string $id;
 
 	/**
-	 * Instance of the Intuition class.
-	 */
-	protected Intuition $lang;
-
-	/**
 	 * The renderer instance used to render the label.
 	 */
 	protected IRenderer $renderer;
@@ -117,7 +111,6 @@ class Label {
 	 * @param array $attributes Additional HTML attributes for the label element.
 	 * @param string|null $id The ID attribute for the label.
 	 * @param IRenderer $renderer The renderer to use for rendering the label.
-	 * @param Intuition $lang The Intuition instance for localization.
 	 */
 	public function __construct(
 		string $labelText,
@@ -131,8 +124,7 @@ class Label {
 		?string $iconClass,
 		array $attributes,
 		?string $id,
-		IRenderer $renderer,
-		Intuition $lang
+		IRenderer $renderer
 	) {
 		$this->labelText = $labelText;
 		$this->inputId = $inputId;
@@ -146,7 +138,6 @@ class Label {
 		$this->attributes = $attributes;
 		$this->id = $id;
 		$this->renderer = $renderer;
-		$this->lang = $lang;
 	}
 
 	/**
@@ -288,19 +279,6 @@ class Label {
 	 */
 	public function getId(): ?string {
 		return $this->id;
-	}
-
-	/**
-	 * Get the Intuition instance used for localization.
-	 *
-	 * This method returns the Intuition instance that handles localization for the label.
-	 * It is initialized with the "codex" domain and used for translating label text.
-	 *
-	 * @since 0.1.0
-	 * @return Intuition The Intuition instance used for localization.
-	 */
-	public function getLang(): Intuition {
-		return $this->lang;
 	}
 
 	/**

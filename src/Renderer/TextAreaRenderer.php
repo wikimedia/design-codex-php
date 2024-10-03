@@ -85,17 +85,17 @@ class TextAreaRenderer implements IRenderer {
 		}
 
 		$textareaData = [
-			'id'                => $this->sanitizer->sanitizeText( $component->getId() ),
-			'name'              => $this->sanitizer->sanitizeText( $component->getName() ),
-			'placeholder'       => $this->sanitizer->sanitizeText( $component->getPlaceholder() ),
-			'value'             => $this->sanitizer->sanitizeText( $component->getValue() ),
-			'isDisabled'        => $component->isDisabled(),
-			'isReadonly'        => $component->isReadonly(),
-			'hasStartIcon'      => $component->hasStartIcon(),
-			'hasEndIcon'        => $component->hasEndIcon(),
-			'startIconClass'    => $this->sanitizer->sanitizeText( $component->getStartIconClass() ),
-			'endIconClass'      => $this->sanitizer->sanitizeText( $component->getEndIconClass() ),
-			'hasError'          => $component->hasError(),
+			'id' => $this->sanitizer->sanitizeText( $component->getId() ),
+			'name' => $this->sanitizer->sanitizeText( $component->getName() ),
+			'placeholder' => $this->sanitizer->sanitizeText( $component->getPlaceholder() ),
+			'value' => $this->sanitizer->sanitizeText( $component->getValue() ),
+			'isDisabled' => $component->isDisabled(),
+			'isReadonly' => $component->isReadonly(),
+			'hasStartIcon' => $component->hasStartIcon(),
+			'hasEndIcon' => $component->hasEndIcon(),
+			'startIconClass' => $this->sanitizer->sanitizeText( $component->getStartIconClass() ),
+			'endIconClass' => $this->sanitizer->sanitizeText( $component->getEndIconClass() ),
+			'hasError' => $component->hasError(),
 			'additionalTextAreaClasses' =>
 				$this->sanitizer->sanitizeText( $this->resolveClasses( $component->getTextareaAttributes() ) ),
 			'additionalWrapperClasses' =>

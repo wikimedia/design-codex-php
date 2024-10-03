@@ -153,7 +153,6 @@ class Pager {
 	 * @param int $endOrdinal End ordinal for the current page.
 	 * @param array $iconClasses Icon classes for the pager buttons.
 	 * @param ?IWebRequestCallbacks $callbacks Callbacks.
-	 * @param Intuition $lang Instance of the Intuition class for localization.
 	 * @param IRenderer $renderer Instance of the renderer for rendering the pager.
 	 */
 	public function __construct(
@@ -174,7 +173,6 @@ class Pager {
 		int $endOrdinal,
 		array $iconClasses,
 		?IWebRequestCallbacks $callbacks,
-		Intuition $lang,
 		IRenderer $renderer
 	) {
 		$this->id = $id;
@@ -194,7 +192,6 @@ class Pager {
 		$this->endOrdinal = $endOrdinal;
 		$this->iconClasses = $iconClasses;
 		$this->callbacks = $callbacks;
-		$this->lang = $lang;
 		$this->renderer = $renderer;
 	}
 

@@ -86,21 +86,21 @@ class ButtonRenderer implements IRenderer {
 		}
 
 		$buttonData = [
-			'id' 			=> $this->sanitizer->sanitizeText( $component->getId() ),
-			'label'			=> $this->sanitizer->sanitizeText( $component->getLabel() ),
-			'action' 		=> $this->sanitizer->sanitizeText( $component->getAction() ),
+			'id' => $this->sanitizer->sanitizeText( $component->getId() ),
+			'label' => $this->sanitizer->sanitizeText( $component->getLabel() ),
+			'action' => $this->sanitizer->sanitizeText( $component->getAction() ),
 			'defaultAction' => $component->getAction() === 'default',
-			'weight' 		=> $this->sanitizer->sanitizeText( $component->getWeight() ),
-			'type' 			=> $this->sanitizer->sanitizeText( $component->getType() ),
+			'weight' => $this->sanitizer->sanitizeText( $component->getWeight() ),
+			'type' => $this->sanitizer->sanitizeText( $component->getType() ),
 			'defaultWeight' => $component->getWeight() === 'normal',
-			'size' 			=> $this->sanitizer->sanitizeText( $component->getSize() ),
-			'defaultSize' 	=> $component->getSize() === 'medium',
-			'iconClass' 	=> $this->sanitizer->sanitizeText( $component->getIconClass() ),
-			'isDisabled'	=> $component->isDisabled(),
-			'iconOnly'		=> $component->isIconOnly(),
+			'size' => $this->sanitizer->sanitizeText( $component->getSize() ),
+			'defaultSize' => $component->getSize() === 'medium',
+			'iconClass' => $this->sanitizer->sanitizeText( $component->getIconClass() ),
+			'isDisabled' => $component->isDisabled(),
+			'iconOnly' => $component->isIconOnly(),
 			'additionalClasses' =>
 				$this->sanitizer->sanitizeText( $this->resolveClasses( $component->getAttributes() ) ),
-			'attributes' 	=> self::resolve( $this->sanitizer->sanitizeAttributes( $component->getAttributes() ) ),
+			'attributes' => self::resolve( $this->sanitizer->sanitizeAttributes( $component->getAttributes() ) ),
 		];
 		return $this->templateRenderer->render( 'button.mustache', $buttonData );
 	}

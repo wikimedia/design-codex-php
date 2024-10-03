@@ -85,22 +85,22 @@ class TextInputRenderer implements IRenderer {
 		}
 
 		$textInputData = [
-			'inputId'          => $this->sanitizer->sanitizeText( $component->getInputId() ),
-			'type'             => $this->sanitizer->sanitizeText( $component->getType() ),
-			'name'             => $this->sanitizer->sanitizeText( $component->getName() ),
-			'isDisabled'       => $component->isDisabled(),
-			'value'            => $this->sanitizer->sanitizeText( $component->getValue() ),
-			'placeholder'      => $this->sanitizer->sanitizeText( $component->getPlaceholder() ),
-			'hasStartIcon'     => $component->hasStartIcon(),
-			'startIconClass'   => $this->sanitizer->sanitizeText( $component->getStartIconClass() ),
-			'hasEndIcon'       => $component->hasEndIcon(),
-			'endIconClass'     => $this->sanitizer->sanitizeText( $component->getEndIconClass() ),
-			'hasError'         => $component->hasError(),
+			'inputId' => $this->sanitizer->sanitizeText( $component->getInputId() ),
+			'type' => $this->sanitizer->sanitizeText( $component->getType() ),
+			'name' => $this->sanitizer->sanitizeText( $component->getName() ),
+			'isDisabled' => $component->isDisabled(),
+			'value' => $this->sanitizer->sanitizeText( $component->getValue() ),
+			'placeholder' => $this->sanitizer->sanitizeText( $component->getPlaceholder() ),
+			'hasStartIcon' => $component->hasStartIcon(),
+			'startIconClass' => $this->sanitizer->sanitizeText( $component->getStartIconClass() ),
+			'hasEndIcon' => $component->hasEndIcon(),
+			'endIconClass' => $this->sanitizer->sanitizeText( $component->getEndIconClass() ),
+			'hasError' => $component->hasError(),
 			'additionalInputClasses' =>
 				$this->sanitizer->sanitizeText( $this->resolveClasses( $component->getInputAttributes() ) ),
 			'additionalWrapperClasses' =>
 				$this->sanitizer->sanitizeText( $this->resolveClasses( $component->getWrapperAttributes() ) ),
-			'inputAttributes'  => self::resolve(
+			'inputAttributes' => self::resolve(
 				$this->sanitizer->sanitizeAttributes( $component->getInputAttributes() )
 			),
 			'wrapperAttributes' => self::resolve(

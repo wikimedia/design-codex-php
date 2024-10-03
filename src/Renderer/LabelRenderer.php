@@ -85,21 +85,19 @@ class LabelRenderer implements IRenderer {
 		}
 
 		$labelData = [
-			'id'               	=> $component->getId(),
-			'isLegend'         	=> $component->isLegend(),
-			'inputId'          	=> $this->sanitizer->sanitizeText( $component->getInputId() ),
-			'labelText'        	=> $this->sanitizer->sanitizeText( $component->getLabelText() ),
-			'optionalFlag'     	=> $component->isOptional(),
-			'langOptionalFlag' 	=> $component->getLang()->msg( 'cdx-label-optional-flag' ),
-			'description'      	=> $this->sanitizer->sanitizeText( $component->getDescription() ),
-			'descriptionId'    	=> $component->getDescriptionId(),
-			'icon'        		=> $this->sanitizer->sanitizeText( $component->getIconClass() ?? '' ),
-			'isVisuallyHidden'	=> $component->isVisuallyHidden(),
-			'isDisabled'        => $component->isDisabled(),
+			'id' => $component->getId(),
+			'isLegend' => $component->isLegend(),
+			'inputId' => $this->sanitizer->sanitizeText( $component->getInputId() ),
+			'labelText' => $this->sanitizer->sanitizeText( $component->getLabelText() ),
+			'optionalFlag' => $component->isOptional(),
+			'description' => $this->sanitizer->sanitizeText( $component->getDescription() ),
+			'descriptionId' => $component->getDescriptionId(),
+			'icon' => $this->sanitizer->sanitizeText( $component->getIconClass() ?? '' ),
+			'isVisuallyHidden' => $component->isVisuallyHidden(),
+			'isDisabled' => $component->isDisabled(),
 			'additionalClasses' =>
 				$this->sanitizer->sanitizeText( $this->resolveClasses( $component->getAttributes() ) ),
-			'attributes'       	=> self::resolve( $this->sanitizer->sanitizeAttributes( $component->getAttributes() ) ),
-			'idAttr'           => $this->sanitizer->sanitizeText( $component->getId() ?? '' ),
+			'attributes' => self::resolve( $this->sanitizer->sanitizeAttributes( $component->getAttributes() ) ),
 		];
 
 		return $this->templateRenderer->render( 'label.mustache', $labelData );

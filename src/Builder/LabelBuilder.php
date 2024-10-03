@@ -20,7 +20,6 @@
 namespace Wikimedia\Codex\Builder;
 
 use InvalidArgumentException;
-use Krinkle\Intuition\Intuition;
 use Wikimedia\Codex\Component\Label;
 use Wikimedia\Codex\Contract\Renderer\IRenderer;
 
@@ -96,11 +95,6 @@ class LabelBuilder {
 	protected ?string $id = null;
 
 	/**
-	 * Instance of the Intuition class.
-	 */
-	protected Intuition $lang;
-
-	/**
 	 * The renderer instance used to render the label.
 	 */
 	protected IRenderer $renderer;
@@ -109,11 +103,9 @@ class LabelBuilder {
 	 * Constructor for the Label class.
 	 *
 	 * @param IRenderer $renderer The renderer to use for rendering the label.
-	 * @param Intuition $lang The Intuition instance for localization.
 	 */
-	public function __construct( IRenderer $renderer, Intuition $lang ) {
+	public function __construct( IRenderer $renderer ) {
 		$this->renderer = $renderer;
-		$this->lang = $lang;
 	}
 
 	/**
@@ -356,7 +348,6 @@ class LabelBuilder {
 			$this->attributes,
 			$this->id,
 			$this->renderer,
-			$this->lang
 		);
 	}
 }

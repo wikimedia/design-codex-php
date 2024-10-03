@@ -87,43 +87,42 @@ class CheckboxRenderer implements IRenderer {
 		$label = $component->getLabel();
 
 		$labelData = [
-			'id'               => $this->sanitizer->sanitizeText( $label->getId() ),
-			'coreClass' 	   => 'cdx-checkbox__label',
-			'labelText'        => $this->sanitizer->sanitizeText( $label->getLabelText() ),
-			'optionalFlag'     => $label->isOptional(),
-			'inputId' 		   => $component->getInputId(),
-			'langOptionalFlag' => $label->getLang()->msg( 'cdx-label-optional-flag' ),
-			'description'      => $this->sanitizer->sanitizeText( $label->getDescription() ),
-			'descriptionId'    => $this->sanitizer->sanitizeText( $label->getDescriptionId() ?? '' ),
-			'disabled'         => $label->isDisabled(),
-			'iconClass'        => $this->sanitizer->sanitizeText( $label->getIconClass() ?? '' ),
+			'id' => $this->sanitizer->sanitizeText( $label->getId() ),
+			'coreClass' => 'cdx-checkbox__label',
+			'labelText' => $this->sanitizer->sanitizeText( $label->getLabelText() ),
+			'optionalFlag' => $label->isOptional(),
+			'inputId' => $component->getInputId(),
+			'description' => $this->sanitizer->sanitizeText( $label->getDescription() ),
+			'descriptionId' => $this->sanitizer->sanitizeText( $label->getDescriptionId() ?? '' ),
+			'disabled' => $label->isDisabled(),
+			'iconClass' => $this->sanitizer->sanitizeText( $label->getIconClass() ?? '' ),
 			'additionalClasses' =>
 				$this->sanitizer->sanitizeText( $this->resolveClasses( $label->getAttributes() ) ),
-			'attributes'       => $this->resolve(
+			'attributes' => $this->resolve(
 				$this->sanitizer->sanitizeAttributes( $label->getAttributes() )
 			),
 		];
 
 		$checkboxData = [
-			'id'                => $this->sanitizer->sanitizeText( $component->getInputId() ),
-			'name'              => $this->sanitizer->sanitizeText( $component->getName() ),
-			'value'             => $this->sanitizer->sanitizeText( $component->getValue() ),
-			'inputId' 		    => $component->getInputId(),
-			'isChecked'         => $component->isChecked(),
-			'isDisabled'        => $component->isDisabled(),
-			'isInline'          => $component->isInline(),
-			'ariaDescribedby'   => $this->sanitizer->sanitizeText( $label->getDescriptionId() ?? '' ),
+			'id' => $this->sanitizer->sanitizeText( $component->getInputId() ),
+			'name' => $this->sanitizer->sanitizeText( $component->getName() ),
+			'value' => $this->sanitizer->sanitizeText( $component->getValue() ),
+			'inputId' => $component->getInputId(),
+			'isChecked' => $component->isChecked(),
+			'isDisabled' => $component->isDisabled(),
+			'isInline' => $component->isInline(),
+			'ariaDescribedby' => $this->sanitizer->sanitizeText( $label->getDescriptionId() ?? '' ),
 			'additionalInputClasses' =>
 				$this->sanitizer->sanitizeText( $this->resolveClasses( $component->getInputAttributes() ) ),
 			'additionalWrapperClasses' =>
 				$this->sanitizer->sanitizeText( $this->resolveClasses( $component->getWrapperAttributes() ) ),
-			'inputAttributes'   => $this->resolve(
+			'inputAttributes' => $this->resolve(
 				$this->sanitizer->sanitizeAttributes( $component->getInputAttributes() )
 			),
 			'wrapperAttributes' => $this->resolve(
 				$this->sanitizer->sanitizeAttributes( $component->getWrapperAttributes() )
 			),
-			'label'             => $labelData,
+			'label' => $labelData,
 		];
 
 		return $this->templateRenderer->render( 'checkbox.mustache', $checkboxData );

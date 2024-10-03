@@ -100,15 +100,12 @@ return [
 	},
 
 	'CheckboxBuilder' => static function ( $container ) {
-		return new CheckboxBuilder(
-			$container->getService( 'CheckboxRenderer' ),
-		);
+		return new CheckboxBuilder( $container->getService( 'CheckboxRenderer' ) );
 	},
 
 	'CheckboxRenderer' => static function ( $container ) {
 		return new CheckboxRenderer(
-			$container->getService( 'Sanitizer' ),
-			$container->getService( 'TemplateRenderer' )
+			$container->getService( 'Sanitizer' ), $container->getService( 'TemplateRenderer' )
 		);
 	},
 
@@ -156,16 +153,12 @@ return [
 	},
 
 	'LabelBuilder' => static function ( $container ) {
-		return new LabelBuilder(
-			$container->getService( 'LabelRenderer' ),
-			$container->getService( 'Intuition' )
-		);
+		return new LabelBuilder( $container->getService( 'LabelRenderer' ) );
 	},
 
 	'LabelRenderer' => static function ( $container ) {
 		return new LabelRenderer(
-			$container->getService( 'Sanitizer' ),
-			$container->getService( 'TemplateRenderer' )
+			$container->getService( 'Sanitizer' ), $container->getService( 'TemplateRenderer' )
 		);
 	},
 
@@ -184,12 +177,14 @@ return [
 	},
 
 	'PagerBuilder' => static function ( $container ) {
-		return new PagerBuilder( $container->getService( 'PagerRenderer' ), $container->getService( 'Intuition' ) );
+		return new PagerBuilder( $container->getService( 'PagerRenderer' ) );
 	},
 
 	'PagerRenderer' => static function ( $container ) {
 		return new PagerRenderer(
-			$container->getService( 'Sanitizer' ), $container->getService( 'TemplateRenderer' )
+			$container->getService( 'Sanitizer' ),
+			$container->getService( 'TemplateRenderer' ),
+			$container->getService( 'Intuition' )
 		);
 	},
 
@@ -204,15 +199,12 @@ return [
 	},
 
 	'RadioBuilder' => static function ( $container ) {
-		return new RadioBuilder(
-			$container->getService( 'RadioRenderer' ),
-		);
+		return new RadioBuilder( $container->getService( 'RadioRenderer' ) );
 	},
 
 	'RadioRenderer' => static function ( $container ) {
 		return new RadioRenderer(
-			$container->getService( 'Sanitizer' ),
-			$container->getService( 'TemplateRenderer' )
+			$container->getService( 'Sanitizer' ), $container->getService( 'TemplateRenderer' )
 		);
 	},
 
@@ -244,9 +236,7 @@ return [
 	},
 
 	'TableRenderer' => static function ( $container ) {
-		return new TableRenderer(
-			$container->getService( 'Sanitizer' ), $container->getService( 'TemplateRenderer' ),
-		);
+		return new TableRenderer( $container->getService( 'Sanitizer' ), $container->getService( 'TemplateRenderer' ) );
 	},
 
 	'TabsBuilder' => static function ( $container ) {
@@ -254,20 +244,38 @@ return [
 	},
 
 	'TabsRenderer' => static function ( $container ) {
-		return new TabsRenderer(
-			$container->getService( 'Sanitizer' ), $container->getService( 'TemplateRenderer' ),
-		);
+		return new TabsRenderer( $container->getService( 'Sanitizer' ), $container->getService( 'TemplateRenderer' ) );
 	},
 
-	'TemplateRenderer' => static function () {
+	'TemplateRenderer' => static function ( $container ) {
 		static $mustacheEngine = null;
 
 		if ( $mustacheEngine === null ) {
 			$templatePath = __DIR__ . '/../../resources/templates';
+
+			$intuition = $container->getService( 'Intuition' );
+
 			$mustacheEngine = new Mustache_Engine( [
 				'loader' => new Mustache_Loader_FilesystemLoader( $templatePath ),
 				// Disable escaping in Mustache. We use custom PHP escaping instead.
 				'escape' => static fn ( $x ) => $x,
+				'helpers' => [
+					// i18n helper - for localization
+					'i18n' => static function ( $text, $render ) use ( $intuition ) {
+						$renderedText = trim( $render( $text ) );
+						// Split by '|' to separate the key and parameters
+						$parts = explode( '|', $renderedText );
+						// The first part is the message key, the rest are parameters
+						$key = trim( array_shift( $parts ) );
+						$params = array_map( 'trim', $parts );
+
+						return htmlspecialchars(
+							$intuition->msg( $key, [ 'variables' => $params ] ),
+							ENT_QUOTES,
+							'UTF-8'
+						);
+					},
+				],
 			] );
 		}
 
@@ -280,8 +288,7 @@ return [
 
 	'TextAreaRenderer' => static function ( $container ) {
 		return new TextAreaRenderer(
-			$container->getService( 'Sanitizer' ),
-			$container->getService( 'TemplateRenderer' )
+			$container->getService( 'Sanitizer' ), $container->getService( 'TemplateRenderer' )
 		);
 	},
 

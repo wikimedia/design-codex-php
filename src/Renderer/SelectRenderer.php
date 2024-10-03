@@ -113,8 +113,8 @@ class SelectRenderer implements IRenderer {
 				throw new InvalidArgumentException( "Expected instance of Option in options" );
 			}
 			$options[] = [
-				'value'      => $this->sanitizer->sanitizeText( $option->getValue() ),
-				'text'       => $this->sanitizer->sanitizeText( $option->getText() ),
+				'value' => $this->sanitizer->sanitizeText( $option->getValue() ),
+				'text' => $this->sanitizer->sanitizeText( $option->getText() ),
 				'isSelected' => $option->isSelected(),
 			];
 		}
@@ -134,7 +134,7 @@ class SelectRenderer implements IRenderer {
 		$optGroups = [];
 		foreach ( $object->getOptGroups() as $label => $groupOptions ) {
 			$group = [
-				'label'   => $this->sanitizer->sanitizeText( $label ),
+				'label' => $this->sanitizer->sanitizeText( $label ),
 				'options' => [],
 			];
 			foreach ( $groupOptions as $option ) {
@@ -142,8 +142,8 @@ class SelectRenderer implements IRenderer {
 					throw new InvalidArgumentException( "Expected instance of Option in optGroups" );
 				}
 				$group['options'][] = [
-					'value'      => $this->sanitizer->sanitizeText( $option->getValue() ),
-					'text'       => $this->sanitizer->sanitizeText( $option->getText() ),
+					'value' => $this->sanitizer->sanitizeText( $option->getValue() ),
+					'text' => $this->sanitizer->sanitizeText( $option->getText() ),
 					'isSelected' => $option->isSelected(),
 				];
 			}

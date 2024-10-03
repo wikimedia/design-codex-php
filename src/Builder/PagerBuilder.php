@@ -19,7 +19,6 @@
 namespace Wikimedia\Codex\Builder;
 
 use InvalidArgumentException;
-use Krinkle\Intuition\Intuition;
 use Wikimedia\Codex\Component\Pager;
 use Wikimedia\Codex\Contract\IWebRequestCallbacks;
 use Wikimedia\Codex\Contract\Renderer\IRenderer;
@@ -161,11 +160,6 @@ class PagerBuilder {
 	protected IWebRequestCallbacks $callbacks;
 
 	/**
-	 * Instance of the Intuition class.
-	 */
-	protected Intuition $lang;
-
-	/**
 	 * The renderer instance used to render the pager.
 	 */
 	protected IRenderer $renderer;
@@ -174,11 +168,9 @@ class PagerBuilder {
 	 * Constructor for the Pager class.
 	 *
 	 * @param IRenderer $renderer The renderer to use for rendering the pager.
-	 * @param Intuition $lang The Intuition instance for localization.
 	 */
-	public function __construct( IRenderer $renderer, Intuition $lang ) {
+	public function __construct( IRenderer $renderer ) {
 		$this->renderer = $renderer;
-		$this->lang = $lang;
 	}
 
 	/**
@@ -507,7 +499,6 @@ class PagerBuilder {
 			$this->endOrdinal,
 			$this->iconClasses,
 			$this->callbacks,
-			$this->lang,
 			$this->renderer
 		);
 	}

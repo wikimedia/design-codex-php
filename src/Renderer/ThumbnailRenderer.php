@@ -84,12 +84,12 @@ class ThumbnailRenderer implements IRenderer {
 		}
 
 		$thumbnailData = [
-			'id' 				=> $this->sanitizer->sanitizeText( $component->getId() ),
-			'backgroundImage' 	=> $this->sanitizer->sanitizeUrl( $component->getBackgroundImage() ),
-			'placeholderClass' 	=> $this->sanitizer->sanitizeText( $component->getPlaceholderClass() ),
+			'id' => $this->sanitizer->sanitizeText( $component->getId() ),
+			'backgroundImage' => $this->sanitizer->sanitizeUrl( $component->getBackgroundImage() ),
+			'placeholderClass' => $this->sanitizer->sanitizeText( $component->getPlaceholderClass() ),
 			'additionalClasses' =>
 				$this->sanitizer->sanitizeText( $this->resolveClasses( $component->getAttributes() ) ),
-			'attributes'		=> self::resolve( $this->sanitizer->sanitizeAttributes( $component->getAttributes() ) ),
+			'attributes' => self::resolve( $this->sanitizer->sanitizeAttributes( $component->getAttributes() ) ),
 		];
 
 		return $this->templateRenderer->render( 'thumbnail.mustache', $thumbnailData );

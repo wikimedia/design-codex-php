@@ -8,6 +8,8 @@
   }}{{#type}} type="{{ type }}"{{/type}}{{!
   }}{{#name}} name="{{ name }}"{{/name}}{{!
   }}{{#value}} value="{{ value }}"{{/value}}{{!
+  }}{{#ariaLabelKey}} aria-label="{{#i18n}}{{ ariaLabelKey }}{{/i18n}}"{{/ariaLabelKey}}{{!
+  }}{{^ariaLabelKey}}{{#ariaLabel}} aria-label="{{ ariaLabel }}"{{/ariaLabel}}{{/ariaLabelKey}}{{!
   }}{{#attributes}} {{{ attributes }}}{{/attributes}}{{!
   }}{{#isDisabled}} disabled{{/isDisabled}}>
   {{#iconClass}}

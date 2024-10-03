@@ -93,34 +93,31 @@ class FieldRenderer implements IRenderer {
 		$label = $component->getLabel();
 
 		$labelData = [
-			'id' 				=> $this->sanitizer->sanitizeText( $label->getId() ),
-			'isLegend' 			=> $component->isFieldset(),
-			'inputId' 			=> $this->sanitizer->sanitizeText( $label->getInputId() ),
-			'labelText' 		=> $this->sanitizer->sanitizeText( $label->getLabelText() ),
-			'optionalFlag' 		=> $label->isOptional(),
-			'langOptionalFlag'	=>
-				$this->sanitizer->sanitizeText( $label->getLang()->msg( 'cdx-label-optional-flag' ) ),
-			'description'		=> $this->sanitizer->sanitizeText( $label->getDescription() ),
-			'descriptionId'		=> $this->sanitizer->sanitizeText( $label->getDescriptionId() ),
-			'icon' 				=> $this->sanitizer->sanitizeText( $label->getIconClass() ),
-			'isVisuallyHidden'	=> $label->isVisuallyHidden(),
-			'isDisabled'		=> $label->isDisabled(),
+			'id' => $this->sanitizer->sanitizeText( $label->getId() ),
+			'isLegend' => $component->isFieldset(),
+			'inputId' => $this->sanitizer->sanitizeText( $label->getInputId() ),
+			'labelText' => $this->sanitizer->sanitizeText( $label->getLabelText() ),
+			'optionalFlag' => $label->isOptional(),
+			'description' => $this->sanitizer->sanitizeText( $label->getDescription() ),
+			'descriptionId' => $this->sanitizer->sanitizeText( $label->getDescriptionId() ),
+			'icon' => $this->sanitizer->sanitizeText( $label->getIconClass() ),
+			'isVisuallyHidden' => $label->isVisuallyHidden(),
+			'isDisabled' => $label->isDisabled(),
 			'additionalClasses' =>
 				$this->sanitizer->sanitizeText( $this->resolveClasses( $label->getAttributes() ) ),
-			'attributes'		=>
+			'attributes' =>
 				$this->resolve( $this->sanitizer->sanitizeAttributes( $label->getAttributes() )
 				),
 		];
 
 		$fieldData = [
-			'id'                => $this->sanitizer->sanitizeText( $component->getId() ),
-			'isFieldset'        => $component->isFieldset(),
-			'fields'            => $component->getFields(),
+			'id' => $this->sanitizer->sanitizeText( $component->getId() ),
+			'isFieldset' => $component->isFieldset(),
+			'fields' => $component->getFields(),
 			'additionalClasses' =>
 				$this->sanitizer->sanitizeText( $this->resolveClasses( $component->getAttributes() ) ),
-			'attributes'        => $this->resolve( $this->sanitizer->sanitizeAttributes( $component->getAttributes() )
-			),
-			'label'             => $labelData,
+			'attributes' => $this->resolve( $this->sanitizer->sanitizeAttributes( $component->getAttributes() ) ),
+			'label' => $labelData,
 		];
 
 		return $this->templateRenderer->render( 'field.mustache', $fieldData );

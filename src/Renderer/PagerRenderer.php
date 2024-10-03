@@ -19,6 +19,7 @@
 namespace Wikimedia\Codex\Renderer;
 
 use InvalidArgumentException;
+use Krinkle\Intuition\Intuition;
 use Wikimedia\Codex\Builder\PagerBuilder;
 use Wikimedia\Codex\Component\Pager;
 use Wikimedia\Codex\Contract\Renderer\IRenderer;
@@ -60,6 +61,11 @@ class PagerRenderer implements IRenderer {
 	private ITemplateRenderer $templateRenderer;
 
 	/**
+	 * The template renderer instance.
+	 */
+	private Intuition $lang;
+
+	/**
 	 * The Codex instance for utility methods.
 	 */
 	private Codex $codex;
@@ -71,9 +77,14 @@ class PagerRenderer implements IRenderer {
 	 * @param Sanitizer $sanitizer The sanitizer instance used for content sanitization.
 	 * @param ITemplateRenderer $templateRenderer The template renderer instance used for rendering templates.
 	 */
-	public function __construct( Sanitizer $sanitizer, ITemplateRenderer $templateRenderer ) {
+	public function __construct(
+		Sanitizer $sanitizer,
+		ITemplateRenderer $templateRenderer,
+		Intuition $lang
+	) {
 		$this->sanitizer = $sanitizer;
 		$this->templateRenderer = $templateRenderer;
+		$this->lang = $lang;
 		$this->codex = new Codex();
 	}
 
@@ -92,72 +103,34 @@ class PagerRenderer implements IRenderer {
 			throw new InvalidArgumentException( "Expected instance of Pager, got " . get_class( $component ) );
 		}
 
-		$paginationStatus = $this->buildPaginationStatus( $component );
-
 		$selectHtml = $this->buildSelect( $component );
 
 		$buttons = [
 			'firstButton' => $this->buildButtonData( $component, PagerBuilder::ACTION_FIRST ),
-			'prevButton'  => $this->buildButtonData( $component, PagerBuilder::ACTION_PREVIOUS ),
-			'nextButton'  => $this->buildButtonData( $component, PagerBuilder::ACTION_NEXT ),
-			'lastButton'  => $this->buildButtonData( $component, PagerBuilder::ACTION_LAST ),
+			'prevButton' => $this->buildButtonData( $component, PagerBuilder::ACTION_PREVIOUS ),
+			'nextButton' => $this->buildButtonData( $component, PagerBuilder::ACTION_NEXT ),
+			'lastButton' => $this->buildButtonData( $component, PagerBuilder::ACTION_LAST ),
 		];
 
 		$hiddenFields = $this->buildHiddenFields( $component );
 
 		$pagerData = [
-			'id'               => $this->sanitizer->sanitizeText( $component->getId() ),
-			'position'         => $this->sanitizer->sanitizeText( $component->getPosition() ),
-			'paginationStatus' => $paginationStatus,
-			'select'           => $selectHtml,
-			'firstButton'      => $buttons['firstButton'],
-			'prevButton'       => $buttons['prevButton'],
-			'nextButton'       => $buttons['nextButton'],
-			'lastButton'       => $buttons['lastButton'],
-			'hiddenFields'     => $hiddenFields,
+			'id' => $this->sanitizer->sanitizeText( $component->getId() ),
+			'position' => $this->sanitizer->sanitizeText( $component->getPosition() ),
+			'startOrdinal' => $component->getStartOrdinal(),
+			'endOrdinal' => $component->getEndOrdinal(),
+			'totalResults' => $component->getTotalResults(),
+			'isPending' => $component->getEndOrdinal() < $component->getStartOrdinal(),
+			'hasTotalResults' => $component->getTotalResults() > 0,
+			'select' => $selectHtml,
+			'firstButton' => $buttons['firstButton'],
+			'prevButton' => $buttons['prevButton'],
+			'nextButton' => $buttons['nextButton'],
+			'lastButton' => $buttons['lastButton'],
+			'hiddenFields' => $hiddenFields,
 		];
 
 		return $this->templateRenderer->render( 'pager.mustache', $pagerData );
-	}
-
-	/**
-	 * Build the pagination status display.
-	 *
-	 * Constructs the status text that shows the current pagination state.
-	 *
-	 * @since 0.1.0
-	 * @param Pager $pager The Pager object representing the pagination state.
-	 * @return string The constructed pagination status message.
-	 */
-	protected function buildPaginationStatus( Pager $pager ): string {
-		$startOrdinal = $pager->getStartOrdinal();
-		$endOrdinal = $pager->getEndOrdinal();
-		$totalResults = $pager->getTotalResults();
-
-		if ( $endOrdinal < $startOrdinal ) {
-			return $pager->getLang()->msg( 'cdx-table-pagination-status-message-pending' );
-		}
-
-		if ( $totalResults > 0 ) {
-			$statusKey = 'cdx-table-pagination-status-message-determinate-long';
-			$statusMessage = $pager->getLang()->msg( $statusKey, [
-				'variables' => [
-					$startOrdinal,
-					$endOrdinal,
-					$totalResults,
-				],
-			] );
-		} else {
-			$statusKey = 'cdx-table-pagination-status-message-indeterminate-long';
-			$statusMessage = $pager->getLang()->msg( $statusKey, [
-				'variables' => [
-					$startOrdinal,
-					$endOrdinal,
-				],
-			] );
-		}
-
-		return $statusMessage;
 	}
 
 	/**
@@ -176,7 +149,7 @@ class PagerRenderer implements IRenderer {
 		foreach ( $sizeOptions as $size ) {
 			$options[] = [
 				'value' => $this->sanitizer->sanitizeText( (string)$size ),
-				'text' => $pager->getLang()->msg(
+				'text' => $this->lang->msg(
 					'cdx-table-pager-items-per-page-current', [ 'variables' => [ $size ] ]
 				),
 				'selected' => ( $size == $currentLimit ),
@@ -209,22 +182,22 @@ class PagerRenderer implements IRenderer {
 		switch ( $action ) {
 			case PagerBuilder::ACTION_FIRST:
 				$disabled = $pager->isFirstDisabled();
-				$ariaLabel = $pager->getLang()->msg( 'cdx-table-pager-button-first-page' );
+				$ariaLabelKey = 'cdx-table-pager-button-first-page';
 				$offset = $pager->getFirstOffset();
 				break;
 			case PagerBuilder::ACTION_PREVIOUS:
 				$disabled = $pager->isPrevDisabled();
-				$ariaLabel = $pager->getLang()->msg( 'cdx-table-pager-button-prev-page' );
+				$ariaLabelKey = 'cdx-table-pager-button-prev-page';
 				$offset = $pager->getPrevOffset();
 				break;
 			case PagerBuilder::ACTION_NEXT:
 				$disabled = $pager->isNextDisabled();
-				$ariaLabel = $pager->getLang()->msg( 'cdx-table-pager-button-next-page' );
+				$ariaLabelKey = 'cdx-table-pager-button-next-page';
 				$offset = $pager->getNextOffset();
 				break;
 			case PagerBuilder::ACTION_LAST:
 				$disabled = $pager->isLastDisabled();
-				$ariaLabel = $pager->getLang()->msg( 'cdx-table-pager-button-last-page' );
+				$ariaLabelKey = 'cdx-table-pager-button-last-page';
 				$offset = $pager->getLastOffset();
 				$dir = 'prev';
 				break;
@@ -236,11 +209,11 @@ class PagerRenderer implements IRenderer {
 			'isDisabled' => $disabled,
 			'weight' => 'quiet',
 			'iconOnly' => true,
-			'ariaLabel'  => $ariaLabel,
-			'iconClass'  => $iconClass,
-			'type'       => 'submit',
-			'name'       => 'offset',
-			'value'      => $this->sanitizer->sanitizeText( (string)$offset ),
+			'ariaLabelKey' => $ariaLabelKey,
+			'iconClass' => $iconClass,
+			'type' => 'submit',
+			'name' => 'offset',
+			'value' => $this->sanitizer->sanitizeText( (string)$offset ),
 			'dir' => $dir,
 		];
 	}
