@@ -90,4 +90,19 @@ class TemplateRendererTest extends TestCase {
 		// Verify that the normalized actual output matches the expected output
 		$this->assertSame( $normalizedExpectedOutput, $normalizedResult );
 	}
+
+	/**
+	 * Test that escaping is disabled, and `{{...}}` is equivalent to `{{{...}}}` (we use custom PHP escaping instead
+	 * of Mustache escaping).
+	 *
+	 * @since 0.1.0
+	 * @covers \Wikimedia\Codex\Renderer\TemplateRenderer::render
+	 */
+	public function testEscapingIsDisabled(): void {
+		$renderer = CodexServices::getInstance()->getService( 'TemplateRenderer' );
+
+		$rawValue = '<script>alert( "dQw4w9WgXcQ" )</script>';
+		$result = $renderer->render( 'accordion.mustache', [ 'description' => $rawValue ] );
+		$this->assertStringContainsString( $rawValue, $result );
+	}
 }

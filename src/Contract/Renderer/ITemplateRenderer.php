@@ -45,6 +45,7 @@ interface ITemplateRenderer {
 	 * @since 0.1.0
 	 * @param string $template The name of the template file to render.
 	 * @param array $data An associative array of data to be injected into the template.
+	 * @param-taint $data exec_html We use custom escaping in PHP, and no escaping in Mustache.
 	 * @return string The rendered output as a string.
 	 */
 	public function render( string $template, array $data ): string;

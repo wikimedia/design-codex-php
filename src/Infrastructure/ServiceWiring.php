@@ -266,6 +266,8 @@ return [
 			$templatePath = __DIR__ . '/../../resources/templates';
 			$mustacheEngine = new Mustache_Engine( [
 				'loader' => new Mustache_Loader_FilesystemLoader( $templatePath ),
+				// Disable escaping in Mustache. We use custom PHP escaping instead.
+				'escape' => static fn ( $x ) => $x,
 			] );
 		}
 
