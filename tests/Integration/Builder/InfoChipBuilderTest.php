@@ -92,7 +92,7 @@ class InfoChipBuilderTest extends TestCase {
 		$this->assertSame(
 			preg_replace( '/\s+/', ' ', trim( $expectedOutput ) ),
 			preg_replace( '/\s+/', ' ', trim( $infoChip->build()->getHtml() ) ),
-			'The __toString method should generate the correct HTML output.'
+			'The getHtml() method should return the correct HTML output.'
 		);
 	}
 }
