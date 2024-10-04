@@ -18,6 +18,7 @@
 
 namespace Wikimedia\Codex\Builder;
 
+use InvalidArgumentException;
 use Wikimedia\Codex\Component\Field;
 use Wikimedia\Codex\Component\Label;
 use Wikimedia\Codex\Contract\Renderer\IRenderer;
@@ -179,6 +180,10 @@ class FieldBuilder {
 	 * @return Field The constructed Field.
 	 */
 	public function build(): Field {
+		if ( !$this->label ) {
+			throw new InvalidArgumentException( "The 'label' is required for Field." );
+		}
+
 		return new Field(
 			$this->id,
 			$this->label,

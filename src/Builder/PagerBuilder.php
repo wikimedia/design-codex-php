@@ -157,7 +157,7 @@ class PagerBuilder {
 	/**
 	 * Callbacks object for handling custom actions.
 	 */
-	protected IWebRequestCallbacks $callbacks;
+	protected ?IWebRequestCallbacks $callbacks = null;
 
 	/**
 	 * The renderer instance used to render the pager.

@@ -17,4 +17,8 @@ $cfg['directory_list'] = array_merge(
 	]
 );
 
+$cfg['strict_method_checking'] = true;
+$cfg['strict_object_checking'] = true;
+$cfg['strict_property_checking'] = true;
+
 return $cfg;

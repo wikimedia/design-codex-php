@@ -82,16 +82,19 @@ class CardRenderer implements IRenderer {
 		if ( !$component instanceof Card ) {
 			throw new InvalidArgumentException( "Expected instance of Card, got " . get_class( $component ) );
 		}
-		$thumbnail = $component->getThumbnail();
 
-		$thumbnailData = [
-			'id' => $this->sanitizer->sanitizeText( $thumbnail->getId() ),
-			'coreClass' => 'cdx-card__thumbnail',
-			'backgroundImage' => $this->sanitizer->sanitizeText( $thumbnail->getBackgroundImage() ),
-			'useDefaultPlaceholder' => (bool)$component->getThumbnail(),
-			'placeholderClass' => $this->sanitizer->sanitizeText( $thumbnail->getPlaceholderClass() ),
-			'attributes' => self::resolve( $this->sanitizer->sanitizeAttributes( $thumbnail->getAttributes() ) ),
-		];
+		$thumbnail = $component->getThumbnail();
+		$thumbnailData = null;
+		if ( $thumbnail ) {
+			$thumbnailData = [
+				'id' => $this->sanitizer->sanitizeText( $thumbnail->getId() ),
+				'coreClass' => 'cdx-card__thumbnail',
+				'backgroundImage' => $this->sanitizer->sanitizeText( $thumbnail->getBackgroundImage() ),
+				'useDefaultPlaceholder' => (bool)$component->getThumbnail(),
+				'placeholderClass' => $this->sanitizer->sanitizeText( $thumbnail->getPlaceholderClass() ),
+				'attributes' => self::resolve( $this->sanitizer->sanitizeAttributes( $thumbnail->getAttributes() ) ),
+			];
+		}
 
 		$cardData = [
 			'id' => $this->sanitizer->sanitizeText( $component->getId() ),

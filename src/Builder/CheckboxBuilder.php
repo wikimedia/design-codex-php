@@ -265,6 +265,9 @@ class CheckboxBuilder {
 		if ( !$this->inputId ) {
 			throw new InvalidArgumentException( "The 'id' is required for Checkbox." );
 		}
+		if ( !$this->label ) {
+			throw new InvalidArgumentException( "The 'label' is required for Checkbox." );
+		}
 
 		return new Checkbox(
 			$this->inputId,

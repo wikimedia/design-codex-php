@@ -47,7 +47,7 @@ class Checkbox {
 	/**
 	 * The label object for the checkbox.
 	 */
-	protected ?Label $label;
+	protected Label $label;
 
 	/**
 	 * The value associated with the checkbox input.

@@ -274,6 +274,9 @@ class RadioBuilder {
 		if ( !$this->inputId ) {
 			throw new InvalidArgumentException( "The 'id' is required for Radio." );
 		}
+		if ( !$this->label ) {
+			throw new InvalidArgumentException( "The 'label' is required for Radio." );
+		}
 
 		return new Radio(
 			$this->inputId,

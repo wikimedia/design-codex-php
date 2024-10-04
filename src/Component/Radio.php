@@ -47,7 +47,7 @@ class Radio {
 	/**
 	 * The label object for the radio.
 	 */
-	protected ?Label $label;
+	protected Label $label;
 
 	/**
 	 * The value associated with the radio input.
@@ -157,9 +157,9 @@ class Radio {
 	 * The label is crucial for accessibility and usability.
 	 *
 	 * @since 0.1.0
-	 * @return Label|null The label object for the radio button.
+	 * @return Label The label object for the radio button.
 	 */
-	public function getLabel(): ?Label {
+	public function getLabel(): Label {
 		return $this->label;
 	}
 

@@ -230,8 +230,13 @@ class PagerRenderer implements IRenderer {
 	 * @return array The generated HTML string for the hidden fields.
 	 */
 	protected function buildHiddenFields( Pager $pager ): array {
+		$callbacks = $pager->getCallbacks();
+		if ( !$callbacks ) {
+			return [];
+		}
+
 		$fields = [];
-		foreach ( $pager->getCallbacks()->getValues( 'sort', 'asc', 'desc' ) as $key => $value ) {
+		foreach ( $callbacks->getValues( 'sort', 'asc', 'desc' ) as $key => $value ) {
 			$fields[] = [
 				'key' => $this->sanitizer->sanitizeText( $key ),
 				'value' => $this->sanitizer->sanitizeText( $value ),

@@ -83,6 +83,7 @@ class TableRenderer implements IRenderer {
 			throw new InvalidArgumentException( "Expected instance of Table, got " . get_class( $component ) );
 		}
 
+		$pager = $component->getPager();
 		$tableData = [
 			'id' => $this->sanitizer->sanitizeText( $component->getId() ),
 			'showVerticalBorders' => $component->getShowVerticalBorders(),
@@ -91,7 +92,7 @@ class TableRenderer implements IRenderer {
 			'rows' => $this->prepareRows( $component ),
 			'hideCaption' => $component->getHideCaption(),
 			'headerContent' => $this->sanitizer->sanitizeText( $component->getHeaderContent() ?? '' ),
-			'pager' => $component->getPager() ? $component->getPager()->getHtml() : '',
+			'pager' => $pager ? $pager->getHtml() : '',
 			'additionalClasses' =>
 				$this->sanitizer->sanitizeText( $this->resolveClasses( $component->getAttributes() ) ),
 			'attributes' => self::resolve( $this->sanitizer->sanitizeAttributes( $component->getAttributes() ) ),
