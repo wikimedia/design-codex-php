@@ -16,7 +16,7 @@
 
 namespace Wikimedia\Codex\Component;
 
-use Wikimedia\Codex\Contract\Renderer\IRenderer;
+use Wikimedia\Codex\Renderer\CheckboxRenderer;
 
 /**
  * Checkbox
@@ -82,7 +82,7 @@ class Checkbox {
 	/**
 	 * The renderer instance used to render the checkbox.
 	 */
-	protected IRenderer $renderer;
+	protected CheckboxRenderer $renderer;
 
 	/**
 	 * Constructor for the Checkbox component.
@@ -98,7 +98,7 @@ class Checkbox {
 	 * @param bool $inline Indicates if the checkbox should be displayed inline.
 	 * @param array $inputAttributes Additional HTML attributes for the input element.
 	 * @param array $wrapperAttributes Additional HTML attributes for the wrapper element.
-	 * @param IRenderer $renderer The renderer to use for rendering the checkbox.
+	 * @param CheckboxRenderer $renderer The renderer to use for rendering the checkbox.
 	 */
 	public function __construct(
 		string $id,
@@ -110,7 +110,7 @@ class Checkbox {
 		bool $inline,
 		array $inputAttributes,
 		array $wrapperAttributes,
-		IRenderer $renderer
+		CheckboxRenderer $renderer
 	) {
 		$this->inputId = $id;
 		$this->name = $name;

@@ -23,7 +23,7 @@ namespace Wikimedia\Codex\Builder;
 use InvalidArgumentException;
 use Wikimedia\Codex\Component\Label;
 use Wikimedia\Codex\Component\Radio;
-use Wikimedia\Codex\Contract\Renderer\IRenderer;
+use Wikimedia\Codex\Renderer\RadioRenderer;
 
 /**
  * RadioBuilder
@@ -89,14 +89,14 @@ class RadioBuilder {
 	/**
 	 * The renderer instance used to render the radio.
 	 */
-	protected IRenderer $renderer;
+	protected RadioRenderer $renderer;
 
 	/**
 	 * Constructor for the Radio class.
 	 *
-	 * @param IRenderer $renderer The renderer to use for rendering the radio.
+	 * @param RadioRenderer $renderer The renderer to use for rendering the radio.
 	 */
-	public function __construct( IRenderer $renderer ) {
+	public function __construct( RadioRenderer $renderer ) {
 		$this->renderer = $renderer;
 	}
 

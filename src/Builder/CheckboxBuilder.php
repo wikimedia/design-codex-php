@@ -22,7 +22,7 @@ namespace Wikimedia\Codex\Builder;
 use InvalidArgumentException;
 use Wikimedia\Codex\Component\Checkbox;
 use Wikimedia\Codex\Component\Label;
-use Wikimedia\Codex\Contract\Renderer\IRenderer;
+use Wikimedia\Codex\Renderer\CheckboxRenderer;
 
 /**
  * CheckboxBuilder
@@ -88,14 +88,14 @@ class CheckboxBuilder {
 	/**
 	 * The renderer instance used to render the checkbox.
 	 */
-	protected IRenderer $renderer;
+	protected CheckboxRenderer $renderer;
 
 	/**
 	 * Constructor for the Checkbox class.
 	 *
-	 * @param IRenderer $renderer The renderer to use for rendering the checkbox.
+	 * @param CheckboxRenderer $renderer The renderer to use for rendering the checkbox.
 	 */
-	public function __construct( IRenderer $renderer ) {
+	public function __construct( CheckboxRenderer $renderer ) {
 		$this->renderer = $renderer;
 	}
 

@@ -23,7 +23,7 @@ namespace Wikimedia\Codex\Builder;
 use InvalidArgumentException;
 use Wikimedia\Codex\Component\Accordion;
 use Wikimedia\Codex\Component\HtmlSnippet;
-use Wikimedia\Codex\Contract\Renderer\IRenderer;
+use Wikimedia\Codex\Renderer\AccordionRenderer;
 
 /**
  * AccordionBuilder
@@ -74,14 +74,14 @@ class AccordionBuilder {
 	/**
 	 * The renderer instance used to render the accordion.
 	 */
-	protected IRenderer $renderer;
+	protected AccordionRenderer $renderer;
 
 	/**
 	 * Constructor for the Accordion class.
 	 *
-	 * @param IRenderer $renderer The renderer to use for rendering the accordion.
+	 * @param AccordionRenderer $renderer The renderer to use for rendering the accordion.
 	 */
-	public function __construct( IRenderer $renderer ) {
+	public function __construct( AccordionRenderer $renderer ) {
 		$this->renderer = $renderer;
 	}
 

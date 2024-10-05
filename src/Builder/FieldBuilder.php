@@ -21,7 +21,7 @@ namespace Wikimedia\Codex\Builder;
 use InvalidArgumentException;
 use Wikimedia\Codex\Component\Field;
 use Wikimedia\Codex\Component\Label;
-use Wikimedia\Codex\Contract\Renderer\IRenderer;
+use Wikimedia\Codex\Renderer\FieldRenderer;
 
 /**
  * FieldBuilder
@@ -72,14 +72,14 @@ class FieldBuilder {
 	/**
 	 * The renderer instance used to render the field.
 	 */
-	protected IRenderer $renderer;
+	protected FieldRenderer $renderer;
 
 	/**
 	 * Constructor for the Field class.
 	 *
-	 * @param IRenderer $renderer The renderer to use for rendering the field.
+	 * @param FieldRenderer $renderer The renderer to use for rendering the field.
 	 */
-	public function __construct( IRenderer $renderer ) {
+	public function __construct( FieldRenderer $renderer ) {
 		$this->renderer = $renderer;
 	}
 

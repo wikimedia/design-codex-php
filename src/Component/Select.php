@@ -16,7 +16,7 @@
 
 namespace Wikimedia\Codex\Component;
 
-use Wikimedia\Codex\Contract\Renderer\IRenderer;
+use Wikimedia\Codex\Renderer\SelectRenderer;
 
 /**
  * Select
@@ -67,7 +67,7 @@ class Select {
 	/**
 	 * The renderer instance used to render the select.
 	 */
-	private IRenderer $renderer;
+	private SelectRenderer $renderer;
 
 	/**
 	 * Constructor for the Select component.
@@ -78,7 +78,7 @@ class Select {
 	 * @param string|null $selectedOption The value of the selected option, if any.
 	 * @param array $attributes Additional HTML attributes for the select element.
 	 * @param bool $disabled Indicates whether the select element is disabled.
-	 * @param IRenderer $renderer The renderer to use for rendering the select element.
+	 * @param SelectRenderer $renderer The renderer to use for rendering the select element.
 	 */
 	public function __construct(
 		string $id,
@@ -87,7 +87,7 @@ class Select {
 		?string $selectedOption,
 		array $attributes,
 		bool $disabled,
-		IRenderer $renderer
+		SelectRenderer $renderer
 	) {
 		$this->id = $id;
 		$this->options = $options;

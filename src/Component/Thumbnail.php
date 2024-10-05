@@ -16,7 +16,7 @@
 
 namespace Wikimedia\Codex\Component;
 
-use Wikimedia\Codex\Contract\Renderer\IRenderer;
+use Wikimedia\Codex\Renderer\ThumbnailRenderer;
 
 /**
  * Thumbnail
@@ -57,7 +57,7 @@ class Thumbnail {
 	/**
 	 * The renderer instance used to render the thumbnail.
 	 */
-	private IRenderer $renderer;
+	private ThumbnailRenderer $renderer;
 
 	/**
 	 * Constructor for the Thumbnail component.
@@ -66,14 +66,14 @@ class Thumbnail {
 	 * @param string $backgroundImage The background image URL.
 	 * @param string $placeholderClass The CSS class for the placeholder icon.
 	 * @param array $attributes Additional HTML attributes for the thumbnail.
-	 * @param IRenderer $renderer The renderer to use for rendering the thumbnail.
+	 * @param ThumbnailRenderer $renderer The renderer to use for rendering the thumbnail.
 	 */
 	public function __construct(
 		string $id,
 		string $backgroundImage,
 		string $placeholderClass,
 		array $attributes,
-		IRenderer $renderer
+		ThumbnailRenderer $renderer
 	) {
 		$this->id = $id;
 		$this->backgroundImage = $backgroundImage;

@@ -22,7 +22,7 @@ namespace Wikimedia\Codex\Builder;
 use Wikimedia\Codex\Component\Pager;
 use Wikimedia\Codex\Component\Table;
 use Wikimedia\Codex\Contract\IWebRequestCallbacks;
-use Wikimedia\Codex\Contract\Renderer\IRenderer;
+use Wikimedia\Codex\Renderer\TableRenderer;
 
 /**
  * TableBuilder
@@ -148,14 +148,14 @@ class TableBuilder {
 	/**
 	 * The renderer instance used to render the table.
 	 */
-	protected IRenderer $renderer;
+	protected TableRenderer $renderer;
 
 	/**
 	 * Constructor for the Table class.
 	 *
-	 * @param IRenderer $renderer The renderer to use for rendering the table.
+	 * @param TableRenderer $renderer The renderer to use for rendering the table.
 	 */
-	public function __construct( IRenderer $renderer ) {
+	public function __construct( TableRenderer $renderer ) {
 		$this->renderer = $renderer;
 	}
 

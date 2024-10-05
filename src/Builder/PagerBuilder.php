@@ -21,7 +21,7 @@ namespace Wikimedia\Codex\Builder;
 use InvalidArgumentException;
 use Wikimedia\Codex\Component\Pager;
 use Wikimedia\Codex\Contract\IWebRequestCallbacks;
-use Wikimedia\Codex\Contract\Renderer\IRenderer;
+use Wikimedia\Codex\Renderer\PagerRenderer;
 
 /**
  * PagerBuilder
@@ -162,14 +162,14 @@ class PagerBuilder {
 	/**
 	 * The renderer instance used to render the pager.
 	 */
-	protected IRenderer $renderer;
+	protected PagerRenderer $renderer;
 
 	/**
 	 * Constructor for the Pager class.
 	 *
-	 * @param IRenderer $renderer The renderer to use for rendering the pager.
+	 * @param PagerRenderer $renderer The renderer to use for rendering the pager.
 	 */
-	public function __construct( IRenderer $renderer ) {
+	public function __construct( PagerRenderer $renderer ) {
 		$this->renderer = $renderer;
 	}
 

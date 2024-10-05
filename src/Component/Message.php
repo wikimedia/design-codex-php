@@ -16,7 +16,7 @@
 
 namespace Wikimedia\Codex\Component;
 
-use Wikimedia\Codex\Contract\Renderer\IRenderer;
+use Wikimedia\Codex\Renderer\MessageRenderer;
 
 /**
  * Message
@@ -72,7 +72,7 @@ class Message {
 	/**
 	 * The renderer instance used to render the message.
 	 */
-	private IRenderer $renderer;
+	private MessageRenderer $renderer;
 
 	/**
 	 * Constructor for the Message component.
@@ -86,7 +86,7 @@ class Message {
 	 * @param string $heading The heading displayed at the top of the message content.
 	 * @param string $iconClass The CSS class name for the icon.
 	 * @param array $attributes Additional HTML attributes for the message box.
-	 * @param IRenderer $renderer The renderer to use for rendering the message.
+	 * @param MessageRenderer $renderer The renderer to use for rendering the message.
 	 */
 	public function __construct(
 		string $id,
@@ -96,7 +96,7 @@ class Message {
 		string $heading,
 		string $iconClass,
 		array $attributes,
-		IRenderer $renderer
+		MessageRenderer $renderer
 	) {
 		$this->id = $id;
 		$this->content = $content;

@@ -16,7 +16,7 @@
 
 namespace Wikimedia\Codex\Component;
 
-use Wikimedia\Codex\Contract\Renderer\IRenderer;
+use Wikimedia\Codex\Renderer\AccordionRenderer;
 
 /**
  * Accordion
@@ -67,7 +67,7 @@ class Accordion {
 	/**
 	 * The renderer instance used to render the accordion.
 	 */
-	private IRenderer $renderer;
+	private AccordionRenderer $renderer;
 
 	/**
 	 * Constructor for the Accordion component.
@@ -80,7 +80,7 @@ class Accordion {
 	 * @param string $content The content shown when the accordion is expanded.
 	 * @param bool $isOpen Determines if the accordion is expanded by default.
 	 * @param array $attributes Additional HTML attributes for the <details> element.
-	 * @param IRenderer $renderer The renderer to use for rendering the accordion.
+	 * @param AccordionRenderer $renderer The renderer to use for rendering the accordion.
 	 */
 	public function __construct(
 		string $id,
@@ -89,7 +89,7 @@ class Accordion {
 		string $content,
 		bool $isOpen,
 		array $attributes,
-		IRenderer $renderer
+		AccordionRenderer $renderer
 	) {
 		$this->id = $id;
 		$this->title = $title;

@@ -17,7 +17,7 @@
 namespace Wikimedia\Codex\Component;
 
 use Wikimedia\Codex\Contract\IWebRequestCallbacks;
-use Wikimedia\Codex\Contract\Renderer\IRenderer;
+use Wikimedia\Codex\Renderer\TabsRenderer;
 
 /**
  * Tabs
@@ -58,7 +58,7 @@ class Tabs {
 	/**
 	 * The renderer instance used to render the tabs.
 	 */
-	private IRenderer $renderer;
+	private TabsRenderer $renderer;
 
 	/**
 	 * Constructor for the Tabs component.
@@ -69,14 +69,14 @@ class Tabs {
 	 * @param array $tabs An array of Tab component objects.
 	 * @param array $attributes Additional HTML attributes for the tabs component.
 	 * @param IWebRequestCallbacks $callbacks The IWebRequestCallbacks implementation.
-	 * @param IRenderer $renderer The renderer to use for rendering the tabs.
+	 * @param TabsRenderer $renderer The renderer to use for rendering the tabs.
 	 */
 	public function __construct(
 		string $id,
 		array $tabs,
 		array $attributes,
 		IWebRequestCallbacks $callbacks,
-		IRenderer $renderer
+		TabsRenderer $renderer
 	) {
 		$this->id = $id;
 		$this->tabs = $tabs;

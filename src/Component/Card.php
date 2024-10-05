@@ -16,7 +16,7 @@
 
 namespace Wikimedia\Codex\Component;
 
-use Wikimedia\Codex\Contract\Renderer\IRenderer;
+use Wikimedia\Codex\Renderer\CardRenderer;
 
 /**
  * Card
@@ -77,7 +77,7 @@ class Card {
 	/**
 	 * The renderer instance used to render the card.
 	 */
-	protected IRenderer $renderer;
+	protected CardRenderer $renderer;
 
 	/**
 	 * Constructor for the Card component.
@@ -92,7 +92,7 @@ class Card {
 	 * @param string|null $iconClass The CSS class for an optional icon in the card.
 	 * @param Thumbnail|null $thumbnail The Thumbnail object representing the card's thumbnail.
 	 * @param array $attributes Additional HTML attributes for the card element.
-	 * @param IRenderer $renderer The renderer to use for rendering the card.
+	 * @param CardRenderer $renderer The renderer to use for rendering the card.
 	 */
 	public function __construct(
 		string $id,
@@ -103,7 +103,7 @@ class Card {
 		?string $iconClass,
 		?Thumbnail $thumbnail,
 		array $attributes,
-		IRenderer $renderer
+		CardRenderer $renderer
 	) {
 		$this->id = $id;
 		$this->title = $title;

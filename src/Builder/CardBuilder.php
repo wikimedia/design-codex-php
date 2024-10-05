@@ -22,7 +22,7 @@ namespace Wikimedia\Codex\Builder;
 use InvalidArgumentException;
 use Wikimedia\Codex\Component\Card;
 use Wikimedia\Codex\Component\Thumbnail;
-use Wikimedia\Codex\Contract\Renderer\IRenderer;
+use Wikimedia\Codex\Renderer\CardRenderer;
 
 /**
  * CardBuilder
@@ -83,14 +83,14 @@ class CardBuilder {
 	/**
 	 * The renderer instance used to render the card.
 	 */
-	protected IRenderer $renderer;
+	protected CardRenderer $renderer;
 
 	/**
 	 * Constructor for the Card class.
 	 *
-	 * @param IRenderer $renderer The renderer to use for rendering the card.
+	 * @param CardRenderer $renderer The renderer to use for rendering the card.
 	 */
-	public function __construct( IRenderer $renderer ) {
+	public function __construct( CardRenderer $renderer ) {
 		$this->renderer = $renderer;
 	}
 

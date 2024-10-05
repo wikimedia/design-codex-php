@@ -21,7 +21,7 @@ namespace Wikimedia\Codex\Builder;
 
 use InvalidArgumentException;
 use Wikimedia\Codex\Component\Button;
-use Wikimedia\Codex\Contract\Renderer\IRenderer;
+use Wikimedia\Codex\Renderer\ButtonRenderer;
 
 /**
  * ButtonBuilder
@@ -127,14 +127,14 @@ class ButtonBuilder {
 	/**
 	 * The renderer instance used to render the button.
 	 */
-	protected IRenderer $renderer;
+	protected ButtonRenderer $renderer;
 
 	/**
 	 * Constructor for the Button class.
 	 *
-	 * @param IRenderer $renderer The renderer to use for rendering the button.
+	 * @param ButtonRenderer $renderer The renderer to use for rendering the button.
 	 */
-	public function __construct( IRenderer $renderer ) {
+	public function __construct( ButtonRenderer $renderer ) {
 		$this->renderer = $renderer;
 	}
 

@@ -16,7 +16,7 @@
 
 namespace Wikimedia\Codex\Component;
 
-use Wikimedia\Codex\Contract\Renderer\IRenderer;
+use Wikimedia\Codex\Renderer\InfoChipRenderer;
 
 /**
  * InfoChip
@@ -62,7 +62,7 @@ class InfoChip {
 	/**
 	 * The renderer instance used to render the infoChip.
 	 */
-	protected IRenderer $renderer;
+	protected InfoChipRenderer $renderer;
 
 	/**
 	 * Constructor for the InfoChip component.
@@ -74,7 +74,7 @@ class InfoChip {
 	 * @param string $status The status type of the InfoChip.
 	 * @param string|null $icon The CSS class for a custom icon, if any.
 	 * @param array $attributes Additional HTML attributes for the InfoChip element.
-	 * @param IRenderer $renderer The renderer to use for rendering the InfoChip.
+	 * @param InfoChipRenderer $renderer The renderer to use for rendering the InfoChip.
 	 */
 	public function __construct(
 		string $id,
@@ -82,7 +82,7 @@ class InfoChip {
 		string $status,
 		?string $icon,
 		array $attributes,
-		IRenderer $renderer
+		InfoChipRenderer $renderer
 	) {
 		$this->id = $id;
 		$this->text = $text;

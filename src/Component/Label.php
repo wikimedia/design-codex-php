@@ -16,7 +16,7 @@
 
 namespace Wikimedia\Codex\Component;
 
-use Wikimedia\Codex\Contract\Renderer\IRenderer;
+use Wikimedia\Codex\Renderer\LabelRenderer;
 
 /**
  * Label
@@ -92,7 +92,7 @@ class Label {
 	/**
 	 * The renderer instance used to render the label.
 	 */
-	protected IRenderer $renderer;
+	protected LabelRenderer $renderer;
 
 	/**
 	 * Constructor for the Label component.
@@ -110,7 +110,7 @@ class Label {
 	 * @param string|null $iconClass The CSS class for an icon before the label text.
 	 * @param array $attributes Additional HTML attributes for the label element.
 	 * @param string|null $id The ID attribute for the label.
-	 * @param IRenderer $renderer The renderer to use for rendering the label.
+	 * @param LabelRenderer $renderer The renderer to use for rendering the label.
 	 */
 	public function __construct(
 		string $labelText,
@@ -124,7 +124,7 @@ class Label {
 		?string $iconClass,
 		array $attributes,
 		?string $id,
-		IRenderer $renderer
+		LabelRenderer $renderer
 	) {
 		$this->labelText = $labelText;
 		$this->inputId = $inputId;

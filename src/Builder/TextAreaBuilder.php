@@ -19,7 +19,7 @@
 namespace Wikimedia\Codex\Builder;
 
 use Wikimedia\Codex\Component\TextArea;
-use Wikimedia\Codex\Contract\Renderer\IRenderer;
+use Wikimedia\Codex\Renderer\TextAreaRenderer;
 
 /**
  * TextAreaBuilder
@@ -105,14 +105,14 @@ class TextAreaBuilder {
 	/**
 	 * The renderer instance used to render the textarea.
 	 */
-	protected IRenderer $renderer;
+	protected TextAreaRenderer $renderer;
 
 	/**
 	 * Constructor for the TextArea class.
 	 *
-	 * @param IRenderer $renderer The renderer to use for rendering the textarea.
+	 * @param TextAreaRenderer $renderer The renderer to use for rendering the textarea.
 	 */
-	public function __construct( IRenderer $renderer ) {
+	public function __construct( TextAreaRenderer $renderer ) {
 		$this->renderer = $renderer;
 	}
 

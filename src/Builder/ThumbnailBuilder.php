@@ -20,7 +20,7 @@
 namespace Wikimedia\Codex\Builder;
 
 use Wikimedia\Codex\Component\Thumbnail;
-use Wikimedia\Codex\Contract\Renderer\IRenderer;
+use Wikimedia\Codex\Renderer\ThumbnailRenderer;
 
 /**
  * ThumbnailBuilder
@@ -61,14 +61,14 @@ class ThumbnailBuilder {
 	/**
 	 * The renderer instance used to render the thumbnail.
 	 */
-	protected IRenderer $renderer;
+	protected ThumbnailRenderer $renderer;
 
 	/**
 	 * Constructor for the Thumbnail class.
 	 *
-	 * @param IRenderer $renderer The renderer to use for rendering the thumbnail.
+	 * @param ThumbnailRenderer $renderer The renderer to use for rendering the thumbnail.
 	 */
-	public function __construct( IRenderer $renderer ) {
+	public function __construct( ThumbnailRenderer $renderer ) {
 		$this->renderer = $renderer;
 	}
 

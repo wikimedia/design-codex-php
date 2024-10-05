@@ -16,7 +16,7 @@
 
 namespace Wikimedia\Codex\Component;
 
-use Wikimedia\Codex\Contract\Renderer\IRenderer;
+use Wikimedia\Codex\Renderer\TextInputRenderer;
 
 /**
  * TextInput
@@ -102,7 +102,7 @@ class TextInput {
 	/**
 	 * The renderer instance used to render the text input.
 	 */
-	private IRenderer $renderer;
+	private TextInputRenderer $renderer;
 
 	/**
 	 * Constructor for the TextInput component.
@@ -122,7 +122,7 @@ class TextInput {
 	 * @param string $name Name attribute of the input.
 	 * @param string $value Default value of the input.
 	 * @param string $inputId ID attribute for the input.
-	 * @param IRenderer $renderer The renderer to use for rendering the text input.
+	 * @param TextInputRenderer $renderer The renderer to use for rendering the text input.
 	 */
 	public function __construct(
 		string $type,
@@ -138,7 +138,7 @@ class TextInput {
 		string $name,
 		string $value,
 		string $inputId,
-		IRenderer $renderer
+		TextInputRenderer $renderer
 	) {
 		$this->type = $type;
 		$this->hasStartIcon = $hasStartIcon;

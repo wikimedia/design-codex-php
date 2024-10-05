@@ -16,7 +16,7 @@
 
 namespace Wikimedia\Codex\Component;
 
-use Wikimedia\Codex\Contract\Renderer\IRenderer;
+use Wikimedia\Codex\Renderer\FieldRenderer;
 
 /**
  * Field
@@ -62,7 +62,7 @@ class Field {
 	/**
 	 * The renderer instance used to render the field.
 	 */
-	protected IRenderer $renderer;
+	protected FieldRenderer $renderer;
 
 	/**
 	 * Constructor for the Field component.
@@ -74,7 +74,7 @@ class Field {
 	 * @param bool $isFieldset Indicates if fields are wrapped in a fieldset.
 	 * @param array $fields An array of fields (HTML strings).
 	 * @param array $attributes Additional HTML attributes for the fieldset or div.
-	 * @param IRenderer $renderer The renderer to use for rendering the field.
+	 * @param FieldRenderer $renderer The renderer to use for rendering the field.
 	 */
 	public function __construct(
 		string $id,
@@ -82,7 +82,7 @@ class Field {
 		bool $isFieldset,
 		array $fields,
 		array $attributes,
-		IRenderer $renderer
+		FieldRenderer $renderer
 	) {
 		$this->id = $id;
 		$this->label = $label;

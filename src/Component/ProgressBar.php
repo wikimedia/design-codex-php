@@ -16,7 +16,7 @@
 
 namespace Wikimedia\Codex\Component;
 
-use Wikimedia\Codex\Contract\Renderer\IRenderer;
+use Wikimedia\Codex\Renderer\ProgressBarRenderer;
 
 /**
  * ProgressBar
@@ -62,7 +62,7 @@ class ProgressBar {
 	/**
 	 * The renderer instance used to render the progress bar.
 	 */
-	private IRenderer $renderer;
+	private ProgressBarRenderer $renderer;
 
 	/**
 	 * Constructor for the ProgressBar component.
@@ -74,7 +74,7 @@ class ProgressBar {
 	 * @param bool $inline Whether the progress bar is inline.
 	 * @param bool $disabled Whether the progress bar is disabled.
 	 * @param array $attributes Additional HTML attributes for the progress bar.
-	 * @param IRenderer $renderer The renderer to use for rendering the progress bar.
+	 * @param ProgressBarRenderer $renderer The renderer to use for rendering the progress bar.
 	 */
 	public function __construct(
 		string $id,
@@ -82,7 +82,7 @@ class ProgressBar {
 		bool $inline,
 		bool $disabled,
 		array $attributes,
-		IRenderer $renderer
+		ProgressBarRenderer $renderer
 	) {
 		$this->id = $id;
 		$this->label = $label;

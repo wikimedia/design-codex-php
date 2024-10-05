@@ -17,7 +17,7 @@
 namespace Wikimedia\Codex\Component;
 
 use Wikimedia\Codex\Contract\IWebRequestCallbacks;
-use Wikimedia\Codex\Contract\Renderer\IRenderer;
+use Wikimedia\Codex\Renderer\TableRenderer;
 
 /**
  * Table
@@ -143,7 +143,7 @@ class Table {
 	/**
 	 * The renderer instance used to render the table.
 	 */
-	protected IRenderer $renderer;
+	protected TableRenderer $renderer;
 
 	/**
 	 * Constructor for the Table class.
@@ -169,7 +169,7 @@ class Table {
 	 * @param ?Pager $pager The pager for handling pagination.
 	 * @param ?string $footer The footer content.
 	 * @param IWebRequestCallbacks $callbacks The callbacks for handling custom actions.
-	 * @param IRenderer $renderer The renderer instance.
+	 * @param TableRenderer $renderer The renderer instance.
 	 */
 	public function __construct(
 		string $id,
@@ -191,7 +191,7 @@ class Table {
 		?Pager $pager,
 		?string $footer,
 		IWebRequestCallbacks $callbacks,
-		IRenderer $renderer
+		TableRenderer $renderer
 	) {
 		$this->id = $id;
 		$this->caption = $caption;

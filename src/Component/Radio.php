@@ -16,7 +16,7 @@
 
 namespace Wikimedia\Codex\Component;
 
-use Wikimedia\Codex\Contract\Renderer\IRenderer;
+use Wikimedia\Codex\Renderer\RadioRenderer;
 
 /**
  * Radio
@@ -82,7 +82,7 @@ class Radio {
 	/**
 	 * The renderer instance used to render the radio.
 	 */
-	protected IRenderer $renderer;
+	protected RadioRenderer $renderer;
 
 	/**
 	 * Constructor for the Radio component.
@@ -98,7 +98,7 @@ class Radio {
 	 * @param bool $inline Indicates if the radio should be displayed inline.
 	 * @param array $inputAttributes Additional HTML attributes for the input element.
 	 * @param array $wrapperAttributes Additional HTML attributes for the wrapper element.
-	 * @param IRenderer $renderer The renderer to use for rendering the radio.
+	 * @param RadioRenderer $renderer The renderer to use for rendering the radio.
 	 */
 	public function __construct(
 		string $id,
@@ -110,7 +110,7 @@ class Radio {
 		bool $inline,
 		array $inputAttributes,
 		array $wrapperAttributes,
-		IRenderer $renderer
+		RadioRenderer $renderer
 	) {
 		$this->inputId = $id;
 		$this->name = $name;

@@ -20,7 +20,7 @@ namespace Wikimedia\Codex\Builder;
 
 use InvalidArgumentException;
 use Wikimedia\Codex\Component\Select;
-use Wikimedia\Codex\Contract\Renderer\IRenderer;
+use Wikimedia\Codex\Renderer\SelectRenderer;
 
 /**
  * SelectBuilder
@@ -71,14 +71,14 @@ class SelectBuilder {
 	/**
 	 * The renderer instance used to render the select.
 	 */
-	protected IRenderer $renderer;
+	protected SelectRenderer $renderer;
 
 	/**
 	 * Constructor for the Select class.
 	 *
-	 * @param IRenderer $renderer The renderer to use for rendering the select.
+	 * @param SelectRenderer $renderer The renderer to use for rendering the select.
 	 */
-	public function __construct( IRenderer $renderer ) {
+	public function __construct( SelectRenderer $renderer ) {
 		$this->renderer = $renderer;
 	}
 

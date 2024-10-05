@@ -21,7 +21,7 @@ namespace Wikimedia\Codex\Builder;
 
 use InvalidArgumentException;
 use Wikimedia\Codex\Component\Label;
-use Wikimedia\Codex\Contract\Renderer\IRenderer;
+use Wikimedia\Codex\Renderer\LabelRenderer;
 
 /**
  * LabelBuilder
@@ -97,14 +97,14 @@ class LabelBuilder {
 	/**
 	 * The renderer instance used to render the label.
 	 */
-	protected IRenderer $renderer;
+	protected LabelRenderer $renderer;
 
 	/**
 	 * Constructor for the Label class.
 	 *
-	 * @param IRenderer $renderer The renderer to use for rendering the label.
+	 * @param LabelRenderer $renderer The renderer to use for rendering the label.
 	 */
-	public function __construct( IRenderer $renderer ) {
+	public function __construct( LabelRenderer $renderer ) {
 		$this->renderer = $renderer;
 	}
 

@@ -20,7 +20,7 @@ namespace Wikimedia\Codex\Builder;
 
 use InvalidArgumentException;
 use Wikimedia\Codex\Component\TextInput;
-use Wikimedia\Codex\Contract\Renderer\IRenderer;
+use Wikimedia\Codex\Renderer\TextInputRenderer;
 
 /**
  * TextInputBuilder
@@ -124,14 +124,14 @@ class TextInputBuilder {
 	/**
 	 * The renderer instance used to render the text input.
 	 */
-	protected IRenderer $renderer;
+	protected TextInputRenderer $renderer;
 
 	/**
 	 * Constructor for the TextInput class.
 	 *
-	 * @param IRenderer $renderer The renderer to use for rendering the text input.
+	 * @param TextInputRenderer $renderer The renderer to use for rendering the text input.
 	 */
-	public function __construct( IRenderer $renderer ) {
+	public function __construct( TextInputRenderer $renderer ) {
 		$this->renderer = $renderer;
 	}
 

@@ -16,7 +16,7 @@
 
 namespace Wikimedia\Codex\Component;
 
-use Wikimedia\Codex\Contract\Renderer\IRenderer;
+use Wikimedia\Codex\Renderer\TextAreaRenderer;
 
 /**
  * TextArea
@@ -102,7 +102,7 @@ class TextArea {
 	/**
 	 * The renderer instance used to render the textarea.
 	 */
-	protected IRenderer $renderer;
+	protected TextAreaRenderer $renderer;
 
 	/**
 	 * Constructor for the TextArea component.
@@ -122,7 +122,7 @@ class TextArea {
 	 * @param string $endIconClass CSS class for the end icon.
 	 * @param string $placeholder Placeholder text for the textarea.
 	 * @param bool $hasError Indicates whether the textarea has an error state.
-	 * @param IRenderer $renderer The renderer to use for rendering the textarea.
+	 * @param TextAreaRenderer $renderer The renderer to use for rendering the textarea.
 	 */
 	public function __construct(
 		string $id,
@@ -138,7 +138,7 @@ class TextArea {
 		string $endIconClass,
 		string $placeholder,
 		bool $hasError,
-		IRenderer $renderer
+		TextAreaRenderer $renderer
 	) {
 		$this->id = $id;
 		$this->name = $name;

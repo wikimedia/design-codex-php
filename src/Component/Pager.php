@@ -18,7 +18,7 @@ namespace Wikimedia\Codex\Component;
 
 use Krinkle\Intuition\Intuition;
 use Wikimedia\Codex\Contract\IWebRequestCallbacks;
-use Wikimedia\Codex\Contract\Renderer\IRenderer;
+use Wikimedia\Codex\Renderer\PagerRenderer;
 
 /**
  * Pager
@@ -129,7 +129,7 @@ class Pager {
 	/**
 	 * The renderer instance used to render the pager.
 	 */
-	protected IRenderer $renderer;
+	protected PagerRenderer $renderer;
 
 	/**
 	 * Constructor for the Pager class.
@@ -153,7 +153,7 @@ class Pager {
 	 * @param int $endOrdinal End ordinal for the current page.
 	 * @param array $iconClasses Icon classes for the pager buttons.
 	 * @param ?IWebRequestCallbacks $callbacks Callbacks.
-	 * @param IRenderer $renderer Instance of the renderer for rendering the pager.
+	 * @param PagerRenderer $renderer Instance of the renderer for rendering the pager.
 	 */
 	public function __construct(
 		string $id,
@@ -173,7 +173,7 @@ class Pager {
 		int $endOrdinal,
 		array $iconClasses,
 		?IWebRequestCallbacks $callbacks,
-		IRenderer $renderer
+		PagerRenderer $renderer
 	) {
 		$this->id = $id;
 		$this->paginationSizeOptions = $paginationSizeOptions;

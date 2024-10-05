@@ -19,7 +19,7 @@
 namespace Wikimedia\Codex\Builder;
 
 use Wikimedia\Codex\Component\ProgressBar;
-use Wikimedia\Codex\Contract\Renderer\IRenderer;
+use Wikimedia\Codex\Renderer\ProgressBarRenderer;
 
 /**
  * ProgressBarBuilder
@@ -65,14 +65,14 @@ class ProgressBarBuilder {
 	/**
 	 * The renderer instance used to render the progress bar.
 	 */
-	protected IRenderer $renderer;
+	protected ProgressBarRenderer $renderer;
 
 	/**
 	 * Constructor for the ProgressBar class.
 	 *
-	 * @param IRenderer $renderer The renderer to use for rendering the progress bar.
+	 * @param ProgressBarRenderer $renderer The renderer to use for rendering the progress bar.
 	 */
-	public function __construct( IRenderer $renderer ) {
+	public function __construct( ProgressBarRenderer $renderer ) {
 		$this->renderer = $renderer;
 	}
 

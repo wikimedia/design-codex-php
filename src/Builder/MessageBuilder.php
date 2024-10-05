@@ -22,7 +22,7 @@ namespace Wikimedia\Codex\Builder;
 use InvalidArgumentException;
 use Wikimedia\Codex\Component\HtmlSnippet;
 use Wikimedia\Codex\Component\Message;
-use Wikimedia\Codex\Contract\Renderer\IRenderer;
+use Wikimedia\Codex\Renderer\MessageRenderer;
 
 /**
  * MessageBuilder
@@ -88,14 +88,14 @@ class MessageBuilder {
 	/**
 	 * The renderer instance used to render the message.
 	 */
-	protected IRenderer $renderer;
+	protected MessageRenderer $renderer;
 
 	/**
 	 * Constructor for the Message class.
 	 *
-	 * @param IRenderer $renderer The renderer to use for rendering the message.
+	 * @param MessageRenderer $renderer The renderer to use for rendering the message.
 	 */
-	public function __construct( IRenderer $renderer ) {
+	public function __construct( MessageRenderer $renderer ) {
 		$this->renderer = $renderer;
 	}
 

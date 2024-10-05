@@ -20,7 +20,7 @@ namespace Wikimedia\Codex\Builder;
 
 use InvalidArgumentException;
 use Wikimedia\Codex\Component\InfoChip;
-use Wikimedia\Codex\Contract\Renderer\IRenderer;
+use Wikimedia\Codex\Renderer\InfoChipRenderer;
 
 /**
  * InfoChipBuilder
@@ -66,14 +66,14 @@ class InfoChipBuilder {
 	/**
 	 * The renderer instance used to render the infoChip.
 	 */
-	protected IRenderer $renderer;
+	protected InfoChipRenderer $renderer;
 
 	/**
 	 * Constructor for the InfoChip class.
 	 *
-	 * @param IRenderer $renderer The renderer to use for rendering the info chip.
+	 * @param InfoChipRenderer $renderer The renderer to use for rendering the info chip.
 	 */
-	public function __construct( IRenderer $renderer ) {
+	public function __construct( InfoChipRenderer $renderer ) {
 		$this->renderer = $renderer;
 	}
 

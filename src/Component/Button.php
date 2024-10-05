@@ -16,7 +16,7 @@
 
 namespace Wikimedia\Codex\Component;
 
-use Wikimedia\Codex\Contract\Renderer\IRenderer;
+use Wikimedia\Codex\Renderer\ButtonRenderer;
 
 /**
  * Button
@@ -87,7 +87,7 @@ class Button {
 	/**
 	 * The renderer instance used to render the button.
 	 */
-	private IRenderer $renderer;
+	private ButtonRenderer $renderer;
 
 	/**
 	 * Constructor for the Button component.
@@ -104,7 +104,7 @@ class Button {
 	 * @param bool $iconOnly Indicates if the button is icon-only.
 	 * @param bool $disabled Indicates if the button is disabled.
 	 * @param array $attributes Additional HTML attributes for the button element.
-	 * @param IRenderer $renderer The renderer to use for rendering the button.
+	 * @param ButtonRenderer $renderer The renderer to use for rendering the button.
 	 */
 	public function __construct(
 		string $id,
@@ -117,7 +117,7 @@ class Button {
 		bool $iconOnly,
 		bool $disabled,
 		array $attributes,
-		IRenderer $renderer
+		ButtonRenderer $renderer
 	) {
 		$this->id = $id;
 		$this->label = $label;

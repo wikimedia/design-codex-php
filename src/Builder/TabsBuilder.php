@@ -22,7 +22,7 @@ use InvalidArgumentException;
 use Wikimedia\Codex\Component\Tab;
 use Wikimedia\Codex\Component\Tabs;
 use Wikimedia\Codex\Contract\IWebRequestCallbacks;
-use Wikimedia\Codex\Contract\Renderer\IRenderer;
+use Wikimedia\Codex\Renderer\TabsRenderer;
 
 /**
  * TabsBuilder
@@ -63,14 +63,14 @@ class TabsBuilder {
 	/**
 	 * The renderer instance used to render the tabs.
 	 */
-	protected IRenderer $renderer;
+	protected TabsRenderer $renderer;
 
 	/**
 	 * Constructor for the Tabs class.
 	 *
-	 * @param IRenderer $renderer The renderer to use for rendering the tabs.
+	 * @param TabsRenderer $renderer The renderer to use for rendering the tabs.
 	 */
-	public function __construct( IRenderer $renderer ) {
+	public function __construct( TabsRenderer $renderer ) {
 		$this->renderer = $renderer;
 	}
 
