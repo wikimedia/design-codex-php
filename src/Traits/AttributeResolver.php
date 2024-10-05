@@ -22,8 +22,7 @@ namespace Wikimedia\Codex\Traits;
  * array of HTML attributes into a string format suitable for use in HTML tags.
  *
  * The `AttributeResolver` trait provides a method to resolve attributes,
- * handling boolean attributes and encoding values to ensure safe inclusion
- * in HTML tags.
+ * handling boolean attributes and concatenating array-based attributes.
  *
  * @category Traits
  * @package  Codex\Traits
@@ -57,20 +56,17 @@ trait AttributeResolver {
 				continue;
 			}
 
-			// Escape the key (attribute name)
-			$escapedKey = htmlspecialchars( $key, ENT_QUOTES, 'UTF-8' );
-
 			// If the value is true, include the key as an attribute without a value.
 			if ( $value === true ) {
-				$resolvedAttributes[] = $escapedKey;
+				$resolvedAttributes[] = $key;
 			} elseif ( is_array( $value ) ) {
-				// If the value is an array (e.g., 'class' => ['btn', 'btn-primary']), concatenate it into a string
-				$escapedValue = htmlspecialchars( implode( ' ', $value ), ENT_QUOTES, 'UTF-8' );
-				$resolvedAttributes[] = "$escapedKey=\"$escapedValue\"";
+				// If the value is an array (e.g., 'data' => ['toggle' => 'modal']), flatten it into a string
+				$attributeValue = implode( ' ', $value );
+				$resolvedAttributes[] = "$key=\"$attributeValue\"";
 			} elseif ( $value !== false && $value !== null ) {
 				// Handle other scalar values
-				$escapedValue = htmlspecialchars( (string)$value, ENT_QUOTES, 'UTF-8' );
-				$resolvedAttributes[] = "$escapedKey=\"$escapedValue\"";
+				$attributeValue = (string)$value;
+				$resolvedAttributes[] = "$key=\"$attributeValue\"";
 			}
 		}
 

@@ -186,7 +186,7 @@ class SelectBuilder {
 						->setSelected( $option['selected'] ?? false )->build();
 				}
 			}
-			$this->optGroups[htmlspecialchars( $label, ENT_QUOTES )] = $group;
+			$this->optGroups[$label] = $group;
 		}
 
 		return $this;

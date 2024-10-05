@@ -239,9 +239,6 @@ class TableBuilder {
 	 * @return $this Returns the Table instance for method chaining.
 	 */
 	public function setColumns( array $columns ): self {
-		foreach ( $columns as &$column ) {
-			$column['label'] = htmlspecialchars( $column['label'], ENT_QUOTES, 'UTF-8' );
-		}
 		$this->columns = $columns;
 
 		return $this;

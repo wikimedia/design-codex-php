@@ -83,17 +83,4 @@ class AttributeResolverTest extends TestCase {
 		$result = $this->resolve( $attributes );
 		$this->assertSame( 'foo="bar"', $result );
 	}
-
-	/**
-	 * Test special characters are properly escaped in attribute values.
-	 *
-	 * @since 0.1.0
-	 * @covers \Wikimedia\Codex\Traits\AttributeResolver::resolve
-	 * @return void
-	 */
-	public function testSpecialCharactersEscaping(): void {
-		$attributes = [ 'title' => 'This is "special" & important' ];
-		$result = $this->resolve( $attributes );
-		$this->assertSame( 'title="This is &quot;special&quot; &amp; important"', $result );
-	}
 }

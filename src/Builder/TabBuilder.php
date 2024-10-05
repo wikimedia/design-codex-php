@@ -77,7 +77,7 @@ class TabBuilder {
 	 * @return $this
 	 */
 	public function setId( string $id ): self {
-		$this->id = htmlspecialchars( $id, ENT_QUOTES, 'UTF-8' );
+		$this->id = $id;
 
 		return $this;
 	}
@@ -96,7 +96,7 @@ class TabBuilder {
 		if ( trim( $name ) === '' ) {
 			throw new InvalidArgumentException( 'Tab name cannot be empty.' );
 		}
-		$this->name = htmlspecialchars( $name, ENT_QUOTES, 'UTF-8' );
+		$this->name = $name;
 
 		return $this;
 	}
@@ -116,7 +116,7 @@ class TabBuilder {
 		if ( trim( $label ) === '' ) {
 			throw new InvalidArgumentException( 'Tab label cannot be empty.' );
 		}
-		$this->label = htmlspecialchars( $label, ENT_QUOTES, 'UTF-8' );
+		$this->label = $label;
 
 		return $this;
 	}

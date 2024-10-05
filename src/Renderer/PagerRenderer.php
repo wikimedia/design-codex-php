@@ -71,11 +71,12 @@ class PagerRenderer implements IRenderer {
 	private Codex $codex;
 
 	/**
-	 * Constructor to initialize the PagerRenderer with a sanitizer and a template renderer.
+	 * Constructor to initialize the PagerRenderer with a sanitizer, a template renderer, and a language handler.
 	 *
 	 * @since 0.1.0
 	 * @param Sanitizer $sanitizer The sanitizer instance used for content sanitization.
 	 * @param ITemplateRenderer $templateRenderer The template renderer instance used for rendering templates.
+	 * @param Intuition $lang The language handler instance used for localization and translations.
 	 */
 	public function __construct(
 		Sanitizer $sanitizer,
@@ -232,8 +233,8 @@ class PagerRenderer implements IRenderer {
 		$fields = [];
 		foreach ( $pager->getCallbacks()->getValues( 'sort', 'asc', 'desc' ) as $key => $value ) {
 			$fields[] = [
-				'key' => htmlspecialchars( $key ),
-				'value' => htmlspecialchars( $value ),
+				'key' => $this->sanitizer->sanitizeText( $key ),
+				'value' => $this->sanitizer->sanitizeText( $value ),
 			];
 		}
 

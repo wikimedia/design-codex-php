@@ -17,7 +17,4 @@ $cfg['directory_list'] = array_merge(
 	]
 );
 
-// TODO: Fix and remove
-$cfg['suppress_issue_types'][] = 'SecurityCheck-DoubleEscaped';
-
 return $cfg;
