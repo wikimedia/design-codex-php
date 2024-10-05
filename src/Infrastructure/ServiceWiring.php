@@ -263,7 +263,8 @@ return [
 					// i18n helper - for localization
 					'i18n' => static function ( $text, $render ) use ( $intuition ) {
 						$renderedText = trim( $render( $text ) );
-						// Split by '|' to separate the key and parameters
+						// Split by '|' to separate the key and parameters.
+						// XXX This assumes that the expanded content of parameters does not contain pipes.
 						$parts = explode( '|', $renderedText );
 						// The first part is the message key, the rest are parameters
 						$key = trim( array_shift( $parts ) );
