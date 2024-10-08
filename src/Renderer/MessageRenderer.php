@@ -92,8 +92,6 @@ class MessageRenderer implements IRenderer {
 			'heading' => $this->sanitizer->sanitizeText( $component->getHeading() ),
 			'isPolite' => $component->getType() !== 'error',
 			'isAlert' => $component->getType() === 'error',
-			'additionalClasses' =>
-				$this->sanitizer->sanitizeText( $this->resolveClasses( $component->getAttributes() ) ),
 			'attributes' => self::resolve( $this->sanitizer->sanitizeAttributes( $component->getAttributes() ) ),
 		];
 

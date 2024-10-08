@@ -51,10 +51,6 @@ trait AttributeResolver {
 		$resolvedAttributes = [];
 
 		foreach ( $attributes as $key => $value ) {
-			// Exclude the "class" attribute, as it's handled separately in the renderer classes.
-			if ( $key === 'class' ) {
-				continue;
-			}
 
 			// If the value is true, include the key as an attribute without a value.
 			if ( $value === true ) {
@@ -71,23 +67,5 @@ trait AttributeResolver {
 		}
 
 		return implode( ' ', $resolvedAttributes );
-	}
-
-	/**
-	 * Resolves and returns the "class" attribute from an array of attributes.
-	 * The "class" attribute is expected to be a string. This method handles
-	 * the resolution of the class attribute specifically.
-	 *
-	 * @since 0.1.0
-	 * @param array $attributes Key-value pairs of HTML attributes.
-	 * @return string The resolved class attribute as a string.
-	 */
-	public function resolveClasses( array $attributes ): string {
-		if ( isset( $attributes['class'] ) ) {
-			// Return the class attribute directly if it's a string
-			return $attributes['class'];
-		}
-
-		return '';
 	}
 }

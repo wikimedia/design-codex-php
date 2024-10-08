@@ -1,4 +1,4 @@
-<{{ tag }} class="cdx-card{{! }}{{#url}} cdx-card--is-link{{/url}}{{! }}{{#additionalClasses}} {{additionalClasses}}{{/additionalClasses}}"{{! }}{{#id}} id="{{ id }}"{{/id}}{{! }}{{#url}} href="{{ url }}"{{/url}}{{! }}{{#attributes}} {{{ attributes }}}{{/attributes}}>
+<{{ tag }} class="cdx-card{{! }}{{#url}} cdx-card--is-link{{/url}}{{! }}{{#renderClasses}}{{{attributes}}}{{/renderClasses}}"{{! }}{{#id}} id="{{ id }}"{{/id}}{{! }}{{#url}} href="{{ url }}"{{/url}}{{! }}{{#renderAttributes}}{{{attributes}}}{{/renderAttributes}}>
 {{#thumbnail}}
   {{> thumbnail}}
 {{/thumbnail}}

@@ -1,8 +1,8 @@
 <{{#isLegend}}legend{{/isLegend}}{{^isLegend}}div{{/isLegend}} class="{{#coreClass}}{{ coreClass }} {{/coreClass}}cdx-label{{!
   }}{{#isVisuallyHidden}} cdx-label--visually-hidden{{/isVisuallyHidden}}{{!
-  }}{{#isDisabled}} cdx-label--disabled{{/isDisabled}}{{#additionalClasses}} {{additionalClasses}}{{/additionalClasses}}"{{!
+  }}{{#isDisabled}} cdx-label--disabled{{/isDisabled}}{{#renderClasses}}{{{attributes}}}{{/renderClasses}}"{{!
   }}{{#id}} id="{{ id }}"{{/id}}{{!
-  }}{{#attributes}} {{{ attributes }}}{{/attributes}}>
+  }}{{#renderAttributes}}{{{attributes}}}{{/renderAttributes}}>
   {{#isLegend}}
     <span class="cdx-label__label">
       {{#icon}}<span class="cdx-label__label__icon {{ icon }}"></span>{{/icon}}{{!

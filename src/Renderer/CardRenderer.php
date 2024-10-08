@@ -105,8 +105,6 @@ class CardRenderer implements IRenderer {
 			'url' => $this->sanitizer->sanitizeUrl( $component->getUrl() ),
 			'iconClass' => $this->sanitizer->sanitizeText( $component->getIconClass() ),
 			'thumbnail' => $thumbnailData,
-			'additionalClasses' =>
-				$this->sanitizer->sanitizeText( $this->resolveClasses( $component->getAttributes() ) ),
 			'attributes' => self::resolve( $this->sanitizer->sanitizeAttributes( $component->getAttributes() ) ),
 		];
 

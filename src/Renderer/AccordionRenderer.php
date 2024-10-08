@@ -89,8 +89,6 @@ class AccordionRenderer implements IRenderer {
 			'description' => $this->sanitizer->sanitizeText( $component->getDescription() ),
 			'content-html' => $this->sanitizer->sanitizeHtml( $component->getContent() ),
 			'isOpen' => $component->isOpen(),
-			'additionalClasses' =>
-				$this->sanitizer->sanitizeText( $this->resolveClasses( $component->getAttributes() ) ),
 			'attributes' => self::resolve( $this->sanitizer->sanitizeAttributes( $component->getAttributes() ) )
 		];
 

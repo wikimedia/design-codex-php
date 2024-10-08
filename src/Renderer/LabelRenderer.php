@@ -95,8 +95,6 @@ class LabelRenderer implements IRenderer {
 			'icon' => $this->sanitizer->sanitizeText( $component->getIconClass() ?? '' ),
 			'isVisuallyHidden' => $component->isVisuallyHidden(),
 			'isDisabled' => $component->isDisabled(),
-			'additionalClasses' =>
-				$this->sanitizer->sanitizeText( $this->resolveClasses( $component->getAttributes() ) ),
 			'attributes' => self::resolve( $this->sanitizer->sanitizeAttributes( $component->getAttributes() ) ),
 		];
 

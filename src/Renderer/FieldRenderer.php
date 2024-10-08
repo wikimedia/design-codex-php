@@ -103,8 +103,6 @@ class FieldRenderer implements IRenderer {
 			'icon' => $this->sanitizer->sanitizeText( $label->getIconClass() ),
 			'isVisuallyHidden' => $label->isVisuallyHidden(),
 			'isDisabled' => $label->isDisabled(),
-			'additionalClasses' =>
-				$this->sanitizer->sanitizeText( $this->resolveClasses( $label->getAttributes() ) ),
 			'attributes' =>
 				$this->resolve( $this->sanitizer->sanitizeAttributes( $label->getAttributes() )
 				),
@@ -114,8 +112,6 @@ class FieldRenderer implements IRenderer {
 			'id' => $this->sanitizer->sanitizeText( $component->getId() ),
 			'isFieldset' => $component->isFieldset(),
 			'fields' => $component->getFields(),
-			'additionalClasses' =>
-				$this->sanitizer->sanitizeText( $this->resolveClasses( $component->getAttributes() ) ),
 			'attributes' => $this->resolve( $this->sanitizer->sanitizeAttributes( $component->getAttributes() ) ),
 			'label' => $labelData,
 		];

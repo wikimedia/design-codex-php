@@ -1,6 +1,6 @@
-<span class="{{#coreClass}}{{ coreClass }} {{/coreClass}}cdx-thumbnail{{#additionalClasses}} {{additionalClasses}}{{/additionalClasses}}"{{!
+<span class="{{#coreClass}}{{ coreClass }} {{/coreClass}}cdx-thumbnail{{#renderClasses}}{{{attributes}}}{{/renderClasses}}"{{!
   }}{{#id}} id="{{ id }}"{{/id}}{{!
-  }}{{#attributes}} {{{ attributes }}}{{/attributes}}>
+  }}{{#renderAttributes}}{{{attributes}}}{{/renderAttributes}}>
   {{#backgroundImage}}
   <span class="cdx-thumbnail__image" style="background-image: url('{{ backgroundImage }}');"></span>
   {{/backgroundImage}}

@@ -1,5 +1,5 @@
 <form method="get">
-  <div class="cdx-table{{#additionalClasses}} {{additionalClasses}}{{/additionalClasses}}"{{! }}{{#id}} id="{{ id }}"{{/id}}>
+  <div class="cdx-table{{#renderClasses}}{{{attributes}}}{{/renderClasses}}"{{! }}{{#id}} id="{{ id }}"{{/id}}>
     <div class="cdx-table__header">
       {{^hideCaption}}
         {{#caption}}

@@ -1,4 +1,4 @@
-<select class="cdx-select{{#additionalClasses}} {{additionalClasses}}{{/additionalClasses}}"{{#id}} id="{{ id }}" {{/id}}{{#isDisabled}}disabled{{/isDisabled}} {{#attributes}}{{{ attributes }}}{{/attributes}}>
+<select class="cdx-select{{#renderClasses}}{{{attributes}}}{{/renderClasses}}"{{#id}} id="{{ id }}" {{/id}}{{#isDisabled}}disabled{{/isDisabled}} {{#attributes}}{{{ attributes }}}{{/attributes}}>
   {{#options}}
     <option value="{{ value }}"{{#isSelected}} selected{{/isSelected}}>{{ text }}</option>
   {{/options}}

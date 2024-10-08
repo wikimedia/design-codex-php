@@ -88,8 +88,6 @@ class ProgressBarRenderer implements IRenderer {
 			'isInline' => $component->isInline(),
 			'isDisabled' => $component->isDisabled(),
 			'label' => $this->sanitizer->sanitizeText( $component->getLabel() ),
-			'additionalClasses' =>
-				$this->sanitizer->sanitizeText( $this->resolveClasses( $component->getAttributes() ) ),
 			'attributes' => self::resolve( $this->sanitizer->sanitizeAttributes( $component->getAttributes() ) ),
 		];
 

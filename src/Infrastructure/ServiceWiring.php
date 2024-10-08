@@ -260,6 +260,7 @@ return [
 				// Disable escaping in Mustache. We use custom PHP escaping instead.
 				'escape' => static fn ( $x ) => $x,
 				'helpers' => [
+					// TODO: Consider moving the following helper functions to a separate helper class.
 					// i18n helper - for localization
 					'i18n' => static function ( $text, $render ) use ( $intuition ) {
 						$renderedText = trim( $render( $text ) );
@@ -275,6 +276,29 @@ return [
 							ENT_QUOTES,
 							'UTF-8'
 						);
+					},
+					'renderClasses' => static function ( $attributes, $render ) {
+						$renderedAttributes = $render( $attributes );
+
+						// Use a regular expression to match the 'class' attribute and capture its value
+						if ( preg_match( '/class="([^"]*)"/', $renderedAttributes, $matches ) ) {
+							// If a 'class' attribute is found, prepend a space and return the class string
+							return ' ' . $matches[1];
+						}
+
+						// If no 'class' attribute is found, return an empty string
+						return '';
+					},
+					'renderAttributes' => static function ( $attributes, $render ) {
+						$renderedAttributes = $render( $attributes );
+
+						// Remove the 'class' attribute from the rendered attributes using a regular expression
+						// This ensures that only non-class attributes are returned
+						$attribs = trim( preg_replace( '/\s*class="[^"]*"/', '', $renderedAttributes ) );
+
+						// If there are remaining attributes after removing 'class', prepend a space and return them
+						// Otherwise, return an empty string
+						return $attribs !== '' ? ' ' . $attribs : '';
 					},
 				],
 			] );

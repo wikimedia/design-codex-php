@@ -98,8 +98,6 @@ class ButtonRenderer implements IRenderer {
 			'iconClass' => $this->sanitizer->sanitizeText( $component->getIconClass() ),
 			'isDisabled' => $component->isDisabled(),
 			'iconOnly' => $component->isIconOnly(),
-			'additionalClasses' =>
-				$this->sanitizer->sanitizeText( $this->resolveClasses( $component->getAttributes() ) ),
 			'attributes' => self::resolve( $this->sanitizer->sanitizeAttributes( $component->getAttributes() ) ),
 		];
 		return $this->templateRenderer->render( 'button.mustache', $buttonData );

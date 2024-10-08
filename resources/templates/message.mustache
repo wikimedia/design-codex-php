@@ -1,4 +1,4 @@
-<div class="cdx-message{{#isInline}} cdx-message--inline{{/isInline}}{{^isInline}} cdx-message--block{{/isInline}} cdx-message--{{ type }}{{#additionalClasses}} {{additionalClasses}}{{/additionalClasses}}"{{#id}} id="{{ id }}" {{/id}}{{#isPolite}} aria-live="polite"{{/isPolite}}{{#isAlert}} role="alert"{{/isAlert}}{{#attributes}} {{{ attributes }}}{{/attributes}}>
+<div class="cdx-message{{#isInline}} cdx-message--inline{{/isInline}}{{^isInline}} cdx-message--block{{/isInline}} cdx-message--{{ type }}{{#renderClasses}}{{{attributes}}}{{/renderClasses}}"{{#id}} id="{{ id }}" {{/id}}{{#isPolite}} aria-live="polite"{{/isPolite}}{{#isAlert}} role="alert"{{/isAlert}}{{#renderAttributes}}{{{attributes}}}{{/renderAttributes}}>
   <span class="cdx-message__icon {{ iconClass }}"></span>
   <div class="cdx-message__content">
     {{#heading}}

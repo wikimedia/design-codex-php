@@ -22,8 +22,9 @@ class AccordionExample {
 			)
 			->setOpen( false )
 			->setAttributes( [
-				"class" => "foo",
-				"bar" => "baz",
+				"class" => "foo bar baz",
+				"foo" => "bar",
+				"baz" => "qux",
 			] )
 			->build()
 			->getHtml();

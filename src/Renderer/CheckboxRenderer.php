@@ -96,8 +96,6 @@ class CheckboxRenderer implements IRenderer {
 			'descriptionId' => $this->sanitizer->sanitizeText( $label->getDescriptionId() ?? '' ),
 			'disabled' => $label->isDisabled(),
 			'iconClass' => $this->sanitizer->sanitizeText( $label->getIconClass() ?? '' ),
-			'additionalClasses' =>
-				$this->sanitizer->sanitizeText( $this->resolveClasses( $label->getAttributes() ) ),
 			'attributes' => $this->resolve(
 				$this->sanitizer->sanitizeAttributes( $label->getAttributes() )
 			),
@@ -112,10 +110,6 @@ class CheckboxRenderer implements IRenderer {
 			'isDisabled' => $component->isDisabled(),
 			'isInline' => $component->isInline(),
 			'ariaDescribedby' => $this->sanitizer->sanitizeText( $label->getDescriptionId() ?? '' ),
-			'additionalInputClasses' =>
-				$this->sanitizer->sanitizeText( $this->resolveClasses( $component->getInputAttributes() ) ),
-			'additionalWrapperClasses' =>
-				$this->sanitizer->sanitizeText( $this->resolveClasses( $component->getWrapperAttributes() ) ),
 			'inputAttributes' => $this->resolve(
 				$this->sanitizer->sanitizeAttributes( $component->getInputAttributes() )
 			),

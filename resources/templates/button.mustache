@@ -3,14 +3,14 @@
   }}{{#weight}}{{^defaultWeight}} cdx-button--weight-{{ weight }}{{/defaultWeight}}{{/weight}}{{!
   }}{{#size}}{{^defaultSize}} cdx-button--size-{{ size }}{{/defaultSize}}{{/size}}{{!
   }}{{#iconOnly}} cdx-button--icon-only{{/iconOnly}}{{!
-  }}{{#additionalClasses}} {{additionalClasses}}{{/additionalClasses}}"{{!
+  }}{{#renderClasses}}{{{attributes}}}{{/renderClasses}}"{{!
   }}{{#id}} id="{{ id }}"{{/id}}{{!
   }}{{#type}} type="{{ type }}"{{/type}}{{!
   }}{{#name}} name="{{ name }}"{{/name}}{{!
   }}{{#value}} value="{{ value }}"{{/value}}{{!
   }}{{#ariaLabelKey}} aria-label="{{#i18n}}{{ ariaLabelKey }}{{/i18n}}"{{/ariaLabelKey}}{{!
   }}{{^ariaLabelKey}}{{#ariaLabel}} aria-label="{{ ariaLabel }}"{{/ariaLabel}}{{/ariaLabelKey}}{{!
-  }}{{#attributes}} {{{ attributes }}}{{/attributes}}{{!
+  }}{{#renderAttributes}}{{{attributes}}}{{/renderAttributes}}{{!
   }}{{#isDisabled}} disabled{{/isDisabled}}>
   {{#iconClass}}
     <span class="cdx-button__icon {{ iconClass }}" aria-hidden="true"></span>

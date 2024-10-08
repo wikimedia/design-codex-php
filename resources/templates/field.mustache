@@ -1,4 +1,4 @@
-<{{#isFieldset}}fieldset{{/isFieldset}}{{^isFieldset}}div{{/isFieldset}} class="cdx-field{{#additionalClasses}} {{additionalClasses}}{{/additionalClasses}}"{{! }}{{#id}} id="{{ id }}"{{/id}}{{! }}{{#attributes}} {{{ attributes }}}{{/attributes}}>
+<{{#isFieldset}}fieldset{{/isFieldset}}{{^isFieldset}}div{{/isFieldset}} class="cdx-field{{#renderClasses}}{{{attributes}}}{{/renderClasses}}"{{! }}{{#id}} id="{{ id }}"{{/id}}{{! }}{{#renderAttributes}}{{{attributes}}}{{/renderAttributes}}>
   {{#label}}
     {{> label }}
   {{/label}}

@@ -87,8 +87,6 @@ class ThumbnailRenderer implements IRenderer {
 			'id' => $this->sanitizer->sanitizeText( $component->getId() ),
 			'backgroundImage' => $this->sanitizer->sanitizeUrl( $component->getBackgroundImage() ),
 			'placeholderClass' => $this->sanitizer->sanitizeText( $component->getPlaceholderClass() ),
-			'additionalClasses' =>
-				$this->sanitizer->sanitizeText( $this->resolveClasses( $component->getAttributes() ) ),
 			'attributes' => self::resolve( $this->sanitizer->sanitizeAttributes( $component->getAttributes() ) ),
 		];
 
