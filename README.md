@@ -241,7 +241,6 @@ The following scripts are defined for testing and code fixing purposes:
 - `fix`: Automatically fix code style issues.
 - `phan`: Run the Phan static analyzer.
 - `phpcs`: Run the PHP Code Sniffer.
-- `docs`: Generate the project documentation.
 - `start-sandbox`: Start the sandbox environment for testing.
 
 Example usage:
@@ -254,6 +253,17 @@ composer run-script phpcs
 composer run-script docs
 composer run-script start-sandbox
 ```
+
+## Documentation
+Local API documentation can be generated using [PHPDocumentor](https://phpdoc.org). You can use the PHPDoc Docker image for this purpose:
+
+```sh
+# Install docker first, then run:
+docker pull phpdoc/phpdoc
+docker run --rm -v $(pwd):/data phpdoc/phpdoc
+```
+
+For more information on how to run PHPDocumentor locally, see [here](https://github.com/phpdocumentor/phpdocumentor?tab=readme-ov-file#installation).
 
 ## License
 This project is licensed under the GPL-2.0-or-later. See the [LICENSE](LICENSE) file for details.

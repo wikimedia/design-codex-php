@@ -62,7 +62,6 @@
 		],
 		"phan": "phan -d . --long-progress-bar",
 		"phpcs": "phpcs -sp --cache",
-		"docs": "php phpDocumentor.phar -d src -t docs",
 		"start-sandbox": [
 			"cd .sandbox && npm install",
 			"php -S localhost:8000 -t .sandbox"
