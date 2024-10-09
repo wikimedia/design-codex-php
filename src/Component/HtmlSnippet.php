@@ -68,11 +68,11 @@ class HtmlSnippet {
 	}
 
 	/**
-	 * Retrieve additional HTML attributes for the the container element.
+	 * Retrieve additional HTML attributes for the the html snippet element.
 	 *
 	 * This method returns an associative array of additional HTML attributes that will be applied
-	 * to the <button> element. These attributes can be used to enhance customization, improve accessibility,
-	 * and facilitate JavaScript integration.
+	 * to the html snippet element. These attributes can be used to enhance the appearance, accessibility,
+	 *  or functionality of the html snippet element.
 	 *
 	 * @since 0.1.0
 	 * @return array The additional attributes as an array.

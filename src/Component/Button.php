@@ -247,7 +247,7 @@ class Button {
 	}
 
 	/**
-	 * Retrieve additional HTML attributes for the <button> element.
+	 * Retrieve additional HTML attributes for the button element.
 	 *
 	 * This method returns an associative array of additional HTML attributes that will be applied
 	 * to the <button> element. These attributes can be used to enhance customization, improve accessibility,

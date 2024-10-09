@@ -88,9 +88,9 @@ class WebRequestCallbacks implements IWebRequestCallbacks {
 	 * returned array unless a default value is provided.
 	 *
 	 * @since 0.1.0
-	 * @param string ...$names The names of the parameters to fetch.
-	 * @return array An associative array where keys are parameter names and values
-	 *                         are the corresponding values from the request.
+	 * @param string ...$names Variadic parameter representing the names of the parameters to fetch.
+	 * @return array Associative array where keys are parameter names and values
+	 *               are the corresponding values from the request.
 	 */
 	public function getValues( string ...$names ): array {
 		$retVal = [];

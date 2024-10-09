@@ -69,7 +69,13 @@ class ServiceContainer {
 	private LoggerInterface $logger;
 
 	/**
-	 * Constructor for ServiceContainer.
+	 * Constructor for the ServiceContainer.
+	 *
+	 * This constructor initializes the service container with an optional logger instance.
+	 * If no logger is provided, a `NullLogger` will be used by default, which performs no operations.
+	 *
+	 * @since 0.1.0
+	 * @param LoggerInterface|null $logger An optional logger instance. If null, a `NullLogger` will be used.
 	 */
 	public function __construct( LoggerInterface $logger = null ) {
 		$this->logger = $logger ?: new NullLogger();
