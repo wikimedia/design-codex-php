@@ -49,3 +49,6 @@ coverage/
 /.phpdoc/cache/
 /.sandbox/package-lock.json
 /.sandbox/node_modules/
+
+# Ignore generated API documentation
+/doc/

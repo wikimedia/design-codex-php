@@ -250,20 +250,8 @@ composer run-script test
 composer run-script fix
 composer run-script phan
 composer run-script phpcs
-composer run-script docs
 composer run-script start-sandbox
 ```
-
-## Documentation
-Local API documentation can be generated using [PHPDocumentor](https://phpdoc.org). You can use the PHPDoc Docker image for this purpose:
-
-```sh
-# Install docker first, then run:
-docker pull phpdoc/phpdoc
-docker run --rm -v $(pwd):/data phpdoc/phpdoc
-```
-
-For more information on how to run PHPDocumentor locally, see [here](https://github.com/phpdocumentor/phpdocumentor?tab=readme-ov-file#installation).
 
 ## License
 This project is licensed under the GPL-2.0-or-later. See the [LICENSE](LICENSE) file for details.
