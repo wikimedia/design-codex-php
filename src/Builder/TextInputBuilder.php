@@ -148,7 +148,6 @@ class TextInputBuilder {
 	 * @since 0.1.0
 	 * @param string $type The type of the input field (e.g., 'text', 'email').
 	 * @return $this Returns the TextInput instance for method chaining.
-	 * @throws InvalidArgumentException If the input type is not valid.
 	 */
 	public function setType( string $type ): self {
 		if ( !in_array( $type, self::TEXT_INPUT_TYPES, true ) ) {

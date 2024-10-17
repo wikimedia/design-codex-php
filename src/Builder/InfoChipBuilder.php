@@ -99,7 +99,6 @@ class InfoChipBuilder {
 	 * @since 0.1.0
 	 * @param string $text The text to be displayed inside the info chip.
 	 * @return $this Returns the InfoChip instance for method chaining.
-	 * @throws InvalidArgumentException If the text is empty.
 	 */
 	public function setText( string $text ): self {
 		if ( trim( $text ) === '' ) {

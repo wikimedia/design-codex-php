@@ -120,7 +120,6 @@ class SelectBuilder {
 	 * @param array $options An array of options, either as key-value pairs or
 	 *                       arrays with `value`, `text`, and `selected` keys.
 	 * @return $this Returns the Select instance for method chaining.
-	 * @throws InvalidArgumentException If no options are provided.
 	 */
 	public function setOptions( array $options ): self {
 		if ( !$options ) {

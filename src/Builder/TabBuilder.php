@@ -90,7 +90,6 @@ class TabBuilder {
 	 * @since 0.1.0
 	 * @param string $name The unique name of the tab, used for programmatic selection.
 	 * @return $this Returns the Tab instance for method chaining.
-	 * @throws InvalidArgumentException If the name is empty.
 	 */
 	public function setName( string $name ): self {
 		if ( trim( $name ) === '' ) {
@@ -110,7 +109,6 @@ class TabBuilder {
 	 * @since 0.1.0
 	 * @param string $label The label text to be displayed in the Tabs component's header.
 	 * @return $this Returns the Tab instance for method chaining.
-	 * @throws InvalidArgumentException If the label is empty.
 	 */
 	public function setLabel( string $label ): self {
 		if ( trim( $label ) === '' ) {

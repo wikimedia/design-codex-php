@@ -163,7 +163,6 @@ class ButtonBuilder {
 	 * @since 0.1.0
 	 * @param string $label The text label displayed on the button.
 	 * @return $this Returns the Button instance for method chaining.
-	 * @throws InvalidArgumentException If the label is empty and the button is not icon-only.
 	 */
 	public function setLabel( string $label ): self {
 		if ( trim( $label ) === '' && !$this->iconOnly ) {
@@ -188,7 +187,6 @@ class ButtonBuilder {
 	 * @since 0.1.0
 	 * @param string $action The action style for the button.
 	 * @return $this Returns the Button instance for method chaining.
-	 * @throws InvalidArgumentException If the action is not valid.
 	 */
 	public function setAction( string $action ): self {
 		if ( !in_array( $action, self::ALLOWED_ACTIONS, true ) ) {
@@ -212,7 +210,6 @@ class ButtonBuilder {
 	 * @since 0.1.0
 	 * @param string $weight The weight style for the button.
 	 * @return $this Returns the Button instance for method chaining.
-	 * @throws InvalidArgumentException If the weight is not valid.
 	 */
 	public function setWeight( string $weight ): self {
 		if ( !in_array( $weight, self::ALLOWED_WEIGHTS, true ) ) {
@@ -235,7 +232,6 @@ class ButtonBuilder {
 	 * @since 0.1.0
 	 * @param string $size The size of the button.
 	 * @return $this Returns the Button instance for method chaining.
-	 * @throws InvalidArgumentException If the size is not valid.
 	 */
 	public function setSize( string $size ): self {
 		if ( !in_array( $size, self::ALLOWED_SIZES, true ) ) {
@@ -259,7 +255,6 @@ class ButtonBuilder {
 	 * @since 0.1.0
 	 * @param string $type The type for the button.
 	 * @return $this Returns the Button instance for method chaining.
-	 * @throws InvalidArgumentException If the type is not valid.
 	 */
 	public function setType( string $type ): self {
 		if ( !in_array( $type, self::ALLOWED_TYPES, true ) ) {

@@ -61,7 +61,6 @@ class OptionBuilder {
 	 * @since 0.1.0
 	 * @param string $value The unique value of the option.
 	 * @return $this Returns the Option instance for method chaining.
-	 * @throws InvalidArgumentException If the value is empty.
 	 */
 	public function setValue( string $value ): self {
 		if ( trim( $value ) === '' ) {

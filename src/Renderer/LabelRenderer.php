@@ -77,7 +77,6 @@ class LabelRenderer implements IRenderer {
 	 * @since 0.1.0
 	 * @param Label $component The Label component to render.
 	 * @return string The rendered HTML string for the component.
-	 * @throws InvalidArgumentException If the provided object is not an instance of Label.
 	 */
 	public function render( $component ): string {
 		if ( !$component instanceof Label ) {

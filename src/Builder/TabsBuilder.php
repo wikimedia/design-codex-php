@@ -159,7 +159,6 @@ class TabsBuilder {
 	 *
 	 * @since 0.1.0
 	 * @return Tabs The constructed Tabs.
-	 * @throws InvalidArgumentException If any of the tabs are not instances of Tab.
 	 */
 	public function build(): Tabs {
 		$tabComponents = [];

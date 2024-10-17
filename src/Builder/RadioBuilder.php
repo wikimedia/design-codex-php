@@ -268,7 +268,6 @@ class RadioBuilder {
 	 *
 	 * @since 0.1.0
 	 * @return Radio The constructed Radio.
-	 * @throws InvalidArgumentException If required fields are missing or invalid.
 	 */
 	public function build(): Radio {
 		if ( !$this->inputId ) {

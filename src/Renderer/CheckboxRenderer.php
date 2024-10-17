@@ -77,7 +77,6 @@ class CheckboxRenderer implements IRenderer {
 	 * @since 0.1.0
 	 * @param Checkbox $component The Checkbox component to render.
 	 * @return string The rendered HTML string for the component.
-	 * @throws InvalidArgumentException If the provided object is not an instance of Checkbox.
 	 */
 	public function render( $component ): string {
 		if ( !$component instanceof Checkbox ) {

@@ -117,7 +117,6 @@ class LabelBuilder {
 	 * @since 0.1.0
 	 * @param string $labelText The text of the label.
 	 * @return $this Returns the Label instance for method chaining.
-	 * @throws InvalidArgumentException If the label text is empty.
 	 */
 	public function setLabelText( string $labelText ): self {
 		if ( trim( $labelText ) === '' ) {
@@ -328,7 +327,6 @@ class LabelBuilder {
 	 *
 	 * @since 0.1.0
 	 * @return Label The constructed Label.
-	 * @throws InvalidArgumentException If required fields are missing or invalid.
 	 */
 	public function build(): Label {
 		if ( !$this->labelText ) {

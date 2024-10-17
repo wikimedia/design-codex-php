@@ -161,7 +161,6 @@ class MessageBuilder {
 	 * @since 0.1.0
 	 * @param string $type The type of message (e.g., 'notice', 'warning', 'error', 'success').
 	 * @return $this Returns the Message instance for method chaining.
-	 * @throws InvalidArgumentException If the type is not valid.
 	 */
 	public function setType( string $type ): self {
 		if ( !in_array( $type, self::STATUS_TYPES, true ) ) {

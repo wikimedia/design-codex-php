@@ -237,7 +237,6 @@ class PagerBuilder {
 	 * @since 0.1.0
 	 * @param int $limit The number of results per page.
 	 * @return $this Returns the Pager instance for method chaining.
-	 * @throws InvalidArgumentException If the limit is less than 1.
 	 */
 	public function setLimit( int $limit ): self {
 		if ( $limit < 1 ) {
@@ -403,7 +402,6 @@ class PagerBuilder {
 	 * @since 0.1.0
 	 * @param string $position The position of the pagination controls ('top', 'bottom', or 'both').
 	 * @return $this Returns the Pager instance for method chaining.
-	 * @throws InvalidArgumentException If the position is not valid.
 	 */
 	public function setPosition( string $position ): self {
 		if ( !in_array( $position, self::TABLE_PAGINATION_POSITIONS, true ) ) {
@@ -428,7 +426,6 @@ class PagerBuilder {
 	 * @since 0.1.0
 	 * @param array $paginationSizeOptions The array of pagination size options.
 	 * @return $this Returns the Pager instance for method chaining.
-	 * @throws InvalidArgumentException If the pagination size options array is empty.
 	 */
 	public function setPaginationSizeOptions( array $paginationSizeOptions ): self {
 		if ( !$paginationSizeOptions ) {
@@ -447,7 +444,6 @@ class PagerBuilder {
 	 * @since 0.1.0
 	 * @param int $paginationSizeDefault The default number of rows per page.
 	 * @return $this Returns the Table instance for method chaining.
-	 * @throws InvalidArgumentException If the value is not in the pagination size options.
 	 */
 	public function setPaginationSizeDefault( int $paginationSizeDefault ): self {
 		if ( !in_array( $paginationSizeDefault, $this->paginationSizeOptions, true ) ) {

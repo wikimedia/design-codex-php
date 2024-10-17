@@ -259,7 +259,6 @@ class CheckboxBuilder {
 	 *
 	 * @since 0.1.0
 	 * @return Checkbox The constructed Checkbox.
-	 * @throws InvalidArgumentException If required fields are missing or invalid.
 	 */
 	public function build(): Checkbox {
 		if ( !$this->inputId ) {

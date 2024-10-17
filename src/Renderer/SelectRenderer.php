@@ -78,7 +78,6 @@ class SelectRenderer implements IRenderer {
 	 * @since 0.1.0
 	 * @param Select $component The Select object to render.
 	 * @return string The rendered HTML string for the component.
-	 * @throws InvalidArgumentException If the provided object is not an instance of Select.
 	 */
 	public function render( $component ): string {
 		if ( !$component instanceof Select ) {
@@ -102,7 +101,6 @@ class SelectRenderer implements IRenderer {
 	 * @since 0.1.0
 	 * @param Select $object The Select component object.
 	 * @return array An array of sanitized option data for rendering.
-	 * @throws InvalidArgumentException If an option is not an instance of Option.
 	 */
 	private function prepareOptions( Select $object ): array {
 		$options = [];
@@ -126,7 +124,6 @@ class SelectRenderer implements IRenderer {
 	 * @since 0.1.0
 	 * @param Select $object The Select component object containing optGroups.
 	 * @return array Prepared array of optGroups with their respective options for rendering.
-	 * @throws InvalidArgumentException If an option within an optGroup is not an instance of Option.
 	 */
 	private function prepareOptGroups( Select $object ): array {
 		$optGroups = [];
