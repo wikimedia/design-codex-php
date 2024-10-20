@@ -23,6 +23,7 @@ use Wikimedia\Codex\Sandbox\Example\TabsExample;
 use Wikimedia\Codex\Sandbox\Example\TextAreaExample;
 use Wikimedia\Codex\Sandbox\Example\TextInputExample;
 use Wikimedia\Codex\Sandbox\Example\ThumbnailExample;
+use Wikimedia\Codex\Sandbox\Example\ToggleSwitchExample;
 use Wikimedia\Codex\Utility\Codex;
 use Wikimedia\Codex\Utility\SimpleWebRequest;
 use Wikimedia\Codex\Utility\WebRequestCallbacks;
@@ -69,6 +70,8 @@ $examples = [
 		'file' => 'src/Example/TextInputExample.php' ],
 	'Thumbnail' => [ 'component' => ThumbnailExample::create( $codex ),
 		'file' => 'src/Example/ThumbnailExample.php' ],
+	'ToggleSwitch' => [ 'component' => ToggleSwitchExample::create( $codex ),
+		'file' => 'src/Example/ToggleSwitchExample.php' ],
 ];
 
 ?>

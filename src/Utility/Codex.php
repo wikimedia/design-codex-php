@@ -39,6 +39,7 @@ use Wikimedia\Codex\Builder\TabsBuilder;
 use Wikimedia\Codex\Builder\TextAreaBuilder;
 use Wikimedia\Codex\Builder\TextInputBuilder;
 use Wikimedia\Codex\Builder\ThumbnailBuilder;
+use Wikimedia\Codex\Builder\ToggleSwitchBuilder;
 use Wikimedia\Codex\Infrastructure\CodexServices;
 
 /**
@@ -269,5 +270,15 @@ class Codex {
 	 */
 	public function thumbnail(): ThumbnailBuilder {
 		return $this->services->getService( 'ThumbnailBuilder' );
+	}
+
+	/**
+	 * Resolves and returns the ToggleSwitch builder.
+	 *
+	 * @since 0.1.0
+	 * @return ToggleSwitchBuilder The ToggleSwitch builder instance.
+	 */
+	public function toggleSwitch(): ToggleSwitchBuilder {
+		return $this->services->getService( 'ToggleSwitchBuilder' );
 	}
 }
