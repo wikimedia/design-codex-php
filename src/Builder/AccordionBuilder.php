@@ -112,7 +112,6 @@ class AccordionBuilder {
 	 * @since 0.1.0
 	 * @param string $title The title text to be displayed in the accordion header.
 	 * @return $this Returns the Accordion instance for method chaining.
-	 * @throws InvalidArgumentException If the title is empty or contains only whitespace.
 	 */
 	public function setTitle( string $title ): self {
 		if ( trim( $title ) === '' ) {

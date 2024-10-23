@@ -117,7 +117,6 @@ class CardBuilder {
 	 * @since 0.1.0
 	 * @param string $title The title text displayed on the card.
 	 * @return $this Returns the Card instance for method chaining.
-	 * @throws InvalidArgumentException If the title is empty.
 	 */
 	public function setTitle( string $title ): self {
 		if ( trim( $title ) === '' ) {

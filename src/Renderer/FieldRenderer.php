@@ -83,7 +83,6 @@ class FieldRenderer implements IRenderer {
 	 * @since 0.1.0
 	 * @param Field $component The Field component to render.
 	 * @return string The rendered HTML string for the component.
-	 * @throws InvalidArgumentException If the provided object is not an instance of Field.
 	 */
 	public function render( $component ): string {
 		if ( !$component instanceof Field ) {
