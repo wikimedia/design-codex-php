@@ -44,6 +44,7 @@ use Wikimedia\Codex\Builder\TabsBuilder;
 use Wikimedia\Codex\Builder\TextAreaBuilder;
 use Wikimedia\Codex\Builder\TextInputBuilder;
 use Wikimedia\Codex\Builder\ThumbnailBuilder;
+use Wikimedia\Codex\Builder\ToggleSwitchBuilder;
 use Wikimedia\Codex\Renderer\AccordionRenderer;
 use Wikimedia\Codex\Renderer\ButtonRenderer;
 use Wikimedia\Codex\Renderer\CardRenderer;
@@ -62,6 +63,7 @@ use Wikimedia\Codex\Renderer\TemplateRenderer;
 use Wikimedia\Codex\Renderer\TextAreaRenderer;
 use Wikimedia\Codex\Renderer\TextInputRenderer;
 use Wikimedia\Codex\Renderer\ThumbnailRenderer;
+use Wikimedia\Codex\Renderer\ToggleSwitchRenderer;
 use Wikimedia\Codex\Utility\Sanitizer;
 use Wikimedia\Codex\Utility\SimpleWebRequest;
 use Wikimedia\Codex\Utility\WebRequestCallbacks;
@@ -333,6 +335,16 @@ return [
 
 	'ThumbnailRenderer' => static function ( $container ) {
 		return new ThumbnailRenderer(
+			$container->getService( 'Sanitizer' ), $container->getService( 'TemplateRenderer' ),
+		);
+	},
+
+	'ToggleSwitchBuilder' => static function ( $container ) {
+		return new ToggleSwitchBuilder( $container->getService( 'ToggleSwitchRenderer' ) );
+	},
+
+	'ToggleSwitchRenderer' => static function ( $container ) {
+		return new ToggleSwitchRenderer(
 			$container->getService( 'Sanitizer' ), $container->getService( 'TemplateRenderer' ),
 		);
 	},

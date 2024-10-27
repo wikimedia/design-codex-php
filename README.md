@@ -73,6 +73,7 @@ The Codex library provides a variety of components to build UI:
 - **TextArea**: A multi-line text input field for user input.
 - **TextInput**: A single-line text input field for user input.
 - **Thumbnail**: A visual component for displaying small preview images.
+- **ToggleSwitch**: A ToggleSwitch enables the user to instantly toggle between on and off states.
 
 ## Usage
 Here is a basic example of how to use the Codex library:
