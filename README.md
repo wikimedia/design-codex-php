@@ -1,10 +1,7 @@
 
 # Wikimedia Codex
 
-A PHP library for generating markup for Codex CSS-only components using a builder-based methodology.
-This library leverages the Codex design system,
-providing a PHP-based interface to create UI components that ensure visual consistency.
-It follows a builder pattern approach to construct UI components directly in PHP.
+A PHP library for building HTML and CSS UI components using [Codex](https://doc.wikimedia.org/codex/main/), the Wikimedia design system.
 
 ## Installation
 Use Composer to install the Codex library:

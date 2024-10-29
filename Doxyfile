@@ -1,6 +1,6 @@
 # Doxyfile <https://www.doxygen.nl/manual/config.html>
 PROJECT_NAME           = "Codex PHP"
-PROJECT_BRIEF          = "A PHP library for generating markup for Codex CSS-only components using a builder-based methodology."
+PROJECT_BRIEF          = "A PHP library for building HTML and CSS UI components using Codex, the Wikimedia design system."
 OUTPUT_DIRECTORY       = doc
 JAVADOC_AUTOBRIEF      = YES
 QT_AUTOBRIEF           = YES
