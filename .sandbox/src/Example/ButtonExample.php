@@ -14,14 +14,13 @@ class ButtonExample {
 			->button()
 			->setLabel( "Default" )
 			->setAction( "default" )
-			->setWeight( "primary" )
+			->setWeight( "normal" )
 			->setSize( "medium" )
 			->setIconOnly( false )
 			->setId( "example-button-1" )
 			->setAttributes( [
 				"class" => "foo",
 				"id" => "example-button",
-				"aria-label" => "Default button primary",
 				"data-toggle" => "example-action",
 			] )
 			->build()
@@ -36,7 +35,6 @@ class ButtonExample {
 			->setIconOnly( false )
 			->setId( "example-button-2" )
 			->setAttributes( [
-				"aria-label" => "Progressive button normal",
 				"data-toggle" => "example-action",
 			] )
 			->build()
@@ -51,7 +49,6 @@ class ButtonExample {
 			->setIconOnly( false )
 			->setId( "example-button-3" )
 			->setAttributes( [
-				"aria-label" => "Destructive button normal",
 				"data-toggle" => "example-action",
 			] )
 			->build()
@@ -66,7 +63,6 @@ class ButtonExample {
 			->setIconOnly( false )
 			->setId( "example-button-4" )
 			->setAttributes( [
-				"aria-label" => "Progressive button primary",
 				"data-toggle" => "example-action",
 			] )
 			->build()
@@ -81,7 +77,6 @@ class ButtonExample {
 			->setIconOnly( false )
 			->setId( "example-button-5" )
 			->setAttributes( [
-				"aria-label" => "Destructive button primary",
 				"data-toggle" => "example-action",
 			] )
 			->build()
@@ -95,11 +90,23 @@ class ButtonExample {
 			->build()
 			->getHtml();
 
+		$iconOnly = $codex
+			->button()
+			->setIconOnly( true )
+			->setAttributes( [
+				// Note that class is used to apply an icon image.
+				"class" => "cdx-icon--add",
+				"aria-label" => "Icon-only button",
+			] )
+			->build()
+			->getHtml();
+
 		return $default .
 			$progressiveNormal .
 			$destructiveNormal .
 			$progressive .
 			$destructive .
-			$disabled;
+			$disabled .
+			$iconOnly;
 	}
 }

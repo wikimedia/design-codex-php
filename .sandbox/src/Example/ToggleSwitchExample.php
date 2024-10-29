@@ -12,14 +12,14 @@ class ToggleSwitchExample {
 	public static function create( Codex $codex ): string {
 		return $codex
 			->ToggleSwitch()
-			->setInputId( "cdx-toggle-switch-css-1" )
+			->setInputId( "visual-editing-mode" )
 			->setLabel(
 				$codex
 					->Label()
 					->setLabelText( "Visual editing mode" )
 					->setDescription(
 						"Turn on to use the visual editor. You can switch back to source mode at any time" )
-					->setDescriptionId( "cdx-description-css-1" )
+					->setDescriptionId( "visual-editing-mode-description" )
 					->build()
 			)
 			->setChecked( false )
