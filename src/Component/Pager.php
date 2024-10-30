@@ -16,7 +16,6 @@
 
 namespace Wikimedia\Codex\Component;
 
-use Krinkle\Intuition\Intuition;
 use Wikimedia\Codex\Contract\IWebRequestCallbacks;
 use Wikimedia\Codex\Renderer\PagerRenderer;
 
@@ -120,11 +119,6 @@ class Pager {
 	 * Callbacks object for handling custom actions.
 	 */
 	protected ?IWebRequestCallbacks $callbacks = null;
-
-	/**
-	 * Instance of the Intuition class.
-	 */
-	protected Intuition $lang;
 
 	/**
 	 * The renderer instance used to render the pager.
@@ -442,19 +436,6 @@ class Pager {
 	 */
 	public function getIconClasses(): array {
 		return $this->iconClasses;
-	}
-
-	/**
-	 * Get the Intuition instance used for localization.
-	 *
-	 * This method returns the Intuition instance that handles localization for the pager.
-	 * It is initialized with the "codex" domain and used for translating pager text.
-	 *
-	 * @since 0.1.0
-	 * @return Intuition The Intuition instance used for localization.
-	 */
-	public function getLang(): Intuition {
-		return $this->lang;
 	}
 
 	/**
