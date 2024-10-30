@@ -144,14 +144,7 @@ return [
 	},
 
 	'Intuition' => static function () {
-		static $intuition = null;
-
-		if ( $intuition === null ) {
-			$intuition = new Intuition( 'codex' );
-			$intuition->registerDomain( 'codex', __DIR__ . '/../../i18n' );
-		}
-
-		return $intuition;
+		return new Intuition( 'codex' );
 	},
 
 	'LabelBuilder' => static function ( $container ) {
@@ -256,6 +249,7 @@ return [
 			$templatePath = __DIR__ . '/../../resources/templates';
 
 			$intuition = $container->getService( 'Intuition' );
+			$intuition->registerDomain( 'codex', __DIR__ . '/../../i18n' );
 
 			$mustacheEngine = new Mustache_Engine( [
 				'loader' => new Mustache_Loader_FilesystemLoader( $templatePath ),
