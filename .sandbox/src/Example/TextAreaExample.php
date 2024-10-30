@@ -12,13 +12,14 @@ class TextAreaExample {
 	public static function create( Codex $codex ): string {
 		return $codex
 			->TextArea()
-			->setName( "user_message" )
+			->setName( "user-message" )
 			->setPlaceholder( "Enter your message..." )
 			->setValue( "This is a default message." )
-			->setId( "message-area" )
+			->setId( "user-message" )
 			->setTextAreaAttributes( [
 				"class" => "foo",
-				"data-category" => "feedback"
+				"data-category" => "feedback",
+				"aria-label" => "Message"
 			] )
 			->setWrapperAttributes( [
 				"class" => "bar",

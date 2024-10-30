@@ -12,8 +12,8 @@ class RadioExample {
 	public static function create( Codex $codex ): string {
 		return $codex
 			->Radio()
-			->setInputId( "radio-option-1" )
-			->setName( "options" )
+			->setInputId( "password-reset-radio-1" )
+			->setName( "password-reset-options" )
 			->setLabel(
 				$codex
 					->Label()
@@ -23,7 +23,7 @@ class RadioExample {
 					->setDescription(
 						"This improves privacy and helps prevent unsolicited emails."
 					)
-					->setDescriptionId( "cdx-description-css-1" )
+					->setDescriptionId( "password-reset-radio-description-1" )
 					->build()
 			)
 			->setValue( "option1" )
@@ -32,7 +32,6 @@ class RadioExample {
 			->setInputAttributes( [
 				"class" => "foo",
 				"data-toggle" => "radio-option",
-				"aria-label" => "RadioExample Option 1",
 			] )
 			->setWrapperAttributes( [
 				"class" => "bar",

@@ -14,9 +14,11 @@ class TextInputExample {
 			->TextInput()
 			->setType( "text" )
 			->setName( "username" )
-			->setInputId( "usernameInput" )
+			->setInputId( "username-input" )
 			->setPlaceholder( "Enter your username" )
-			->setHasStartIcon( false )
+			->setHasStartIcon( true )
+			// Icon image is set in this page's CSS via this class.
+			->setStartIconClass( 'cdx-icon--login' )
 			->setHasEndIcon( false )
 			->setDisabled( false )
 			->setHasError( false )
@@ -27,6 +29,7 @@ class TextInputExample {
 			->setInputAttributes( [
 				"class" => "bar",
 				"autocomplete" => "username",
+				"aria-label" => "Username"
 			] )
 			->build()
 			->getHtml();

@@ -12,7 +12,7 @@ class CheckboxExample {
 	public static function create( Codex $codex ): string {
 		return $codex
 			->Checkbox()
-			->setInputId( "checkbox-description-css-only-1" )
+			->setInputId( "password-reset-checkbox" )
 			->setLabel(
 				$codex
 					->Label()
@@ -22,7 +22,7 @@ class CheckboxExample {
 					->setDescription(
 						"This improves privacy and helps prevent unsolicited emails."
 					)
-					->setDescriptionId( "cdx-description-css-1" )
+					->setDescriptionId( "password-reset-checkbox-description" )
 					->build()
 			)
 			->setWrapperAttributes( [
@@ -31,7 +31,6 @@ class CheckboxExample {
 			->setInputAttributes( [
 				"class" => "bar",
 				"data-toggle" => "checkbox-option",
-				"aria-label" => "Checkbox input 1",
 			] )
 			->build()
 			->getHtml();

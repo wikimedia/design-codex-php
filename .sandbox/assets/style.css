@@ -146,6 +146,13 @@ body {
 	border-radius: 0;
 }
 
+.cdx-example-section--Button .cdx-example-body,
+.cdx-example-section--Thumbnail .cdx-example-body {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+}
+
 /* Codex */
 
 
@@ -183,6 +190,16 @@ body {
 
 .cdx-icon--unsorted {
 	background-image: url('data:image/svg+xml,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%3F%3E%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2020%2020%22%3E%3Ctitle%3Esort%20vertically%3C%2Ftitle%3E%3Cpath%20d%3D%22M10%200%203%208h14zm0%2018-7-8h14z%22%2F%3E%3C%2Fsvg%3E');
+	background-size: cover;
+}
+
+.cdx-icon--add {
+	background-image: url('data:image/svg+xml,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%3F%3E%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2020%2020%22%3E%3Ctitle%3Eadd%3C%2Ftitle%3E%3Cpath%20d%3D%22M11%209V4H9v5H4v2h5v5h2v-5h5V9z%22%2F%3E%3C%2Fsvg%3E');
+	background-size: cover;
+}
+
+.cdx-icon--login {
+	background-image: url('data:image/svg+xml,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%3F%3E%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2020%2020%22%3E%3Ctitle%3Eadd%3C%2Ftitle%3E%3Cpath%20d%3D%22M1%2011v6c0%201.1.9%202%202%202h14c1.1%200%202-.9%202-2V3c0-1.1-.9-2-2-2H3c-1.1%200-2%20.9-2%202v6h8V5l4.75%205L9%2015v-4z%22%2F%3E%3C%2Fsvg%3E');
 	background-size: cover;
 }
 

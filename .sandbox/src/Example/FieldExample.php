@@ -10,34 +10,31 @@ class FieldExample {
 	 * @return string
 	 */
 	public static function create( Codex $codex ): string {
-		$checkbox = $codex
+		$checkbox1 = $codex
 			->Checkbox()
-			->setInputId( "checkbox-description-css-only-2" )
+			->setInputId( "email-allow-others" )
 			->setLabel(
 				$codex
 					->Label()
-					->setId( "label-test" )
 					->setLabelText(
-						"Send password reset emails only when both email address and username are provided."
+						"Allow other users to email me"
 					)
-					->setDescription(
-						"This improves privacy and helps prevent unsolicited emails."
-					)
-					->setAttributes( [
-						"class" => "foo",
-						"bar" => "baz",
-					] )
-					->setDescriptionId( "cdx-description-css-2" )
 					->build()
 			)
-			->setInputAttributes( [
-				"class" => "foo",
-				"bar" => "baz",
-			] )
-			->setWrapperAttributes( [
-				"class" => "foo",
-				"bar" => "baz",
-			] )
+			->build()
+			->getHtml();
+
+		$checkbox2 = $codex
+			->Checkbox()
+			->setInputId( "email-allow-new" )
+			->setLabel(
+				$codex
+					->Label()
+					->setLabelText(
+						"Allow emails from brand-new users"
+					)
+					->build()
+			)
 			->build()
 			->getHtml();
 
@@ -46,19 +43,18 @@ class FieldExample {
 			->setLabel(
 				$codex
 					->Label()
-					->setLabelText( "User Information" )
-					->setDescription( "Please fill out the details below." )
+					->setLabelText( "Email confirmation" )
+					->setDescription( "Specify an email address in your preferences for these features to work." )
 					->setOptional( true )
 					->build()
 			)
-			->setFields( [ $checkbox ] )
+			->setFields( [ $checkbox1, $checkbox2 ] )
 			->setIsFieldset( true )
 			->setAttributes( [
 				"class" => "foo",
 				"bar" => "baz",
-				"id" => "user-info-fieldset",
-				"data-category" => "user-data",
-				"aria-labelledby" => "legend-user-info",
+				"id" => "email-confirmation-fieldset",
+				"data-category" => "email-options",
 			] )
 			->build()
 			->getHtml();

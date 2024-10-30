@@ -103,7 +103,8 @@ $examples = [
 
 <main>
 	<?php foreach ( $examples as $title => $example ) { ?>
-		<article class="cdx-example-section" aria-labelledby="<?php echo htmlspecialchars( $title ); ?>">
+		<article class="cdx-example-section cdx-example-section--<?php echo htmlspecialchars( $title ); ?>"
+			aria-labelledby="<?php echo htmlspecialchars( $title ); ?>">
 			<h2 class="cdx-example-title" id="<?php echo htmlspecialchars( $title ); ?>">
 				<?php echo htmlspecialchars( $title ); ?>
 			</h2>
@@ -133,4 +134,3 @@ $examples = [
 
 </body>
 </html>
-
