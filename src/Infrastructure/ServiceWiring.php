@@ -243,62 +243,58 @@ return [
 	},
 
 	'TemplateRenderer' => static function ( $container ) {
-		static $mustacheEngine = null;
+		$templatePath = __DIR__ . '/../../resources/templates';
 
-		if ( $mustacheEngine === null ) {
-			$templatePath = __DIR__ . '/../../resources/templates';
+		$intuition = $container->getService( 'Intuition' );
+		$intuition->registerDomain( 'codex', __DIR__ . '/../../i18n' );
 
-			$intuition = $container->getService( 'Intuition' );
-			$intuition->registerDomain( 'codex', __DIR__ . '/../../i18n' );
+		$mustacheEngine = new Mustache_Engine( [
+			'loader' => new Mustache_Loader_FilesystemLoader( $templatePath ),
+			// Disable escaping in Mustache. We use custom PHP escaping instead.
+			'escape' => static fn ( $x ) => $x,
+			'helpers' => [
+				// TODO: Consider moving the following helper functions to a separate helper class.
+				// i18n helper - for localization
+				'i18n' => static function ( $text, $render ) use ( $intuition ) {
+					$renderedText = trim( $render( $text ) );
+					// Split by '|' to separate the key and parameters.
+					// XXX This assumes that the expanded content of parameters does not contain pipes.
+					$parts = explode( '|', $renderedText );
+					// The first part is the message key, the rest are parameters
+					$key = trim( array_shift( $parts ) );
+					$params = array_map( 'trim', $parts );
 
-			$mustacheEngine = new Mustache_Engine( [
-				'loader' => new Mustache_Loader_FilesystemLoader( $templatePath ),
-				// Disable escaping in Mustache. We use custom PHP escaping instead.
-				'escape' => static fn ( $x ) => $x,
-				'helpers' => [
-					// TODO: Consider moving the following helper functions to a separate helper class.
-					// i18n helper - for localization
-					'i18n' => static function ( $text, $render ) use ( $intuition ) {
-						$renderedText = trim( $render( $text ) );
-						// Split by '|' to separate the key and parameters.
-						// XXX This assumes that the expanded content of parameters does not contain pipes.
-						$parts = explode( '|', $renderedText );
-						// The first part is the message key, the rest are parameters
-						$key = trim( array_shift( $parts ) );
-						$params = array_map( 'trim', $parts );
+					return htmlspecialchars(
+						$intuition->msg( $key, [ 'variables' => $params ] ),
+						ENT_QUOTES,
+						'UTF-8'
+					);
+				},
+				'renderClasses' => static function ( $attributes, $render ) {
+					$renderedAttributes = $render( $attributes );
 
-						return htmlspecialchars(
-							$intuition->msg( $key, [ 'variables' => $params ] ),
-							ENT_QUOTES,
-							'UTF-8'
-						);
-					},
-					'renderClasses' => static function ( $attributes, $render ) {
-						$renderedAttributes = $render( $attributes );
+					// Use a regular expression to match the 'class' attribute and capture its value
+					if ( preg_match( '/class="([^"]*)"/', $renderedAttributes, $matches ) ) {
+						// If a 'class' attribute is found, prepend a space and return the class string
+						return ' ' . $matches[1];
+					}
 
-						// Use a regular expression to match the 'class' attribute and capture its value
-						if ( preg_match( '/class="([^"]*)"/', $renderedAttributes, $matches ) ) {
-							// If a 'class' attribute is found, prepend a space and return the class string
-							return ' ' . $matches[1];
-						}
+					// If no 'class' attribute is found, return an empty string
+					return '';
+				},
+				'renderAttributes' => static function ( $attributes, $render ) {
+					$renderedAttributes = $render( $attributes );
 
-						// If no 'class' attribute is found, return an empty string
-						return '';
-					},
-					'renderAttributes' => static function ( $attributes, $render ) {
-						$renderedAttributes = $render( $attributes );
+					// Remove the 'class' attribute from the rendered attributes using a regular expression
+					// This ensures that only non-class attributes are returned
+					$attribs = trim( preg_replace( '/\s*class="[^"]*"/', '', $renderedAttributes ) );
 
-						// Remove the 'class' attribute from the rendered attributes using a regular expression
-						// This ensures that only non-class attributes are returned
-						$attribs = trim( preg_replace( '/\s*class="[^"]*"/', '', $renderedAttributes ) );
-
-						// If there are remaining attributes after removing 'class', prepend a space and return them
-						// Otherwise, return an empty string
-						return $attribs !== '' ? ' ' . $attribs : '';
-					},
-				],
-			] );
-		}
+					// If there are remaining attributes after removing 'class', prepend a space and return them
+					// Otherwise, return an empty string
+					return $attribs !== '' ? ' ' . $attribs : '';
+				},
+			],
+		] );
 
 		return new TemplateRenderer( $mustacheEngine );
 	},
