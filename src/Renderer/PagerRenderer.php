@@ -19,9 +19,9 @@
 namespace Wikimedia\Codex\Renderer;
 
 use InvalidArgumentException;
-use Krinkle\Intuition\Intuition;
 use Wikimedia\Codex\Builder\PagerBuilder;
 use Wikimedia\Codex\Component\Pager;
+use Wikimedia\Codex\Contract\ILocalizer;
 use Wikimedia\Codex\Contract\Renderer\IRenderer;
 use Wikimedia\Codex\Contract\Renderer\ITemplateRenderer;
 use Wikimedia\Codex\Traits\AttributeResolver;
@@ -61,9 +61,9 @@ class PagerRenderer implements IRenderer {
 	private ITemplateRenderer $templateRenderer;
 
 	/**
-	 * The template renderer instance.
+	 * The localization instance implementing ILocalizer.
 	 */
-	private Intuition $lang;
+	private ILocalizer $localizer;
 
 	/**
 	 * The Codex instance for utility methods.
@@ -76,16 +76,16 @@ class PagerRenderer implements IRenderer {
 	 * @since 0.1.0
 	 * @param Sanitizer $sanitizer The sanitizer instance used for content sanitization.
 	 * @param ITemplateRenderer $templateRenderer The template renderer instance used for rendering templates.
-	 * @param Intuition $lang The language handler instance used for localization and translations.
+	 * @param ILocalizer $localizer The localizer instance used for localization and translations.
 	 */
 	public function __construct(
 		Sanitizer $sanitizer,
 		ITemplateRenderer $templateRenderer,
-		Intuition $lang
+		ILocalizer $localizer
 	) {
 		$this->sanitizer = $sanitizer;
 		$this->templateRenderer = $templateRenderer;
-		$this->lang = $lang;
+		$this->localizer = $localizer;
 		$this->codex = new Codex();
 	}
 
@@ -149,7 +149,7 @@ class PagerRenderer implements IRenderer {
 		foreach ( $sizeOptions as $size ) {
 			$options[] = [
 				'value' => $this->sanitizer->sanitizeText( (string)$size ),
-				'text' => $this->lang->msg(
+				'text' => $this->localizer->msg(
 					'cdx-table-pager-items-per-page-current', [ 'variables' => [ $size ] ]
 				),
 				'selected' => ( $size == $currentLimit ),

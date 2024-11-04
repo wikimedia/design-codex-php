@@ -5,7 +5,7 @@
  * This class is part of the Codex design system and manages the retrieval and instantiation
  * of various renderers and services. It follows dependency injection principles, ensuring services are
  * injected and reused throughout the system. Services include renderers for
- * various UI components and utilities like Mustache and Intuition.
+ * various UI components and utilities like Mustache and Localization.
  *
  * @category Infrastructure
  * @package  Codex\Infrastructure

@@ -11,7 +11,7 @@
  *  - ServiceWiring is NOT a cache for arbitrary singletons.
  *
  * Services include various UI component builders, renderers, and utilities such as the
- * Mustache template engine and Intuition for localization. These services are integral to
+ * Mustache template engine and Localization for localization. These services are integral to
  * the Codex design system for generating reusable, standardized components.
  *
  * @category Infrastructure
@@ -23,6 +23,7 @@
  */
 
 use Krinkle\Intuition\Intuition;
+use MediaWiki\Context\RequestContext;
 use Wikimedia\Codex\Adapter\WebRequestAdapter;
 use Wikimedia\Codex\Builder\AccordionBuilder;
 use Wikimedia\Codex\Builder\ButtonBuilder;
@@ -45,6 +46,9 @@ use Wikimedia\Codex\Builder\TextAreaBuilder;
 use Wikimedia\Codex\Builder\TextInputBuilder;
 use Wikimedia\Codex\Builder\ThumbnailBuilder;
 use Wikimedia\Codex\Builder\ToggleSwitchBuilder;
+use Wikimedia\Codex\Contract\ILocalizer;
+use Wikimedia\Codex\Localization\IntuitionLocalization;
+use Wikimedia\Codex\Localization\MediaWikiLocalization;
 use Wikimedia\Codex\Renderer\AccordionRenderer;
 use Wikimedia\Codex\Renderer\ButtonRenderer;
 use Wikimedia\Codex\Renderer\CardRenderer;
@@ -143,10 +147,6 @@ return [
 		);
 	},
 
-	'Intuition' => static function () {
-		return new Intuition( 'codex' );
-	},
-
 	'LabelBuilder' => static function ( $container ) {
 		return new LabelBuilder( $container->getService( 'LabelRenderer' ) );
 	},
@@ -155,6 +155,17 @@ return [
 		return new LabelRenderer(
 			$container->getService( 'Sanitizer' ), $container->getService( 'TemplateRenderer' )
 		);
+	},
+
+	'Localization' => static function (): ILocalizer {
+		if ( defined( 'MW_INSTALL_PATH' ) ) {
+			$messageLocalizer = RequestContext::getMain();
+			return new MediaWikiLocalization( $messageLocalizer );
+		} else {
+			$intuition = new Intuition( 'codex' );
+			$intuition->registerDomain( 'codex', __DIR__ . '/../../i18n' );
+			return new IntuitionLocalization( $intuition );
+		}
 	},
 
 	'MessageBuilder' => static function ( $container ) {
@@ -179,7 +190,7 @@ return [
 		return new PagerRenderer(
 			$container->getService( 'Sanitizer' ),
 			$container->getService( 'TemplateRenderer' ),
-			$container->getService( 'Intuition' )
+			$container->getService( 'Localization' )
 		);
 	},
 
@@ -245,8 +256,7 @@ return [
 	'TemplateRenderer' => static function ( $container ) {
 		$templatePath = __DIR__ . '/../../resources/templates';
 
-		$intuition = $container->getService( 'Intuition' );
-		$intuition->registerDomain( 'codex', __DIR__ . '/../../i18n' );
+		$localization = $container->getService( 'Localization' );
 
 		$mustacheEngine = new Mustache_Engine( [
 			'loader' => new Mustache_Loader_FilesystemLoader( $templatePath ),
@@ -255,7 +265,7 @@ return [
 			'helpers' => [
 				// TODO: Consider moving the following helper functions to a separate helper class.
 				// i18n helper - for localization
-				'i18n' => static function ( $text, $render ) use ( $intuition ) {
+				'i18n' => static function ( $text, $render ) use ( $localization ) {
 					$renderedText = trim( $render( $text ) );
 					// Split by '|' to separate the key and parameters.
 					// XXX This assumes that the expanded content of parameters does not contain pipes.
@@ -265,7 +275,7 @@ return [
 					$params = array_map( 'trim', $parts );
 
 					return htmlspecialchars(
-						$intuition->msg( $key, [ 'variables' => $params ] ),
+						$localization->msg( $key, [ 'variables' => $params ] ),
 						ENT_QUOTES,
 						'UTF-8'
 					);
