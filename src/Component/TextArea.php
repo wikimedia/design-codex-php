@@ -95,9 +95,9 @@ class TextArea {
 	private string $placeholder;
 
 	/**
-	 * Indicates whether there is an error state for the textarea.
+	 * Validation status of the textarea (default, error, warning, or success).
 	 */
-	private bool $hasError;
+	private string $status;
 
 	/**
 	 * The renderer instance used to render the textarea.
@@ -121,7 +121,7 @@ class TextArea {
 	 * @param string $startIconClass CSS class for the start icon.
 	 * @param string $endIconClass CSS class for the end icon.
 	 * @param string $placeholder Placeholder text for the textarea.
-	 * @param bool $hasError Indicates whether the textarea has an error state.
+	 * @param string $status Validation status.
 	 * @param TextAreaRenderer $renderer The renderer to use for rendering the textarea.
 	 */
 	public function __construct(
@@ -137,7 +137,7 @@ class TextArea {
 		string $startIconClass,
 		string $endIconClass,
 		string $placeholder,
-		bool $hasError,
+		string $status,
 		TextAreaRenderer $renderer
 	) {
 		$this->id = $id;
@@ -152,7 +152,7 @@ class TextArea {
 		$this->startIconClass = $startIconClass;
 		$this->endIconClass = $endIconClass;
 		$this->placeholder = $placeholder;
-		$this->hasError = $hasError;
+		$this->status = $status;
 		$this->renderer = $renderer;
 	}
 
@@ -312,12 +312,16 @@ class TextArea {
 	}
 
 	/**
-	 * Check if the textarea has an error state.
+	 * Get the validation status of the textarea.
 	 *
-	 * @return bool
+	 * This method returns a string value indicating the current validation status, which is used to
+	 * add a CSS class that can be used for special styles per status.
+	 *
+	 * @since 0.1.0
+	 * @return string Validation status, e.g. 'default' or 'error'.
 	 */
-	public function hasError(): bool {
-		return $this->hasError;
+	public function getStatus(): string {
+		return $this->status;
 	}
 
 	/**

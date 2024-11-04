@@ -18,6 +18,7 @@
 
 namespace Wikimedia\Codex\Builder;
 
+use InvalidArgumentException;
 use Wikimedia\Codex\Component\TextArea;
 use Wikimedia\Codex\Renderer\TextAreaRenderer;
 
@@ -36,6 +37,16 @@ use Wikimedia\Codex\Renderer\TextAreaRenderer;
  * @link     https://doc.wikimedia.org/codex/main/ Codex Documentation
  */
 class TextAreaBuilder {
+
+	/**
+	 * Allowed validation statuses for the TextArea.
+	 */
+	private const ALLOWED_STATUSES = [
+		'default',
+		'error',
+		'warning',
+		'success'
+	];
 
 	/**
 	 * The ID for the textarea.
@@ -98,9 +109,9 @@ class TextAreaBuilder {
 	private string $placeholder = '';
 
 	/**
-	 * Indicates whether there is an error state for the textarea.
+	 * Validation status for the textarea.
 	 */
-	private bool $hasError = false;
+	private string $status = 'default';
 
 	/**
 	 * The renderer instance used to render the textarea.
@@ -357,13 +368,17 @@ class TextAreaBuilder {
 	}
 
 	/**
-	 * Set the error state for the textarea.
+	 * Set the validation status for the textarea.
 	 *
-	 * @param bool $hasError Whether the textarea has an error state.
+	 * @since 0.1.0
+	 * @param string $status Current validation status.
 	 * @return $this
 	 */
-	public function setError( bool $hasError ): self {
-		$this->hasError = $hasError;
+	public function setStatus( string $status ): self {
+		if ( !in_array( $status, self::ALLOWED_STATUSES, true ) ) {
+			throw new InvalidArgumentException( "Invalid status: $status" );
+		}
+		$this->status = $status;
 
 		return $this;
 	}
@@ -389,7 +404,7 @@ class TextAreaBuilder {
 			$this->startIconClass,
 			$this->endIconClass,
 			$this->placeholder,
-			$this->hasError,
+			$this->status,
 			$this->renderer
 		);
 	}

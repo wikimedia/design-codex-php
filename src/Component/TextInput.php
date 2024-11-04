@@ -55,9 +55,9 @@ class TextInput {
 	private bool $disabled;
 
 	/**
-	 * Whether the input field is in an error state.
+	 * Validation status of the input (default, error, warning, or success).
 	 */
-	private bool $hasError;
+	private string $status;
 
 	/**
 	 * The CSS class for the start icon.
@@ -113,7 +113,7 @@ class TextInput {
 	 * @param bool $hasStartIcon Indicates if the input has a start icon.
 	 * @param bool $hasEndIcon Indicates if the input has an end icon.
 	 * @param bool $disabled Indicates if the input is disabled.
-	 * @param bool $hasError Indicates if the input is in an error state.
+	 * @param string $status Validation status.
 	 * @param string $startIconClass CSS class for the start icon.
 	 * @param string $endIconClass CSS class for the end icon.
 	 * @param array $inputAttributes Additional HTML attributes for the input element.
@@ -129,7 +129,7 @@ class TextInput {
 		bool $hasStartIcon,
 		bool $hasEndIcon,
 		bool $disabled,
-		bool $hasError,
+		string $status,
 		string $startIconClass,
 		string $endIconClass,
 		array $inputAttributes,
@@ -144,7 +144,7 @@ class TextInput {
 		$this->hasStartIcon = $hasStartIcon;
 		$this->hasEndIcon = $hasEndIcon;
 		$this->disabled = $disabled;
-		$this->hasError = $hasError;
+		$this->status = $status;
 		$this->startIconClass = $startIconClass;
 		$this->endIconClass = $endIconClass;
 		$this->inputAttributes = $inputAttributes;
@@ -283,16 +283,16 @@ class TextInput {
 	}
 
 	/**
-	 * Check if the input field is in an error state.
+	 * Get the validation status of the input.
 	 *
-	 * This method returns a boolean value indicating whether the input field is in an error state,
-	 * typically by applying a specific CSS class that changes its appearance.
+	 * This method returns a string value indicating the current validation status, which is used to
+	 * add a CSS class that can be used for special styles per status.
 	 *
 	 * @since 0.1.0
-	 * @return bool True if the input field is in an error state, false otherwise.
+	 * @return string Validation status, e.g. 'default' or 'error'.
 	 */
-	public function hasError(): bool {
-		return $this->hasError;
+	public function getStatus(): string {
+		return $this->status;
 	}
 
 	/**

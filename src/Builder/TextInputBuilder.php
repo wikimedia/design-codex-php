@@ -57,6 +57,16 @@ class TextInputBuilder {
 	];
 
 	/**
+	 * Allowed validation statuses for the TextInput.
+	 */
+	private const ALLOWED_STATUSES = [
+		'default',
+		'error',
+		'warning',
+		'success'
+	];
+
+	/**
 	 * Input field type.
 	 */
 	private string $type = 'text';
@@ -77,9 +87,9 @@ class TextInputBuilder {
 	private bool $disabled = false;
 
 	/**
-	 * Whether the input has an error state.
+	 * Validation status for the input.
 	 */
-	private bool $hasError = false;
+	private string $status = 'default';
 
 	/**
 	 * CSS class for the start icon.
@@ -279,21 +289,21 @@ class TextInputBuilder {
 	}
 
 	/**
-	 * Set whether the input is in an error state.
-	 *
-	 * This method indicates that the input field is in an error state, typically by applying
-	 * a specific CSS class that changes its appearance to reflect the error.
+	 * Set the validation status for the input.
 	 *
 	 * Example usage:
 	 *
-	 *     $textInput->setHasError(true);
+	 *     $textInput->setStatus('error');
 	 *
 	 * @since 0.1.0
-	 * @param bool $hasError Indicates whether the input field is in an error state.
-	 * @return $this Returns the TextInput instance for method chaining.
+	 * @param string $status Current validation status.
+	 * @return $this
 	 */
-	public function setHasError( bool $hasError ): self {
-		$this->hasError = $hasError;
+	public function setStatus( string $status ): self {
+		if ( !in_array( $status, self::ALLOWED_STATUSES, true ) ) {
+			throw new InvalidArgumentException( "Invalid status: $status" );
+		}
+		$this->status = $status;
 
 		return $this;
 	}
@@ -413,7 +423,7 @@ class TextInputBuilder {
 			$this->hasStartIcon,
 			$this->hasEndIcon,
 			$this->disabled,
-			$this->hasError,
+			$this->status,
 			$this->startIconClass,
 			$this->endIconClass,
 			$this->inputAttributes,

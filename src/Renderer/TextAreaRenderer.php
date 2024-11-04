@@ -94,7 +94,7 @@ class TextAreaRenderer implements IRenderer {
 			'hasEndIcon' => $component->hasEndIcon(),
 			'startIconClass' => $this->sanitizer->sanitizeText( $component->getStartIconClass() ),
 			'endIconClass' => $this->sanitizer->sanitizeText( $component->getEndIconClass() ),
-			'hasError' => $component->hasError(),
+			'status' => $component->getStatus(),
 			'textAreaAttributes' => self::resolve(
 				$this->sanitizer->sanitizeAttributes( $component->getTextareaAttributes() )
 			),

@@ -21,7 +21,7 @@ class TextInputExample {
 			->setStartIconClass( 'cdx-icon--login' )
 			->setHasEndIcon( false )
 			->setDisabled( false )
-			->setHasError( false )
+			->setStatus( 'default' )
 			->setWrapperAttributes( [
 				"class" => "foo",
 				"data-toggle" => "example-action",
