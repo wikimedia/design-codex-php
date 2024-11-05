@@ -71,6 +71,16 @@ class PagerRenderer implements IRenderer {
 	private Codex $codex;
 
 	/**
+	 * Array of icon classes for the pager buttons.
+	 */
+	private array $iconClasses = [
+		"first" => "cdx-table-pager__icon--first",
+		"previous" => "cdx-table-pager__icon--previous",
+		"next" => "cdx-table-pager__icon--next",
+		"last" => "cdx-table-pager__icon--last",
+	];
+
+	/**
 	 * Constructor to initialize the PagerRenderer with a sanitizer, a template renderer, and a language handler.
 	 *
 	 * @since 0.1.0
@@ -177,7 +187,7 @@ class PagerRenderer implements IRenderer {
 	 * @return array The data array for the pagination button.
 	 */
 	protected function buildButtonData( Pager $pager, string $action ): array {
-		$iconClass = $pager->getIconClasses()[$action] ?? '';
+		$iconClass = $this->iconClasses[$action] ?? '';
 		$dir = '';
 		switch ( $action ) {
 			case PagerBuilder::ACTION_FIRST:

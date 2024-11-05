@@ -106,11 +106,6 @@ class Table {
 	protected array $attributes;
 
 	/**
-	 * Array of icon classes for table actions.
-	 */
-	protected array $iconClasses;
-
-	/**
 	 * Whether pagination is enabled.
 	 */
 	protected bool $paginate;
@@ -162,7 +157,6 @@ class Table {
 	 * @param string $currentSortDirection The current sort direction.
 	 * @param bool $showVerticalBorders Whether to show vertical borders.
 	 * @param array $attributes Additional HTML attributes.
-	 * @param array $iconClasses Array of icon classes.
 	 * @param bool $paginate Whether pagination is enabled.
 	 * @param int $totalRows The total number of rows.
 	 * @param string $paginationPosition The pagination position.
@@ -184,7 +178,6 @@ class Table {
 		string $currentSortDirection,
 		bool $showVerticalBorders,
 		array $attributes,
-		array $iconClasses,
 		bool $paginate,
 		int $totalRows,
 		string $paginationPosition,
@@ -205,7 +198,6 @@ class Table {
 		$this->currentSortDirection = $currentSortDirection;
 		$this->showVerticalBorders = $showVerticalBorders;
 		$this->attributes = $attributes;
-		$this->iconClasses = $iconClasses;
 		$this->paginate = $paginate;
 		$this->totalRows = $totalRows;
 		$this->paginationPosition = $paginationPosition;
@@ -424,18 +416,6 @@ class Table {
 	 */
 	public function getAttributes(): array {
 		return $this->attributes;
-	}
-
-	/**
-	 * Get the icon classes for the table.
-	 *
-	 * This method returns an array of CSS classes for icons used in the table.
-	 *
-	 * @since 0.1.0
-	 * @return array The array of icon classes for the table.
-	 */
-	public function getIconClasses(): array {
-		return $this->iconClasses;
 	}
 
 	/**

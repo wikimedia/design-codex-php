@@ -150,11 +150,6 @@ class PagerBuilder {
 	protected int $endOrdinal = 1;
 
 	/**
-	 * Array of icon classes for the pager buttons.
-	 */
-	protected array $iconClasses = [];
-
-	/**
 	 * Callbacks object for handling custom actions.
 	 */
 	protected ?IWebRequestCallbacks $callbacks = null;
@@ -455,21 +450,6 @@ class PagerBuilder {
 	}
 
 	/**
-	 * Set the icon classes for the pager buttons.
-	 *
-	 * This method allows custom icon classes to be defined for the pagination buttons.
-	 *
-	 * @since 0.1.0
-	 * @param array $iconClasses An array of icon classes for each pagination button.
-	 * @return $this Returns the Pager instance for method chaining.
-	 */
-	public function setIconClasses( array $iconClasses ): self {
-		$this->iconClasses = $iconClasses;
-
-		return $this;
-	}
-
-	/**
 	 * Build and return the Pager component object.
 	 * This method constructs the immutable Pager object with all the properties set via the builder.
 	 *
@@ -493,7 +473,6 @@ class PagerBuilder {
 			$this->lastOffset,
 			$this->startOrdinal,
 			$this->endOrdinal,
-			$this->iconClasses,
 			$this->callbacks,
 			$this->renderer
 		);

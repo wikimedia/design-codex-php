@@ -170,11 +170,11 @@ class TableRenderer implements IRenderer {
 	 */
 	private function getSortIconClass( Table $table, bool $isCurrentSortColumn ): string {
 		if ( $isCurrentSortColumn ) {
-			return $table->getCurrentSortDirection() === Table::SORT_ASCENDING ? 'cdx-icon--sort-ascending'
-				: 'cdx-icon--sort-descending';
+			return $table->getCurrentSortDirection() === Table::SORT_ASCENDING ? 'cdx-table__table__sort-icon--asc'
+				: 'cdx-table__table__sort-icon--desc';
 		}
 
-		return 'cdx-icon--unsorted';
+		return 'cdx-table__table__sort-icon--unsorted';
 	}
 
 	/**

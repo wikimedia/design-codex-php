@@ -111,11 +111,6 @@ class Pager {
 	protected int $endOrdinal;
 
 	/**
-	 * Array of icon classes for the pager buttons.
-	 */
-	protected array $iconClasses;
-
-	/**
 	 * Callbacks object for handling custom actions.
 	 */
 	protected ?IWebRequestCallbacks $callbacks = null;
@@ -145,7 +140,6 @@ class Pager {
 	 * @param int|null $lastOffset Offset for the last page.
 	 * @param int $startOrdinal Start ordinal for the current page.
 	 * @param int $endOrdinal End ordinal for the current page.
-	 * @param array $iconClasses Icon classes for the pager buttons.
 	 * @param ?IWebRequestCallbacks $callbacks Callbacks.
 	 * @param PagerRenderer $renderer Instance of the renderer for rendering the pager.
 	 */
@@ -165,7 +159,6 @@ class Pager {
 		?int $lastOffset,
 		int $startOrdinal,
 		int $endOrdinal,
-		array $iconClasses,
 		?IWebRequestCallbacks $callbacks,
 		PagerRenderer $renderer
 	) {
@@ -184,7 +177,6 @@ class Pager {
 		$this->lastOffset = $lastOffset;
 		$this->startOrdinal = $startOrdinal;
 		$this->endOrdinal = $endOrdinal;
-		$this->iconClasses = $iconClasses;
 		$this->callbacks = $callbacks;
 		$this->renderer = $renderer;
 	}
@@ -424,18 +416,6 @@ class Pager {
 	 */
 	public function getPaginationSizeDefault(): int {
 		return $this->paginationSizeDefault;
-	}
-
-	/**
-	 * Get the icon classes for the pager buttons.
-	 *
-	 * This method returns an array of CSS classes that define custom icons for the pagination buttons.
-	 *
-	 * @since 0.1.0
-	 * @return array The array of icon classes for the pagination buttons.
-	 */
-	public function getIconClasses(): array {
-		return $this->iconClasses;
 	}
 
 	/**

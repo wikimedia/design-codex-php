@@ -314,14 +314,12 @@ class TableExample {
 					->setOrdinals( $startOrdinal, $endOrdinal )
 					->setPaginationSizeOptions( [ 5, 10, 25, 50, 100 ] )
 					->setPaginationSizeDefault( 5 )
-					->setIconClasses( self::getIconClasses() )
 					->setCallbacks( $callbacks )
 					->setPosition( "bottom" )
 					->build()
 			)
 			->setCurrentSortColumn( $sortColumn )
 			->setCurrentSortDirection( $sortDirection )
-			->setIconClasses( self::getIconClasses() )
 			->setShowVerticalBorders( true )
 			->setPaginationPosition( "bottom" )
 			->setFooter( "Displaying sample data for demonstration purposes." )
@@ -363,21 +361,6 @@ class TableExample {
 				"label" => "Creation Date",
 				"sortable" => true,
 			],
-		];
-	}
-
-	/**
-	 * Get the icon classes for the table pagination.
-	 */
-	private static function getIconClasses(): array {
-		return [
-			"first" => "cdx-demo-css-icon--move-first",
-			"previous" => "cdx-demo-css-icon--previous",
-			"next" => "cdx-demo-css-icon--next",
-			"last" => "cdx-demo-css-icon--move-last",
-			"sort-ascending" => "cdx-icon--sort-ascending",
-			"sort-descending" => "cdx-icon--sort-descending",
-			"unsorted" => "cdx-icon--unsorted",
 		];
 	}
 

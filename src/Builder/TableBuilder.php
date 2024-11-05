@@ -111,11 +111,6 @@ class TableBuilder {
 	protected array $attributes = [];
 
 	/**
-	 * Array of CSS classes for icons.
-	 */
-	protected array $iconClasses = [];
-
-	/**
 	 * Flag to enable pagination.
 	 */
 	protected bool $paginate = false;
@@ -486,30 +481,6 @@ class TableBuilder {
 	}
 
 	/**
-	 * Set the icon classes for the table.
-	 *
-	 * This method defines the CSS classes for icons used in the table. The icons can be mapped to various
-	 * types of actions or statuses using an associative array.
-	 *
-	 * Example usage:
-	 *
-	 *     $table->setIconClasses([
-	 *         'edit' => 'icon-edit',
-	 *         'delete' => 'icon-delete',
-	 *         'view' => 'icon-view'
-	 *     ]);
-	 *
-	 * @since 0.1.0
-	 * @param array $iconClasses An associative array mapping icon types to their CSS classes.
-	 * @return $this Returns the Table instance for method chaining.
-	 */
-	public function setIconClasses( array $iconClasses ): self {
-		$this->iconClasses = $iconClasses;
-
-		return $this;
-	}
-
-	/**
 	 * Build and return the Table component object.
 	 * This method constructs the immutable Table object with all the properties set via the builder.
 	 *
@@ -530,7 +501,6 @@ class TableBuilder {
 			$this->currentSortDirection,
 			$this->showVerticalBorders,
 			$this->attributes,
-			$this->iconClasses,
 			$this->paginate,
 			$this->totalRows,
 			$this->paginationPosition,
