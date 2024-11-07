@@ -2,7 +2,6 @@
 	"name": "wikimedia/codex",
 	"description": "A PHP library for building HTML and CSS UI components using Codex, the Wikimedia design system.",
 	"type": "library",
-	"version": "0.1.0",
 	"keywords": [
 		"wikimedia",
 		"codex"
