@@ -1,13 +1,13 @@
 {
   "name": "codex-sandbox",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Sandbox environment for Codex PHP components",
   "author": "Doğu Abaris",
   "license": "GPL-2.0-or-later",
   "dependencies": {
-    "@wikimedia/codex": "^1.12.0",
-    "@wikimedia/codex-design-tokens": "^1.12.0",
-    "@wikimedia/codex-icons": "^1.12.0",
+    "@wikimedia/codex": "1.15.0",
+    "@wikimedia/codex-design-tokens": "1.15.0",
+    "@wikimedia/codex-icons": "1.15.0",
     "prismjs": "^1.29.0"
   }
 }
