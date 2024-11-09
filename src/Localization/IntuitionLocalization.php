@@ -50,7 +50,7 @@ class IntuitionLocalization implements ILocalizer {
 	private Intuition $localizer;
 
 	/**
-	 * Constructor with dependency injection for Intuition.
+	 * Constructor for the IntuitionLocalization class.
 	 *
 	 * @param Intuition $localizer The Intuition instance.
 	 */

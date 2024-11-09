@@ -92,7 +92,7 @@ class RadioBuilder {
 	protected RadioRenderer $renderer;
 
 	/**
-	 * Constructor for the Radio class.
+	 * Constructor for the RadioBuilder class.
 	 *
 	 * @param RadioRenderer $renderer The renderer to use for rendering the radio.
 	 */

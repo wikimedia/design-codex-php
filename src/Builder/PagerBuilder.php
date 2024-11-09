@@ -160,7 +160,7 @@ class PagerBuilder {
 	protected PagerRenderer $renderer;
 
 	/**
-	 * Constructor for the Pager class.
+	 * Constructor for the PagerBuilder class.
 	 *
 	 * @param PagerRenderer $renderer The renderer to use for rendering the pager.
 	 */

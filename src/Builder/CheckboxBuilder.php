@@ -91,7 +91,7 @@ class CheckboxBuilder {
 	protected CheckboxRenderer $renderer;
 
 	/**
-	 * Constructor for the Checkbox class.
+	 * Constructor for the CheckboxBuilder class.
 	 *
 	 * @param CheckboxRenderer $renderer The renderer to use for rendering the checkbox.
 	 */

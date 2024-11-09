@@ -54,7 +54,7 @@ class HtmlSnippetBuilder {
 	private Sanitizer $sanitizer;
 
 	/**
-	 * Constructor to initialize the HtmlSnippetBuilder.
+	 * Constructor for the HtmlSnippetBuilder class.
 	 *
 	 * @since 0.1.0
 	 * @param Sanitizer $sanitizer The sanitizer instance used for content sanitization.

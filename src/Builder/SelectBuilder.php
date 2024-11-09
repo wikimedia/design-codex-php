@@ -74,7 +74,7 @@ class SelectBuilder {
 	protected SelectRenderer $renderer;
 
 	/**
-	 * Constructor for the Select class.
+	 * Constructor for the SelectBuilder class.
 	 *
 	 * @param SelectRenderer $renderer The renderer to use for rendering the select.
 	 */

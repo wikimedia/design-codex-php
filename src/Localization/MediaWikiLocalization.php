@@ -46,7 +46,7 @@ class MediaWikiLocalization implements ILocalizer {
 	private RequestContext $context;
 
 	/**
-	 * Constructor with dependency injection for RequestContext.
+	 * Constructor for the MediaWikiLocalization class.
 	 *
 	 * @param RequestContext $context The MediaWiki request context.
 	 */

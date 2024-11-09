@@ -64,7 +64,7 @@ class ThumbnailBuilder {
 	protected ThumbnailRenderer $renderer;
 
 	/**
-	 * Constructor for the Thumbnail class.
+	 * Constructor for the ThumbnailBuilder class.
 	 *
 	 * @param ThumbnailRenderer $renderer The renderer to use for rendering the thumbnail.
 	 */

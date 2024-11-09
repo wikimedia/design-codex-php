@@ -100,7 +100,7 @@ class LabelBuilder {
 	protected LabelRenderer $renderer;
 
 	/**
-	 * Constructor for the Label class.
+	 * Constructor for the LabelBuilder class.
 	 *
 	 * @param LabelRenderer $renderer The renderer to use for rendering the label.
 	 */

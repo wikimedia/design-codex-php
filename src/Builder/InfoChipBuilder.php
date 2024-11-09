@@ -69,7 +69,7 @@ class InfoChipBuilder {
 	protected InfoChipRenderer $renderer;
 
 	/**
-	 * Constructor for the InfoChip class.
+	 * Constructor for the InfoChipBuilder class.
 	 *
 	 * @param InfoChipRenderer $renderer The renderer to use for rendering the info chip.
 	 */

@@ -75,7 +75,7 @@ class FieldBuilder {
 	protected FieldRenderer $renderer;
 
 	/**
-	 * Constructor for the Field class.
+	 * Constructor for the FieldBuilder class.
 	 *
 	 * @param FieldRenderer $renderer The renderer to use for rendering the field.
 	 */

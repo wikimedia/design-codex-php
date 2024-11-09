@@ -119,7 +119,7 @@ class TextAreaBuilder {
 	protected TextAreaRenderer $renderer;
 
 	/**
-	 * Constructor for the TextArea class.
+	 * Constructor for the TextAreaBuilder class.
 	 *
 	 * @param TextAreaRenderer $renderer The renderer to use for rendering the textarea.
 	 */

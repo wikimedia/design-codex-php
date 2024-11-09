@@ -91,7 +91,7 @@ class MessageBuilder {
 	protected MessageRenderer $renderer;
 
 	/**
-	 * Constructor for the Message class.
+	 * Constructor for the MessageBuilder class.
 	 *
 	 * @param MessageRenderer $renderer The renderer to use for rendering the message.
 	 */
