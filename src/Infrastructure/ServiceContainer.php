@@ -77,7 +77,7 @@ class ServiceContainer {
 	 * @since 0.1.0
 	 * @param LoggerInterface|null $logger An optional logger instance. If null, a `NullLogger` will be used.
 	 */
-	public function __construct( LoggerInterface $logger = null ) {
+	public function __construct( ?LoggerInterface $logger = null ) {
 		$this->logger = $logger ?: new NullLogger();
 	}
 
