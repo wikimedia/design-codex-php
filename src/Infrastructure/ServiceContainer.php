@@ -95,8 +95,6 @@ class ServiceContainer {
 
 			if ( is_callable( $resolver ) ) {
 				return $resolver( $this );
-			} elseif ( is_array( $resolver ) && method_exists( $resolver[0], $resolver[1] ) ) {
-				return call_user_func( $resolver, $this );
 			}
 		}
 
