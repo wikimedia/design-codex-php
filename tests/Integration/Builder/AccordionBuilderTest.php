@@ -125,7 +125,7 @@ class AccordionBuilderTest extends TestCase {
 		$sanitizer = CodexServices::getInstance()->getService( 'Sanitizer' );
 		$accordionRenderer = new AccordionRenderer( $sanitizer, $renderer );
 		$accordion = new AccordionBuilder( $accordionRenderer );
-		$htmlSnippet = new HtmlSnippetBuilder( $sanitizer );
+		$htmlSnippet = new HtmlSnippetBuilder();
 
 		if ( $contentMethod === 'setContentHtml' ) {
 			$accordion->setContentHtml( $htmlSnippet->setContent( $data['content'] )->build() );
