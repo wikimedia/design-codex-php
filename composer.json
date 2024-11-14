@@ -23,7 +23,8 @@
 		"ext-intl": "*",
 		"krinkle/intuition": "^2.3",
 		"mustache/mustache": "^2.14",
-		"ezyang/htmlpurifier": "^4.17"
+		"ezyang/htmlpurifier": "^4.17",
+		"wikimedia/services": "^4.0"
 	},
 	"require-dev": {
 		"mediawiki/mediawiki-codesniffer": "45.0.0",

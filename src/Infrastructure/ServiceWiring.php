@@ -71,62 +71,63 @@ use Wikimedia\Codex\Renderer\ToggleSwitchRenderer;
 use Wikimedia\Codex\Utility\Sanitizer;
 use Wikimedia\Codex\Utility\SimpleWebRequest;
 use Wikimedia\Codex\Utility\WebRequestCallbacks;
+use Wikimedia\Services\ServiceContainer;
 
 /** @phpcs-require-sorted-array */
 return [
 
-	'AccordionBuilder' => static function ( $container ) {
-		return new AccordionBuilder( $container->getService( 'AccordionRenderer' ) );
+	'AccordionBuilder' => static function ( ServiceContainer $services ) {
+		return new AccordionBuilder( $services->getService( 'AccordionRenderer' ) );
 	},
 
-	'AccordionRenderer' => static function ( $container ) {
+	'AccordionRenderer' => static function ( ServiceContainer $services ) {
 		return new AccordionRenderer(
-			$container->getService( 'Sanitizer' ), $container->getService( 'TemplateRenderer' ),
+			$services->getService( 'Sanitizer' ), $services->getService( 'TemplateRenderer' ),
 		);
 	},
 
-	'ButtonBuilder' => static function ( $container ) {
-		return new ButtonBuilder( $container->getService( 'ButtonRenderer' ) );
+	'ButtonBuilder' => static function ( ServiceContainer $services ) {
+		return new ButtonBuilder( $services->getService( 'ButtonRenderer' ) );
 	},
 
-	'ButtonRenderer' => static function ( $container ) {
+	'ButtonRenderer' => static function ( ServiceContainer $services ) {
 		return new ButtonRenderer(
-			$container->getService( 'Sanitizer' ), $container->getService( 'TemplateRenderer' ),
+			$services->getService( 'Sanitizer' ), $services->getService( 'TemplateRenderer' ),
 		);
 	},
 
-	'CardBuilder' => static function ( $container ) {
-		return new CardBuilder( $container->getService( 'CardRenderer' ) );
+	'CardBuilder' => static function ( ServiceContainer $services ) {
+		return new CardBuilder( $services->getService( 'CardRenderer' ) );
 	},
 
-	'CardRenderer' => static function ( $container ) {
+	'CardRenderer' => static function ( ServiceContainer $services ) {
 		return new CardRenderer(
-			$container->getService( 'Sanitizer' ), $container->getService( 'TemplateRenderer' ),
+			$services->getService( 'Sanitizer' ), $services->getService( 'TemplateRenderer' ),
 		);
 	},
 
-	'CheckboxBuilder' => static function ( $container ) {
-		return new CheckboxBuilder( $container->getService( 'CheckboxRenderer' ) );
+	'CheckboxBuilder' => static function ( ServiceContainer $services ) {
+		return new CheckboxBuilder( $services->getService( 'CheckboxRenderer' ) );
 	},
 
-	'CheckboxRenderer' => static function ( $container ) {
+	'CheckboxRenderer' => static function ( ServiceContainer $services ) {
 		return new CheckboxRenderer(
-			$container->getService( 'Sanitizer' ), $container->getService( 'TemplateRenderer' )
+			$services->getService( 'Sanitizer' ), $services->getService( 'TemplateRenderer' )
 		);
 	},
 
-	'FieldBuilder' => static function ( $container ) {
-		return new FieldBuilder( $container->getService( 'FieldRenderer' ) );
+	'FieldBuilder' => static function ( ServiceContainer $services ) {
+		return new FieldBuilder( $services->getService( 'FieldRenderer' ) );
 	},
 
-	'FieldRenderer' => static function ( $container ) {
+	'FieldRenderer' => static function ( ServiceContainer $services ) {
 		return new FieldRenderer(
-			$container->getService( 'Sanitizer' ), $container->getService( 'TemplateRenderer' ),
+			$services->getService( 'Sanitizer' ), $services->getService( 'TemplateRenderer' ),
 		);
 	},
 
-	'HTMLPurifier' => static function ( $container ) {
-		return new HTMLPurifier( $container->getService( 'HTMLPurifierConfig' ) );
+	'HTMLPurifier' => static function ( ServiceContainer $services ) {
+		return new HTMLPurifier( $services->getService( 'HTMLPurifierConfig' ) );
 	},
 
 	'HTMLPurifierConfig' => static function () {
@@ -137,23 +138,23 @@ return [
 		return new HtmlSnippetBuilder();
 	},
 
-	'InfoChipBuilder' => static function ( $container ) {
-		return new InfoChipBuilder( $container->getService( 'InfoChipRenderer' ) );
+	'InfoChipBuilder' => static function ( ServiceContainer $services ) {
+		return new InfoChipBuilder( $services->getService( 'InfoChipRenderer' ) );
 	},
 
-	'InfoChipRenderer' => static function ( $container ) {
+	'InfoChipRenderer' => static function ( ServiceContainer $services ) {
 		return new InfoChipRenderer(
-			$container->getService( 'Sanitizer' ), $container->getService( 'TemplateRenderer' ),
+			$services->getService( 'Sanitizer' ), $services->getService( 'TemplateRenderer' ),
 		);
 	},
 
-	'LabelBuilder' => static function ( $container ) {
-		return new LabelBuilder( $container->getService( 'LabelRenderer' ) );
+	'LabelBuilder' => static function ( ServiceContainer $services ) {
+		return new LabelBuilder( $services->getService( 'LabelRenderer' ) );
 	},
 
-	'LabelRenderer' => static function ( $container ) {
+	'LabelRenderer' => static function ( ServiceContainer $services ) {
 		return new LabelRenderer(
-			$container->getService( 'Sanitizer' ), $container->getService( 'TemplateRenderer' )
+			$services->getService( 'Sanitizer' ), $services->getService( 'TemplateRenderer' )
 		);
 	},
 
@@ -168,13 +169,13 @@ return [
 		}
 	},
 
-	'MessageBuilder' => static function ( $container ) {
-		return new MessageBuilder( $container->getService( 'MessageRenderer' ) );
+	'MessageBuilder' => static function ( ServiceContainer $services ) {
+		return new MessageBuilder( $services->getService( 'MessageRenderer' ) );
 	},
 
-	'MessageRenderer' => static function ( $container ) {
+	'MessageRenderer' => static function ( ServiceContainer $services ) {
 		return new MessageRenderer(
-			$container->getService( 'Sanitizer' ), $container->getService( 'TemplateRenderer' ),
+			$services->getService( 'Sanitizer' ), $services->getService( 'TemplateRenderer' ),
 		);
 	},
 
@@ -182,49 +183,49 @@ return [
 		return new OptionBuilder();
 	},
 
-	'PagerBuilder' => static function ( $container ) {
-		return new PagerBuilder( $container->getService( 'PagerRenderer' ) );
+	'PagerBuilder' => static function ( ServiceContainer $services ) {
+		return new PagerBuilder( $services->getService( 'PagerRenderer' ) );
 	},
 
-	'PagerRenderer' => static function ( $container ) {
+	'PagerRenderer' => static function ( ServiceContainer $services ) {
 		return new PagerRenderer(
-			$container->getService( 'Sanitizer' ),
-			$container->getService( 'TemplateRenderer' ),
-			$container->getService( 'Localization' )
+			$services->getService( 'Sanitizer' ),
+			$services->getService( 'TemplateRenderer' ),
+			$services->getService( 'Localization' )
 		);
 	},
 
-	'ProgressBarBuilder' => static function ( $container ) {
-		return new ProgressBarBuilder( $container->getService( 'ProgressBarRenderer' ) );
+	'ProgressBarBuilder' => static function ( ServiceContainer $services ) {
+		return new ProgressBarBuilder( $services->getService( 'ProgressBarRenderer' ) );
 	},
 
-	'ProgressBarRenderer' => static function ( $container ) {
+	'ProgressBarRenderer' => static function ( ServiceContainer $services ) {
 		return new ProgressBarRenderer(
-			$container->getService( 'Sanitizer' ), $container->getService( 'TemplateRenderer' ),
+			$services->getService( 'Sanitizer' ), $services->getService( 'TemplateRenderer' ),
 		);
 	},
 
-	'RadioBuilder' => static function ( $container ) {
-		return new RadioBuilder( $container->getService( 'RadioRenderer' ) );
+	'RadioBuilder' => static function ( ServiceContainer $services ) {
+		return new RadioBuilder( $services->getService( 'RadioRenderer' ) );
 	},
 
-	'RadioRenderer' => static function ( $container ) {
+	'RadioRenderer' => static function ( ServiceContainer $services ) {
 		return new RadioRenderer(
-			$container->getService( 'Sanitizer' ), $container->getService( 'TemplateRenderer' )
+			$services->getService( 'Sanitizer' ), $services->getService( 'TemplateRenderer' )
 		);
 	},
 
-	'Sanitizer' => static function ( $container ) {
-		return new Sanitizer( $container->getService( 'HTMLPurifier' ) );
+	'Sanitizer' => static function ( ServiceContainer $services ) {
+		return new Sanitizer( $services->getService( 'HTMLPurifier' ) );
 	},
 
-	'SelectBuilder' => static function ( $container ) {
-		return new SelectBuilder( $container->getService( 'SelectRenderer' ) );
+	'SelectBuilder' => static function ( ServiceContainer $services ) {
+		return new SelectBuilder( $services->getService( 'SelectRenderer' ) );
 	},
 
-	'SelectRenderer' => static function ( $container ) {
+	'SelectRenderer' => static function ( ServiceContainer $services ) {
 		return new SelectRenderer(
-			$container->getService( 'Sanitizer' ), $container->getService( 'TemplateRenderer' ),
+			$services->getService( 'Sanitizer' ), $services->getService( 'TemplateRenderer' ),
 		);
 	},
 
@@ -237,26 +238,26 @@ return [
 		return new TabBuilder();
 	},
 
-	'TableBuilder' => static function ( $container ) {
-		return new TableBuilder( $container->getService( 'TableRenderer' ) );
+	'TableBuilder' => static function ( ServiceContainer $services ) {
+		return new TableBuilder( $services->getService( 'TableRenderer' ) );
 	},
 
-	'TableRenderer' => static function ( $container ) {
-		return new TableRenderer( $container->getService( 'Sanitizer' ), $container->getService( 'TemplateRenderer' ) );
+	'TableRenderer' => static function ( ServiceContainer $services ) {
+		return new TableRenderer( $services->getService( 'Sanitizer' ), $services->getService( 'TemplateRenderer' ) );
 	},
 
-	'TabsBuilder' => static function ( $container ) {
-		return new TabsBuilder( $container->getService( 'TabsRenderer' ) );
+	'TabsBuilder' => static function ( ServiceContainer $services ) {
+		return new TabsBuilder( $services->getService( 'TabsRenderer' ) );
 	},
 
-	'TabsRenderer' => static function ( $container ) {
-		return new TabsRenderer( $container->getService( 'Sanitizer' ), $container->getService( 'TemplateRenderer' ) );
+	'TabsRenderer' => static function ( ServiceContainer $services ) {
+		return new TabsRenderer( $services->getService( 'Sanitizer' ), $services->getService( 'TemplateRenderer' ) );
 	},
 
-	'TemplateRenderer' => static function ( $container ) {
+	'TemplateRenderer' => static function ( ServiceContainer $services ) {
 		$templatePath = __DIR__ . '/../../resources/templates';
 
-		$localization = $container->getService( 'Localization' );
+		$localization = $services->getService( 'Localization' );
 
 		$mustacheEngine = new Mustache_Engine( [
 			'loader' => new Mustache_Loader_FilesystemLoader( $templatePath ),
@@ -312,51 +313,51 @@ return [
 		return new TemplateRenderer( $mustacheEngine );
 	},
 
-	'TextAreaBuilder' => static function ( $container ) {
-		return new TextAreaBuilder( $container->getService( 'TextAreaRenderer' ) );
+	'TextAreaBuilder' => static function ( ServiceContainer $services ) {
+		return new TextAreaBuilder( $services->getService( 'TextAreaRenderer' ) );
 	},
 
-	'TextAreaRenderer' => static function ( $container ) {
+	'TextAreaRenderer' => static function ( ServiceContainer $services ) {
 		return new TextAreaRenderer(
-			$container->getService( 'Sanitizer' ), $container->getService( 'TemplateRenderer' )
+			$services->getService( 'Sanitizer' ), $services->getService( 'TemplateRenderer' )
 		);
 	},
 
-	'TextInputBuilder' => static function ( $container ) {
-		return new TextInputBuilder( $container->getService( 'TextInputRenderer' ) );
+	'TextInputBuilder' => static function ( ServiceContainer $services ) {
+		return new TextInputBuilder( $services->getService( 'TextInputRenderer' ) );
 	},
 
-	'TextInputRenderer' => static function ( $container ) {
+	'TextInputRenderer' => static function ( ServiceContainer $services ) {
 		return new TextInputRenderer(
-			$container->getService( 'Sanitizer' ), $container->getService( 'TemplateRenderer' ),
+			$services->getService( 'Sanitizer' ), $services->getService( 'TemplateRenderer' ),
 		);
 	},
 
-	'ThumbnailBuilder' => static function ( $container ) {
-		return new ThumbnailBuilder( $container->getService( 'ThumbnailRenderer' ) );
+	'ThumbnailBuilder' => static function ( ServiceContainer $services ) {
+		return new ThumbnailBuilder( $services->getService( 'ThumbnailRenderer' ) );
 	},
 
-	'ThumbnailRenderer' => static function ( $container ) {
+	'ThumbnailRenderer' => static function ( ServiceContainer $services ) {
 		return new ThumbnailRenderer(
-			$container->getService( 'Sanitizer' ), $container->getService( 'TemplateRenderer' ),
+			$services->getService( 'Sanitizer' ), $services->getService( 'TemplateRenderer' ),
 		);
 	},
 
-	'ToggleSwitchBuilder' => static function ( $container ) {
-		return new ToggleSwitchBuilder( $container->getService( 'ToggleSwitchRenderer' ) );
+	'ToggleSwitchBuilder' => static function ( ServiceContainer $services ) {
+		return new ToggleSwitchBuilder( $services->getService( 'ToggleSwitchRenderer' ) );
 	},
 
-	'ToggleSwitchRenderer' => static function ( $container ) {
+	'ToggleSwitchRenderer' => static function ( ServiceContainer $services ) {
 		return new ToggleSwitchRenderer(
-			$container->getService( 'Sanitizer' ), $container->getService( 'TemplateRenderer' ),
+			$services->getService( 'Sanitizer' ), $services->getService( 'TemplateRenderer' ),
 		);
 	},
 
-	'WebRequestAdapter' => static function ( $container ) {
-		return new WebRequestAdapter( $container->getService( 'SimpleWebRequest' ) );
+	'WebRequestAdapter' => static function ( ServiceContainer $services ) {
+		return new WebRequestAdapter( $services->getService( 'SimpleWebRequest' ) );
 	},
 
-	'WebRequestCallbacks' => static function ( $container ) {
-		return new WebRequestCallbacks( $container->getService( 'WebRequestAdapter' ) );
+	'WebRequestCallbacks' => static function ( ServiceContainer $services ) {
+		return new WebRequestCallbacks( $services->getService( 'WebRequestAdapter' ) );
 	},
 ];

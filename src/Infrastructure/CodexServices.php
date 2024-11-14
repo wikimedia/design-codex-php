@@ -17,6 +17,8 @@
 
 namespace Wikimedia\Codex\Infrastructure;
 
+use Wikimedia\Services\ServiceContainer;
+
 /**
  * CodexServices
  *
@@ -55,17 +57,6 @@ class CodexServices extends ServiceContainer {
 	private function loadServiceWiring(): void {
 		$wiring = require __DIR__ . '/ServiceWiring.php';
 		parent::applyWiring( $wiring );
-	}
-
-	/**
-	 * Retrieve a service by name.
-	 *
-	 * @since 0.1.0
-	 * @param string $name The name of the service
-	 * @return mixed
-	 */
-	public function getService( string $name ) {
-		return parent::getService( $name );
 	}
 
 	/**
