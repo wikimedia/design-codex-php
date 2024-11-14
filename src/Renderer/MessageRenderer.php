@@ -92,7 +92,7 @@ class MessageRenderer implements IRenderer {
 			'heading' => $this->sanitizer->sanitizeText( $component->getHeading() ),
 			'isPolite' => $component->getType() !== 'error',
 			'isAlert' => $component->getType() === 'error',
-			'attributes' => self::resolve( $this->sanitizer->sanitizeAttributes( $component->getAttributes() ) ),
+			'attributes' => $this->resolve( $this->sanitizer->sanitizeAttributes( $component->getAttributes() ) ),
 		];
 
 		return $this->templateRenderer->render( 'message.mustache', $messageData );

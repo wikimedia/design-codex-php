@@ -113,7 +113,7 @@ class TabsRenderer implements IRenderer {
 		$data = [
 			'id' => $this->sanitizer->sanitizeText( $component->getId() ),
 			'tabs' => $tabsData,
-			'attributes' => self::resolve(
+			'attributes' => $this->resolve(
 				$this->sanitizer->sanitizeAttributes( $component->getAttributes() )
 			),
 		];

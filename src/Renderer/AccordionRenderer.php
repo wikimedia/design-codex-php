@@ -89,7 +89,7 @@ class AccordionRenderer implements IRenderer {
 			'description' => $this->sanitizer->sanitizeText( $component->getDescription() ),
 			'content-html' => $this->sanitizer->sanitizeHtml( $component->getContent() ),
 			'isOpen' => $component->isOpen(),
-			'attributes' => self::resolve( $this->sanitizer->sanitizeAttributes( $component->getAttributes() ) )
+			'attributes' => $this->resolve( $this->sanitizer->sanitizeAttributes( $component->getAttributes() ) )
 		];
 
 		return $this->templateRenderer->render( 'accordion.mustache', $accordionData );

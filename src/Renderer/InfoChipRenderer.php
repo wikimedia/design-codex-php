@@ -88,7 +88,7 @@ class InfoChipRenderer implements IRenderer {
 			'status' => $this->sanitizer->sanitizeText( $component->getStatus() ),
 			'text' => $this->sanitizer->sanitizeText( $component->getText() ),
 			'icon' => $this->sanitizer->sanitizeText( $component->getIcon() ),
-			'attributes' => self::resolve( $this->sanitizer->sanitizeAttributes( $component->getAttributes() ) ),
+			'attributes' => $this->resolve( $this->sanitizer->sanitizeAttributes( $component->getAttributes() ) ),
 		];
 
 		return $this->templateRenderer->render( 'info-chip.mustache', $chipData );

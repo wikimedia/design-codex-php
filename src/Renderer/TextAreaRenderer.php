@@ -95,10 +95,10 @@ class TextAreaRenderer implements IRenderer {
 			'startIconClass' => $this->sanitizer->sanitizeText( $component->getStartIconClass() ),
 			'endIconClass' => $this->sanitizer->sanitizeText( $component->getEndIconClass() ),
 			'status' => $component->getStatus(),
-			'textAreaAttributes' => self::resolve(
+			'textAreaAttributes' => $this->resolve(
 				$this->sanitizer->sanitizeAttributes( $component->getTextareaAttributes() )
 			),
-			'wrapperAttributes' => self::resolve(
+			'wrapperAttributes' => $this->resolve(
 				$this->sanitizer->sanitizeAttributes( $component->getWrapperAttributes() )
 			),
 		];

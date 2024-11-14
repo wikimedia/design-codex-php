@@ -92,7 +92,7 @@ class CardRenderer implements IRenderer {
 				'backgroundImage' => $this->sanitizer->sanitizeText( $thumbnail->getBackgroundImage() ),
 				'useDefaultPlaceholder' => (bool)$component->getThumbnail(),
 				'placeholderClass' => $this->sanitizer->sanitizeText( $thumbnail->getPlaceholderClass() ),
-				'attributes' => self::resolve( $this->sanitizer->sanitizeAttributes( $thumbnail->getAttributes() ) ),
+				'attributes' => $this->resolve( $this->sanitizer->sanitizeAttributes( $thumbnail->getAttributes() ) ),
 			];
 		}
 
@@ -105,7 +105,7 @@ class CardRenderer implements IRenderer {
 			'url' => $this->sanitizer->sanitizeUrl( $component->getUrl() ),
 			'iconClass' => $this->sanitizer->sanitizeText( $component->getIconClass() ),
 			'thumbnail' => $thumbnailData,
-			'attributes' => self::resolve( $this->sanitizer->sanitizeAttributes( $component->getAttributes() ) ),
+			'attributes' => $this->resolve( $this->sanitizer->sanitizeAttributes( $component->getAttributes() ) ),
 		];
 
 		return $this->templateRenderer->render( 'card.mustache', $cardData );

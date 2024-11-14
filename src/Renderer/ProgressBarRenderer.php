@@ -88,7 +88,7 @@ class ProgressBarRenderer implements IRenderer {
 			'isInline' => $component->isInline(),
 			'isDisabled' => $component->isDisabled(),
 			'label' => $this->sanitizer->sanitizeText( $component->getLabel() ),
-			'attributes' => self::resolve( $this->sanitizer->sanitizeAttributes( $component->getAttributes() ) ),
+			'attributes' => $this->resolve( $this->sanitizer->sanitizeAttributes( $component->getAttributes() ) ),
 		];
 
 		return $this->templateRenderer->render( 'progress-bar.mustache', $progressBarData );

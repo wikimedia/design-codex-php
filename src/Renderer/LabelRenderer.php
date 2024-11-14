@@ -94,7 +94,7 @@ class LabelRenderer implements IRenderer {
 			'icon' => $this->sanitizer->sanitizeText( $component->getIconClass() ?? '' ),
 			'isVisuallyHidden' => $component->isVisuallyHidden(),
 			'isDisabled' => $component->isDisabled(),
-			'attributes' => self::resolve( $this->sanitizer->sanitizeAttributes( $component->getAttributes() ) ),
+			'attributes' => $this->resolve( $this->sanitizer->sanitizeAttributes( $component->getAttributes() ) ),
 		];
 
 		return $this->templateRenderer->render( 'label.mustache', $labelData );

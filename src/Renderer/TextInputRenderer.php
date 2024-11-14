@@ -95,10 +95,10 @@ class TextInputRenderer implements IRenderer {
 			'hasEndIcon' => $component->hasEndIcon(),
 			'endIconClass' => $this->sanitizer->sanitizeText( $component->getEndIconClass() ),
 			'status' => $component->getStatus(),
-			'inputAttributes' => self::resolve(
+			'inputAttributes' => $this->resolve(
 				$this->sanitizer->sanitizeAttributes( $component->getInputAttributes() )
 			),
-			'wrapperAttributes' => self::resolve(
+			'wrapperAttributes' => $this->resolve(
 				$this->sanitizer->sanitizeAttributes( $component->getWrapperAttributes() )
 			),
 		];

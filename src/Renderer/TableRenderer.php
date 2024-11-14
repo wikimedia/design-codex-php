@@ -93,7 +93,7 @@ class TableRenderer implements IRenderer {
 			'hideCaption' => $component->getHideCaption(),
 			'headerContent' => $this->sanitizer->sanitizeText( $component->getHeaderContent() ?? '' ),
 			'pager' => $pager ? $pager->getHtml() : '',
-			'attributes' => self::resolve( $this->sanitizer->sanitizeAttributes( $component->getAttributes() ) ),
+			'attributes' => $this->resolve( $this->sanitizer->sanitizeAttributes( $component->getAttributes() ) ),
 			'footer' => $this->sanitizer->sanitizeText( $component->getFooter() ?? '' ),
 		];
 
