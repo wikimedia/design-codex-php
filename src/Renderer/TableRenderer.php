@@ -87,6 +87,9 @@ class TableRenderer implements IRenderer {
 		$tableData = [
 			'id' => $this->sanitizer->sanitizeText( $component->getId() ),
 			'showVerticalBorders' => $component->getShowVerticalBorders(),
+			'useRowHeaders' => $component->getUseRowHeaders(),
+			'paginationPosition' => $component->getPaginationPosition(),
+			'totalRows' => $component->getTotalRows(),
 			'caption' => $this->sanitizer->sanitizeText( $component->getCaption() ),
 			'columns' => $this->prepareColumns( $component ),
 			'rows' => $this->prepareRows( $component ),
