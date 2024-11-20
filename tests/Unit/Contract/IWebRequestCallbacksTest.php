@@ -29,6 +29,7 @@ use Wikimedia\Codex\Contract\IWebRequestCallbacks;
  * @author   Doğu Abaris <abaris@null.net>
  * @license  https://www.gnu.org/copyleft/gpl.html GPL-2.0-or-later
  * @link     https://doc.wikimedia.org/codex/main/ Codex Documentation
+ * @coversDefaultClass \Wikimedia\Codex\Contract\IWebRequestCallbacks
  */
 class IWebRequestCallbacksTest extends TestCase {
 
@@ -36,7 +37,7 @@ class IWebRequestCallbacksTest extends TestCase {
 	 * Test that the IWebRequestCallbacks interface has the getValue method.
 	 *
 	 * @since 0.1.0
-	 * @covers \Wikimedia\Codex\Contract\IWebRequestCallbacks::getValue
+	 * @covers ::getValue
 	 * @return void
 	 */
 	public function testHasGetValueMethod(): void {
@@ -50,7 +51,7 @@ class IWebRequestCallbacksTest extends TestCase {
 	 * Test that the IWebRequestCallbacks interface has the getValues method.
 	 *
 	 * @since 0.1.0
-	 * @covers \Wikimedia\Codex\Contract\IWebRequestCallbacks::getValues
+	 * @covers ::getValues
 	 * @return void
 	 */
 	public function testHasGetValuesMethod(): void {

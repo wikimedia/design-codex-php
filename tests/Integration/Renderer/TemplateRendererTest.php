@@ -29,6 +29,7 @@ use Wikimedia\Codex\Infrastructure\CodexServices;
  * @author   Doğu Abaris <abaris@null.net>
  * @license  https://www.gnu.org/copyleft/gpl.html GPL-2.0-or-later
  * @link     https://doc.wikimedia.org/codex/main/ Codex Documentation
+ * @coversDefaultClass \Wikimedia\Codex\Renderer\TemplateRenderer
  */
 class TemplateRendererTest extends TestCase {
 
@@ -70,7 +71,7 @@ class TemplateRendererTest extends TestCase {
 	 * Test rendering a complex HTML template from a Mustache file with data provided by the data provider.
 	 *
 	 * @since 0.1.0
-	 * @covers \Wikimedia\Codex\Renderer\TemplateRenderer::render
+	 * @covers ::render
 	 * @dataProvider templateDataProvider
 	 * @param array $data The input data to be rendered in the Mustache template.
 	 * @param string $expectedOutput The expected HTML output.
@@ -96,7 +97,7 @@ class TemplateRendererTest extends TestCase {
 	 * of Mustache escaping).
 	 *
 	 * @since 0.1.0
-	 * @covers \Wikimedia\Codex\Renderer\TemplateRenderer::render
+	 * @covers ::render
 	 */
 	public function testEscapingIsDisabled(): void {
 		$renderer = CodexServices::getInstance()->getService( 'TemplateRenderer' );
