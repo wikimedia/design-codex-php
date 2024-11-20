@@ -87,6 +87,7 @@ class SelectRenderer implements IRenderer {
 		$selectData = [
 			'id' => $this->sanitizer->sanitizeText( $component->getId() ),
 			'isDisabled' => $component->isDisabled(),
+			'selectedOption' => $component->getSelectedOption(),
 			'attributes' => $this->resolve( $this->sanitizer->sanitizeAttributes( $component->getAttributes() ) ),
 			'options' => $this->prepareOptions( $component ),
 			'optGroups' => $this->prepareOptGroups( $component ),
