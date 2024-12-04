@@ -92,11 +92,11 @@ class TableRenderer implements IRenderer {
 			'rows' => $this->prepareRows( $component ),
 			'hideCaption' => $component->getHideCaption(),
 			'headerContent' => $this->sanitizer->sanitizeText( $component->getHeaderContent() ?? '' ),
+			'hasData' => (bool)count( $component->getData() ),
 			'pager' => $pager ? $pager->getHtml() : '',
 			'attributes' => $this->resolve( $this->sanitizer->sanitizeAttributes( $component->getAttributes() ) ),
 			'footer' => $this->sanitizer->sanitizeText( $component->getFooter() ?? '' ),
 		];
-
 		return $this->templateRenderer->render( 'table.mustache', $tableData );
 	}
 

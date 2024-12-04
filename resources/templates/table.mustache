@@ -20,6 +20,7 @@
         {{#caption}}
           <caption>{{ caption }}</caption>
         {{/caption}}
+        {{#hasData}}
         <thead>
         <tr>
           {{#columns}}
@@ -37,6 +38,7 @@
           {{/columns}}
         </tr>
         </thead>
+        {{/hasData}}
         <tbody>
         {{#rows}}
           <tr>
@@ -45,12 +47,21 @@
             {{/columns}}
           </tr>
         {{/rows}}
+        {{^hasData}}
+            <tr class="cdx-table__table__empty-state">
+                <td class="cdx-table__table__empty-state-content">
+                    {{#i18n}}cdx-table-no-data-message{{/i18n}}
+                </td>
+            </tr>
+        {{/hasData}}
         </tbody>
       </table>
     </div>
+    {{#hasData}}
     {{#pager}}
       {{{ pager }}}
     {{/pager}}
+    {{/hasData}}
     {{#footer}}
       <div class="cdx-table__footer">{{ footer }}</div>
     {{/footer}}

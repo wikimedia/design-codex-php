@@ -26,5 +26,6 @@
 	"cdx-table-pagination-status-message-indeterminate-long": "Showing results $1–$2 of many",
 	"cdx-table-pagination-status-message-indeterminate-short": "$1–$2 of many",
 	"cdx-table-pagination-status-message-indeterminate-final": "Showing the last {{PLURAL:$1|$1 result|$1 results}}",
-	"cdx-table-pagination-status-message-pending": "Loading results..."
+	"cdx-table-pagination-status-message-pending": "Loading results...",
+	"cdx-table-no-data-message": "There is no data available."
 }
