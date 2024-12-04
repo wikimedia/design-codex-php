@@ -272,7 +272,10 @@ return [
 					$parts = explode( '|', $renderedText );
 					// The first part is the message key, the rest are parameters
 					$key = trim( array_shift( $parts ) );
-					$params = array_map( 'trim', $parts );
+					$params = [];
+					foreach ( $parts as $part ) {
+						$params[] = trim( $part );
+					}
 
 					return htmlspecialchars(
 						$localization->msg( $key, [ 'variables' => $params ] ),
