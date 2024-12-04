@@ -19,11 +19,15 @@
 namespace Wikimedia\Codex\Renderer;
 
 use InvalidArgumentException;
+use UnexpectedValueException;
 use Wikimedia\Codex\Builder\PagerBuilder;
 use Wikimedia\Codex\Component\Pager;
 use Wikimedia\Codex\Contract\ILocalizer;
 use Wikimedia\Codex\Contract\Renderer\IRenderer;
 use Wikimedia\Codex\Contract\Renderer\ITemplateRenderer;
+use Wikimedia\Codex\ParamValidator\ParamDefinitions;
+use Wikimedia\Codex\ParamValidator\ParamValidator;
+use Wikimedia\Codex\ParamValidator\ParamValidatorCallbacks;
 use Wikimedia\Codex\Traits\AttributeResolver;
 use Wikimedia\Codex\Utility\Codex;
 use Wikimedia\Codex\Utility\Sanitizer;
@@ -71,6 +75,16 @@ class PagerRenderer implements IRenderer {
 	private Codex $codex;
 
 	/**
+	 * The param validator.
+	 */
+	protected ParamValidator $paramValidator;
+
+	/**
+	 * The param validator callbacks.
+	 */
+	protected ParamValidatorCallbacks $paramValidatorCallbacks;
+
+	/**
 	 * Array of icon classes for the pager buttons.
 	 */
 	private array $iconClasses = [
@@ -81,22 +95,29 @@ class PagerRenderer implements IRenderer {
 	];
 
 	/**
-	 * Constructor to initialize the PagerRenderer with a sanitizer, a template renderer, and a language handler.
+	 * Constructor to initialize the PagerRenderer with necessary dependencies.
 	 *
 	 * @since 0.1.0
-	 * @param Sanitizer $sanitizer The sanitizer instance used for content sanitization.
-	 * @param ITemplateRenderer $templateRenderer The template renderer instance used for rendering templates.
-	 * @param ILocalizer $localizer The localizer instance used for localization and translations.
+	 * @param Sanitizer $sanitizer The sanitizer instance for cleaning user-provided data and attributes.
+	 * @param ITemplateRenderer $templateRenderer The template renderer instance for rendering Mustache templates.
+	 * @param ILocalizer $localizer The localizer instance for supporting translations and localization.
+	 * @param ParamValidator $paramValidator The parameter validator instance for validating query parameters.
+	 * @param ParamValidatorCallbacks $paramValidatorCallbacks The callbacks instance for accessing validated
+	 *                                                         parameter values.
 	 */
 	public function __construct(
 		Sanitizer $sanitizer,
 		ITemplateRenderer $templateRenderer,
-		ILocalizer $localizer
+		ILocalizer $localizer,
+		ParamValidator $paramValidator,
+		ParamValidatorCallbacks $paramValidatorCallbacks
 	) {
 		$this->sanitizer = $sanitizer;
 		$this->templateRenderer = $templateRenderer;
 		$this->localizer = $localizer;
 		$this->codex = new Codex();
+		$this->paramValidator = $paramValidator;
+		$this->paramValidatorCallbacks = $paramValidatorCallbacks;
 	}
 
 	/**
@@ -122,7 +143,7 @@ class PagerRenderer implements IRenderer {
 			'lastButton' => $this->buildButtonData( $component, PagerBuilder::ACTION_LAST ),
 		];
 
-		$hiddenFields = $this->buildHiddenFields( $component );
+		$hiddenFields = $this->buildHiddenFields();
 
 		$pagerData = [
 			'id' => $this->sanitizer->sanitizeText( $component->getId() ),
@@ -235,21 +256,37 @@ class PagerRenderer implements IRenderer {
 	 * and other query parameters.
 	 *
 	 * @since 0.1.0
-	 * @param Pager $pager The Pager object to render.
 	 * @return array The generated HTML string for the hidden fields.
 	 */
-	protected function buildHiddenFields( Pager $pager ): array {
-		$callbacks = $pager->getCallbacks();
-		if ( !$callbacks ) {
-			return [];
+	protected function buildHiddenFields(): array {
+		$definitions = ParamDefinitions::getDefinitionsForContext( 'table' );
+
+		foreach ( $definitions as $param => $rules ) {
+			try {
+				$this->paramValidator->validateValue(
+					$param,
+					$this->paramValidatorCallbacks->getValue(
+						$param,
+						$rules[ParamValidator::PARAM_DEFAULT],
+						[]
+					),
+					$rules
+				);
+			} catch ( UnexpectedValueException $e ) {
+				throw new InvalidArgumentException( "Invalid value for parameter '$param': " . $e->getMessage() );
+			}
 		}
 
 		$fields = [];
-		foreach ( $callbacks->getValues( 'sort', 'asc', 'desc' ) as $key => $value ) {
-			$fields[] = [
-				'key' => $this->sanitizer->sanitizeText( $key ),
-				'value' => $this->sanitizer->sanitizeText( $value ),
-			];
+		$keys = [ 'sort', 'desc', 'asc' ];
+		foreach ( $keys as $key ) {
+			$value = $this->paramValidatorCallbacks->getValue( $key, '', [] );
+			if ( $value !== '' ) {
+				$fields[] = [
+					'key' => $this->sanitizer->sanitizeText( $key ),
+					'value' => $this->sanitizer->sanitizeText( $value ),
+				];
+			}
 		}
 
 		return $fields;

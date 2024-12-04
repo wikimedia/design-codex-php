@@ -21,7 +21,6 @@ namespace Wikimedia\Codex\Builder;
 use InvalidArgumentException;
 use Wikimedia\Codex\Component\Tab;
 use Wikimedia\Codex\Component\Tabs;
-use Wikimedia\Codex\Contract\IWebRequestCallbacks;
 use Wikimedia\Codex\Renderer\TabsRenderer;
 
 /**
@@ -56,11 +55,6 @@ class TabsBuilder {
 	protected array $attributes = [];
 
 	/**
-	 * The IWebRequestCallbacks implementation used for request handling.
-	 */
-	protected IWebRequestCallbacks $callbacks;
-
-	/**
 	 * The renderer instance used to render the tabs.
 	 */
 	protected TabsRenderer $renderer;
@@ -83,19 +77,6 @@ class TabsBuilder {
 	 */
 	public function setId( string $id ): self {
 		$this->id = $id;
-
-		return $this;
-	}
-
-	/**
-	 * Set the IWebRequestCallbacks implementation for request handling.
-	 *
-	 * @param IWebRequestCallbacks $callbacks The IWebRequestCallbacks implementation.
-	 *
-	 * @return $this
-	 */
-	public function setCallbacks( IWebRequestCallbacks $callbacks ): self {
-		$this->callbacks = $callbacks;
 
 		return $this;
 	}
@@ -176,7 +157,6 @@ class TabsBuilder {
 			$this->id,
 			$tabComponents,
 			$this->attributes,
-			$this->callbacks,
 			$this->renderer
 		);
 	}

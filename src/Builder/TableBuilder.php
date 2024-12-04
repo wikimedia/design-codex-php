@@ -21,7 +21,6 @@ namespace Wikimedia\Codex\Builder;
 
 use Wikimedia\Codex\Component\Pager;
 use Wikimedia\Codex\Component\Table;
-use Wikimedia\Codex\Contract\IWebRequestCallbacks;
 use Wikimedia\Codex\Renderer\TableRenderer;
 
 /**
@@ -136,11 +135,6 @@ class TableBuilder {
 	protected ?string $footer = null;
 
 	/**
-	 * Callbacks object for handling custom actions.
-	 */
-	protected IWebRequestCallbacks $callbacks;
-
-	/**
 	 * The renderer instance used to render the table.
 	 */
 	protected TableRenderer $renderer;
@@ -163,19 +157,6 @@ class TableBuilder {
 	 */
 	public function setId( string $id ): self {
 		$this->id = $id;
-
-		return $this;
-	}
-
-	/**
-	 * Set the IWebRequestCallbacks implementation for request handling.
-	 *
-	 * @param IWebRequestCallbacks $callbacks The IWebRequestCallbacks implementation.
-	 *
-	 * @return $this
-	 */
-	public function setCallbacks( IWebRequestCallbacks $callbacks ): self {
-		$this->callbacks = $callbacks;
 
 		return $this;
 	}
@@ -506,7 +487,6 @@ class TableBuilder {
 			$this->paginationPosition,
 			$this->pager,
 			$this->footer,
-			$this->callbacks,
 			$this->renderer
 		);
 	}

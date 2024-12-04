@@ -16,7 +16,6 @@
 
 namespace Wikimedia\Codex\Component;
 
-use Wikimedia\Codex\Contract\IWebRequestCallbacks;
 use Wikimedia\Codex\Renderer\TabsRenderer;
 
 /**
@@ -51,11 +50,6 @@ class Tabs {
 	private array $attributes;
 
 	/**
-	 * The IWebRequestCallbacks implementation used for request handling.
-	 */
-	private IWebRequestCallbacks $callbacks;
-
-	/**
 	 * The renderer instance used to render the tabs.
 	 */
 	private TabsRenderer $renderer;
@@ -68,20 +62,17 @@ class Tabs {
 	 * @param string $id The ID for the tabs component.
 	 * @param array $tabs An array of Tab component objects.
 	 * @param array $attributes Additional HTML attributes for the tabs component.
-	 * @param IWebRequestCallbacks $callbacks The IWebRequestCallbacks implementation.
 	 * @param TabsRenderer $renderer The renderer to use for rendering the tabs.
 	 */
 	public function __construct(
 		string $id,
 		array $tabs,
 		array $attributes,
-		IWebRequestCallbacks $callbacks,
 		TabsRenderer $renderer
 	) {
 		$this->id = $id;
 		$this->tabs = $tabs;
 		$this->attributes = $attributes;
-		$this->callbacks = $callbacks;
 		$this->renderer = $renderer;
 	}
 
@@ -95,19 +86,6 @@ class Tabs {
 	 */
 	public function getId(): string {
 		return $this->id;
-	}
-
-	/**
-	 * Get the IWebRequestCallbacks implementation used for request handling.
-	 *
-	 * This method returns the `IWebRequestCallbacks` instance that is used to handle custom actions
-	 * or logic related to the tabs component.
-	 *
-	 * @since 0.1.0
-	 * @return IWebRequestCallbacks The IWebRequestCallbacks implementation used for request handling.
-	 */
-	public function getCallbacks(): IWebRequestCallbacks {
-		return $this->callbacks;
 	}
 
 	/**

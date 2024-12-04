@@ -16,7 +16,6 @@
 
 namespace Wikimedia\Codex\Component;
 
-use Wikimedia\Codex\Contract\IWebRequestCallbacks;
 use Wikimedia\Codex\Renderer\TableRenderer;
 
 /**
@@ -131,11 +130,6 @@ class Table {
 	protected ?string $footer;
 
 	/**
-	 * Callbacks object for handling custom actions.
-	 */
-	protected IWebRequestCallbacks $callbacks;
-
-	/**
 	 * The renderer instance used to render the table.
 	 */
 	protected TableRenderer $renderer;
@@ -162,7 +156,6 @@ class Table {
 	 * @param string $paginationPosition The pagination position.
 	 * @param ?Pager $pager The pager for handling pagination.
 	 * @param ?string $footer The footer content.
-	 * @param IWebRequestCallbacks $callbacks The callbacks for handling custom actions.
 	 * @param TableRenderer $renderer The renderer instance.
 	 */
 	public function __construct(
@@ -183,7 +176,6 @@ class Table {
 		string $paginationPosition,
 		?Pager $pager,
 		?string $footer,
-		IWebRequestCallbacks $callbacks,
 		TableRenderer $renderer
 	) {
 		$this->id = $id;
@@ -203,7 +195,6 @@ class Table {
 		$this->paginationPosition = $paginationPosition;
 		$this->pager = $pager;
 		$this->footer = $footer;
-		$this->callbacks = $callbacks;
 		$this->renderer = $renderer;
 	}
 
@@ -217,18 +208,6 @@ class Table {
 	 */
 	public function getId(): string {
 		return $this->id;
-	}
-
-	/**
-	 * Get the IWebRequestCallbacks instance.
-	 *
-	 * This method returns the IWebRequestCallbacks instance if it is set. If no instance is set, it returns null.
-	 *
-	 * @since 0.1.0
-	 * @return IWebRequestCallbacks Returns the IWebRequestCallbacks.
-	 */
-	public function getCallbacks(): IWebRequestCallbacks {
-		return $this->callbacks;
 	}
 
 	/**

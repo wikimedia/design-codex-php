@@ -16,7 +16,6 @@
 
 namespace Wikimedia\Codex\Component;
 
-use Wikimedia\Codex\Contract\IWebRequestCallbacks;
 use Wikimedia\Codex\Renderer\PagerRenderer;
 
 /**
@@ -111,11 +110,6 @@ class Pager {
 	protected int $endOrdinal;
 
 	/**
-	 * Callbacks object for handling custom actions.
-	 */
-	protected ?IWebRequestCallbacks $callbacks = null;
-
-	/**
 	 * The renderer instance used to render the pager.
 	 */
 	protected PagerRenderer $renderer;
@@ -140,7 +134,6 @@ class Pager {
 	 * @param int|null $lastOffset Offset for the last page.
 	 * @param int $startOrdinal Start ordinal for the current page.
 	 * @param int $endOrdinal End ordinal for the current page.
-	 * @param ?IWebRequestCallbacks $callbacks Callbacks.
 	 * @param PagerRenderer $renderer Instance of the renderer for rendering the pager.
 	 */
 	public function __construct(
@@ -159,7 +152,6 @@ class Pager {
 		?int $lastOffset,
 		int $startOrdinal,
 		int $endOrdinal,
-		?IWebRequestCallbacks $callbacks,
 		PagerRenderer $renderer
 	) {
 		$this->id = $id;
@@ -177,7 +169,6 @@ class Pager {
 		$this->lastOffset = $lastOffset;
 		$this->startOrdinal = $startOrdinal;
 		$this->endOrdinal = $endOrdinal;
-		$this->callbacks = $callbacks;
 		$this->renderer = $renderer;
 	}
 
@@ -192,18 +183,6 @@ class Pager {
 	 */
 	public function getId(): string {
 		return $this->id;
-	}
-
-	/**
-	 * Get the IWebRequestCallbacks instance.
-	 *
-	 * This method returns the IWebRequestCallbacks instance if it is set. If no instance is set, it returns null.
-	 *
-	 * @since 0.1.0
-	 * @return ?IWebRequestCallbacks Returns the IWebRequestCallbacks.
-	 */
-	public function getCallbacks(): ?IWebRequestCallbacks {
-		return $this->callbacks;
 	}
 
 	/**

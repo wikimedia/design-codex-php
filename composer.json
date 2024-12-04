@@ -23,7 +23,8 @@
 		"ext-intl": "*",
 		"krinkle/intuition": "^2.3",
 		"mustache/mustache": "^2.14",
-		"wikimedia/services": "^4.0"
+		"wikimedia/services": "^4.0",
+		"guzzlehttp/psr7": "^2.7"
 	},
 	"require-dev": {
 		"mediawiki/mediawiki-codesniffer": "45.0.0",

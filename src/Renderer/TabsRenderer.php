@@ -19,10 +19,14 @@
 namespace Wikimedia\Codex\Renderer;
 
 use InvalidArgumentException;
+use UnexpectedValueException;
 use Wikimedia\Codex\Component\Tab;
 use Wikimedia\Codex\Component\Tabs;
 use Wikimedia\Codex\Contract\Renderer\IRenderer;
 use Wikimedia\Codex\Contract\Renderer\ITemplateRenderer;
+use Wikimedia\Codex\ParamValidator\ParamDefinitions;
+use Wikimedia\Codex\ParamValidator\ParamValidator;
+use Wikimedia\Codex\ParamValidator\ParamValidatorCallbacks;
 use Wikimedia\Codex\Traits\AttributeResolver;
 use Wikimedia\Codex\Utility\Sanitizer;
 
@@ -59,15 +63,34 @@ class TabsRenderer implements IRenderer {
 	private ITemplateRenderer $templateRenderer;
 
 	/**
-	 * Constructor to initialize the TabsRenderer with a sanitizer and a template renderer.
+	 * The param validator.
+	 */
+	protected ParamValidator $paramValidator;
+
+	/**
+	 * The param validator callbacks.
+	 */
+	protected ParamValidatorCallbacks $paramValidatorCallbacks;
+
+	/**
+	 * Constructor to initialize the TabsRenderer with necessary dependencies.
 	 *
 	 * @since 0.1.0
-	 * @param Sanitizer $sanitizer The sanitizer instance used for content sanitization.
-	 * @param ITemplateRenderer $templateRenderer The template renderer instance.
+	 * @param Sanitizer $sanitizer The sanitizer instance used to sanitize text and attributes.
+	 * @param ITemplateRenderer $templateRenderer The template renderer instance for rendering Mustache templates.
+	 * @param ParamValidator $paramValidator The parameter validator instance for validating component parameters.
+	 * @param ParamValidatorCallbacks $paramValidatorCallbacks The callbacks for accessing validated parameter values.
 	 */
-	public function __construct( Sanitizer $sanitizer, ITemplateRenderer $templateRenderer ) {
+	public function __construct(
+		Sanitizer $sanitizer,
+		ITemplateRenderer $templateRenderer,
+		ParamValidator $paramValidator,
+		ParamValidatorCallbacks $paramValidatorCallbacks
+	) {
 		$this->sanitizer = $sanitizer;
 		$this->templateRenderer = $templateRenderer;
+		$this->paramValidator = $paramValidator;
+		$this->paramValidatorCallbacks = $paramValidatorCallbacks;
 	}
 
 	/**
@@ -84,13 +107,32 @@ class TabsRenderer implements IRenderer {
 			throw new InvalidArgumentException( "Expected instance of Tabs, got " . get_class( $component ) );
 		}
 
-		$currentTabName = $component->getCallbacks()->getValue(
+		$definitions = ParamDefinitions::getDefinitionsForContext( 'tabs' );
+
+		foreach ( $definitions as $param => $rules ) {
+			try {
+				$this->paramValidator->validateValue(
+					$param,
+					$this->paramValidatorCallbacks->getValue(
+						$param,
+						$rules[ParamValidator::PARAM_DEFAULT],
+						[]
+					),
+					$rules
+				);
+			} catch ( UnexpectedValueException $e ) {
+				throw new InvalidArgumentException( "Invalid value for parameter '$param': " . $e->getMessage() );
+			}
+		}
+
+		$currentTabName = $this->paramValidatorCallbacks->getValue(
 			'tab',
 			$component->getTabs()[0]->getName(),
 			[]
 		);
 
 		$tabsData = [];
+
 		foreach ( $component->getTabs() as $tab ) {
 			if ( !$tab instanceof Tab ) {
 				throw new InvalidArgumentException( "All tabs must be instances of Tab Component" );

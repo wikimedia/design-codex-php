@@ -11,6 +11,8 @@ $cfg['directory_list'] = array_merge(
 		'tests',
 		'vendor/krinkle/intuition',
 		'vendor/psr/log',
+		'vendor/psr/http-message',
+		'vendor/guzzlehttp/psr7',
 		'vendor/mustache/mustache',
 		'vendor/phpunit/phpunit',
 		'vendor/ezyang/htmlpurifier',

@@ -1,7 +1,11 @@
 
 # Wikimedia Codex
-
 A PHP library for building HTML and CSS UI components using [Codex](https://doc.wikimedia.org/codex/main/), the Wikimedia design system.
+
+[![Latest Stable Version](http://poser.pugx.org/wikimedia/codex/v?style=for-the-badge)](https://packagist.org/packages/wikimedia/codex)
+[![Latest Unstable Version](http://poser.pugx.org/wikimedia/codex/v/unstable?style=for-the-badge)](https://packagist.org/packages/wikimedia/codex)
+[![License](http://poser.pugx.org/wikimedia/codex/license?style=for-the-badge)](https://packagist.org/packages/wikimedia/codex)
+[![PHP Version Require](http://poser.pugx.org/wikimedia/codex/require/php?style=for-the-badge)](https://packagist.org/packages/wikimedia/codex)
 
 ## Installation
 Use Composer to install the Codex library:
@@ -10,47 +14,7 @@ Use Composer to install the Codex library:
 composer require wikimedia/codex
 ```
 
-## Construction Methodology
-
-Codex uses the **Fluent Builder Pattern**
-to allow developers to create and configure UI components in a highly readable and intuitive manner.
-This pattern follows a **create → build → render** sequence 
-that allows methods to progressively customize components before rendering.
-
-### How It Works
-
-1. **Create**: Begin by calling a builder method to initialize a new component, for example, `$codex->Accordion()`.
-2. **Configure**: Chain configuration methods to customize the component's attributes, such as `setTitle()`, `setDescription()`, or `setContent()`.
-3. **Render**: Finally, call the `build()->getHtml()` method to get the rendered HTML for the component.
-
-### Example
-
-```php
-$accordion = $codex
-			->accordion()
-			->setTitle( "Accordion Example" )
-			->setDescription( "This is an example of an accordion." )
-			->setContentHtml(
-				$codex
-					->htmlSnippet()
-					->setContent( "<p>This is the content of the accordion.</p>" )
-					->build()
-			)
-			->setOpen( false )
-			->setAttributes( [
-				"class" => "foo",
-				"bar" => "baz",
-			] )
-			->build()
-			->getHtml();
-
-echo $accordion;
-```
-
-This pattern allows for a structured and clear way to build complex UI components with minimal effort,
-making the codebase both efficient and readable.
-
-## Available Components
+## Components
 The Codex library provides a variety of components to build UI:
 
 - **Accordion**: A collapsible and expandable section for organizing content.
@@ -84,152 +48,26 @@ use Wikimedia\Codex\Utility\Codex
 $codex = new Codex();
 
 $accordion = $codex
-			->accordion()
-			->setTitle( "Accordion Example" )
-			->setDescription( "This is an example of an accordion." )
-			->setContentHtml(
-				$codex
-					->htmlSnippet()
-					->setContent( "<p>This is the content of the accordion.</p>" )
-					->build()
-			)
-			->setOpen( false )
-			->setAttributes( [
-				"class" => "foo",
-				"bar" => "baz",
-			] )
-			->build()
-			->getHtml();
+            ->accordion()
+            ->setTitle( "Accordion Example" )
+            ->setDescription( "This is an example of an accordion." )
+            ->setContentHtml(
+                $codex
+                    ->htmlSnippet()
+                    ->setContent( "<p>This is the content.</p>" )
+                    ->build()
+            )
+            ->setOpen( false )
+            ->setAttributes( [
+                "class" => "foo",
+                "bar" => "baz",
+            ] )
+            ->build()
+            ->getHtml();
 
 echo $accordion;
 ?>
 ```
-
-## Usage in MediaWiki
-Here is a basic example of how to use the Codex library in MediaWiki:
-
-```php
-<?php
-
-use MediaWiki\SpecialPage\SpecialPage;
-use Wikimedia\Codex\Adapter\WebRequestAdapter;
-use Wikimedia\Codex\Utility\Codex;
-use Wikimedia\Codex\Utility\WebRequestCallbacks;
-
-class SomeSpecial extends SpecialPage {
-
-	public function __construct() {
-		parent::__construct( "SomeSpecial" );
-	}
-
-	public function execute( $subPage ) {
-		$codex = new Codex();
-		$requestAdapter = new WebRequestAdapter( $this->getRequest() );
-		$callbacks = new WebRequestCallbacks( $requestAdapter );
-
-		$tab1 = $codex
-				->Tab()
-				->setName( "tab1" )
-				->setLabel( "Tab 1" )
-				->setContentHtml(
-					$codex
-					->htmlSnippet()
-					->setContent( "<p>Content 1.</p>" )
-					->build()
-				)
-				->setSelected( true )
-				->build();
-
-		$tab2 = $codex
-				->Tab()
-				->setName( "tab2" )
-				->setLabel( "Tab 2" )
-				->setContentHtml(
-					$codex
-					->htmlSnippet()
-					->setContent( "<p>Content 2.</p>" )
-					->build()
-				)
-				->build();
-
-		$tab3 = $codex
-				->Tab()
-				->setName( "tab3" )
-				->setLabel( "Tab 3" )
-				->setContentHtml(
-					$codex
-					->htmlSnippet()
-					->setContent( "<p>Content 3.</p>" )
-					->build()
-				)
-				->build();
-
-		$tabs = $codex
-				->Tabs()
-				->setCallbacks( $callbacks )
-				->setTab( [ $tab1, $tab2, $tab3 ] )
-				->build()
-				->getHtml();
-
-		$this->getOutput()->addHTML( $tabs );
-	}
-}
-```
-
-## Example Usage of WebRequestAdapter and WebRequestCallbacks
-
-This example demonstrates how to use the `WebRequestAdapter` and `WebRequestCallbacks` classes to adapt `$_GET` parameters for use with the Codex library.
-
-### Create a SimpleWebRequest Class
-
-The `SimpleWebRequest` class implements the `IWebRequest` interface from the Codex design system.
-It simulates a basic request object that stores `$_GET` parameters,
-providing a standardized way to retrieve these parameters in accordance with the Codex interface.
-This class allows for consistent access to request data,
-ensuring flexibility and adherence to the expected behavior of Codex components.
-
-```php
-use Wikimedia\Codex\Contract\IWebRequest;
-
-class SimpleWebRequest implements IWebRequest {
-protected array $data;
-
-    public function __construct( array $data ) {
-        $this->data = $data;
-    }
-
-    public function getVal( string $name, $default = null ) {
-        return $this->data[$name] ?? $default;
-    }
-}
-```
-
-### Adapt the SimpleWebRequest for Codex
-
-Use the `WebRequestAdapter` to adapt the `SimpleWebRequest` object, making it compatible with Codex components.
-
-```php
-use Wikimedia\Codex\Adapter\WebRequestAdapter;
-
-// Initialize the request with $_GET parameters
-$request = new SimpleWebRequest( $_GET );
-
-// Adapt the SimpleWebRequest to work with Codex
-$requestAdapter = new WebRequestAdapter( $request );
-```
-
-### Initialize WebRequestCallbacks
-
-Finally, initialize the `WebRequestCallbacks` with the adapted request to handle request parameters consistently.
-
-```php
-use Wikimedia\Codex\Utility\WebRequestCallbacks;
-
-// Initialize WebRequestCallbacks
-$callbacks = new WebRequestCallbacks( $requestAdapter );
-```
-
-With this setup, `$callbacks` can be used within Codex components to manage `$_GET` parameters consistently across the application.
 
 ## Scripts
 

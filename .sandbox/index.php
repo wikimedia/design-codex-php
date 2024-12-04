@@ -6,7 +6,6 @@
 
 require '../vendor/autoload.php';
 
-use Wikimedia\Codex\Adapter\WebRequestAdapter;
 use Wikimedia\Codex\Sandbox\Example\AccordionExample;
 use Wikimedia\Codex\Sandbox\Example\ButtonExample;
 use Wikimedia\Codex\Sandbox\Example\CardExample;
@@ -25,16 +24,9 @@ use Wikimedia\Codex\Sandbox\Example\TextInputExample;
 use Wikimedia\Codex\Sandbox\Example\ThumbnailExample;
 use Wikimedia\Codex\Sandbox\Example\ToggleSwitchExample;
 use Wikimedia\Codex\Utility\Codex;
-use Wikimedia\Codex\Utility\SimpleWebRequest;
-use Wikimedia\Codex\Utility\WebRequestCallbacks;
 
 // Initialize Codex instance
 $codex = new Codex();
-
-// phpcs:ignore
-$request = new SimpleWebRequest($_GET);
-$requestAdapter = new WebRequestAdapter( $request );
-$callbacks = new WebRequestCallbacks( $requestAdapter );
 
 // Define components and their examples
 $examples = [
@@ -60,9 +52,9 @@ $examples = [
 		'file' => 'src/Example/RadioExample.php' ],
 	'Select' => [ 'component' => SelectExample::create( $codex ),
 		'file' => 'src/Example/SelectExample.php' ],
-	'Table' => [ 'component' => TableExample::create( $codex, $callbacks ),
+	'Table' => [ 'component' => TableExample::create( $codex ),
 		'file' => 'src/Example/TableExample.php' ],
-	'Tabs' => [ 'component' => TabsExample::create( $codex, $callbacks ),
+	'Tabs' => [ 'component' => TabsExample::create( $codex ),
 		'file' => 'src/Example/TabsExample.php' ],
 	'TextArea' => [ 'component' => TextAreaExample::create( $codex ),
 		'file' => 'src/Example/TextAreaExample.php' ],

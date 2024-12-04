@@ -22,9 +22,9 @@
  * @link     https://doc.wikimedia.org/codex/main/ Codex Documentation
  */
 
+use GuzzleHttp\Psr7\ServerRequest;
 use Krinkle\Intuition\Intuition;
 use MediaWiki\Context\RequestContext;
-use Wikimedia\Codex\Adapter\WebRequestAdapter;
 use Wikimedia\Codex\Builder\AccordionBuilder;
 use Wikimedia\Codex\Builder\ButtonBuilder;
 use Wikimedia\Codex\Builder\CardBuilder;
@@ -49,6 +49,8 @@ use Wikimedia\Codex\Builder\ToggleSwitchBuilder;
 use Wikimedia\Codex\Contract\ILocalizer;
 use Wikimedia\Codex\Localization\IntuitionLocalization;
 use Wikimedia\Codex\Localization\MediaWikiLocalization;
+use Wikimedia\Codex\ParamValidator\ParamValidator;
+use Wikimedia\Codex\ParamValidator\ParamValidatorCallbacks;
 use Wikimedia\Codex\Renderer\AccordionRenderer;
 use Wikimedia\Codex\Renderer\ButtonRenderer;
 use Wikimedia\Codex\Renderer\CardRenderer;
@@ -69,8 +71,6 @@ use Wikimedia\Codex\Renderer\TextInputRenderer;
 use Wikimedia\Codex\Renderer\ThumbnailRenderer;
 use Wikimedia\Codex\Renderer\ToggleSwitchRenderer;
 use Wikimedia\Codex\Utility\Sanitizer;
-use Wikimedia\Codex\Utility\SimpleWebRequest;
-use Wikimedia\Codex\Utility\WebRequestCallbacks;
 use Wikimedia\Services\ServiceContainer;
 
 /** @phpcs-require-sorted-array */
@@ -183,8 +183,19 @@ return [
 		return new PagerRenderer(
 			$services->getService( 'Sanitizer' ),
 			$services->getService( 'TemplateRenderer' ),
-			$services->getService( 'Localization' )
+			$services->getService( 'Localization' ),
+			$services->getService( 'ParamValidator' ),
+			$services->getService( 'ParamValidatorCallbacks' )
 		);
+	},
+
+	'ParamValidator' => static function ( ServiceContainer $services ): ParamValidator{
+		return new ParamValidator( $services->getService( 'ParamValidatorCallbacks' ) );
+	},
+
+	'ParamValidatorCallbacks' => static function (): ParamValidatorCallbacks {
+		$request = ServerRequest::fromGlobals();
+		return new ParamValidatorCallbacks( $request->getQueryParams() );
 	},
 
 	'ProgressBarBuilder' => static function ( ServiceContainer $services ) {
@@ -221,11 +232,6 @@ return [
 		);
 	},
 
-	'SimpleWebRequest' => static function () {
-		//phpcs:ignore
-		return new SimpleWebRequest( $_GET );
-	},
-
 	'TabBuilder' => static function () {
 		return new TabBuilder();
 	},
@@ -235,7 +241,12 @@ return [
 	},
 
 	'TableRenderer' => static function ( ServiceContainer $services ) {
-		return new TableRenderer( $services->getService( 'Sanitizer' ), $services->getService( 'TemplateRenderer' ) );
+		return new TableRenderer(
+			$services->getService( 'Sanitizer' ),
+			$services->getService( 'TemplateRenderer' ),
+			$services->getService( 'ParamValidator' ),
+			$services->getService( 'ParamValidatorCallbacks' )
+		);
 	},
 
 	'TabsBuilder' => static function ( ServiceContainer $services ) {
@@ -243,7 +254,12 @@ return [
 	},
 
 	'TabsRenderer' => static function ( ServiceContainer $services ) {
-		return new TabsRenderer( $services->getService( 'Sanitizer' ), $services->getService( 'TemplateRenderer' ) );
+		return new TabsRenderer(
+			$services->getService( 'Sanitizer' ),
+			$services->getService( 'TemplateRenderer' ),
+			$services->getService( 'ParamValidator' ),
+			$services->getService( 'ParamValidatorCallbacks' )
+		);
 	},
 
 	'TemplateRenderer' => static function ( ServiceContainer $services ) {
@@ -343,13 +359,5 @@ return [
 		return new ToggleSwitchRenderer(
 			$services->getService( 'Sanitizer' ), $services->getService( 'TemplateRenderer' ),
 		);
-	},
-
-	'WebRequestAdapter' => static function ( ServiceContainer $services ) {
-		return new WebRequestAdapter( $services->getService( 'SimpleWebRequest' ) );
-	},
-
-	'WebRequestCallbacks' => static function ( ServiceContainer $services ) {
-		return new WebRequestCallbacks( $services->getService( 'WebRequestAdapter' ) );
 	},
 ];

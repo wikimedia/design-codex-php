@@ -5,17 +5,14 @@ namespace Wikimedia\Codex\Sandbox\Example;
 use DateInterval;
 use DateTime;
 use Wikimedia\Codex\Utility\Codex;
-use Wikimedia\Codex\Utility\WebRequestCallbacks;
 
 class TableExample {
 	/**
 	 * @param Codex $codex
-	 * @param WebRequestCallbacks $callbacks
 	 * @return string
 	 */
 	public static function create(
-		Codex $codex,
-		WebRequestCallbacks $callbacks
+		Codex $codex
 	): string {
 		$sampleData = self::sampleData();
 
@@ -73,7 +70,6 @@ class TableExample {
 
 		return self::generateTable(
 			$codex,
-			$callbacks,
 			$paginatedData,
 			$offsetFormatted,
 			$totalPages,
@@ -280,7 +276,6 @@ class TableExample {
 	 */
 	private static function generateTable(
 		Codex $codex,
-		WebRequestCallbacks $callbacks,
 		array $paginatedData,
 		?string $offsetFormatted,
 		int $totalPages,
@@ -294,7 +289,6 @@ class TableExample {
 	): string {
 		return $codex
 			->Table()
-			->setCallbacks( $callbacks )
 			->setCaption( "Articles" )
 			->setHideCaption( false )
 			->setHeaderContent( "List of the articles" )
@@ -314,7 +308,6 @@ class TableExample {
 					->setOrdinals( $startOrdinal, $endOrdinal )
 					->setPaginationSizeOptions( [ 5, 10, 25, 50, 100 ] )
 					->setPaginationSizeDefault( 5 )
-					->setCallbacks( $callbacks )
 					->setPosition( "bottom" )
 					->build()
 			)

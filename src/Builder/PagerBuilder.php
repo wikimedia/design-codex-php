@@ -20,7 +20,6 @@ namespace Wikimedia\Codex\Builder;
 
 use InvalidArgumentException;
 use Wikimedia\Codex\Component\Pager;
-use Wikimedia\Codex\Contract\IWebRequestCallbacks;
 use Wikimedia\Codex\Renderer\PagerRenderer;
 
 /**
@@ -150,11 +149,6 @@ class PagerBuilder {
 	protected int $endOrdinal = 1;
 
 	/**
-	 * Callbacks object for handling custom actions.
-	 */
-	protected ?IWebRequestCallbacks $callbacks = null;
-
-	/**
 	 * The renderer instance used to render the pager.
 	 */
 	protected PagerRenderer $renderer;
@@ -177,19 +171,6 @@ class PagerBuilder {
 	 */
 	public function setId( string $id ): self {
 		$this->id = $id;
-
-		return $this;
-	}
-
-	/**
-	 * Set the IWebRequestCallbacks implementation for request handling.
-	 *
-	 * @since 0.1.0
-	 * @param IWebRequestCallbacks $callbacks The IWebRequestCallbacks implementation.
-	 * @return $this
-	 */
-	public function setCallbacks( IWebRequestCallbacks $callbacks ): self {
-		$this->callbacks = $callbacks;
 
 		return $this;
 	}
@@ -473,7 +454,6 @@ class PagerBuilder {
 			$this->lastOffset,
 			$this->startOrdinal,
 			$this->endOrdinal,
-			$this->callbacks,
 			$this->renderer
 		);
 	}

@@ -3,17 +3,15 @@
 namespace Wikimedia\Codex\Sandbox\Example;
 
 use Wikimedia\Codex\Utility\Codex;
-use Wikimedia\Codex\Utility\WebRequestCallbacks;
 
 class TabsExample {
 	/**
 	 * @param Codex $codex
-	 * @param WebRequestCallbacks $callbacks
+	 *
 	 * @return string
 	 */
 	public static function create(
-		Codex $codex,
-		WebRequestCallbacks $callbacks
+		Codex $codex
 	): string {
 		$tab1 = $codex
 			->Tab()
@@ -55,7 +53,6 @@ class TabsExample {
 		return $codex
 			->Tabs()
 			->setTab( [ $tab1, $tab2, $tab3 ] )
-			->setCallbacks( $callbacks )
 			->setAttributes( [
 				"class" => "foo",
 				"bar" => "baz",

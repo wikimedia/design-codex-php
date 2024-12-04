@@ -19,9 +19,13 @@
 namespace Wikimedia\Codex\Renderer;
 
 use InvalidArgumentException;
+use UnexpectedValueException;
 use Wikimedia\Codex\Component\Table;
 use Wikimedia\Codex\Contract\Renderer\IRenderer;
 use Wikimedia\Codex\Contract\Renderer\ITemplateRenderer;
+use Wikimedia\Codex\ParamValidator\ParamDefinitions;
+use Wikimedia\Codex\ParamValidator\ParamValidator;
+use Wikimedia\Codex\ParamValidator\ParamValidatorCallbacks;
 use Wikimedia\Codex\Traits\AttributeResolver;
 use Wikimedia\Codex\Utility\Sanitizer;
 
@@ -58,15 +62,34 @@ class TableRenderer implements IRenderer {
 	private ITemplateRenderer $templateRenderer;
 
 	/**
-	 * Constructor to initialize the TableRenderer with a sanitizer and a template renderer.
+	 * The param validator.
+	 */
+	protected ParamValidator $paramValidator;
+
+	/**
+	 * The param validator callbacks.
+	 */
+	protected ParamValidatorCallbacks $paramValidatorCallbacks;
+
+	/**
+	 * Constructor to initialize the TableRenderer with necessary dependencies.
 	 *
 	 * @since 0.1.0
-	 * @param Sanitizer $sanitizer The sanitizer instance used for content sanitization.
-	 * @param ITemplateRenderer $templateRenderer The template renderer instance used for rendering templates.
+	 * @param Sanitizer $sanitizer The sanitizer instance for cleaning user-provided data and HTML attributes.
+	 * @param ITemplateRenderer $templateRenderer The template renderer instance for rendering Mustache templates.
+	 * @param ParamValidator $paramValidator The parameter validator instance to validate query parameters.
+	 * @param ParamValidatorCallbacks $paramValidatorCallbacks The callbacks instance for fetching validated parameters.
 	 */
-	public function __construct( Sanitizer $sanitizer, ITemplateRenderer $templateRenderer ) {
+	public function __construct(
+		Sanitizer $sanitizer,
+		ITemplateRenderer $templateRenderer,
+		ParamValidator $paramValidator,
+		ParamValidatorCallbacks $paramValidatorCallbacks
+	) {
 		$this->sanitizer = $sanitizer;
 		$this->templateRenderer = $templateRenderer;
+		$this->paramValidator = $paramValidator;
+		$this->paramValidatorCallbacks = $paramValidatorCallbacks;
 	}
 
 	/**
@@ -192,11 +215,33 @@ class TableRenderer implements IRenderer {
 	 * @return string The generated URL for sorting by the specified column.
 	 */
 	private function buildSortUrl( Table $table, string $columnId ): string {
-		$queryParams = $table->getCallbacks()->getValues( 'sort', 'asc', 'desc', 'offset', 'limit' );
+		$definitions = ParamDefinitions::getDefinitionsForContext( 'table' );
+
+		foreach ( $definitions as $param => $rules ) {
+			try {
+				$this->paramValidator->validateValue(
+					$param,
+					$this->paramValidatorCallbacks->getValue(
+						$param,
+						$rules[ParamValidator::PARAM_DEFAULT],
+						[]
+					),
+					$rules
+				);
+			} catch ( UnexpectedValueException $e ) {
+				throw new InvalidArgumentException( "Invalid value for parameter '$param': " . $e->getMessage() );
+			}
+		}
+
+		$queryParams = [];
+		$queryParams['offset'] = $this->paramValidatorCallbacks->getValue( 'offset', '', [] );
+		$queryParams['limit'] = $this->paramValidatorCallbacks->getValue( 'limit', 5, [] );
+
 		$queryParams['sort'] = $columnId;
+
 		$oppositeDirection = $table->oppositeSort( $table->getCurrentSortDirection() );
-		$queryParams['asc'] = ( $oppositeDirection === Table::SORT_ASCENDING ) ? '1' : '';
-		$queryParams['desc'] = ( $oppositeDirection === Table::SORT_DESCENDING ) ? '1' : '';
+		$queryParams['asc'] = ( $oppositeDirection === Table::SORT_ASCENDING ) ? 1 : '';
+		$queryParams['desc'] = ( $oppositeDirection === Table::SORT_DESCENDING ) ? 1 : '';
 
 		return '?' . http_build_query( $queryParams );
 	}
