@@ -77,7 +77,7 @@ class AccordionBuilder {
 	protected AccordionRenderer $renderer;
 
 	/**
-	 * Constructor for the Accordion class.
+	 * Constructor for the AccordionBuilder class.
 	 *
 	 * @param AccordionRenderer $renderer The renderer to use for rendering the accordion.
 	 */

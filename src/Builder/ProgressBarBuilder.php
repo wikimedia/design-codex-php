@@ -68,7 +68,7 @@ class ProgressBarBuilder {
 	protected ProgressBarRenderer $renderer;
 
 	/**
-	 * Constructor for the ProgressBar class.
+	 * Constructor for the ProgressBarBuilder class.
 	 *
 	 * @param ProgressBarRenderer $renderer The renderer to use for rendering the progress bar.
 	 */

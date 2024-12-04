@@ -86,7 +86,7 @@ class CardBuilder {
 	protected CardRenderer $renderer;
 
 	/**
-	 * Constructor for the Card class.
+	 * Constructor for the CardBuilder class.
 	 *
 	 * @param CardRenderer $renderer The renderer to use for rendering the card.
 	 */

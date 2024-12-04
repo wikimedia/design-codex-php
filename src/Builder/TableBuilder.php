@@ -146,7 +146,7 @@ class TableBuilder {
 	protected TableRenderer $renderer;
 
 	/**
-	 * Constructor for the Table class.
+	 * Constructor for the TableBuilder class.
 	 *
 	 * @param TableRenderer $renderer The renderer to use for rendering the table.
 	 */

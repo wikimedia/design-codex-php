@@ -130,7 +130,7 @@ class ButtonBuilder {
 	protected ButtonRenderer $renderer;
 
 	/**
-	 * Constructor for the Button class.
+	 * Constructor for the ButtonBuilder class.
 	 *
 	 * @param ButtonRenderer $renderer The renderer to use for rendering the button.
 	 */

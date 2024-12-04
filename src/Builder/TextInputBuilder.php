@@ -137,7 +137,7 @@ class TextInputBuilder {
 	protected TextInputRenderer $renderer;
 
 	/**
-	 * Constructor for the TextInput class.
+	 * Constructor for the TextInputBuilder class.
 	 *
 	 * @param TextInputRenderer $renderer The renderer to use for rendering the text input.
 	 */

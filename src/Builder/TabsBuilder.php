@@ -66,7 +66,7 @@ class TabsBuilder {
 	protected TabsRenderer $renderer;
 
 	/**
-	 * Constructor for the Tabs class.
+	 * Constructor for the TabsBuilder class.
 	 *
 	 * @param TabsRenderer $renderer The renderer to use for rendering the tabs.
 	 */
