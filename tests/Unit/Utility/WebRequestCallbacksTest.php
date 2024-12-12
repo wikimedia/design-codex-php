@@ -32,6 +32,7 @@ use Wikimedia\Codex\Utility\WebRequestCallbacks;
  * @author   Doğu Abaris <abaris@null.net>
  * @license  https://www.gnu.org/copyleft/gpl.html GPL-2.0-or-later
  * @link     https://doc.wikimedia.org/codex/main/ Codex Documentation
+ * @coversDefaultClass \Wikimedia\Codex\Adapter\WebRequestAdapter
  */
 class WebRequestCallbacksTest extends TestCase {
 
@@ -39,7 +40,7 @@ class WebRequestCallbacksTest extends TestCase {
 	 * Test that getCallbackData returns the correct value from the adapter.
 	 *
 	 * @since 0.1.0
-	 * @covers \Wikimedia\Codex\Adapter\WebRequestAdapter::getVal
+	 * @covers ::getVal
 	 * @return void
 	 */
 	public function testGetValReturnsDefaultValue(): void {
@@ -61,7 +62,7 @@ class WebRequestCallbacksTest extends TestCase {
 	 * Test that getCallbackData returns the default value if the key does not exist.
 	 *
 	 * @since 0.1.0
-	 * @covers \Wikimedia\Codex\Utility\WebRequestCallbacks::getValue
+	 * @coversNothing
 	 * @return void
 	 */
 	public function testGetCallbackDataReturnsDefaultValue(): void {

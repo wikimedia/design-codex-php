@@ -32,6 +32,7 @@ use Wikimedia\Codex\Contract\IWebRequest;
  * @author   Doğu Abaris <abaris@null.net>
  * @license  https://www.gnu.org/copyleft/gpl.html GPL-2.0-or-later
  * @link     https://doc.wikimedia.org/codex/main/ Codex Documentation
+ * @coversDefaultClass \Wikimedia\Codex\Adapter\WebRequestAdapter
  */
 class WebRequestAdapterTest extends TestCase {
 
@@ -39,7 +40,7 @@ class WebRequestAdapterTest extends TestCase {
 	 * Test that getVal returns the correct value from the request.
 	 *
 	 * @since 0.1.0
-	 * @covers \Wikimedia\Codex\Adapter\WebRequestAdapter::getVal
+	 * @covers ::getVal
 	 * @return void
 	 */
 	public function testGetValReturnsCorrectValue(): void {
@@ -58,7 +59,7 @@ class WebRequestAdapterTest extends TestCase {
 	 * Test that getVal returns the default value if the key does not exist.
 	 *
 	 * @since 0.1.0
-	 * @covers \Wikimedia\Codex\Adapter\WebRequestAdapter::getVal
+	 * @covers ::getVal
 	 * @return void
 	 */
 	public function testGetValReturnsDefaultValue(): void {

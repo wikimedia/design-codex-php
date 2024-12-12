@@ -16,7 +16,7 @@
 namespace Wikimedia\Codex\Tests\Unit\Contract;
 
 use PHPUnit\Framework\TestCase;
-use Wikimedia\Codex\Contract\IWebRequest;
+use Wikimedia\Codex\Utility\SimpleWebRequest;
 
 /**
  * IWebRequestTest
@@ -29,20 +29,38 @@ use Wikimedia\Codex\Contract\IWebRequest;
  * @author   Doğu Abaris <abaris@null.net>
  * @license  https://www.gnu.org/copyleft/gpl.html GPL-2.0-or-later
  * @link     https://doc.wikimedia.org/codex/main/ Codex Documentation
+ * @coversDefaultClass \Wikimedia\Codex\Contract\IWebRequest
  */
 class IWebRequestTest extends TestCase {
-
 	/**
-	 * Test that the IWebRequest interface has the getVal method.
+	 * Test that the getVal method of SimpleWebRequest returns the expected value.
 	 *
 	 * @since 0.1.0
-	 * @covers \Wikimedia\Codex\Contract\IWebRequest::getVal
+	 * @covers ::getVal
 	 * @return void
 	 */
-	public function testHasGetValMethod(): void {
-		$this->assertTrue(
-			method_exists( IWebRequest::class, 'getVal' ),
-			'IWebRequest interface should contain the getVal method.'
-		);
+	public function testGetValReturnsExpectedValue(): void {
+		$data = [ 'key' => 'expectedValue' ];
+		$request = new SimpleWebRequest( $data );
+
+		$result = $request->getVal( 'key' );
+
+		$this->assertEquals( 'expectedValue', $result );
+	}
+
+	/**
+	 * Test that the getVal method returns the default value when the key is not present.
+	 *
+	 * @since 0.1.0
+	 * @covers ::getVal
+	 * @return void
+	 */
+	public function testGetValReturnsDefaultValueWhenKeyNotPresent(): void {
+		$data = [];
+		$request = new SimpleWebRequest( $data );
+
+		$result = $request->getVal( 'nonExistingKey', 'defaultValue' );
+
+		$this->assertEquals( 'defaultValue', $result );
 	}
 }
