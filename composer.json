@@ -67,6 +67,8 @@
 		]
 	},
 	"config": {
+		"prepend-autoloader": false,
+		"optimize-autoloader": true,
 		"allow-plugins": {
 			"dealerdirect/phpcodesniffer-composer-installer": true,
 			"symfony/flex": true
