@@ -54,6 +54,7 @@ class HtmlSnippetBuilder {
 	 *
 	 * @since 0.1.0
 	 * @param string $content The new HTML content to set.
+	 * @param-taint $content exec_html Callers are responsible for escaping.
 	 * @return $this
 	 */
 	public function setContent( string $content ): self {

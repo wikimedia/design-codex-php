@@ -48,6 +48,7 @@ class HtmlSnippet {
 	 * Initializes a HtmlSnippet instance with the specified content and attributes.
 	 *
 	 * @param string $content The safe HTML content to be rendered.
+	 * @param-taint $content exec_html Callers are responsible for escaping.
 	 * @param array $attributes Additional HTML attributes for the container element.
 	 */
 	public function __construct( string $content, array $attributes ) {
