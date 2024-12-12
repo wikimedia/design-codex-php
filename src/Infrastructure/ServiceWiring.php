@@ -126,14 +126,6 @@ return [
 		);
 	},
 
-	'HTMLPurifier' => static function ( ServiceContainer $services ) {
-		return new HTMLPurifier( $services->getService( 'HTMLPurifierConfig' ) );
-	},
-
-	'HTMLPurifierConfig' => static function () {
-		return HTMLPurifier_Config::createDefault();
-	},
-
 	'HtmlSnippetBuilder' => static function () {
 		return new HtmlSnippetBuilder();
 	},
@@ -215,8 +207,8 @@ return [
 		);
 	},
 
-	'Sanitizer' => static function ( ServiceContainer $services ) {
-		return new Sanitizer( $services->getService( 'HTMLPurifier' ) );
+	'Sanitizer' => static function () {
+		return new Sanitizer();
 	},
 
 	'SelectBuilder' => static function ( ServiceContainer $services ) {

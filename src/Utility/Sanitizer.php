@@ -21,8 +21,6 @@
 
 namespace Wikimedia\Codex\Utility;
 
-use HTMLPurifier;
-
 /**
  * Sanitizer is a class responsible for sanitizing data before rendering.
  *
@@ -40,20 +38,6 @@ use HTMLPurifier;
 class Sanitizer {
 
 	/**
-	 * The HTMLPurifier instance.
-	 */
-	protected HTMLPurifier $htmlPurifier;
-
-	/**
-	 * Constructor for the Sanitizer class.
-	 *
-	 * @param HTMLPurifier $htmlPurifier The HTMLPurifier instance.
-	 */
-	public function __construct( HTMLPurifier $htmlPurifier ) {
-		$this->htmlPurifier = $htmlPurifier;
-	}
-
-	/**
 	 * Sanitize a plain text string.
 	 *
 	 * This method escapes special HTML characters in a string to prevent XSS attacks.
@@ -66,20 +50,6 @@ class Sanitizer {
 	 */
 	public function sanitizeText( ?string $text ): string {
 		return htmlspecialchars( $text ?? '', ENT_QUOTES, 'UTF-8' );
-	}
-
-	/**
-	 * Sanitize HTML content.
-	 *
-	 * This method uses HTML Purifier to remove or escape potentially harmful elements
-	 * and attributes from HTML content, ensuring it is safe for rendering.
-	 *
-	 * @since 0.1.0
-	 * @param string $html The HTML content to sanitize.
-	 * @return string The sanitized HTML content.
-	 */
-	public function sanitizeHtml( string $html ): string {
-		return $this->htmlPurifier->purify( $html );
 	}
 
 	/**
