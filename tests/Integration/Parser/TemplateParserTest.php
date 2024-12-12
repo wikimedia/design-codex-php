@@ -1,40 +1,40 @@
 <?php
 /**
- * TemplateRendererTest.php
+ * TemplateParserTest.php
  *
- * This class contains unit tests to verify the correct behavior of the TemplateRenderer class,
+ * This class contains unit tests to verify the correct behavior of the TemplateParser class,
  * including rendering templates with dynamic classes, attributes, and Mustache logic sections.
  *
- * @category Tests\Integration\Renderer
- * @package  Codex\Tests\Integration\Renderer
+ * @category Tests\Integration\Parser
+ * @package  Codex\Tests\Integration\Parser
  * @since    0.1.0
  * @author   Doğu Abaris <abaris@null.net>
  * @license  https://www.gnu.org/copyleft/gpl.html GPL-2.0-or-later
  * @link     https://doc.wikimedia.org/codex/main/ Codex Documentation
  */
 
-namespace Wikimedia\Codex\Tests\Integration\Renderer;
+namespace Wikimedia\Codex\Tests\Integration\Parser;
 
 use PHPUnit\Framework\TestCase;
 use Wikimedia\Codex\Infrastructure\CodexServices;
 
 /**
- * TemplateRendererTest
+ * TemplateParserTest
  *
- * This test verifies the TemplateRenderer class's behavior with a complex HTML template.
+ * This test verifies the TemplateParser class's behavior with a complex HTML template.
  *
- * @category Tests\Integration\Renderer
- * @package  Codex\Tests\Integration\Renderer
+ * @category Tests\Integration\Parser
+ * @package  Codex\Tests\Integration\Parser
  * @since    0.1.0
  * @author   Doğu Abaris <abaris@null.net>
  * @license  https://www.gnu.org/copyleft/gpl.html GPL-2.0-or-later
  * @link     https://doc.wikimedia.org/codex/main/ Codex Documentation
- * @coversDefaultClass \Wikimedia\Codex\Renderer\TemplateRenderer
+ * @coversDefaultClass \Wikimedia\Codex\Parser\TemplateParser
  */
-class TemplateRendererTest extends TestCase {
+class TemplateParserTest extends TestCase {
 
 	/**
-	 * Provides data for testing different scenarios of rendering Mustache templates.
+	 * Provides data for testing different scenarios of processing Mustache templates.
 	 *
 	 * @since 0.1.0
 	 * @return array
@@ -68,21 +68,21 @@ class TemplateRendererTest extends TestCase {
 	}
 
 	/**
-	 * Test rendering a complex HTML template from a Mustache file with data provided by the data provider.
+	 * Test processing a complex HTML template from a Mustache file with data provided by the data provider.
 	 *
 	 * @since 0.1.0
-	 * @covers ::render
+	 * @covers ::processTemplate
 	 * @dataProvider templateDataProvider
 	 * @param array $data The input data to be rendered in the Mustache template.
 	 * @param string $expectedOutput The expected HTML output.
 	 * @return void
 	 */
-	public function testRenderComplexHtmlTemplateFromFile( array $data, string $expectedOutput ): void {
-		// Retrieve the TemplateRenderer service from CodexServices singleton instance
-		$renderer = CodexServices::getInstance()->getService( 'TemplateRenderer' );
+	public function testProcessComplexHtmlTemplateFromFile( array $data, string $expectedOutput ): void {
+		// Retrieve the TemplateParser service from CodexServices singleton instance
+		$templateParser = CodexServices::getInstance()->getService( 'TemplateParser' );
 
-		// Render the 'info-chip.mustache' template using the provided data
-		$result = $renderer->render( 'info-chip.mustache', $data );
+		// Process the 'info-chip.mustache' template using the provided data
+		$result = $templateParser->processTemplate( 'info-chip', $data );
 
 		// Normalize whitespace in both the expected and actual output for comparison purposes
 		$normalizedExpectedOutput = preg_replace( '/\s+/', ' ', trim( $expectedOutput ) );
@@ -97,13 +97,13 @@ class TemplateRendererTest extends TestCase {
 	 * of Mustache escaping).
 	 *
 	 * @since 0.1.0
-	 * @covers ::render
+	 * @covers ::processTemplate
 	 */
 	public function testEscapingIsDisabled(): void {
-		$renderer = CodexServices::getInstance()->getService( 'TemplateRenderer' );
+		$templateParser = CodexServices::getInstance()->getService( 'TemplateParser' );
 
 		$rawValue = '<script>alert( "dQw4w9WgXcQ" )</script>';
-		$result = $renderer->render( 'accordion.mustache', [ 'description' => $rawValue ] );
+		$result = $templateParser->processTemplate( 'accordion', [ 'description' => $rawValue ] );
 		$this->assertStringContainsString( $rawValue, $result );
 	}
 }

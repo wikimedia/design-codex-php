@@ -121,9 +121,9 @@ class AccordionBuilderTest extends TestCase {
 	 * @return void
 	 */
 	public function testBuild( array $data, string $expectedOutput, string $contentMethod ): void {
-		$renderer = CodexServices::getInstance()->getService( 'TemplateRenderer' );
+		$templateParser = CodexServices::getInstance()->getService( 'TemplateParser' );
 		$sanitizer = CodexServices::getInstance()->getService( 'Sanitizer' );
-		$accordionRenderer = new AccordionRenderer( $sanitizer, $renderer );
+		$accordionRenderer = new AccordionRenderer( $sanitizer, $templateParser );
 		$accordion = new AccordionBuilder( $accordionRenderer );
 		$htmlSnippet = new HtmlSnippetBuilder();
 

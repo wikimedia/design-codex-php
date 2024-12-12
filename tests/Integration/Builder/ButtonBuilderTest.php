@@ -129,9 +129,9 @@ class ButtonBuilderTest extends TestCase {
 	 * @return void
 	 */
 	public function testBuild( array $data, string $expectedOutput ): void {
-		$renderer = CodexServices::getInstance()->getService( 'TemplateRenderer' );
+		$templateParser = CodexServices::getInstance()->getService( 'TemplateParser' );
 		$sanitizer = CodexServices::getInstance()->getService( 'Sanitizer' );
-		$buttonRenderer = new ButtonRenderer( $sanitizer, $renderer );
+		$buttonRenderer = new ButtonRenderer( $sanitizer, $templateParser );
 		$button = new ButtonBuilder( $buttonRenderer );
 
 		if ( isset( $data['id'] ) ) {

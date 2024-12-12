@@ -51,6 +51,7 @@ use Wikimedia\Codex\Localization\IntuitionLocalization;
 use Wikimedia\Codex\Localization\MediaWikiLocalization;
 use Wikimedia\Codex\ParamValidator\ParamValidator;
 use Wikimedia\Codex\ParamValidator\ParamValidatorCallbacks;
+use Wikimedia\Codex\Parser\TemplateParser;
 use Wikimedia\Codex\Renderer\AccordionRenderer;
 use Wikimedia\Codex\Renderer\ButtonRenderer;
 use Wikimedia\Codex\Renderer\CardRenderer;
@@ -65,7 +66,6 @@ use Wikimedia\Codex\Renderer\RadioRenderer;
 use Wikimedia\Codex\Renderer\SelectRenderer;
 use Wikimedia\Codex\Renderer\TableRenderer;
 use Wikimedia\Codex\Renderer\TabsRenderer;
-use Wikimedia\Codex\Renderer\TemplateRenderer;
 use Wikimedia\Codex\Renderer\TextAreaRenderer;
 use Wikimedia\Codex\Renderer\TextInputRenderer;
 use Wikimedia\Codex\Renderer\ThumbnailRenderer;
@@ -82,7 +82,7 @@ return [
 
 	'AccordionRenderer' => static function ( ServiceContainer $services ) {
 		return new AccordionRenderer(
-			$services->getService( 'Sanitizer' ), $services->getService( 'TemplateRenderer' ),
+			$services->getService( 'Sanitizer' ), $services->getService( 'TemplateParser' ),
 		);
 	},
 
@@ -92,7 +92,7 @@ return [
 
 	'ButtonRenderer' => static function ( ServiceContainer $services ) {
 		return new ButtonRenderer(
-			$services->getService( 'Sanitizer' ), $services->getService( 'TemplateRenderer' ),
+			$services->getService( 'Sanitizer' ), $services->getService( 'TemplateParser' ),
 		);
 	},
 
@@ -102,7 +102,7 @@ return [
 
 	'CardRenderer' => static function ( ServiceContainer $services ) {
 		return new CardRenderer(
-			$services->getService( 'Sanitizer' ), $services->getService( 'TemplateRenderer' ),
+			$services->getService( 'Sanitizer' ), $services->getService( 'TemplateParser' ),
 		);
 	},
 
@@ -112,7 +112,7 @@ return [
 
 	'CheckboxRenderer' => static function ( ServiceContainer $services ) {
 		return new CheckboxRenderer(
-			$services->getService( 'Sanitizer' ), $services->getService( 'TemplateRenderer' )
+			$services->getService( 'Sanitizer' ), $services->getService( 'TemplateParser' )
 		);
 	},
 
@@ -122,7 +122,7 @@ return [
 
 	'FieldRenderer' => static function ( ServiceContainer $services ) {
 		return new FieldRenderer(
-			$services->getService( 'Sanitizer' ), $services->getService( 'TemplateRenderer' ),
+			$services->getService( 'Sanitizer' ), $services->getService( 'TemplateParser' ),
 		);
 	},
 
@@ -136,7 +136,7 @@ return [
 
 	'InfoChipRenderer' => static function ( ServiceContainer $services ) {
 		return new InfoChipRenderer(
-			$services->getService( 'Sanitizer' ), $services->getService( 'TemplateRenderer' ),
+			$services->getService( 'Sanitizer' ), $services->getService( 'TemplateParser' ),
 		);
 	},
 
@@ -146,7 +146,7 @@ return [
 
 	'LabelRenderer' => static function ( ServiceContainer $services ) {
 		return new LabelRenderer(
-			$services->getService( 'Sanitizer' ), $services->getService( 'TemplateRenderer' )
+			$services->getService( 'Sanitizer' ), $services->getService( 'TemplateParser' )
 		);
 	},
 
@@ -167,7 +167,7 @@ return [
 
 	'MessageRenderer' => static function ( ServiceContainer $services ) {
 		return new MessageRenderer(
-			$services->getService( 'Sanitizer' ), $services->getService( 'TemplateRenderer' ),
+			$services->getService( 'Sanitizer' ), $services->getService( 'TemplateParser' ),
 		);
 	},
 
@@ -182,7 +182,7 @@ return [
 	'PagerRenderer' => static function ( ServiceContainer $services ) {
 		return new PagerRenderer(
 			$services->getService( 'Sanitizer' ),
-			$services->getService( 'TemplateRenderer' ),
+			$services->getService( 'TemplateParser' ),
 			$services->getService( 'Localization' ),
 			$services->getService( 'ParamValidator' ),
 			$services->getService( 'ParamValidatorCallbacks' )
@@ -204,7 +204,7 @@ return [
 
 	'ProgressBarRenderer' => static function ( ServiceContainer $services ) {
 		return new ProgressBarRenderer(
-			$services->getService( 'Sanitizer' ), $services->getService( 'TemplateRenderer' ),
+			$services->getService( 'Sanitizer' ), $services->getService( 'TemplateParser' ),
 		);
 	},
 
@@ -214,7 +214,7 @@ return [
 
 	'RadioRenderer' => static function ( ServiceContainer $services ) {
 		return new RadioRenderer(
-			$services->getService( 'Sanitizer' ), $services->getService( 'TemplateRenderer' )
+			$services->getService( 'Sanitizer' ), $services->getService( 'TemplateParser' )
 		);
 	},
 
@@ -228,7 +228,7 @@ return [
 
 	'SelectRenderer' => static function ( ServiceContainer $services ) {
 		return new SelectRenderer(
-			$services->getService( 'Sanitizer' ), $services->getService( 'TemplateRenderer' ),
+			$services->getService( 'Sanitizer' ), $services->getService( 'TemplateParser' ),
 		);
 	},
 
@@ -243,7 +243,7 @@ return [
 	'TableRenderer' => static function ( ServiceContainer $services ) {
 		return new TableRenderer(
 			$services->getService( 'Sanitizer' ),
-			$services->getService( 'TemplateRenderer' ),
+			$services->getService( 'TemplateParser' ),
 			$services->getService( 'ParamValidator' ),
 			$services->getService( 'ParamValidatorCallbacks' )
 		);
@@ -256,69 +256,17 @@ return [
 	'TabsRenderer' => static function ( ServiceContainer $services ) {
 		return new TabsRenderer(
 			$services->getService( 'Sanitizer' ),
-			$services->getService( 'TemplateRenderer' ),
+			$services->getService( 'TemplateParser' ),
 			$services->getService( 'ParamValidator' ),
 			$services->getService( 'ParamValidatorCallbacks' )
 		);
 	},
 
-	'TemplateRenderer' => static function ( ServiceContainer $services ) {
+	'TemplateParser' => static function ( ServiceContainer $services ) {
 		$templatePath = __DIR__ . '/../../resources/templates';
-
 		$localization = $services->getService( 'Localization' );
 
-		$mustacheEngine = new Mustache_Engine( [
-			'loader' => new Mustache_Loader_FilesystemLoader( $templatePath ),
-			// Disable escaping in Mustache. We use custom PHP escaping instead.
-			'escape' => static fn ( $x ) => $x,
-			'helpers' => [
-				// TODO: Consider moving the following helper functions to a separate helper class.
-				// i18n helper - for localization
-				'i18n' => static function ( $text, $render ) use ( $localization ) {
-					$renderedText = trim( $render( $text ) );
-					// Split by '|' to separate the key and parameters.
-					// XXX This assumes that the expanded content of parameters does not contain pipes.
-					$parts = explode( '|', $renderedText );
-					// The first part is the message key, the rest are parameters
-					$key = trim( array_shift( $parts ) );
-					$params = [];
-					foreach ( $parts as $part ) {
-						$params[] = trim( $part );
-					}
-
-					return htmlspecialchars(
-						$localization->msg( $key, [ 'variables' => $params ] ),
-						ENT_QUOTES,
-						'UTF-8'
-					);
-				},
-				'renderClasses' => static function ( $attributes, $render ) {
-					$renderedAttributes = $render( $attributes );
-
-					// Use a regular expression to match the 'class' attribute and capture its value
-					if ( preg_match( '/class="([^"]*)"/', $renderedAttributes, $matches ) ) {
-						// If a 'class' attribute is found, prepend a space and return the class string
-						return ' ' . $matches[1];
-					}
-
-					// If no 'class' attribute is found, return an empty string
-					return '';
-				},
-				'renderAttributes' => static function ( $attributes, $render ) {
-					$renderedAttributes = $render( $attributes );
-
-					// Remove the 'class' attribute from the rendered attributes using a regular expression
-					// This ensures that only non-class attributes are returned
-					$attribs = trim( preg_replace( '/\s*class="[^"]*"/', '', $renderedAttributes ) );
-
-					// If there are remaining attributes after removing 'class', prepend a space and return them
-					// Otherwise, return an empty string
-					return $attribs !== '' ? ' ' . $attribs : '';
-				},
-			],
-		] );
-
-		return new TemplateRenderer( $mustacheEngine );
+		return new TemplateParser( $templatePath, $localization );
 	},
 
 	'TextAreaBuilder' => static function ( ServiceContainer $services ) {
@@ -327,7 +275,7 @@ return [
 
 	'TextAreaRenderer' => static function ( ServiceContainer $services ) {
 		return new TextAreaRenderer(
-			$services->getService( 'Sanitizer' ), $services->getService( 'TemplateRenderer' )
+			$services->getService( 'Sanitizer' ), $services->getService( 'TemplateParser' )
 		);
 	},
 
@@ -337,7 +285,7 @@ return [
 
 	'TextInputRenderer' => static function ( ServiceContainer $services ) {
 		return new TextInputRenderer(
-			$services->getService( 'Sanitizer' ), $services->getService( 'TemplateRenderer' ),
+			$services->getService( 'Sanitizer' ), $services->getService( 'TemplateParser' ),
 		);
 	},
 
@@ -347,7 +295,7 @@ return [
 
 	'ThumbnailRenderer' => static function ( ServiceContainer $services ) {
 		return new ThumbnailRenderer(
-			$services->getService( 'Sanitizer' ), $services->getService( 'TemplateRenderer' ),
+			$services->getService( 'Sanitizer' ), $services->getService( 'TemplateParser' ),
 		);
 	},
 
@@ -357,7 +305,7 @@ return [
 
 	'ToggleSwitchRenderer' => static function ( ServiceContainer $services ) {
 		return new ToggleSwitchRenderer(
-			$services->getService( 'Sanitizer' ), $services->getService( 'TemplateRenderer' ),
+			$services->getService( 'Sanitizer' ), $services->getService( 'TemplateParser' ),
 		);
 	},
 ];

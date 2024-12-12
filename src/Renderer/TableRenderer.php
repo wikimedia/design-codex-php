@@ -5,7 +5,7 @@
  * This file is part of the Codex PHP library, which provides a PHP-based interface for creating
  * UI components consistent with the Codex design system.
  *
- * The `TableRenderer` class leverages the `TemplateRenderer` and `Sanitizer` utilities to ensure the
+ * The `TableRenderer` class leverages the `TemplateParser` and `Sanitizer` utilities to ensure the
  * component object is rendered according to Codex design system standards.
  *
  * @category Renderer
@@ -22,10 +22,10 @@ use InvalidArgumentException;
 use UnexpectedValueException;
 use Wikimedia\Codex\Component\Table;
 use Wikimedia\Codex\Contract\Renderer\IRenderer;
-use Wikimedia\Codex\Contract\Renderer\ITemplateRenderer;
 use Wikimedia\Codex\ParamValidator\ParamDefinitions;
 use Wikimedia\Codex\ParamValidator\ParamValidator;
 use Wikimedia\Codex\ParamValidator\ParamValidatorCallbacks;
+use Wikimedia\Codex\Parser\TemplateParser;
 use Wikimedia\Codex\Traits\AttributeResolver;
 use Wikimedia\Codex\Utility\Sanitizer;
 
@@ -33,7 +33,7 @@ use Wikimedia\Codex\Utility\Sanitizer;
  * TableRenderer is responsible for rendering the HTML markup
  * for a Table component using a Mustache template.
  *
- * This class uses the `TemplateRenderer` and `Sanitizer` utilities to manage
+ * This class uses the `TemplateParser` and `Sanitizer` utilities to manage
  * the template rendering process, ensuring that the component object's HTML
  * output adheres to the Codex design system's standards.
  *
@@ -57,9 +57,9 @@ class TableRenderer implements IRenderer {
 	private Sanitizer $sanitizer;
 
 	/**
-	 * The template renderer instance.
+	 * The template parser instance.
 	 */
-	private ITemplateRenderer $templateRenderer;
+	private TemplateParser $templateParser;
 
 	/**
 	 * The param validator.
@@ -76,18 +76,18 @@ class TableRenderer implements IRenderer {
 	 *
 	 * @since 0.1.0
 	 * @param Sanitizer $sanitizer The sanitizer instance for cleaning user-provided data and HTML attributes.
-	 * @param ITemplateRenderer $templateRenderer The template renderer instance for rendering Mustache templates.
+	 * @param TemplateParser $templateParser The template parser instance for rendering Mustache templates.
 	 * @param ParamValidator $paramValidator The parameter validator instance to validate query parameters.
 	 * @param ParamValidatorCallbacks $paramValidatorCallbacks The callbacks instance for fetching validated parameters.
 	 */
 	public function __construct(
 		Sanitizer $sanitizer,
-		ITemplateRenderer $templateRenderer,
+		TemplateParser $templateParser,
 		ParamValidator $paramValidator,
 		ParamValidatorCallbacks $paramValidatorCallbacks
 	) {
 		$this->sanitizer = $sanitizer;
-		$this->templateRenderer = $templateRenderer;
+		$this->templateParser = $templateParser;
 		$this->paramValidator = $paramValidator;
 		$this->paramValidatorCallbacks = $paramValidatorCallbacks;
 	}
@@ -123,7 +123,7 @@ class TableRenderer implements IRenderer {
 			'attributes' => $this->resolve( $this->sanitizer->sanitizeAttributes( $component->getAttributes() ) ),
 			'footer' => $this->sanitizer->sanitizeText( $component->getFooter() ?? '' ),
 		];
-		return $this->templateRenderer->render( 'table.mustache', $tableData );
+		return $this->templateParser->processTemplate( 'table', $tableData );
 	}
 
 	/**

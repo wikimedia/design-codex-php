@@ -5,7 +5,7 @@
  * This file is part of the Codex PHP library, which provides a PHP-based interface for creating
  * UI components consistent with the Codex design system.
  *
- * The `PagerRenderer` class leverages the `TemplateRenderer` and `Sanitizer` utilities to ensure the
+ * The `PagerRenderer` class leverages the `TemplateParser` and `Sanitizer` utilities to ensure the
  * component object is rendered according to Codex design system standards.
  *
  * @category Renderer
@@ -24,10 +24,10 @@ use Wikimedia\Codex\Builder\PagerBuilder;
 use Wikimedia\Codex\Component\Pager;
 use Wikimedia\Codex\Contract\ILocalizer;
 use Wikimedia\Codex\Contract\Renderer\IRenderer;
-use Wikimedia\Codex\Contract\Renderer\ITemplateRenderer;
 use Wikimedia\Codex\ParamValidator\ParamDefinitions;
 use Wikimedia\Codex\ParamValidator\ParamValidator;
 use Wikimedia\Codex\ParamValidator\ParamValidatorCallbacks;
+use Wikimedia\Codex\Parser\TemplateParser;
 use Wikimedia\Codex\Traits\AttributeResolver;
 use Wikimedia\Codex\Utility\Codex;
 use Wikimedia\Codex\Utility\Sanitizer;
@@ -36,7 +36,7 @@ use Wikimedia\Codex\Utility\Sanitizer;
  * PagerRenderer is responsible for rendering the HTML markup
  * for a Pager component using a Mustache template.
  *
- * This class uses the `TemplateRenderer` and `Sanitizer` utilities to manage
+ * This class uses the `TemplateParser` and `Sanitizer` utilities to manage
  * the template rendering process, ensuring that the component object's HTML
  * output adheres to the Codex design system's standards.
  *
@@ -60,9 +60,9 @@ class PagerRenderer implements IRenderer {
 	private Sanitizer $sanitizer;
 
 	/**
-	 * The template renderer instance.
+	 * The template parser instance.
 	 */
-	private ITemplateRenderer $templateRenderer;
+	private TemplateParser $templateParser;
 
 	/**
 	 * The localization instance implementing ILocalizer.
@@ -99,7 +99,7 @@ class PagerRenderer implements IRenderer {
 	 *
 	 * @since 0.1.0
 	 * @param Sanitizer $sanitizer The sanitizer instance for cleaning user-provided data and attributes.
-	 * @param ITemplateRenderer $templateRenderer The template renderer instance for rendering Mustache templates.
+	 * @param TemplateParser $templateParser The template parser instance for rendering Mustache templates.
 	 * @param ILocalizer $localizer The localizer instance for supporting translations and localization.
 	 * @param ParamValidator $paramValidator The parameter validator instance for validating query parameters.
 	 * @param ParamValidatorCallbacks $paramValidatorCallbacks The callbacks instance for accessing validated
@@ -107,13 +107,13 @@ class PagerRenderer implements IRenderer {
 	 */
 	public function __construct(
 		Sanitizer $sanitizer,
-		ITemplateRenderer $templateRenderer,
+		TemplateParser $templateParser,
 		ILocalizer $localizer,
 		ParamValidator $paramValidator,
 		ParamValidatorCallbacks $paramValidatorCallbacks
 	) {
 		$this->sanitizer = $sanitizer;
-		$this->templateRenderer = $templateRenderer;
+		$this->templateParser = $templateParser;
 		$this->localizer = $localizer;
 		$this->codex = new Codex();
 		$this->paramValidator = $paramValidator;
@@ -161,7 +161,7 @@ class PagerRenderer implements IRenderer {
 			'hiddenFields' => $hiddenFields,
 		];
 
-		return $this->templateRenderer->render( 'pager.mustache', $pagerData );
+		return $this->templateParser->processTemplate( 'pager', $pagerData );
 	}
 
 	/**

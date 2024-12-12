@@ -104,9 +104,9 @@ class ProgressBarBuilderTest extends TestCase {
 	 * @return void
 	 */
 	public function testBuild( array $data, string $expectedOutput ): void {
-		$renderer = CodexServices::getInstance()->getService( 'TemplateRenderer' );
+		$templateParser = CodexServices::getInstance()->getService( 'TemplateParser' );
 		$sanitizer = CodexServices::getInstance()->getService( 'Sanitizer' );
-		$progressBarRenderer = new ProgressBarRenderer( $sanitizer, $renderer );
+		$progressBarRenderer = new ProgressBarRenderer( $sanitizer, $templateParser );
 		$progressBar = new ProgressBarBuilder( $progressBarRenderer );
 
 		$progressBar->setLabel( $data['label'] )

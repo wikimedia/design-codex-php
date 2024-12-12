@@ -79,9 +79,9 @@ class InfoChipBuilderTest extends TestCase {
 	 * @return void
 	 */
 	public function testBuild( array $data, string $expectedOutput ): void {
-		$renderer = CodexServices::getInstance()->getService( 'TemplateRenderer' );
+		$templateParser = CodexServices::getInstance()->getService( 'TemplateParser' );
 		$sanitizer = CodexServices::getInstance()->getService( 'Sanitizer' );
-		$infoChipRenderer = new InfoChipRenderer( $sanitizer, $renderer );
+		$infoChipRenderer = new InfoChipRenderer( $sanitizer, $templateParser );
 		$infoChip = new InfoChipBuilder( $infoChipRenderer );
 
 		$infoChip->setText( $data['text'] )

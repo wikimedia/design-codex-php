@@ -22,9 +22,9 @@
 		"ext-json": "*",
 		"ext-intl": "*",
 		"krinkle/intuition": "^2.3",
-		"mustache/mustache": "^2.14",
 		"wikimedia/services": "^4.0",
-		"guzzlehttp/psr7": "^2.7"
+		"guzzlehttp/psr7": "^2.7",
+		"zordius/lightncandy": "1.2.6"
 	},
 	"require-dev": {
 		"mediawiki/mediawiki-codesniffer": "45.0.0",

@@ -5,7 +5,7 @@
  * This file is part of the Codex PHP library, which provides a PHP-based interface for creating
  * UI components consistent with the Codex design system.
  *
- * The `CheckboxRenderer` class leverages the `TemplateRenderer` and `Sanitizer` utilities to ensure the
+ * The `CheckboxRenderer` class leverages the `TemplateParser` and `Sanitizer` utilities to ensure the
  * component object is rendered according to Codex design system standards.
  *
  * @category Renderer
@@ -21,7 +21,7 @@ namespace Wikimedia\Codex\Renderer;
 use InvalidArgumentException;
 use Wikimedia\Codex\Component\Checkbox;
 use Wikimedia\Codex\Contract\Renderer\IRenderer;
-use Wikimedia\Codex\Contract\Renderer\ITemplateRenderer;
+use Wikimedia\Codex\Parser\TemplateParser;
 use Wikimedia\Codex\Traits\AttributeResolver;
 use Wikimedia\Codex\Utility\Sanitizer;
 
@@ -29,7 +29,7 @@ use Wikimedia\Codex\Utility\Sanitizer;
  * CheckboxRenderer is responsible for rendering the HTML markup
  * for a Checkbox component using a Mustache template.
  *
- * This class uses the `TemplateRenderer` and `Sanitizer` utilities to manage
+ * This class uses the `TemplateParser` and `Sanitizer` utilities to manage
  * the template rendering process, ensuring that the component object's HTML
  * output adheres to the Codex design system's standards.
  *
@@ -53,20 +53,20 @@ class CheckboxRenderer implements IRenderer {
 	private Sanitizer $sanitizer;
 
 	/**
-	 * The template renderer instance.
+	 * The template parser instance.
 	 */
-	private ITemplateRenderer $templateRenderer;
+	private TemplateParser $templateParser;
 
 	/**
-	 * Constructor to initialize the CheckboxRenderer with a sanitizer and a template renderer.
+	 * Constructor to initialize the CheckboxRenderer with a sanitizer and a template parser.
 	 *
 	 * @since 0.1.0
 	 * @param Sanitizer $sanitizer The sanitizer instance used for content sanitization.
-	 * @param ITemplateRenderer $templateRenderer The template renderer instance.
+	 * @param TemplateParser $templateParser The template parser instance.
 	 */
-	public function __construct( Sanitizer $sanitizer, ITemplateRenderer $templateRenderer ) {
+	public function __construct( Sanitizer $sanitizer, TemplateParser $templateParser ) {
 		$this->sanitizer = $sanitizer;
-		$this->templateRenderer = $templateRenderer;
+		$this->templateParser = $templateParser;
 	}
 
 	/**
@@ -118,6 +118,6 @@ class CheckboxRenderer implements IRenderer {
 			'label' => $labelData,
 		];
 
-		return $this->templateRenderer->render( 'checkbox.mustache', $checkboxData );
+		return $this->templateParser->processTemplate( 'checkbox', $checkboxData );
 	}
 }
