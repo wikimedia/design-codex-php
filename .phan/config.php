@@ -14,6 +14,7 @@ $cfg['directory_list'] = array_merge(
 		'vendor/mustache/mustache',
 		'vendor/phpunit/phpunit',
 		'vendor/ezyang/htmlpurifier',
+		'vendor/wikimedia/services',
 		'.phan/stubs',
 	]
 );
