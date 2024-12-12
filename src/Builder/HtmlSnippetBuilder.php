@@ -20,7 +20,6 @@
 namespace Wikimedia\Codex\Builder;
 
 use Wikimedia\Codex\Component\HtmlSnippet;
-use Wikimedia\Codex\Utility\Sanitizer;
 
 /**
  * HtmlSnippetBuilder
@@ -49,21 +48,6 @@ class HtmlSnippetBuilder {
 	protected array $attributes = [];
 
 	/**
-	 * The sanitizer instance used for content sanitization.
-	 */
-	private Sanitizer $sanitizer;
-
-	/**
-	 * Constructor for the HtmlSnippetBuilder class.
-	 *
-	 * @since 0.1.0
-	 * @param Sanitizer $sanitizer The sanitizer instance used for content sanitization.
-	 */
-	public function __construct( Sanitizer $sanitizer ) {
-		$this->sanitizer = $sanitizer;
-	}
-
-	/**
 	 * Set the HTML content.
 	 *
 	 * This method allows updating the HTML content of the snippet after the object has been instantiated.
@@ -73,7 +57,7 @@ class HtmlSnippetBuilder {
 	 * @return $this
 	 */
 	public function setContent( string $content ): self {
-		$this->content = $this->sanitizer->sanitizeHtml( $content );
+		$this->content = $content;
 
 		return $this;
 	}
@@ -91,8 +75,9 @@ class HtmlSnippetBuilder {
 	 * @return $this
 	 */
 	public function setAttributes( array $attributes ): self {
-		$this->attributes = $this->sanitizer->sanitizeAttributes( $attributes );
-
+		foreach ( $attributes as $key => $value ) {
+			$this->attributes[$key] = $value;
+		}
 		return $this;
 	}
 

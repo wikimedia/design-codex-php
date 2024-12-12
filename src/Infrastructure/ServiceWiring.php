@@ -133,8 +133,8 @@ return [
 		return HTMLPurifier_Config::createDefault();
 	},
 
-	'HtmlSnippetBuilder' => static function ( $container ) {
-		return new HtmlSnippetBuilder( $container->getService( 'Sanitizer' ) );
+	'HtmlSnippetBuilder' => static function () {
+		return new HtmlSnippetBuilder();
 	},
 
 	'InfoChipBuilder' => static function ( $container ) {
