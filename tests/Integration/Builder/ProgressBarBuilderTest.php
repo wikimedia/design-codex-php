@@ -31,7 +31,7 @@ use Wikimedia\Codex\Renderer\ProgressBarRenderer;
  * @author   Doğu Abaris <abaris@null.net>
  * @license  https://www.gnu.org/copyleft/gpl.html GPL-2.0-or-later
  * @link     https://doc.wikimedia.org/codex/main/ Codex Documentation
- * @coversDefaultClass \Wikimedia\Codex\Builder\ProgressBarBuilder
+ * @covers   \Wikimedia\Codex\Builder\ProgressBarBuilder
  */
 class ProgressBarBuilderTest extends TestCase {
 
@@ -83,7 +83,10 @@ class ProgressBarBuilderTest extends TestCase {
 					'label' => 'Some progress',
 					'isInline' => true,
 					'isDisabled' => true,
-					'attributes' => [ 'id' => 'some-progress', 'data-test' => 'some-value' ],
+					'attributes' => [
+						'id' => 'some-progress',
+						'data-test' => 'some-value',
+					],
 				],
 				'<div class="cdx-progress-bar cdx-progress-bar--inline cdx-progress-bar--disabled" role="progressbar"
 					aria-label="Some progress" id="some-progress" data-test="some-value">
@@ -97,10 +100,11 @@ class ProgressBarBuilderTest extends TestCase {
 	 * Test converting an ProgressBar to a string via build using provided data.
 	 *
 	 * @since 0.1.0
-	 * @covers ::build
 	 * @dataProvider templateDataProvider
+	 *
 	 * @param array $data The input data for the ProgressBar.
 	 * @param string $expectedOutput The expected HTML output.
+	 *
 	 * @return void
 	 */
 	public function testBuild( array $data, string $expectedOutput ): void {

@@ -29,7 +29,7 @@ use Wikimedia\Codex\Infrastructure\CodexServices;
  * @author   Doğu Abaris <abaris@null.net>
  * @license  https://www.gnu.org/copyleft/gpl.html GPL-2.0-or-later
  * @link     https://doc.wikimedia.org/codex/main/ Codex Documentation
- * @coversDefaultClass \Wikimedia\Codex\Parser\TemplateParser
+ * @covers   \Wikimedia\Codex\Parser\TemplateParser
  */
 class TemplateParserTest extends TestCase {
 
@@ -71,10 +71,11 @@ class TemplateParserTest extends TestCase {
 	 * Test processing a complex HTML template from a Mustache file with data provided by the data provider.
 	 *
 	 * @since 0.1.0
-	 * @covers ::processTemplate
 	 * @dataProvider templateDataProvider
+	 *
 	 * @param array $data The input data to be rendered in the Mustache template.
 	 * @param string $expectedOutput The expected HTML output.
+	 *
 	 * @return void
 	 */
 	public function testProcessComplexHtmlTemplateFromFile( array $data, string $expectedOutput ): void {
@@ -97,7 +98,6 @@ class TemplateParserTest extends TestCase {
 	 * of Mustache escaping).
 	 *
 	 * @since 0.1.0
-	 * @covers ::processTemplate
 	 */
 	public function testEscapingIsDisabled(): void {
 		$templateParser = CodexServices::getInstance()->getService( 'TemplateParser' );

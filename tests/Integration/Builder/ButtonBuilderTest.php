@@ -31,7 +31,7 @@ use Wikimedia\Codex\Renderer\ButtonRenderer;
  * @author   Doğu Abaris <abaris@null.net>
  * @license  https://www.gnu.org/copyleft/gpl.html GPL-2.0-or-later
  * @link     https://doc.wikimedia.org/codex/main/ Codex Documentation
- * @coversDefaultClass \Wikimedia\Codex\Builder\ButtonBuilder
+ * @covers   \Wikimedia\Codex\Builder\ButtonBuilder
  */
 class ButtonBuilderTest extends TestCase {
 
@@ -71,7 +71,7 @@ class ButtonBuilderTest extends TestCase {
 					'disabled' => false,
 					'attributes' => [ 'data-action' => 'submit-form' ],
 				],
-				'<button 
+				'<button
 					class="cdx-button cdx-button--action-progressive cdx-button--weight-primary cdx-button--size-large"
 					type="submit" data-action="submit-form">
                     <span class="cdx-button__icon icon-submit" aria-hidden="true"></span>
@@ -91,7 +91,7 @@ class ButtonBuilderTest extends TestCase {
 					'disabled' => true,
 					'attributes' => [ 'aria-label' => 'Delete Item' ],
 				],
-				'<button 
+				'<button
 					class="cdx-button cdx-button--action-destructive cdx-button--weight-quiet cdx-button--icon-only"
 					id="delete-btn" type="button" aria-label="Delete Item" disabled>
                     <span class="cdx-button__icon icon-delete" aria-hidden="true"></span>
@@ -107,7 +107,10 @@ class ButtonBuilderTest extends TestCase {
 					'iconClass' => null,
 					'iconOnly' => false,
 					'disabled' => false,
-					'attributes' => [ 'data-toggle' => 'modal', 'aria-expanded' => 'false' ],
+					'attributes' => [
+						'data-toggle' => 'modal',
+						'aria-expanded' => 'false',
+					],
 				],
 				'<button class="cdx-button" type="button" data-toggle="modal" aria-expanded="false">
                     Learn More
@@ -122,10 +125,11 @@ class ButtonBuilderTest extends TestCase {
 	 * This test ensures that the Button class generates the correct HTML output based on the input properties.
 	 *
 	 * @since 0.1.0
-	 * @covers ::build
 	 * @dataProvider templateDataProvider
+	 *
 	 * @param array $data The input data for the Button.
 	 * @param string $expectedOutput The expected HTML output.
+	 *
 	 * @return void
 	 */
 	public function testBuild( array $data, string $expectedOutput ): void {

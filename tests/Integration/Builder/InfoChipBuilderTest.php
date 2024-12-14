@@ -31,7 +31,7 @@ use Wikimedia\Codex\Renderer\InfoChipRenderer;
  * @author   Doğu Abaris <abaris@null.net>
  * @license  https://www.gnu.org/copyleft/gpl.html GPL-2.0-or-later
  * @link     https://doc.wikimedia.org/codex/main/ Codex Documentation
- * @coversDefaultClass \Wikimedia\Codex\Builder\InfoChipBuilder
+ * @covers   \Wikimedia\Codex\Builder\InfoChipBuilder
  */
 class InfoChipBuilderTest extends TestCase {
 
@@ -72,10 +72,11 @@ class InfoChipBuilderTest extends TestCase {
 	 * Test converting an InfoChip to a string via build using provided data.
 	 *
 	 * @since 0.1.0
-	 * @covers ::build
 	 * @dataProvider templateDataProvider
+	 *
 	 * @param array $data The input data for the InfoChip.
 	 * @param string $expectedOutput The expected HTML output.
+	 *
 	 * @return void
 	 */
 	public function testBuild( array $data, string $expectedOutput ): void {

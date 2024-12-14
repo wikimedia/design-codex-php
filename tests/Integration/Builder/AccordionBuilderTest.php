@@ -32,7 +32,7 @@ use Wikimedia\Codex\Renderer\AccordionRenderer;
  * @author   Doğu Abaris <abaris@null.net>
  * @license  https://www.gnu.org/copyleft/gpl.html GPL-2.0-or-later
  * @link     https://doc.wikimedia.org/codex/main/ Codex Documentation
- * @coversDefaultClass \Wikimedia\Codex\Builder\AccordionBuilder
+ * @covers   \Wikimedia\Codex\Builder\AccordionBuilder
  */
 class AccordionBuilderTest extends TestCase {
 
@@ -113,11 +113,12 @@ class AccordionBuilderTest extends TestCase {
 	 * Test converting an Accordion to a string via build using provided data.
 	 *
 	 * @since 0.1.0
-	 * @covers ::build
 	 * @dataProvider templateDataProvider
+	 *
 	 * @param array $data The input data for the Accordion.
 	 * @param string $expectedOutput The expected HTML output.
 	 * @param string $contentMethod The content method to use ('setContentText' or 'setContentHtml').
+	 *
 	 * @return void
 	 */
 	public function testBuild( array $data, string $expectedOutput, string $contentMethod ): void {
@@ -134,14 +135,14 @@ class AccordionBuilderTest extends TestCase {
 		}
 
 		$accordion->setTitle( $data['title'] )
-		->setDescription( $data['description'] )
-		->setOpen( $data['isOpen'] )
-		->setAttributes( $data['attributes'] );
+			->setDescription( $data['description'] )
+			->setOpen( $data['isOpen'] )
+			->setAttributes( $data['attributes'] );
 
 		$this->assertSame(
-		preg_replace( '/\s+/', ' ', trim( $expectedOutput ) ),
-		preg_replace( '/\s+/', ' ', trim( $accordion->build()->getHtml() ) ),
-		'The getHtml() method should return the correct HTML output.'
+			preg_replace( '/\s+/', ' ', trim( $expectedOutput ) ),
+			preg_replace( '/\s+/', ' ', trim( $accordion->build()->getHtml() ) ),
+			'The getHtml() method should return the correct HTML output.'
 		);
 	}
 }

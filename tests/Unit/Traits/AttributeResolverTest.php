@@ -29,7 +29,7 @@ use Wikimedia\Codex\Traits\AttributeResolver;
  * @author   Doğu Abaris <abaris@null.net>
  * @license  https://www.gnu.org/copyleft/gpl.html GPL-2.0-or-later
  * @link     https://doc.wikimedia.org/codex/main/ Codex Documentation
- * @coversDefaultClass \Wikimedia\Codex\Traits\AttributeResolver
+ * @covers   \Wikimedia\Codex\Traits\AttributeResolver
  */
 class AttributeResolverTest extends TestCase {
 	use AttributeResolver;
@@ -38,7 +38,6 @@ class AttributeResolverTest extends TestCase {
 	 * Test that an empty array of attributes returns an empty string.
 	 *
 	 * @since 0.1.0
-	 * @covers ::resolve
 	 * @return void
 	 */
 	public function testEmptyAttributes(): void {
@@ -50,11 +49,14 @@ class AttributeResolverTest extends TestCase {
 	 * Test resolving a basic array of attributes.
 	 *
 	 * @since 0.1.0
-	 * @covers ::resolve
 	 * @return void
 	 */
 	public function testBasicAttributes(): void {
-		$attributes = [ 'id' => 'button1', 'type' => 'submit' ];
+		$attributes =
+			[
+				'id' => 'button1',
+				'type' => 'submit',
+			];
 		$result = $this->resolve( $attributes );
 		$this->assertSame( 'id="button1" type="submit"', $result );
 	}
@@ -63,11 +65,15 @@ class AttributeResolverTest extends TestCase {
 	 * Test handling boolean attributes (true or false).
 	 *
 	 * @since 0.1.0
-	 * @covers  ::resolve
 	 * @return void
 	 */
 	public function testBooleanAttributes(): void {
-		$attributes = [ 'disabled' => true, 'readonly' => false, 'required' => true ];
+		$attributes =
+			[
+				'disabled' => true,
+				'readonly' => false,
+				'required' => true,
+			];
 		$result = $this->resolve( $attributes );
 		$this->assertSame( 'disabled required', $result );
 	}
@@ -76,7 +82,6 @@ class AttributeResolverTest extends TestCase {
 	 * Test handling array attributes like class names.
 	 *
 	 * @since 0.1.0
-	 * @covers ::resolve
 	 * @return void
 	 */
 	public function testArrayAttributes(): void {
