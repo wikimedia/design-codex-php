@@ -79,7 +79,7 @@ class Codex {
 	 * @return AccordionBuilder The Accordion builder instance.
 	 */
 	public function accordion(): AccordionBuilder {
-		return $this->services->getService( 'AccordionBuilder' );
+		return new AccordionBuilder( $this->services->getService( 'AccordionRenderer' ) );
 	}
 
 	/**
@@ -89,7 +89,7 @@ class Codex {
 	 * @return ButtonBuilder The Button builder instance.
 	 */
 	public function button(): ButtonBuilder {
-		return $this->services->getService( 'ButtonBuilder' );
+		return new ButtonBuilder( $this->services->getService( 'ButtonRenderer' ) );
 	}
 
 	/**
@@ -99,7 +99,7 @@ class Codex {
 	 * @return CardBuilder The Card builder instance.
 	 */
 	public function card(): CardBuilder {
-		return $this->services->getService( 'CardBuilder' );
+		return new CardBuilder( $this->services->getService( 'CardRenderer' ) );
 	}
 
 	/**
@@ -109,7 +109,7 @@ class Codex {
 	 * @return CheckboxBuilder The Checkbox builder instance.
 	 */
 	public function checkbox(): CheckboxBuilder {
-		return $this->services->getService( 'CheckboxBuilder' );
+		return new CheckboxBuilder( $this->services->getService( 'CheckboxRenderer' ) );
 	}
 
 	/**
@@ -119,7 +119,7 @@ class Codex {
 	 * @return FieldBuilder The Field builder instance.
 	 */
 	public function field(): FieldBuilder {
-		return $this->services->getService( 'FieldBuilder' );
+		return new FieldBuilder( $this->services->getService( 'FieldRenderer' ) );
 	}
 
 	/**
@@ -129,7 +129,7 @@ class Codex {
 	 * @return HtmlSnippetBuilder The HtmlSnippet instance.
 	 */
 	public function htmlSnippet(): HtmlSnippetBuilder {
-		return $this->services->getService( 'HtmlSnippetBuilder' );
+		return new HtmlSnippetBuilder();
 	}
 
 	/**
@@ -139,7 +139,7 @@ class Codex {
 	 * @return InfoChipBuilder The InfoChip builder instance.
 	 */
 	public function infoChip(): InfoChipBuilder {
-		return $this->services->getService( 'InfoChipBuilder' );
+		return new InfoChipBuilder( $this->services->getService( 'InfoChipRenderer' ) );
 	}
 
 	/**
@@ -149,7 +149,7 @@ class Codex {
 	 * @return LabelBuilder The Label builder instance.
 	 */
 	public function label(): LabelBuilder {
-		return $this->services->getService( 'LabelBuilder' );
+		return new LabelBuilder( $this->services->getService( 'LabelRenderer' ) );
 	}
 
 	/**
@@ -159,7 +159,7 @@ class Codex {
 	 * @return MessageBuilder The Message builder instance.
 	 */
 	public function message(): MessageBuilder {
-		return $this->services->getService( 'MessageBuilder' );
+		return new MessageBuilder( $this->services->getService( 'MessageRenderer' ) );
 	}
 
 	/**
@@ -169,7 +169,7 @@ class Codex {
 	 * @return OptionBuilder The Option builder instance.
 	 */
 	public function option(): OptionBuilder {
-		return $this->services->getService( 'OptionBuilder' );
+		return new OptionBuilder();
 	}
 
 	/**
@@ -179,7 +179,7 @@ class Codex {
 	 * @return PagerBuilder The Pager builder instance.
 	 */
 	public function pager(): PagerBuilder {
-		return $this->services->getService( 'PagerBuilder' );
+		return new PagerBuilder( $this->services->getService( 'PagerRenderer' ) );
 	}
 
 	/**
@@ -189,7 +189,7 @@ class Codex {
 	 * @return ProgressBarBuilder The ProgressBar builder instance.
 	 */
 	public function progressBar(): ProgressBarBuilder {
-		return $this->services->getService( 'ProgressBarBuilder' );
+		return new ProgressBarBuilder( $this->services->getService( 'ProgressBarRenderer' ) );
 	}
 
 	/**
@@ -199,7 +199,7 @@ class Codex {
 	 * @return RadioBuilder The Radio builder instance.
 	 */
 	public function radio(): RadioBuilder {
-		return $this->services->getService( 'RadioBuilder' );
+		return new RadioBuilder( $this->services->getService( 'RadioRenderer' ) );
 	}
 
 	/**
@@ -209,7 +209,7 @@ class Codex {
 	 * @return SelectBuilder The Select builder instance.
 	 */
 	public function select(): SelectBuilder {
-		return $this->services->getService( 'SelectBuilder' );
+		return new SelectBuilder( $this->services->getService( 'SelectRenderer' ) );
 	}
 
 	/**
@@ -219,7 +219,7 @@ class Codex {
 	 * @return TabBuilder The Tab builder instance.
 	 */
 	public function tab(): TabBuilder {
-		return $this->services->getService( 'TabBuilder' );
+		return new TabBuilder();
 	}
 
 	/**
@@ -229,7 +229,7 @@ class Codex {
 	 * @return TableBuilder The Table builder instance.
 	 */
 	public function table(): TableBuilder {
-		return $this->services->getService( 'TableBuilder' );
+		return new TableBuilder( $this->services->getService( 'TableRenderer' ) );
 	}
 
 	/**
@@ -239,7 +239,7 @@ class Codex {
 	 * @return TabsBuilder The Tabs builder instance.
 	 */
 	public function tabs(): TabsBuilder {
-		return $this->services->getService( 'TabsBuilder' );
+		return new TabsBuilder( $this->services->getService( 'TabsRenderer' ) );
 	}
 
 	/**
@@ -249,7 +249,7 @@ class Codex {
 	 * @return TextAreaBuilder The TextArea builder instance.
 	 */
 	public function textArea(): TextAreaBuilder {
-		return $this->services->getService( 'TextAreaBuilder' );
+		return new TextAreaBuilder( $this->services->getService( 'TextAreaRenderer' ) );
 	}
 
 	/**
@@ -259,7 +259,7 @@ class Codex {
 	 * @return TextInputBuilder The TextInput builder instance.
 	 */
 	public function textInput(): TextInputBuilder {
-		return $this->services->getService( 'TextInputBuilder' );
+		return new TextInputBuilder( $this->services->getService( 'TextInputRenderer' ) );
 	}
 
 	/**
@@ -269,7 +269,7 @@ class Codex {
 	 * @return ThumbnailBuilder The Thumbnail builder instance.
 	 */
 	public function thumbnail(): ThumbnailBuilder {
-		return $this->services->getService( 'ThumbnailBuilder' );
+		return new ThumbnailBuilder( $this->services->getService( 'ThumbnailRenderer' ) );
 	}
 
 	/**
@@ -279,6 +279,6 @@ class Codex {
 	 * @return ToggleSwitchBuilder The ToggleSwitch builder instance.
 	 */
 	public function toggleSwitch(): ToggleSwitchBuilder {
-		return $this->services->getService( 'ToggleSwitchBuilder' );
+		return new ToggleSwitchBuilder( $this->services->getService( 'ToggleSwitchRenderer' ) );
 	}
 }
