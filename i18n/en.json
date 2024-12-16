@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Design System Team"
+			"Design System Team",
+			"Doğu Abaris"
 		]
 	},
 	"cdx-chip-input-chip-added": "Chip $1 was added.",
