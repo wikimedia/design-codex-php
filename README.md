@@ -2,10 +2,10 @@
 # Wikimedia Codex
 A PHP library for building HTML and CSS UI components using [Codex](https://doc.wikimedia.org/codex/main/), the Wikimedia design system.
 
-[![Latest Stable Version](http://poser.pugx.org/wikimedia/codex/v?style=for-the-badge)](https://packagist.org/packages/wikimedia/codex)
-[![Latest Unstable Version](http://poser.pugx.org/wikimedia/codex/v/unstable?style=for-the-badge)](https://packagist.org/packages/wikimedia/codex)
-[![License](http://poser.pugx.org/wikimedia/codex/license?style=for-the-badge)](https://packagist.org/packages/wikimedia/codex)
-[![PHP Version Require](http://poser.pugx.org/wikimedia/codex/require/php?style=for-the-badge)](https://packagist.org/packages/wikimedia/codex)
+[![Latest Stable Version](https://poser.pugx.org/wikimedia/codex/v?style=for-the-badge)](https://packagist.org/packages/wikimedia/codex)
+[![Latest Unstable Version](https://poser.pugx.org/wikimedia/codex/v/unstable?style=for-the-badge)](https://packagist.org/packages/wikimedia/codex)
+[![License](https://poser.pugx.org/wikimedia/codex/license?style=for-the-badge)](https://packagist.org/packages/wikimedia/codex)
+[![PHP Version Require](https://poser.pugx.org/wikimedia/codex/require/php?style=for-the-badge)](https://packagist.org/packages/wikimedia/codex)
 
 ## Installation
 Use Composer to install the Codex library:
