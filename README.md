@@ -43,7 +43,7 @@ Here is a basic example of how to use the Codex library:
 <?php
 
 require 'vendor/autoload.php';
-use Wikimedia\Codex\Utility\Codex
+use Wikimedia\Codex\Utility\Codex;
 
 $codex = new Codex();
 
