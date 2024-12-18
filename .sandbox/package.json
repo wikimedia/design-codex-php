@@ -5,9 +5,9 @@
   "author": "Doğu Abaris",
   "license": "GPL-2.0-or-later",
   "dependencies": {
-    "@wikimedia/codex": "1.18.0",
-    "@wikimedia/codex-design-tokens": "1.18.0",
-    "@wikimedia/codex-icons": "1.18.0",
+    "@wikimedia/codex": "latest",
+    "@wikimedia/codex-design-tokens": "latest",
+    "@wikimedia/codex-icons": "latest",
     "prismjs": "^1.29.0"
   }
 }
