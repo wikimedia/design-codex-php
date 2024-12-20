@@ -85,9 +85,12 @@ class InfoChipRenderer implements IRenderer {
 
 		$chipData = [
 			'id' => $this->sanitizer->sanitizeText( $component->getId() ),
-			'status' => $this->sanitizer->sanitizeText( $component->getStatus() ),
+			'status' => $component->getStatus() ?
+				$this->sanitizer->sanitizeText( $component->getStatus() ) : null,
+			'showStatusIcon' => $component->getStatus() && $component->getStatus() !== 'notice',
 			'text' => $this->sanitizer->sanitizeText( $component->getText() ),
-			'icon' => $this->sanitizer->sanitizeText( $component->getIcon() ),
+			'icon' => $component->getIcon() ?
+				$this->sanitizer->sanitizeText( $component->getIcon() ) : null,
 			'attributes' => $this->resolve( $this->sanitizer->sanitizeAttributes( $component->getAttributes() ) ),
 		];
 

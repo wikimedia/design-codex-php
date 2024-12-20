@@ -156,6 +156,9 @@ class InfoChipBuilder {
 	 * @return $this Returns the InfoChip instance for method chaining.
 	 */
 	public function setIcon( ?string $icon ): self {
+		if ( $this->status === 'notice' && ( $icon !== null && trim( $icon ) === '' ) ) {
+			throw new InvalidArgumentException( 'Custom icons are only allowed for "notice" status.' );
+		}
 		$this->icon = $icon;
 
 		return $this;

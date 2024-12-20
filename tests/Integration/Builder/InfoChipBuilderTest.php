@@ -44,35 +44,38 @@ class InfoChipBuilderTest extends TestCase {
 	 */
 	public function templateDataProvider(): array {
 		return [
-			'success status with icon' => [
+			'test infoChip notice' => [
 				[
 					'text' => 'Some text',
-					'status' => 'notice',
-					'icon' => 'some-icon',
 					'attributes' => [ 'id' => 'some-id' ],
+					'status' => 'notice',
+					'icon' => null
 				],
 				'<div class="cdx-info-chip cdx-info-chip--notice" id="some-id">
-					<span class="cdx-info-chip--icon some-icon" aria-hidden="true"></span>
 					<span class="cdx-info-chip--text">Some text</span>
 				</div>',
 			],
-			'warning status without icon' => [
+			'test infoChip error' => [
 				[
 					'text' => 'Some text',
-					'status' => 'notice',
 					'attributes' => [ 'id' => 'some-id' ],
+					'status' => 'error',
+					'icon' => null,
 				],
-				'<div class="cdx-info-chip cdx-info-chip--notice" id="some-id">
+				'<div class="cdx-info-chip cdx-info-chip--error" id="some-id">
+					<span class="cdx-info-chip__icon"></span>
 					<span class="cdx-info-chip--text">Some text</span>
 				</div>',
 			],
 			'bad example with invalid status' => [
 				[
 					'text' => 'Some text',
-					'status' => 'foo',
 					'attributes' => [ 'id' => 'some-id' ],
+					'status' => 'foo',
+					'icon' => null,
 				],
 				'<div class="cdx-info-chip cdx-info-chip--foo" id="some-id">
+					<span class="cdx-info-chip__icon"></span>
 					<span class="cdx-info-chip--text">Some text</span>
 				</div>',
 			],
@@ -96,24 +99,20 @@ class InfoChipBuilderTest extends TestCase {
 		$infoChipRenderer = new InfoChipRenderer( $sanitizer, $templateParser );
 		$infoChip = new InfoChipBuilder( $infoChipRenderer );
 
-		if ( $data['status'] == "foo" ) {
-			// Ensure that invalid status arguments throw an exception
+		if ( $data['status'] == 'foo' ) {
 			$this->expectException( InvalidArgumentException::class );
-			$infoChip->setText( $data['text'] )
-				->setStatus( $data['status'] )
-				->setIcon( $data['icon'] ?? null )
-				->setAttributes( $data['attributes'] ?? [] );
-		} else {
-			$infoChip->setText( $data['text'] )
-				->setStatus( $data['status'] )
-				->setIcon( $data['icon'] ?? null )
-				->setAttributes( $data['attributes'] ?? [] );
-
-			$this->assertSame(
-				preg_replace( '/\s+/', ' ', trim( $expectedOutput ) ),
-				preg_replace( '/\s+/', ' ', trim( $infoChip->build()->getHtml() ) ),
-				'The getHtml() method should return the correct HTML output.'
-			);
 		}
+
+		$infoChip
+			->setText( $data['text'] )
+			->setStatus( $data['status'] ?? null )
+			->setIcon( $data['icon'] ?? null )
+			->setAttributes( $data['attributes'] ?? [] );
+
+		 $this->assertSame(
+			 preg_replace( '/\s+/', ' ', trim( $expectedOutput ) ),
+			 preg_replace( '/\s+/', ' ', trim( $infoChip->build()->getHtml() ) ),
+			 'The getHtml() method should return the correct HTML output.'
+		 );
 	}
 }
