@@ -15,6 +15,7 @@
 
 namespace Wikimedia\Codex\Tests\Integration\Builder;
 
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use Wikimedia\Codex\Builder\InfoChipBuilder;
 use Wikimedia\Codex\Infrastructure\CodexServices;
@@ -46,11 +47,11 @@ class InfoChipBuilderTest extends TestCase {
 			'success status with icon' => [
 				[
 					'text' => 'Some text',
-					'status' => 'some-status',
+					'status' => 'notice',
 					'icon' => 'some-icon',
 					'attributes' => [ 'id' => 'some-id' ],
 				],
-				'<div class="cdx-info-chip cdx-info-chip--some-status" id="some-id">
+				'<div class="cdx-info-chip cdx-info-chip--notice" id="some-id">
 					<span class="cdx-info-chip--icon some-icon" aria-hidden="true"></span>
 					<span class="cdx-info-chip--text">Some text</span>
 				</div>',
@@ -58,12 +59,22 @@ class InfoChipBuilderTest extends TestCase {
 			'warning status without icon' => [
 				[
 					'text' => 'Some text',
-					'status' => 'some-status',
+					'status' => 'notice',
 					'attributes' => [ 'id' => 'some-id' ],
 				],
-				'<div class="cdx-info-chip cdx-info-chip--some-status" id="some-id">
-                    <span class="cdx-info-chip--text">Some text</span>
-                </div>',
+				'<div class="cdx-info-chip cdx-info-chip--notice" id="some-id">
+					<span class="cdx-info-chip--text">Some text</span>
+				</div>',
+			],
+			'bad example with invalid status' => [
+				[
+					'text' => 'Some text',
+					'status' => 'foo',
+					'attributes' => [ 'id' => 'some-id' ],
+				],
+				'<div class="cdx-info-chip cdx-info-chip--foo" id="some-id">
+					<span class="cdx-info-chip--text">Some text</span>
+				</div>',
 			],
 		];
 	}
@@ -85,15 +96,24 @@ class InfoChipBuilderTest extends TestCase {
 		$infoChipRenderer = new InfoChipRenderer( $sanitizer, $templateParser );
 		$infoChip = new InfoChipBuilder( $infoChipRenderer );
 
-		$infoChip->setText( $data['text'] )
-			->setStatus( $data['status'] )
-			->setIcon( $data['icon'] ?? null )
-			->setAttributes( $data['attributes'] ?? [] );
+		if ( $data['status'] == "foo" ) {
+			// Ensure that invalid status arguments throw an exception
+			$this->expectException( InvalidArgumentException::class );
+			$infoChip->setText( $data['text'] )
+				->setStatus( $data['status'] )
+				->setIcon( $data['icon'] ?? null )
+				->setAttributes( $data['attributes'] ?? [] );
+		} else {
+			$infoChip->setText( $data['text'] )
+				->setStatus( $data['status'] )
+				->setIcon( $data['icon'] ?? null )
+				->setAttributes( $data['attributes'] ?? [] );
 
-		$this->assertSame(
-			preg_replace( '/\s+/', ' ', trim( $expectedOutput ) ),
-			preg_replace( '/\s+/', ' ', trim( $infoChip->build()->getHtml() ) ),
-			'The getHtml() method should return the correct HTML output.'
-		);
+			$this->assertSame(
+				preg_replace( '/\s+/', ' ', trim( $expectedOutput ) ),
+				preg_replace( '/\s+/', ' ', trim( $infoChip->build()->getHtml() ) ),
+				'The getHtml() method should return the correct HTML output.'
+			);
+		}
 	}
 }

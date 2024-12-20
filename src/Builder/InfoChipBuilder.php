@@ -39,6 +39,16 @@ use Wikimedia\Codex\Renderer\InfoChipRenderer;
 class InfoChipBuilder {
 
 	/**
+	 * Allowed status types for the InfoChip.
+	 */
+	private const ALLOWED_STATUS_TYPES = [
+		'notice',
+		'warning',
+		'error',
+		'success'
+	];
+
+	/**
 	 * The ID for the InfoChip.
 	 */
 	protected string $id = '';
@@ -49,9 +59,9 @@ class InfoChipBuilder {
 	protected string $text = '';
 
 	/**
-	 * The status type, determines chip's visual style. Options include 'notice', 'warning', 'error', and 'success'.
+	 * The status type, determines chip's visual style.
 	 */
-	protected string $status = '';
+	protected string $status = 'notice';
 
 	/**
 	 * The CSS class for a custom icon used in the InfoChip, applicable only for the 'notice' status.
@@ -126,6 +136,9 @@ class InfoChipBuilder {
 	 * @return $this Returns the InfoChip instance for method chaining.
 	 */
 	public function setStatus( string $status ): self {
+		if ( !in_array( $status, self::ALLOWED_STATUS_TYPES, true ) ) {
+			throw new InvalidArgumentException( "Invalid status: $status" );
+		}
 		$this->status = $status;
 
 		return $this;
