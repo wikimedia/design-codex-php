@@ -90,10 +90,11 @@ class RadioRenderer implements IRenderer {
 			'coreClass' => 'cdx-radio__label',
 			'labelText' => $this->sanitizer->sanitizeText( $label->getLabelText() ),
 			'optionalFlag' => $label->isOptional(),
+			'isVisuallyHidden' => $label->isVisuallyHidden(),
 			'inputId' => $component->getInputId(),
 			'description' => $this->sanitizer->sanitizeText( $label->getDescription() ),
 			'descriptionId' => $this->sanitizer->sanitizeText( $label->getDescriptionId() ?? '' ),
-			'disabled' => $label->isDisabled(),
+			'isDisabled' => $label->isDisabled(),
 			'iconClass' => $this->sanitizer->sanitizeText( $label->getIconClass() ?? '' ),
 			'attributes' => $this->resolve(
 				$this->sanitizer->sanitizeAttributes( $label->getAttributes() )

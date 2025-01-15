@@ -97,10 +97,10 @@ class FieldRenderer implements IRenderer {
 			'inputId' => $this->sanitizer->sanitizeText( $label->getInputId() ),
 			'labelText' => $this->sanitizer->sanitizeText( $label->getLabelText() ),
 			'optionalFlag' => $label->isOptional(),
+			'isVisuallyHidden' => $label->isVisuallyHidden(),
 			'description' => $this->sanitizer->sanitizeText( $label->getDescription() ),
 			'descriptionId' => $this->sanitizer->sanitizeText( $label->getDescriptionId() ),
 			'icon' => $this->sanitizer->sanitizeText( $label->getIconClass() ),
-			'isVisuallyHidden' => $label->isVisuallyHidden(),
 			'isDisabled' => $label->isDisabled(),
 			'attributes' =>
 				$this->resolve( $this->sanitizer->sanitizeAttributes( $label->getAttributes() )
