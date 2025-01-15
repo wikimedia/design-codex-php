@@ -143,6 +143,7 @@ class Table {
 	 * @param string $caption The caption for the table.
 	 * @param bool $hideCaption Whether the caption is hidden.
 	 * @param array $columns Array of columns.
+	 * @param-taint $columns exec_html Callers are responsible for escaping
 	 * @param array $data Array of row data.
 	 * @param bool $useRowHeaders Whether to use row headers.
 	 * @param ?string $headerContent The header content.

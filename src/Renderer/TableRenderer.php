@@ -170,7 +170,7 @@ class TableRenderer implements IRenderer {
 		foreach ( $table->getData() as $row ) {
 			$rowData = [];
 			foreach ( $table->getColumns() as $column ) {
-				$cellData = isset( $row[$column['id']] ) ? $this->sanitizer->sanitizeText( $row[$column['id']] ) : '';
+				$cellData = $row[$column['id']] ?? '';
 				$align = isset( $column['align'] ) ? $this->sanitizer->sanitizeText( $column['align'] ) : '';
 				$rowData[] = [
 					'cellData' => $cellData,

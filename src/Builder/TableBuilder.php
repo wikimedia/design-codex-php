@@ -212,6 +212,7 @@ class TableBuilder {
 	 * @since 0.1.0
 	 * @param array $columns An array of columns, where each column is an associative array containing column
 	 *                       attributes.
+	 * @param-taint $columns exec_html Callers are responsible for escaping.
 	 * @return $this Returns the Table instance for method chaining.
 	 */
 	public function setColumns( array $columns ): self {
