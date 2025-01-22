@@ -1,5 +1,17 @@
 # Codex PHP release notes
 
+## Version 0.4.0
+
+* README.md: Fix missing semicolon in code example
+* InfoChip: Add icon handling support and status-based examples
+* sandbox/package.json: Update Codex dependencies to use latest version
+* Table: Allow raw HTML content in columns
+* i18n: Import latest Codex message updates from MediaWiki
+* Renderer: Fix usage of visually hidden labels in renderers
+* InfoChipBuilder: Add status validation for InfoChip statuses
+* README.md: Fix badge URLs to use HTTPS instead of HTTP
+* build: Updating mediawiki/mediawiki-phan-config to 0.15.1
+
 ## Version 0.3.0
 
 * .gitattributes: Update and expand
