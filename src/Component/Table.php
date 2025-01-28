@@ -147,6 +147,7 @@ class Table {
 	 * @param array $data Array of row data.
 	 * @param bool $useRowHeaders Whether to use row headers.
 	 * @param ?string $headerContent The header content.
+	 * @param-taint $headerContent exec_html Callers are responsible for escaping
 	 * @param array $sort Array of sorting configurations.
 	 * @param ?string $currentSortColumn The current sorted column.
 	 * @param string $currentSortDirection The current sort direction.

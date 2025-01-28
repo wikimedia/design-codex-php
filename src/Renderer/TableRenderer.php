@@ -117,7 +117,7 @@ class TableRenderer implements IRenderer {
 			'columns' => $this->prepareColumns( $component ),
 			'rows' => $this->prepareRows( $component ),
 			'hideCaption' => $component->getHideCaption(),
-			'headerContent' => $this->sanitizer->sanitizeText( $component->getHeaderContent() ?? '' ),
+			'headerContent' => $component->getHeaderContent(),
 			'hasData' => (bool)count( $component->getData() ),
 			'pager' => $pager ? $pager->getHtml() : '',
 			'attributes' => $this->resolve( $this->sanitizer->sanitizeAttributes( $component->getAttributes() ) ),

@@ -410,6 +410,7 @@ class TableBuilder {
 	 *
 	 * @since 0.1.0
 	 * @param string $headerContent The content to be displayed in the table header.
+	 * @param-taint $headerContent exec_html Callers are responsible for escaping.
 	 * @return $this Returns the Table instance for method chaining.
 	 */
 	public function setHeaderContent( string $headerContent ): self {
