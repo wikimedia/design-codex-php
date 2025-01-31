@@ -155,7 +155,7 @@ class ParamValidator {
 				throw new UnexpectedValueException( "Too many values for parameter '$name'. Limit: $limit" );
 			}
 
-			return array_map( fn ( $v ) => $typeDef( $name, $v, $settings, $options ), $value );
+			return array_map( static fn ( $v ) => $typeDef( $name, $v, $settings, $options ), $value );
 		}
 
 		return $typeDef( $name, $value, $settings, $options );
