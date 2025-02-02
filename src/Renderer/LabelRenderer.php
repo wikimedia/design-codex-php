@@ -87,7 +87,7 @@ class LabelRenderer implements IRenderer {
 			'id' => $component->getId(),
 			'isLegend' => $component->isLegend(),
 			'inputId' => $this->sanitizer->sanitizeText( $component->getInputId() ),
-			'labelText' => $this->sanitizer->sanitizeText( $component->getLabelText() ),
+			'labelText' => $component->getLabelText(),
 			'optionalFlag' => $component->isOptional(),
 			'description' => $this->sanitizer->sanitizeText( $component->getDescription() ),
 			'descriptionId' => $component->getDescriptionId(),

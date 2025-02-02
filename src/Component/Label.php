@@ -100,6 +100,7 @@ class Label {
 	 * Initializes a Label instance with the specified properties.
 	 *
 	 * @param string $labelText The text displayed inside the label.
+	 * @param-taint $labelText exec_html Callers are responsible for escaping
 	 * @param string $inputId The ID of the input/control this label is associated with.
 	 * @param bool $optional Indicates whether the associated input field is optional.
 	 * @param bool $visuallyHidden Indicates whether the label should be visually hidden.

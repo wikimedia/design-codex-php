@@ -116,6 +116,7 @@ class LabelBuilder {
 	 *
 	 * @since 0.1.0
 	 * @param string $labelText The text of the label.
+	 * @param-taint $labelText exec_html Callers are responsible for escaping.
 	 * @return $this Returns the Label instance for method chaining.
 	 */
 	public function setLabelText( string $labelText ): self {
