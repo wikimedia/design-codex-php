@@ -1,5 +1,11 @@
 # Codex PHP release notes
 
+## Version 0.5.0
+
+* Table: Allow raw HTML content in header
+* Label: Do not sanitize label text and add taint annotations
+* build: Updating mediawiki/mediawiki-codesniffer to 46.0.0
+
 ## Version 0.4.0
 
 * README.md: Fix missing semicolon in code example
