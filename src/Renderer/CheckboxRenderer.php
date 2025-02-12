@@ -88,7 +88,7 @@ class CheckboxRenderer implements IRenderer {
 		$labelData = [
 			'id' => $this->sanitizer->sanitizeText( $label->getId() ),
 			'coreClass' => 'cdx-checkbox__label',
-			'labelText' => $this->sanitizer->sanitizeText( $label->getLabelText() ),
+			'labelText' => $label->getLabelText(),
 			'optionalFlag' => $label->isOptional(),
 			'isVisuallyHidden' => $label->isVisuallyHidden(),
 			'inputId' => $component->getInputId(),

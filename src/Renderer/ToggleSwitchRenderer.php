@@ -83,7 +83,7 @@ class ToggleSwitchRenderer implements IRenderer {
 		$labelData = [
 			'id' => $this->sanitizer->sanitizeText( $label->getId() ),
 			'coreClass' => 'cdx-toggle-switch__label',
-			'labelText' => $this->sanitizer->sanitizeText( $label->getLabelText() ),
+			'labelText' => $label->getLabelText(),
 			'optionalFlag' => $label->isOptional(),
 			'isVisuallyHidden' => $label->isVisuallyHidden(),
 			'inputId' => $component->getInputId(),

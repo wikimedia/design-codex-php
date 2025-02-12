@@ -95,7 +95,7 @@ class FieldRenderer implements IRenderer {
 			'id' => $this->sanitizer->sanitizeText( $label->getId() ),
 			'isLegend' => $component->isFieldset(),
 			'inputId' => $this->sanitizer->sanitizeText( $label->getInputId() ),
-			'labelText' => $this->sanitizer->sanitizeText( $label->getLabelText() ),
+			'labelText' => $label->getLabelText(),
 			'optionalFlag' => $label->isOptional(),
 			'isVisuallyHidden' => $label->isVisuallyHidden(),
 			'description' => $this->sanitizer->sanitizeText( $label->getDescription() ),
