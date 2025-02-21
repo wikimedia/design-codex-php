@@ -1,5 +1,9 @@
 # Codex PHP release notes
 
+## Version 0.6.0
+
+* Do not sanitize label text in renderer files
+
 ## Version 0.5.0
 
 * Table: Allow raw HTML content in header
