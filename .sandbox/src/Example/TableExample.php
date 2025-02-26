@@ -287,7 +287,7 @@ class TableExample {
 		int $startOrdinal,
 		int $endOrdinal
 	): string {
-		return $codex
+		$tableHtml = $codex
 			->Table()
 			->setCaption( "Articles" )
 			->setHideCaption( false )
@@ -322,6 +322,10 @@ class TableExample {
 			] )
 			->build()
 			->getHtml();
+
+		$formHtml = '<form method="get">' . $tableHtml . '</form>';
+
+		return $codex->htmlSnippet()->setContent( $formHtml )->build();
 	}
 
 	/**
