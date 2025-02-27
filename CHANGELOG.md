@@ -1,5 +1,9 @@
 # Codex PHP release notes
 
+## Version 0.7.0
+* table.mustache: Remove <form> wrapper from template
+* .gitattributes: Update and simplify
+
 ## Version 0.6.0
 
 * Do not sanitize label text in renderer files
