@@ -42,7 +42,7 @@ class AccordionBuilderTest extends TestCase {
 	 * @since 0.1.0
 	 * @return array
 	 */
-	public function templateDataProvider(): array {
+	public static function templateDataProvider(): array {
 		return [
 			'basic accordion closed with text content' => [
 				[
