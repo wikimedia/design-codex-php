@@ -155,7 +155,7 @@ class TemplateParser {
 			],
 			'basedir' => $this->templateDir,
 			'fileext' => '.mustache',
-			'partialresolver' => function ( $cx, $partialName ) use ( $templateName, &$files ) {
+			'partialresolver' => function ( $cx, $partialName ) use ( $templateName ) {
 				$filename = "$this->templateDir/$partialName.mustache";
 				if ( !file_exists( $filename ) ) {
 					throw new RuntimeException(
@@ -180,8 +180,6 @@ class TemplateParser {
 						)
 					);
 				}
-
-				$files[] = $filename;
 
 				return $fileContents;
 			},
