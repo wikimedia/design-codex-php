@@ -28,7 +28,6 @@ use Wikimedia\Codex\Builder\HtmlSnippetBuilder;
 use Wikimedia\Codex\Builder\InfoChipBuilder;
 use Wikimedia\Codex\Builder\LabelBuilder;
 use Wikimedia\Codex\Builder\MessageBuilder;
-use Wikimedia\Codex\Builder\OptionBuilder;
 use Wikimedia\Codex\Builder\PagerBuilder;
 use Wikimedia\Codex\Builder\ProgressBarBuilder;
 use Wikimedia\Codex\Builder\RadioBuilder;
@@ -160,16 +159,6 @@ class Codex {
 	 */
 	public function message(): MessageBuilder {
 		return new MessageBuilder( $this->services->getService( 'MessageRenderer' ) );
-	}
-
-	/**
-	 * Resolves and returns the Option builder.
-	 *
-	 * @since 0.1.0
-	 * @return OptionBuilder The Option builder instance.
-	 */
-	public function option(): OptionBuilder {
-		return new OptionBuilder();
 	}
 
 	/**

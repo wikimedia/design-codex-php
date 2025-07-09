@@ -25,27 +25,6 @@
 use GuzzleHttp\Psr7\ServerRequest;
 use Krinkle\Intuition\Intuition;
 use MediaWiki\Context\RequestContext;
-use Wikimedia\Codex\Builder\AccordionBuilder;
-use Wikimedia\Codex\Builder\ButtonBuilder;
-use Wikimedia\Codex\Builder\CardBuilder;
-use Wikimedia\Codex\Builder\CheckboxBuilder;
-use Wikimedia\Codex\Builder\FieldBuilder;
-use Wikimedia\Codex\Builder\HtmlSnippetBuilder;
-use Wikimedia\Codex\Builder\InfoChipBuilder;
-use Wikimedia\Codex\Builder\LabelBuilder;
-use Wikimedia\Codex\Builder\MessageBuilder;
-use Wikimedia\Codex\Builder\OptionBuilder;
-use Wikimedia\Codex\Builder\PagerBuilder;
-use Wikimedia\Codex\Builder\ProgressBarBuilder;
-use Wikimedia\Codex\Builder\RadioBuilder;
-use Wikimedia\Codex\Builder\SelectBuilder;
-use Wikimedia\Codex\Builder\TabBuilder;
-use Wikimedia\Codex\Builder\TableBuilder;
-use Wikimedia\Codex\Builder\TabsBuilder;
-use Wikimedia\Codex\Builder\TextAreaBuilder;
-use Wikimedia\Codex\Builder\TextInputBuilder;
-use Wikimedia\Codex\Builder\ThumbnailBuilder;
-use Wikimedia\Codex\Builder\ToggleSwitchBuilder;
 use Wikimedia\Codex\Contract\ILocalizer;
 use Wikimedia\Codex\Localization\IntuitionLocalization;
 use Wikimedia\Codex\Localization\MediaWikiLocalization;
@@ -76,18 +55,10 @@ use Wikimedia\Services\ServiceContainer;
 /** @phpcs-require-sorted-array */
 return [
 
-	'AccordionBuilder' => static function ( ServiceContainer $services ) {
-		return new AccordionBuilder( $services->getService( 'AccordionRenderer' ) );
-	},
-
 	'AccordionRenderer' => static function ( ServiceContainer $services ) {
 		return new AccordionRenderer(
 			$services->getService( 'Sanitizer' ), $services->getService( 'TemplateParser' ),
 		);
-	},
-
-	'ButtonBuilder' => static function ( ServiceContainer $services ) {
-		return new ButtonBuilder( $services->getService( 'ButtonRenderer' ) );
 	},
 
 	'ButtonRenderer' => static function ( ServiceContainer $services ) {
@@ -96,18 +67,10 @@ return [
 		);
 	},
 
-	'CardBuilder' => static function ( ServiceContainer $services ) {
-		return new CardBuilder( $services->getService( 'CardRenderer' ) );
-	},
-
 	'CardRenderer' => static function ( ServiceContainer $services ) {
 		return new CardRenderer(
 			$services->getService( 'Sanitizer' ), $services->getService( 'TemplateParser' ),
 		);
-	},
-
-	'CheckboxBuilder' => static function ( ServiceContainer $services ) {
-		return new CheckboxBuilder( $services->getService( 'CheckboxRenderer' ) );
 	},
 
 	'CheckboxRenderer' => static function ( ServiceContainer $services ) {
@@ -116,32 +79,16 @@ return [
 		);
 	},
 
-	'FieldBuilder' => static function ( ServiceContainer $services ) {
-		return new FieldBuilder( $services->getService( 'FieldRenderer' ) );
-	},
-
 	'FieldRenderer' => static function ( ServiceContainer $services ) {
 		return new FieldRenderer(
 			$services->getService( 'Sanitizer' ), $services->getService( 'TemplateParser' ),
 		);
 	},
 
-	'HtmlSnippetBuilder' => static function () {
-		return new HtmlSnippetBuilder();
-	},
-
-	'InfoChipBuilder' => static function ( ServiceContainer $services ) {
-		return new InfoChipBuilder( $services->getService( 'InfoChipRenderer' ) );
-	},
-
 	'InfoChipRenderer' => static function ( ServiceContainer $services ) {
 		return new InfoChipRenderer(
 			$services->getService( 'Sanitizer' ), $services->getService( 'TemplateParser' ),
 		);
-	},
-
-	'LabelBuilder' => static function ( ServiceContainer $services ) {
-		return new LabelBuilder( $services->getService( 'LabelRenderer' ) );
 	},
 
 	'LabelRenderer' => static function ( ServiceContainer $services ) {
@@ -161,22 +108,10 @@ return [
 		}
 	},
 
-	'MessageBuilder' => static function ( ServiceContainer $services ) {
-		return new MessageBuilder( $services->getService( 'MessageRenderer' ) );
-	},
-
 	'MessageRenderer' => static function ( ServiceContainer $services ) {
 		return new MessageRenderer(
 			$services->getService( 'Sanitizer' ), $services->getService( 'TemplateParser' ),
 		);
-	},
-
-	'OptionBuilder' => static function () {
-		return new OptionBuilder();
-	},
-
-	'PagerBuilder' => static function ( ServiceContainer $services ) {
-		return new PagerBuilder( $services->getService( 'PagerRenderer' ) );
 	},
 
 	'PagerRenderer' => static function ( ServiceContainer $services ) {
@@ -198,18 +133,10 @@ return [
 		return new ParamValidatorCallbacks( $request->getQueryParams() );
 	},
 
-	'ProgressBarBuilder' => static function ( ServiceContainer $services ) {
-		return new ProgressBarBuilder( $services->getService( 'ProgressBarRenderer' ) );
-	},
-
 	'ProgressBarRenderer' => static function ( ServiceContainer $services ) {
 		return new ProgressBarRenderer(
 			$services->getService( 'Sanitizer' ), $services->getService( 'TemplateParser' ),
 		);
-	},
-
-	'RadioBuilder' => static function ( ServiceContainer $services ) {
-		return new RadioBuilder( $services->getService( 'RadioRenderer' ) );
 	},
 
 	'RadioRenderer' => static function ( ServiceContainer $services ) {
@@ -222,22 +149,10 @@ return [
 		return new Sanitizer();
 	},
 
-	'SelectBuilder' => static function ( ServiceContainer $services ) {
-		return new SelectBuilder( $services->getService( 'SelectRenderer' ) );
-	},
-
 	'SelectRenderer' => static function ( ServiceContainer $services ) {
 		return new SelectRenderer(
 			$services->getService( 'Sanitizer' ), $services->getService( 'TemplateParser' ),
 		);
-	},
-
-	'TabBuilder' => static function () {
-		return new TabBuilder();
-	},
-
-	'TableBuilder' => static function ( ServiceContainer $services ) {
-		return new TableBuilder( $services->getService( 'TableRenderer' ) );
 	},
 
 	'TableRenderer' => static function ( ServiceContainer $services ) {
@@ -247,10 +162,6 @@ return [
 			$services->getService( 'ParamValidator' ),
 			$services->getService( 'ParamValidatorCallbacks' )
 		);
-	},
-
-	'TabsBuilder' => static function ( ServiceContainer $services ) {
-		return new TabsBuilder( $services->getService( 'TabsRenderer' ) );
 	},
 
 	'TabsRenderer' => static function ( ServiceContainer $services ) {
@@ -269,18 +180,10 @@ return [
 		return new TemplateParser( $templatePath, $localization );
 	},
 
-	'TextAreaBuilder' => static function ( ServiceContainer $services ) {
-		return new TextAreaBuilder( $services->getService( 'TextAreaRenderer' ) );
-	},
-
 	'TextAreaRenderer' => static function ( ServiceContainer $services ) {
 		return new TextAreaRenderer(
 			$services->getService( 'Sanitizer' ), $services->getService( 'TemplateParser' )
 		);
-	},
-
-	'TextInputBuilder' => static function ( ServiceContainer $services ) {
-		return new TextInputBuilder( $services->getService( 'TextInputRenderer' ) );
 	},
 
 	'TextInputRenderer' => static function ( ServiceContainer $services ) {
@@ -289,18 +192,10 @@ return [
 		);
 	},
 
-	'ThumbnailBuilder' => static function ( ServiceContainer $services ) {
-		return new ThumbnailBuilder( $services->getService( 'ThumbnailRenderer' ) );
-	},
-
 	'ThumbnailRenderer' => static function ( ServiceContainer $services ) {
 		return new ThumbnailRenderer(
 			$services->getService( 'Sanitizer' ), $services->getService( 'TemplateParser' ),
 		);
-	},
-
-	'ToggleSwitchBuilder' => static function ( ServiceContainer $services ) {
-		return new ToggleSwitchBuilder( $services->getService( 'ToggleSwitchRenderer' ) );
 	},
 
 	'ToggleSwitchRenderer' => static function ( ServiceContainer $services ) {
