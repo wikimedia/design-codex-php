@@ -181,7 +181,7 @@ class PagerRenderer implements IRenderer {
 			$options[] = [
 				'value' => $this->sanitizer->sanitizeText( (string)$size ),
 				'text' => $this->localizer->msg(
-					'cdx-table-pager-items-per-page-current', [ 'variables' => [ $size ] ]
+					'cdx-table-pager-items-per-page-current', $size
 				),
 				'selected' => ( $size == $currentLimit ),
 			];

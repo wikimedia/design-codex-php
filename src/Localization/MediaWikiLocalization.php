@@ -62,10 +62,10 @@ class MediaWikiLocalization implements ILocalizer {
 	 * allow dynamic values to be inserted into the message.
 	 *
 	 * @param string $key The message key.
-	 * @param array $params Parameters for message replacements.
+	 * @param string ...$params Parameters for message replacements.
 	 * @return string The localized message.
 	 */
-	public function msg( string $key, array $params = [] ): string {
+	public function msg( string $key, ...$params ): string {
 		return $this->context->msg( $key, ...$params )->text();
 	}
 }

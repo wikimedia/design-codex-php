@@ -47,8 +47,8 @@ interface ILocalizer {
 	 *
 	 * @since 0.1.0
 	 * @param string $key The message key.
-	 * @param array $params Optional parameters for placeholders in the message.
+	 * @param string ...$params Optional parameters for placeholders in the message.
 	 * @return string The localized message.
 	 */
-	public function msg( string $key, array $params = [] ): string;
+	public function msg( string $key, ...$params ): string;
 }

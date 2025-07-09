@@ -134,7 +134,7 @@ class TemplateParser {
 						$params[] = trim( $part );
 					}
 
-					$message = $this->localizer->msg( $key, [ 'variables' => $params ] );
+					$message = $this->localizer->msg( $key, ...$params );
 
 					return htmlspecialchars( $message, ENT_QUOTES, 'UTF-8' );
 				},
