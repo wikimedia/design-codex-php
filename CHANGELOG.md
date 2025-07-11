@@ -1,5 +1,12 @@
 # Codex PHP release notes
 
+## Version 0.7.1
+* tests: Make PHPUnit data provider static
+* build: Updating mediawiki/mediawiki-codesniffer to 47.0.0
+* Remove unused $files from TemplateParser
+* Localization: Make MW i18n actually work
+* build: Updating mediawiki/mediawiki-phan-config to 0.16.0
+
 ## Version 0.7.0
 * table.mustache: Remove <form> wrapper from template
 * .gitattributes: Update and simplify
