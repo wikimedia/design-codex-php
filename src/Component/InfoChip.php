@@ -95,7 +95,7 @@ class InfoChip {
 	/**
 	 * Get the InfoChip's HTML ID attribute.
 	 *
-	 * This method returns the ID that is assigned to the InfoChip element.
+	 * This method returns the ID assigned to the InfoChip element.
 	 * The ID can be used for targeting the chip with JavaScript, CSS, or for accessibility purposes.
 	 *
 	 * @since 0.1.0
@@ -108,7 +108,7 @@ class InfoChip {
 	/**
 	 * Get the text content of the info chip.
 	 *
-	 * This method returns the text that is displayed inside the info chip.
+	 * This method returns the text displayed inside the info chip.
 	 * The text provides the primary information that the chip conveys.
 	 *
 	 * @since 0.1.0

@@ -108,7 +108,7 @@ class ProgressBar {
 	/**
 	 * Get the ARIA label for the progress bar.
 	 *
-	 * This method returns the ARIA label that is used for the progress bar, which is important for accessibility.
+	 * This method returns the ARIA label used for the progress bar, which is important for accessibility.
 	 * The label provides a descriptive name for the progress bar, helping users with assistive technologies
 	 * to understand its purpose.
 	 *

@@ -45,7 +45,7 @@ class HtmlSnippet {
 	/**
 	 * Constructor for the HtmlSnippet component.
 	 *
-	 * Initializes a HtmlSnippet instance with the specified content and attributes.
+	 * Initializes an instance of HtmlSnippet with the specified content and attributes.
 	 *
 	 * @param string $content The safe HTML content to be rendered.
 	 * @param-taint $content exec_html Callers are responsible for escaping.
@@ -69,11 +69,11 @@ class HtmlSnippet {
 	}
 
 	/**
-	 * Retrieve additional HTML attributes for the the html snippet element.
+	 * Retrieve additional HTML attributes for the HTML snippet element.
 	 *
 	 * This method returns an associative array of additional HTML attributes that will be applied
-	 * to the html snippet element. These attributes can be used to enhance the appearance, accessibility,
-	 *  or functionality of the html snippet element.
+	 * to the HTML snippet element. These attributes can be used to enhance the appearance, accessibility,
+	 *  or functionality of the HTML snippet element.
 	 *
 	 * @since 0.1.0
 	 * @return array The additional attributes as an array.

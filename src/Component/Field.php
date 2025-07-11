@@ -95,7 +95,7 @@ class Field {
 	/**
 	 * Get the fieldset or div's HTML ID attribute.
 	 *
-	 * This method returns the ID that is assigned to the fieldset or div element. The ID is useful for targeting
+	 * This method returns the ID assigned to the fieldset or div element. The ID is useful for targeting
 	 * the field with JavaScript, CSS, or for accessibility purposes.
 	 *
 	 * @since 0.1.0

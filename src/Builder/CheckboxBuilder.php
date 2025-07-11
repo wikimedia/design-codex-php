@@ -149,7 +149,7 @@ class CheckboxBuilder {
 	/**
 	 * Set the value for the checkbox input.
 	 *
-	 * The value is the data that is submitted when the checkbox is checked and the form is submitted.
+	 * The value is the submitted data when the checkbox is checked and the form is submitted.
 	 * This is particularly important when dealing with groups of checkboxes where each needs a distinct value.
 	 *
 	 * @since 0.1.0

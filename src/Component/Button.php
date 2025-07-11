@@ -135,7 +135,7 @@ class Button {
 	/**
 	 * Get the button's HTML ID attribute.
 	 *
-	 * This method returns the ID that is assigned to the button element.
+	 * This method returns the ID assigned to the button element.
 	 * The ID is useful for targeting the button with JavaScript, CSS, or accessibility features.
 	 *
 	 * @since 0.1.0
@@ -148,7 +148,7 @@ class Button {
 	/**
 	 * Get the label displayed on the button.
 	 *
-	 * This method returns the text label that is displayed on the button. The label provides context
+	 * This method returns the text label displayed on the button. The label provides context
 	 * to users about the button's action, ensuring that it is understandable and accessible.
 	 *
 	 * @since 0.1.0

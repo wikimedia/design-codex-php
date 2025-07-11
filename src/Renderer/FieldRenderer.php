@@ -102,9 +102,7 @@ class FieldRenderer implements IRenderer {
 			'descriptionId' => $this->sanitizer->sanitizeText( $label->getDescriptionId() ),
 			'icon' => $this->sanitizer->sanitizeText( $label->getIconClass() ),
 			'isDisabled' => $label->isDisabled(),
-			'attributes' =>
-				$this->resolve( $this->sanitizer->sanitizeAttributes( $label->getAttributes() )
-				),
+			'attributes' => $this->resolve( $this->sanitizer->sanitizeAttributes( $label->getAttributes() ) ),
 		];
 
 		$fieldData = [

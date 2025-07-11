@@ -93,7 +93,7 @@ class TableRenderer implements IRenderer {
 	}
 
 	/**
-	 * Renders the HTML for an table component.
+	 * Renders the HTML for a table component.
 	 *
 	 * Uses the provided Table component to generate HTML markup adhering to the Codex design system.
 	 *

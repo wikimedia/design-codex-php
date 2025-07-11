@@ -150,7 +150,7 @@ class RadioBuilder {
 	/**
 	 * Set the value for the radio input.
 	 *
-	 * The value is the data that is submitted when the radio button is selected and the form is submitted.
+	 * The value is the data submitted when the radio button is selected and the form is submitted.
 	 * This is particularly important when dealing with groups of radio buttons where each needs a distinct value.
 	 *
 	 * @since 0.1.0

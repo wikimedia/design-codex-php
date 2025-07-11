@@ -144,7 +144,7 @@ class Label {
 	/**
 	 * Get the text displayed inside the label.
 	 *
-	 * This method returns the text that is displayed inside the label. The label text provides
+	 * This method returns the text displayed inside the label. The label text provides
 	 * a descriptive title for the associated input field.
 	 *
 	 * @since 0.1.0

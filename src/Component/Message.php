@@ -111,7 +111,7 @@ class Message {
 	/**
 	 * Get the Message's HTML ID attribute.
 	 *
-	 * This method returns the ID that is assigned to the Message element.
+	 * This method returns the ID assigned to the Message element.
 	 * The ID can be used for targeting the message with JavaScript, CSS, or for accessibility purposes.
 	 *
 	 * @since 0.1.0
@@ -124,7 +124,7 @@ class Message {
 	/**
 	 * Get the content of the message box.
 	 *
-	 * This method returns the text or HTML content that is displayed inside the message box.
+	 * This method returns the text or HTML content displayed inside the message box.
 	 * The content provides the primary feedback or information that the message conveys to the user.
 	 *
 	 * @since 0.1.0
@@ -163,7 +163,7 @@ class Message {
 	/**
 	 * Get the heading of the message box.
 	 *
-	 * This method returns the heading text that is prominently displayed at the top of the message content.
+	 * This method returns the heading text prominently displayed at the top of the message content.
 	 * The heading helps to quickly convey the primary purpose or topic of the message.
 	 *
 	 * @since 0.1.0

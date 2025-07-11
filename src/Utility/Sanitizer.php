@@ -55,7 +55,7 @@ class Sanitizer {
 	/**
 	 * Sanitize an array of HTML attributes.
 	 *
-	 * This method escapes both the keys and values of an associative array of attributes
+	 * This method escapes both the keys and values of an associative attribute array
 	 * to prevent XSS attacks. It should be used for any attributes that will be rendered
 	 * in HTML elements.
 	 *

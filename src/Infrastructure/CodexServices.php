@@ -38,7 +38,7 @@ class CodexServices extends ServiceContainer {
 	/**
 	 * Instance of CodexServices (singleton)
 	 */
-	private static ?CodexServices $instance = null;
+	private static ?self $instance = null;
 
 	/**
 	 * Private constructor to initialize the DI container, and load service wiring.
@@ -56,7 +56,7 @@ class CodexServices extends ServiceContainer {
 	 */
 	private function loadServiceWiring(): void {
 		$wiring = require __DIR__ . '/ServiceWiring.php';
-		parent::applyWiring( $wiring );
+		$this->applyWiring( $wiring );
 	}
 
 	/**

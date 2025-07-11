@@ -96,9 +96,7 @@ class CheckboxRenderer implements IRenderer {
 			'descriptionId' => $this->sanitizer->sanitizeText( $label->getDescriptionId() ?? '' ),
 			'isDisabled' => $label->isDisabled(),
 			'iconClass' => $this->sanitizer->sanitizeText( $label->getIconClass() ?? '' ),
-			'attributes' => $this->resolve(
-				$this->sanitizer->sanitizeAttributes( $label->getAttributes() )
-			),
+			'attributes' => $this->resolve( $this->sanitizer->sanitizeAttributes( $label->getAttributes() ) ),
 		];
 
 		$checkboxData = [

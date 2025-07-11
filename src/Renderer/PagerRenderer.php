@@ -102,7 +102,7 @@ class PagerRenderer implements IRenderer {
 	 * @param TemplateParser $templateParser The template parser instance for rendering Mustache templates.
 	 * @param ILocalizer $localizer The localizer instance for supporting translations and localization.
 	 * @param ParamValidator $paramValidator The parameter validator instance for validating query parameters.
-	 * @param ParamValidatorCallbacks $paramValidatorCallbacks The callbacks instance for accessing validated
+	 * @param ParamValidatorCallbacks $paramValidatorCallbacks The callback instance for accessing validated
 	 *                                                         parameter values.
 	 */
 	public function __construct(
@@ -134,17 +134,6 @@ class PagerRenderer implements IRenderer {
 			throw new InvalidArgumentException( "Expected instance of Pager, got " . get_class( $component ) );
 		}
 
-		$selectHtml = $this->buildSelect( $component );
-
-		$buttons = [
-			'firstButton' => $this->buildButtonData( $component, PagerBuilder::ACTION_FIRST ),
-			'prevButton' => $this->buildButtonData( $component, PagerBuilder::ACTION_PREVIOUS ),
-			'nextButton' => $this->buildButtonData( $component, PagerBuilder::ACTION_NEXT ),
-			'lastButton' => $this->buildButtonData( $component, PagerBuilder::ACTION_LAST ),
-		];
-
-		$hiddenFields = $this->buildHiddenFields();
-
 		$pagerData = [
 			'id' => $this->sanitizer->sanitizeText( $component->getId() ),
 			'position' => $this->sanitizer->sanitizeText( $component->getPosition() ),
@@ -153,12 +142,12 @@ class PagerRenderer implements IRenderer {
 			'totalResults' => $component->getTotalResults(),
 			'isPending' => $component->getEndOrdinal() < $component->getStartOrdinal(),
 			'hasTotalResults' => $component->getTotalResults() > 0,
-			'select' => $selectHtml,
-			'firstButton' => $buttons['firstButton'],
-			'prevButton' => $buttons['prevButton'],
-			'nextButton' => $buttons['nextButton'],
-			'lastButton' => $buttons['lastButton'],
-			'hiddenFields' => $hiddenFields,
+			'select' => $this->buildSelect( $component ),
+			'firstButton' => $this->buildButtonData( $component, PagerBuilder::ACTION_FIRST ),
+			'prevButton' => $this->buildButtonData( $component, PagerBuilder::ACTION_PREVIOUS ),
+			'nextButton' => $this->buildButtonData( $component, PagerBuilder::ACTION_NEXT ),
+			'lastButton' => $this->buildButtonData( $component, PagerBuilder::ACTION_LAST ),
+			'hiddenFields' => $this->buildHiddenFields(),
 		];
 
 		return $this->templateParser->processTemplate( 'pager', $pagerData );

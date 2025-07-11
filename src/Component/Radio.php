@@ -166,11 +166,11 @@ class Radio {
 	/**
 	 * Get the value associated with the radio input.
 	 *
-	 * This method returns the value that is submitted when the radio button is selected and the form is submitted.
+	 * This method returns the value submitted when the radio button is selected and the form is submitted.
 	 * This is particularly important when dealing with groups of radio buttons where each needs a distinct value.
 	 *
 	 * @since 0.1.0
-	 * @return string The value for the radio input.
+	 * @return string The value of the radio input.
 	 */
 	public function getValue(): string {
 		return $this->value;

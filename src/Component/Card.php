@@ -119,7 +119,7 @@ class Card {
 	/**
 	 * Get the card's HTML ID attribute.
 	 *
-	 * This method returns the ID that is assigned to the card element. The ID is useful for targeting
+	 * This method returns the ID assigned to the card element. The ID is useful for targeting
 	 * the card with JavaScript, CSS, or for accessibility purposes.
 	 *
 	 * @since 0.1.0
@@ -132,7 +132,7 @@ class Card {
 	/**
 	 * Get the title text displayed on the card.
 	 *
-	 * This method returns the title text that is prominently displayed on the card.
+	 * This method returns the title text prominently displayed on the card.
 	 * The title usually represents the main topic or subject of the card.
 	 *
 	 * @since 0.1.0

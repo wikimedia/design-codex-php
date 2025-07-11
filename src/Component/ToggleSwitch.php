@@ -142,7 +142,7 @@ class ToggleSwitch {
 	/**
 	 * Get the value associated with the toggle switch input.
 	 *
-	 * This method returns the value that is submitted when the toggle switch is checked and the form is submitted.
+	 * This method returns the value submitted when the toggle switch is checked and the form is submitted.
 	 *
 	 * @since 0.1.0
 	 * @return string The value of the toggle switch input.

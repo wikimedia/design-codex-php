@@ -103,7 +103,7 @@ class Accordion {
 	/**
 	 * Get the accordion's HTML ID attribute.
 	 *
-	 * This method returns the ID that is assigned to the accordion element.
+	 * This method returns the ID assigned to the accordion element.
 	 * The ID is useful for targeting the accordion with JavaScript, CSS, or accessibility features.
 	 *
 	 * @since 0.1.0
@@ -116,7 +116,7 @@ class Accordion {
 	/**
 	 * Get the accordion's title.
 	 *
-	 * This method returns the title that is displayed in the header of the accordion.
+	 * This method returns the title displayed in the header of the accordion.
 	 * The title is the main clickable element that users interact with to expand or collapse
 	 * the accordion's content.
 	 *
@@ -143,7 +143,7 @@ class Accordion {
 	/**
 	 * Get the accordion's content.
 	 *
-	 * This method returns the content that is displayed when the accordion is expanded.
+	 * This method returns the content displayed when the accordion is expanded.
 	 * The content can include various HTML elements such as text, images, and more.
 	 *
 	 * @since 0.1.0

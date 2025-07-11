@@ -85,7 +85,7 @@ class TabBuilder {
 	/**
 	 * Set the name for the tab.
 	 *
-	 * The name is used for programmatic selection and it also serves as the default label if none is provided.
+	 * The name is used for programmatic selection, and it also serves as the default label if none is provided.
 	 *
 	 * @since 0.1.0
 	 * @param string $name The unique name of the tab, used for programmatic selection.

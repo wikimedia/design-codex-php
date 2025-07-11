@@ -166,7 +166,7 @@ class Checkbox {
 	/**
 	 * Get the value of the checkbox input.
 	 *
-	 * This method returns the value that is submitted when the checkbox is checked and the form is submitted.
+	 * This method returns the value submitted when the checkbox is checked and the form is submitted.
 	 * The value is important for differentiating between various checkboxes in a group.
 	 *
 	 * @since 0.1.0

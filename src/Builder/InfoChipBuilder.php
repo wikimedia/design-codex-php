@@ -59,7 +59,7 @@ class InfoChipBuilder {
 	protected string $text = '';
 
 	/**
-	 * The status type, determines chip's visual style.
+	 * The status type, it determines the chip's visual style.
 	 */
 	protected string $status = 'notice';
 

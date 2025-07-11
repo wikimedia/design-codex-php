@@ -165,7 +165,7 @@ class ButtonBuilder {
 	 * @return $this Returns the Button instance for method chaining.
 	 */
 	public function setLabel( string $label ): self {
-		if ( trim( $label ) === '' && !$this->iconOnly ) {
+		if ( !$this->iconOnly && trim( $label ) === '' ) {
 			throw new InvalidArgumentException( 'Button label cannot be empty unless the button is icon-only.' );
 		}
 		$this->label = $label;
