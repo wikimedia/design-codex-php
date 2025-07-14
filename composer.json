@@ -18,7 +18,7 @@
 		"issues": "https://phabricator.wikimedia.org/tag/codex/"
 	},
 	"require": {
-		"php": "^7.4 || ^8.0",
+		"php": ">=8.1.0",
 		"ext-json": "*",
 		"ext-intl": "*",
 		"krinkle/intuition": "^2.3",
