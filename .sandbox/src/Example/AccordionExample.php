@@ -16,9 +16,7 @@ class AccordionExample {
 			->setDescription( "This is an example of an accordion." )
 			->setContentHtml(
 				$codex
-					->htmlSnippet()
-					->setContent( "<p>This is the content of the accordion.</p>" )
-					->build()
+					->htmlSnippet( "<p>This is the content of the accordion.</p>" )
 			)
 			->setOpen( false )
 			->setAttributes( [

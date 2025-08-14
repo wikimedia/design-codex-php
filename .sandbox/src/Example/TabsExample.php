@@ -19,9 +19,7 @@ class TabsExample {
 			->setLabel( "Tab 1" )
 			->setContentHtml(
 				$codex
-					->htmlSnippet()
-					->setContent( "<p>Content 1.</p>" )
-					->build()
+					->htmlSnippet( "<p>Content 1.</p>" )
 			)
 			->setSelected( true )
 			->build();
@@ -32,9 +30,7 @@ class TabsExample {
 			->setLabel( "Tab 2" )
 			->setContentHtml(
 				$codex
-					->htmlSnippet()
-					->setContent( "<p>Content 2.</p>" )
-					->build()
+					->htmlSnippet( "<p>Content 2.</p>" )
 			)
 			->build();
 
@@ -44,9 +40,7 @@ class TabsExample {
 			->setLabel( "Tab 3" )
 			->setContentHtml(
 				$codex
-					->htmlSnippet()
-					->setContent( "<p>Content 3.</p>" )
-					->build()
+					->htmlSnippet( "<p>Content 3.</p>" )
 			)
 			->build();
 

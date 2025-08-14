@@ -17,7 +17,7 @@ namespace Wikimedia\Codex\Tests\Integration\Builder;
 
 use PHPUnit\Framework\TestCase;
 use Wikimedia\Codex\Builder\AccordionBuilder;
-use Wikimedia\Codex\Builder\HtmlSnippetBuilder;
+use Wikimedia\Codex\Component\HtmlSnippet;
 use Wikimedia\Codex\Infrastructure\CodexServices;
 use Wikimedia\Codex\Renderer\AccordionRenderer;
 
@@ -126,10 +126,9 @@ class AccordionBuilderTest extends TestCase {
 		$sanitizer = CodexServices::getInstance()->getService( 'Sanitizer' );
 		$accordionRenderer = new AccordionRenderer( $sanitizer, $templateParser );
 		$accordion = new AccordionBuilder( $accordionRenderer );
-		$htmlSnippet = new HtmlSnippetBuilder();
 
 		if ( $contentMethod === 'setContentHtml' ) {
-			$accordion->setContentHtml( $htmlSnippet->setContent( $data['content'] )->build() );
+			$accordion->setContentHtml( new HtmlSnippet( $data['content'] ) );
 		} else {
 			$accordion->setContentText( $data['content'] );
 		}

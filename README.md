@@ -52,10 +52,7 @@ $accordion = $codex
             ->setTitle( "Accordion Example" )
             ->setDescription( "This is an example of an accordion." )
             ->setContentHtml(
-                $codex
-                    ->htmlSnippet()
-                    ->setContent( "<p>This is the content.</p>" )
-                    ->build()
+                $codex->htmlSnippet( "<p>This is the content.</p>" )
             )
             ->setOpen( false )
             ->setAttributes( [

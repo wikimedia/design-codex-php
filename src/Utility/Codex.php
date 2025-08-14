@@ -24,7 +24,6 @@ use Wikimedia\Codex\Builder\ButtonBuilder;
 use Wikimedia\Codex\Builder\CardBuilder;
 use Wikimedia\Codex\Builder\CheckboxBuilder;
 use Wikimedia\Codex\Builder\FieldBuilder;
-use Wikimedia\Codex\Builder\HtmlSnippetBuilder;
 use Wikimedia\Codex\Builder\InfoChipBuilder;
 use Wikimedia\Codex\Builder\LabelBuilder;
 use Wikimedia\Codex\Builder\MessageBuilder;
@@ -39,6 +38,7 @@ use Wikimedia\Codex\Builder\TextAreaBuilder;
 use Wikimedia\Codex\Builder\TextInputBuilder;
 use Wikimedia\Codex\Builder\ThumbnailBuilder;
 use Wikimedia\Codex\Builder\ToggleSwitchBuilder;
+use Wikimedia\Codex\Component\HtmlSnippet;
 use Wikimedia\Codex\Infrastructure\CodexServices;
 
 /**
@@ -122,13 +122,14 @@ class Codex {
 	}
 
 	/**
-	 * Resolves and returns the HtmlSnippet.
+	 * Returns an HTMLSnippet that encapsulates the given HTML string
 	 *
 	 * @since 0.1.0
-	 * @return HtmlSnippetBuilder The HtmlSnippet instance.
+	 * @param string $html HTML string
+	 * @return HtmlSnippet
 	 */
-	public function htmlSnippet(): HtmlSnippetBuilder {
-		return new HtmlSnippetBuilder();
+	public function htmlSnippet( string $html ): HtmlSnippet {
+		return new HtmlSnippet( $html );
 	}
 
 	/**
