@@ -43,11 +43,6 @@ class HtmlSnippetBuilder {
 	protected string $content;
 
 	/**
-	 * Additional HTML attributes for the container element.
-	 */
-	protected array $attributes = [];
-
-	/**
 	 * Set the HTML content.
 	 *
 	 * This method allows updating the HTML content of the snippet after the object has been instantiated.
@@ -64,25 +59,6 @@ class HtmlSnippetBuilder {
 	}
 
 	/**
-	 * Set additional HTML attributes for the container element.
-	 *
-	 * This method allows custom HTML attributes to be added to the container element,
-	 * such as `class`, `id`, `data-*`, or any other valid attributes.
-	 *
-	 * The values of these attributes are automatically escaped to prevent XSS vulnerabilities.
-	 *
-	 * @since 0.1.0
-	 * @param array $attributes An associative array of HTML attributes.
-	 * @return $this
-	 */
-	public function setAttributes( array $attributes ): self {
-		foreach ( $attributes as $key => $value ) {
-			$this->attributes[$key] = $value;
-		}
-		return $this;
-	}
-
-	/**
 	 * Build and return the HtmlSnippet component object.
 	 * This method constructs the immutable HtmlSnippet object with all the properties set via the builder.
 	 *
@@ -90,6 +66,6 @@ class HtmlSnippetBuilder {
 	 * @return HtmlSnippet The constructed HtmlSnippet.
 	 */
 	public function build(): HtmlSnippet {
-		return new HtmlSnippet( $this->content, $this->attributes );
+		return new HtmlSnippet( $this->content );
 	}
 }

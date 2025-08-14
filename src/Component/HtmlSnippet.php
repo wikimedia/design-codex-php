@@ -38,22 +38,15 @@ class HtmlSnippet {
 	private string $content;
 
 	/**
-	 * Additional HTML attributes for the container element.
-	 */
-	private array $attributes;
-
-	/**
 	 * Constructor for the HtmlSnippet component.
 	 *
 	 * Initializes an instance of HtmlSnippet with the specified content and attributes.
 	 *
 	 * @param string $content The safe HTML content to be rendered.
 	 * @param-taint $content exec_html Callers are responsible for escaping.
-	 * @param array $attributes Additional HTML attributes for the container element.
 	 */
-	public function __construct( string $content, array $attributes ) {
+	public function __construct( string $content ) {
 		$this->content = $content;
-		$this->attributes = $attributes;
 	}
 
 	/**
@@ -69,28 +62,10 @@ class HtmlSnippet {
 	}
 
 	/**
-	 * Retrieve additional HTML attributes for the HTML snippet element.
-	 *
-	 * This method returns an associative array of additional HTML attributes that will be applied
-	 * to the HTML snippet element. These attributes can be used to enhance the appearance, accessibility,
-	 *  or functionality of the HTML snippet element.
+	 * Get the snippet's HTML representation.
 	 *
 	 * @since 0.1.0
-	 * @return array The additional attributes as an array.
-	 */
-	public function getAttributes(): array {
-		return $this->attributes;
-	}
-
-	/**
-	 * Get the component's HTML representation.
-	 *
-	 * This method generates the HTML markup for the component, incorporating relevant properties
-	 * and any additional attributes. The component is structured using appropriate HTML elements
-	 * as defined by the implementation.
-	 *
-	 * @since 0.1.0
-	 * @return string The generated HTML string for the component.
+	 * @return string The generated HTML string for the snippet.
 	 */
 	public function __toString(): string {
 		return $this->content;
