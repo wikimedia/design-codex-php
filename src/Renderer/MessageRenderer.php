@@ -88,7 +88,7 @@ class MessageRenderer implements IRenderer {
 			'type' => $this->sanitizer->sanitizeText( $component->getType() ),
 			'isInline' => $component->isInline(),
 			'iconClass' => $this->sanitizer->sanitizeText( $component->getIconClass() ),
-			'content-html' => $component->getContent(),
+			'content-html' => $component->getContentHtml(),
 			'heading' => $this->sanitizer->sanitizeText( $component->getHeading() ),
 			'isPolite' => $component->getType() !== 'error',
 			'isAlert' => $component->getType() === 'error',

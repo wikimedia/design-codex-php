@@ -52,7 +52,7 @@ class Accordion {
 	/**
 	 * The content shown when the accordion is expanded.
 	 */
-	private string $content;
+	private string $contentHtml;
 
 	/**
 	 * Determines if the accordion is expanded by default.
@@ -77,7 +77,7 @@ class Accordion {
 	 * @param string $id The ID for the accordion.
 	 * @param string $title The accordion's header title.
 	 * @param string $description Additional text under the title.
-	 * @param string $content The content shown when the accordion is expanded.
+	 * @param string $contentHtml The content shown when the accordion is expanded.
 	 * @param bool $isOpen Determines if the accordion is expanded by default.
 	 * @param array $attributes Additional HTML attributes for the <details> element.
 	 * @param AccordionRenderer $renderer The renderer to use for rendering the accordion.
@@ -86,7 +86,7 @@ class Accordion {
 		string $id,
 		string $title,
 		string $description,
-		string $content,
+		string $contentHtml,
 		bool $isOpen,
 		array $attributes,
 		AccordionRenderer $renderer
@@ -94,7 +94,7 @@ class Accordion {
 		$this->id = $id;
 		$this->title = $title;
 		$this->description = $description;
-		$this->content = $content;
+		$this->contentHtml = $contentHtml;
 		$this->isOpen = $isOpen;
 		$this->attributes = $attributes;
 		$this->renderer = $renderer;
@@ -147,10 +147,10 @@ class Accordion {
 	 * The content can include various HTML elements such as text, images, and more.
 	 *
 	 * @since 0.1.0
-	 * @return string The content of the accordion.
+	 * @return string The content of the accordion, as HTML
 	 */
-	public function getContent(): string {
-		return $this->content;
+	public function getContentHtml(): string {
+		return $this->contentHtml;
 	}
 
 	/**

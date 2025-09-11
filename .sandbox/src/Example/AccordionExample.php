@@ -14,7 +14,7 @@ class AccordionExample {
 			->accordion()
 			->setTitle( "Accordion Example" )
 			->setDescription( "This is an example of an accordion." )
-			->setContentHtml(
+			->setContent(
 				$codex
 					->htmlSnippet( "<p>This is the content of the accordion.</p>" )
 			)

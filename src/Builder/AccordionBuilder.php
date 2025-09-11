@@ -22,8 +22,8 @@ namespace Wikimedia\Codex\Builder;
 
 use InvalidArgumentException;
 use Wikimedia\Codex\Component\Accordion;
-use Wikimedia\Codex\Component\HtmlSnippet;
 use Wikimedia\Codex\Renderer\AccordionRenderer;
+use Wikimedia\Codex\Traits\ContentSetter;
 
 /**
  * AccordionBuilder
@@ -41,6 +41,8 @@ use Wikimedia\Codex\Renderer\AccordionRenderer;
  */
 class AccordionBuilder {
 
+	use ContentSetter;
+
 	/**
 	 * The ID for the accordion.
 	 */
@@ -55,11 +57,6 @@ class AccordionBuilder {
 	 * Additional text under the title.
 	 */
 	protected string $description = '';
-
-	/**
-	 * The content shown when the accordion is expanded.
-	 */
-	protected string $content = '';
 
 	/**
 	 * Determines if the accordion is expanded by default.
@@ -144,40 +141,6 @@ class AccordionBuilder {
 	}
 
 	/**
-	 * Set the content for the accordion body as plain text.
-	 *
-	 * This method defines plain text content that will be safely escaped before rendering.
-	 * It should be used when the content does not contain any HTML markup and needs to be treated strictly as text.
-	 *
-	 * @since 0.1.0
-	 * @param string $content The plain text content to be displayed inside the accordion.
-	 * @param-taint $content escapes_html
-	 * @return $this Returns the Accordion instance for method chaining.
-	 */
-	public function setContentText( string $content ): self {
-		$this->content = $content;
-
-		return $this;
-	}
-
-	/**
-	 * Set the content for the accordion body as HTML.
-	 *
-	 * This method defines HTML content by passing an `HtmlSnippet` object. The content
-	 * will be rendered as-is without escaping, ensuring the correct HTML output.
-	 *
-	 * @since 0.1.0
-	 * @param HtmlSnippet $content The HTML content to be displayed inside the accordion.
-	 * @param-taint $content exec_html
-	 * @return $this Returns the Accordion instance for method chaining.
-	 */
-	public function setContentHtml( HtmlSnippet $content ): self {
-		$this->content = (string)$content;
-
-		return $this;
-	}
-
-	/**
 	 * Set whether the accordion should be open by default.
 	 *
 	 * By default, accordions are rendered in a collapsed state. However, setting this property to `true`
@@ -236,7 +199,7 @@ class AccordionBuilder {
 			$this->id,
 			$this->title,
 			$this->description,
-			$this->content,
+			$this->contentHtml,
 			$this->isOpen,
 			$this->attributes,
 			$this->renderer

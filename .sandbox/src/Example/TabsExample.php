@@ -17,7 +17,7 @@ class TabsExample {
 			->Tab()
 			->setName( "tab1" )
 			->setLabel( "Tab 1" )
-			->setContentHtml(
+			->setContent(
 				$codex
 					->htmlSnippet( "<p>Content 1.</p>" )
 			)
@@ -28,7 +28,7 @@ class TabsExample {
 			->Tab()
 			->setName( "tab2" )
 			->setLabel( "Tab 2" )
-			->setContentHtml(
+			->setContent(
 				$codex
 					->htmlSnippet( "<p>Content 2.</p>" )
 			)
@@ -38,7 +38,7 @@ class TabsExample {
 			->Tab()
 			->setName( "tab3" )
 			->setLabel( "Tab 3" )
-			->setContentHtml(
+			->setContent(
 				$codex
 					->htmlSnippet( "<p>Content 3.</p>" )
 			)

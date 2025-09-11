@@ -20,9 +20,9 @@
 namespace Wikimedia\Codex\Builder;
 
 use InvalidArgumentException;
-use Wikimedia\Codex\Component\HtmlSnippet;
 use Wikimedia\Codex\Component\Message;
 use Wikimedia\Codex\Renderer\MessageRenderer;
+use Wikimedia\Codex\Traits\ContentSetter;
 
 /**
  * MessageBuilder
@@ -40,6 +40,8 @@ use Wikimedia\Codex\Renderer\MessageRenderer;
  */
 class MessageBuilder {
 
+	use ContentSetter;
+
 	/**
 	 * The valid status types for messages.
 	 */
@@ -54,11 +56,6 @@ class MessageBuilder {
 	 * The ID for the Message.
 	 */
 	protected string $id = '';
-
-	/**
-	 * The content displayed inside the message box.
-	 */
-	protected string $content = '';
 
 	/**
 	 * The type of the message (e.g., 'notice', 'warning', 'error', 'success').
@@ -108,40 +105,6 @@ class MessageBuilder {
 	 */
 	public function setId( string $id ): self {
 		$this->id = $id;
-
-		return $this;
-	}
-
-	/**
-	 * Set the content of the message box as plain text.
-	 *
-	 * This method specifies the text content that will be displayed inside the message box.
-	 * The content will be escaped for security purposes.
-	 *
-	 * @since 0.1.0
-	 * @param string $content The plain text content to be displayed inside the message box.
-	 * @param-taint $content escapes_html
-	 * @return $this Returns the Message instance for method chaining.
-	 */
-	public function setContentText( string $content ): self {
-		$this->content = $content;
-
-		return $this;
-	}
-
-	/**
-	 * Set the content of the message box as HTML.
-	 *
-	 * This method accepts an `HtmlSnippet` object, which contains HTML content to be displayed
-	 * inside the message box without escaping.
-	 *
-	 * @since 0.1.0
-	 * @param HtmlSnippet $content The HTML content to be displayed inside the message box.
-	 * @param-taint $content exec_html
-	 * @return $this Returns the Message instance for method chaining.
-	 */
-	public function setContentHtml( HtmlSnippet $content ): self {
-		$this->content = $content;
 
 		return $this;
 	}
@@ -245,7 +208,7 @@ class MessageBuilder {
 	public function build(): Message {
 		return new Message(
 			$this->id,
-			$this->content,
+			$this->contentHtml,
 			$this->type,
 			$this->inline,
 			$this->heading,

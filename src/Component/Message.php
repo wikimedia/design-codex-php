@@ -42,7 +42,7 @@ class Message {
 	/**
 	 * The content displayed inside the message box.
 	 */
-	private string $content;
+	private string $contentHtml;
 
 	/**
 	 * The type of the message (e.g., 'notice', 'warning', 'error', 'success').
@@ -80,7 +80,7 @@ class Message {
 	 * Initializes a Message instance with the specified properties.
 	 *
 	 * @param string $id The ID for the Message.
-	 * @param string $content The content displayed inside the message box.
+	 * @param string $contentHtml The content displayed inside the message box.
 	 * @param string $type The type of the message.
 	 * @param bool $inline Whether the message box should be displayed inline.
 	 * @param string $heading The heading displayed at the top of the message content.
@@ -90,7 +90,7 @@ class Message {
 	 */
 	public function __construct(
 		string $id,
-		string $content,
+		string $contentHtml,
 		string $type,
 		bool $inline,
 		string $heading,
@@ -99,7 +99,7 @@ class Message {
 		MessageRenderer $renderer
 	) {
 		$this->id = $id;
-		$this->content = $content;
+		$this->contentHtml = $contentHtml;
 		$this->type = $type;
 		$this->inline = $inline;
 		$this->heading = $heading;
@@ -130,8 +130,8 @@ class Message {
 	 * @since 0.1.0
 	 * @return string The content of the message box.
 	 */
-	public function getContent(): string {
-		return $this->content;
+	public function getContentHtml(): string {
+		return $this->contentHtml;
 	}
 
 	/**

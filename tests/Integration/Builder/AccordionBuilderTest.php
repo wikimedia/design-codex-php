@@ -63,13 +63,12 @@ class AccordionBuilderTest extends TestCase {
                         Some plain text content
                     </div>
                 </details>',
-				'setContentText',
 			],
 			'basic accordion open with HTML content' => [
 				[
 					'title' => 'Some title',
 					'description' => 'Some description',
-					'content' => '<p>Some content</p>',
+					'content' => new HtmlSnippet( '<p>Some content</p>' ),
 					'isOpen' => true,
 					'attributes' => [ 'id' => 'some-id' ],
 				],
@@ -84,7 +83,6 @@ class AccordionBuilderTest extends TestCase {
                         <p>Some content</p>
                     </div>
                 </details>',
-				'setContentHtml',
 			],
 			'accordion without description with text content' => [
 				[
@@ -104,7 +102,6 @@ class AccordionBuilderTest extends TestCase {
                         Some plain text content
                     </div>
                 </details>',
-				'setContentText',
 			],
 		];
 	}
@@ -117,25 +114,19 @@ class AccordionBuilderTest extends TestCase {
 	 *
 	 * @param array $data The input data for the Accordion.
 	 * @param string $expectedOutput The expected HTML output.
-	 * @param string $contentMethod The content method to use ('setContentText' or 'setContentHtml').
 	 *
 	 * @return void
 	 */
-	public function testBuild( array $data, string $expectedOutput, string $contentMethod ): void {
+	public function testBuild( array $data, string $expectedOutput ): void {
 		$templateParser = CodexServices::getInstance()->getService( 'TemplateParser' );
 		$sanitizer = CodexServices::getInstance()->getService( 'Sanitizer' );
 		$accordionRenderer = new AccordionRenderer( $sanitizer, $templateParser );
 		$accordion = new AccordionBuilder( $accordionRenderer );
 
-		if ( $contentMethod === 'setContentHtml' ) {
-			$accordion->setContentHtml( new HtmlSnippet( $data['content'] ) );
-		} else {
-			$accordion->setContentText( $data['content'] );
-		}
-
 		$accordion->setTitle( $data['title'] )
 			->setDescription( $data['description'] )
 			->setOpen( $data['isOpen'] )
+			->setContent( $data['content'] )
 			->setAttributes( $data['attributes'] );
 
 		$this->assertSame(

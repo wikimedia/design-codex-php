@@ -145,7 +145,7 @@ class TabsRenderer implements IRenderer {
 				'id' => $this->sanitizer->sanitizeText( $tab->getId() ),
 				'name' => $this->sanitizer->sanitizeText( $tab->getName() ),
 				'label' => $this->sanitizer->sanitizeText( $tab->getLabel() ),
-				'content-html' => $tab->getContent(),
+				'content-html' => $tab->getContentHtml(),
 				'isSelected' => $isSelected,
 				'isHidden' => $isHidden,
 				'disabled' => $tab->isDisabled(),

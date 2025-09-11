@@ -50,7 +50,7 @@ class Tab {
 	/**
 	 * The HTML content associated with the tab, displayed when the tab is selected.
 	 */
-	private string $content;
+	private string $contentHtml;
 
 	/**
 	 * Indicates whether the tab is selected by default.
@@ -70,7 +70,7 @@ class Tab {
 	 * @param string $id The ID for the tab.
 	 * @param string $name The unique name of the tab.
 	 * @param string $label The label of the tab.
-	 * @param string $content The content of the tab.
+	 * @param string $contentHtml The content of the tab.
 	 * @param bool $selected Whether the tab is selected by default.
 	 * @param bool $disabled Whether the tab is disabled.
 	 */
@@ -78,14 +78,14 @@ class Tab {
 		string $id,
 		string $name,
 		string $label,
-		string $content,
+		string $contentHtml,
 		bool $selected,
 		bool $disabled
 	) {
 		$this->id = $id;
 		$this->name = $name;
 		$this->label = $label;
-		$this->content = $content;
+		$this->contentHtml = $contentHtml;
 		$this->selected = $selected;
 		$this->disabled = $disabled;
 	}
@@ -129,8 +129,8 @@ class Tab {
 	 * @since 0.1.0
 	 * @return string The content of the tab.
 	 */
-	public function getContent(): string {
-		return $this->content;
+	public function getContentHtml(): string {
+		return $this->contentHtml;
 	}
 
 	/**

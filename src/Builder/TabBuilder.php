@@ -20,8 +20,8 @@
 namespace Wikimedia\Codex\Builder;
 
 use InvalidArgumentException;
-use Wikimedia\Codex\Component\HtmlSnippet;
 use Wikimedia\Codex\Component\Tab;
+use Wikimedia\Codex\Traits\ContentSetter;
 
 /**
  * TabBuilder
@@ -39,6 +39,8 @@ use Wikimedia\Codex\Component\Tab;
  */
 class TabBuilder {
 
+	use ContentSetter;
+
 	/**
 	 * The ID for the tab.
 	 */
@@ -53,11 +55,6 @@ class TabBuilder {
 	 * The text label displayed for the tab in the Tabs component's header.
 	 */
 	protected string $label = '';
-
-	/**
-	 * The HTML content associated with the tab, displayed when the tab is selected.
-	 */
-	protected string $content = '';
 
 	/**
 	 * Indicates whether the tab is selected by default.
@@ -120,39 +117,6 @@ class TabBuilder {
 	}
 
 	/**
-	 * Set the content of the tab as plain text.
-	 *
-	 * This method sets the content of the tab as plain text, ensuring that the content is properly escaped
-	 * to prevent any potential security risks.
-	 *
-	 * @since 0.1.0
-	 * @param string $content The plain text content to be displayed inside the tab.
-	 * @param-taint $content escapes_html
-	 * @return $this Returns the Tab instance for method chaining.
-	 */
-	public function setContentText( string $content ): self {
-		$this->content = $content;
-
-		return $this;
-	}
-
-	/**
-	 * Set the content of the tab as HTML.
-	 *
-	 * This method accepts an `HtmlSnippet` object for safely passing HTML content to the tab.
-	 *
-	 * @since 0.1.0
-	 * @param HtmlSnippet $content The HTML content to be displayed inside the tab.
-	 * @param-taint $content exec_html
-	 * @return $this Returns the Tab instance for method chaining.
-	 */
-	public function setContentHtml( HtmlSnippet $content ): self {
-		$this->content = (string)$content;
-
-		return $this;
-	}
-
-	/**
 	 * Set whether the tab should be selected by default.
 	 *
 	 * @since 0.1.0
@@ -192,7 +156,7 @@ class TabBuilder {
 			$this->id,
 			$this->name,
 			$this->label,
-			$this->content,
+			$this->contentHtml,
 			$this->selected,
 			$this->disabled,
 		);
