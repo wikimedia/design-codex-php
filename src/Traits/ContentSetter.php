@@ -29,6 +29,8 @@ trait ContentSetter {
 	 * @param string|HtmlSnippet $content
 	 */
 	public function setContent( $content ): self {
+		// This logic unfortunately duplicates the logic in Sanitizer::sanitizeText, but we can't
+		// dependency-inject Sanitizer here
 		$this->contentHtml = $content instanceof HtmlSnippet ?
 			$content->getContent() :
 			htmlspecialchars( $content, ENT_QUOTES, 'UTF-8' );

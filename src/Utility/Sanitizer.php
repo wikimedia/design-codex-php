@@ -21,6 +21,8 @@
 
 namespace Wikimedia\Codex\Utility;
 
+use Wikimedia\Codex\Component\HtmlSnippet;
+
 /**
  * Sanitizer is a class responsible for sanitizing data before rendering.
  *
@@ -45,11 +47,14 @@ class Sanitizer {
 	 * to be treated strictly as text.
 	 *
 	 * @since 0.1.0
-	 * @param string|null $text The plain text to sanitize.
+	 * @param string|HtmlSnippet|null $textOrSnippet The plain text to sanitize.
 	 * @return string The sanitized text.
 	 */
-	public function sanitizeText( ?string $text ): string {
-		return htmlspecialchars( $text ?? '', ENT_QUOTES, 'UTF-8' );
+	public function sanitizeText( $textOrSnippet ): string {
+		if ( $textOrSnippet instanceof HtmlSnippet ) {
+			return $textOrSnippet->getContent();
+		}
+		return htmlspecialchars( $textOrSnippet ?? '', ENT_QUOTES, 'UTF-8' );
 	}
 
 	/**

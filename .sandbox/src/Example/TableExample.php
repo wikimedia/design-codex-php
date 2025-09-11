@@ -325,7 +325,7 @@ class TableExample {
 
 		$formHtml = '<form method="get">' . $tableHtml . '</form>';
 
-		return $codex->htmlSnippet( $formHtml );
+		return $formHtml;
 	}
 
 	/**

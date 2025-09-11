@@ -60,14 +60,4 @@ class HtmlSnippet {
 	public function getContent(): string {
 		return $this->content;
 	}
-
-	/**
-	 * Get the snippet's HTML representation.
-	 *
-	 * @since 0.1.0
-	 * @return string The generated HTML string for the snippet.
-	 */
-	public function __toString(): string {
-		return $this->content;
-	}
 }
