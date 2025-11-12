@@ -37,7 +37,7 @@ class Label {
 	/**
 	 * The text displayed inside the label.
 	 */
-	protected string $labelText;
+	protected string|HtmlSnippet $labelText;
 
 	/**
 	 * The ID of the input/control this label is associated with.
@@ -62,7 +62,7 @@ class Label {
 	/**
 	 * The description text that provides additional information about the input field.
 	 */
-	protected string $description;
+	protected string|HtmlSnippet $description;
 
 	/**
 	 * The ID of the description element, useful for the `aria-describedby` attribute.
@@ -99,13 +99,12 @@ class Label {
 	 *
 	 * Initializes a Label instance with the specified properties.
 	 *
-	 * @param string $labelText The text displayed inside the label.
-	 * @param-taint $labelText exec_html Callers are responsible for escaping
+	 * @param string|HtmlSnippet $labelText The text displayed inside the label.
 	 * @param string $inputId The ID of the input/control this label is associated with.
 	 * @param bool $optional Indicates whether the associated input field is optional.
 	 * @param bool $visuallyHidden Indicates whether the label should be visually hidden.
 	 * @param bool $isLegend Indicates if the label should be rendered as a `<legend>` element.
-	 * @param string $description The description text for the label.
+	 * @param string|HtmlSnippet $description The description text for the label.
 	 * @param string|null $descriptionId The ID of the description element.
 	 * @param bool $disabled Indicates whether the label is for a disabled input.
 	 * @param string|null $iconClass The CSS class for an icon before the label text.
@@ -114,12 +113,12 @@ class Label {
 	 * @param LabelRenderer $renderer The renderer to use for rendering the label.
 	 */
 	public function __construct(
-		string $labelText,
+		string|HtmlSnippet $labelText,
 		string $inputId,
 		bool $optional,
 		bool $visuallyHidden,
 		bool $isLegend,
-		string $description,
+		string|HtmlSnippet $description,
 		?string $descriptionId,
 		bool $disabled,
 		?string $iconClass,
@@ -148,9 +147,9 @@ class Label {
 	 * a descriptive title for the associated input field.
 	 *
 	 * @since 0.1.0
-	 * @return string The text of the label.
+	 * @return string|HtmlSnippet The text of the label.
 	 */
-	public function getLabelText(): string {
+	public function getLabelText(): string|HtmlSnippet {
 		return $this->labelText;
 	}
 
@@ -214,9 +213,9 @@ class Label {
 	 * input field. The description is linked to the input via the `aria-describedby` attribute.
 	 *
 	 * @since 0.1.0
-	 * @return string The description text for the label.
+	 * @return string|HtmlSnippet The description text for the label.
 	 */
-	public function getDescription(): string {
+	public function getDescription(): string|HtmlSnippet {
 		return $this->description;
 	}
 

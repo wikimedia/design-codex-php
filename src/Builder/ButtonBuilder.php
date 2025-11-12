@@ -21,6 +21,7 @@ namespace Wikimedia\Codex\Builder;
 
 use InvalidArgumentException;
 use Wikimedia\Codex\Component\Button;
+use Wikimedia\Codex\Component\HtmlSnippet;
 use Wikimedia\Codex\Renderer\ButtonRenderer;
 
 /**
@@ -82,7 +83,7 @@ class ButtonBuilder {
 	/**
 	 * The text label displayed on the button.
 	 */
-	protected string $label = '';
+	protected string|HtmlSnippet $label = '';
 
 	/**
 	 * The visual action style of the button (e.g., default, progressive, destructive).
@@ -161,13 +162,10 @@ class ButtonBuilder {
 	 * It's important to use concise and descriptive text for the label to ensure usability.
 	 *
 	 * @since 0.1.0
-	 * @param string $label The text label displayed on the button.
+	 * @param string|HtmlSnippet $label The text label displayed on the button.
 	 * @return $this Returns the Button instance for method chaining.
 	 */
-	public function setLabel( string $label ): self {
-		if ( !$this->iconOnly && trim( $label ) === '' ) {
-			throw new InvalidArgumentException( 'Button label cannot be empty unless the button is icon-only.' );
-		}
+	public function setLabel( string|HtmlSnippet $label ): self {
 		$this->label = $label;
 
 		return $this;

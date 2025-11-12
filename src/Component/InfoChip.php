@@ -42,7 +42,7 @@ class InfoChip {
 	/**
 	 * The text displayed inside the InfoChip.
 	 */
-	protected string $text;
+	protected string|HtmlSnippet $text;
 
 	/**
 	 * The status type, determines chip's visual style. Options include 'notice', 'warning', 'error', and 'success'.
@@ -70,7 +70,7 @@ class InfoChip {
 	 * Initializes an InfoChip instance with the specified properties.
 	 *
 	 * @param string $id The ID for the InfoChip.
-	 * @param string $text The text displayed inside the InfoChip.
+	 * @param string|HtmlSnippet $text The text displayed inside the InfoChip.
 	 * @param string $status The status type of the InfoChip.
 	 * @param string|null $icon The CSS class for a custom icon, if any.
 	 * @param array $attributes Additional HTML attributes for the InfoChip element.
@@ -78,7 +78,7 @@ class InfoChip {
 	 */
 	public function __construct(
 		string $id,
-		string $text,
+		string|HtmlSnippet $text,
 		string $status,
 		?string $icon,
 		array $attributes,
@@ -112,9 +112,9 @@ class InfoChip {
 	 * The text provides the primary information that the chip conveys.
 	 *
 	 * @since 0.1.0
-	 * @return string The text content of the info chip.
+	 * @return string|HtmlSnippet The text content of the info chip.
 	 */
-	public function getText(): string {
+	public function getText(): string|HtmlSnippet {
 		return $this->text;
 	}
 

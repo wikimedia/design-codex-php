@@ -83,7 +83,8 @@ class Sanitizer {
 	 * Sanitize a URL.
 	 *
 	 * This method ensures the URL is safe by validating it, removing illegal characters,
-	 * ensuring it uses an allowed scheme, and properly escaping it for HTML output.
+	 * and ensuring it uses an allowed scheme. This function does not escape it for HTML output,
+	 * to do that either use sanitizeText() or use Mustache's built-in escaping with `{{ url }}`.
 	 *
 	 * @since 0.1.0
 	 * @param string|null $url The URL to sanitize.
@@ -110,9 +111,7 @@ class Sanitizer {
 			return '';
 		}
 
-		$reconstructedUrl = $this->unparseUrl( $parsedUrl );
-
-		return htmlspecialchars( $reconstructedUrl, ENT_QUOTES, 'UTF-8' );
+		return $this->unparseUrl( $parsedUrl );
 	}
 
 	/**

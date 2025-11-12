@@ -135,8 +135,8 @@ class PagerRenderer implements IRenderer {
 		}
 
 		$pagerData = [
-			'id' => $this->sanitizer->sanitizeText( $component->getId() ),
-			'position' => $this->sanitizer->sanitizeText( $component->getPosition() ),
+			'id' => $component->getId(),
+			'position' => $component->getPosition(),
 			'startOrdinal' => $component->getStartOrdinal(),
 			'endOrdinal' => $component->getEndOrdinal(),
 			'totalResults' => $component->getTotalResults(),
@@ -168,7 +168,7 @@ class PagerRenderer implements IRenderer {
 
 		foreach ( $sizeOptions as $size ) {
 			$options[] = [
-				'value' => $this->sanitizer->sanitizeText( (string)$size ),
+				'value' => $size,
 				'text' => $this->localizer->msg(
 					'cdx-table-pager-items-per-page-current', $size
 				),
@@ -233,7 +233,7 @@ class PagerRenderer implements IRenderer {
 			'iconClass' => $iconClass,
 			'type' => 'submit',
 			'name' => 'offset',
-			'value' => $this->sanitizer->sanitizeText( (string)$offset ),
+			'value' => $offset,
 			'dir' => $dir,
 		];
 	}
@@ -272,8 +272,8 @@ class PagerRenderer implements IRenderer {
 			$value = $this->paramValidatorCallbacks->getValue( $key, '', [] );
 			if ( $value !== '' ) {
 				$fields[] = [
-					'key' => $this->sanitizer->sanitizeText( $key ),
-					'value' => $this->sanitizer->sanitizeText( $value ),
+					'key' => $key,
+					'value' => $value,
 				];
 			}
 		}

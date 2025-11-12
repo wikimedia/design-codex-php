@@ -84,11 +84,10 @@ class ThumbnailRenderer implements IRenderer {
 		}
 
 		$thumbnailData = [
-			'id' => $this->sanitizer->sanitizeText( $component->getId() ),
+			'id' => $component->getId(),
 			'backgroundImage' => $component->getBackgroundImage() ?
 				$this->sanitizer->sanitizeUrl( $component->getBackgroundImage() ) : null,
-			'placeholderClass' => $component->getBackgroundImage() ?
-				$this->sanitizer->sanitizeUrl( $component->getPlaceholderClass() ) : null,
+			'placeholderClass' => $component->getPlaceholderClass(),
 			'attributes' => $this->resolve( $this->sanitizer->sanitizeAttributes( $component->getAttributes() ) ),
 		];
 

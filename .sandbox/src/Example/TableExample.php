@@ -14,7 +14,7 @@ class TableExample {
 	public static function create(
 		Codex $codex
 	): string {
-		$sampleData = self::sampleData();
+		$sampleData = self::sampleData( $codex );
 
 		//phpcs:ignore
 		$limit = isset($_GET["limit"]) ? (int) $_GET["limit"] : 5;
@@ -292,7 +292,7 @@ class TableExample {
 			->setCaption( "Articles" )
 			->setHideCaption( false )
 			->setHeaderContent( "List of the articles" )
-			->setColumns( self::getColumns() )
+			->setColumns( self::getColumns( $codex ) )
 			->setData( $paginatedData )
 			->setPager(
 				$codex
@@ -331,7 +331,7 @@ class TableExample {
 	/**
 	 * Get the columns for the table.
 	 */
-	private static function getColumns(): array {
+	private static function getColumns( Codex $codex ): array {
 		return [
 			[
 				"id" => "title",
@@ -350,7 +350,9 @@ class TableExample {
 			],
 			[
 				"id" => "distance_from_sun_million_km",
-				"label" => "Distance from Sun (m. km)",
+				"label" => $codex->htmlSnippet(
+					'<span>Distance from Sun (<abbr title="millions of kilometers">m. km</abbr>)</span>'
+				),
 				"sortable" => true,
 			],
 			[
@@ -364,213 +366,273 @@ class TableExample {
 	/**
 	 * Get the sample data for the table.
 	 */
-	public static function sampleData(): array {
+	public static function sampleData( Codex $codex ): array {
 		return [
 			[
-				"title" => "Mercury",
+				"title" => $codex->htmlSnippet(
+					'<a href="https://en.wikipedia.org/wiki/Mercury_(planet)">Mercury</a>'
+				),
 				"page_id" => 1,
 				"diameter_km" => 4879,
 				"distance_from_sun_million_km" => 57.9,
 				"creation_date" => "2024-01-01 12:00:00",
 			],
 			[
-				"title" => "Venus",
+				"title" => $codex->htmlSnippet(
+					'<a href="https://en.wikipedia.org/wiki/Venus">Venus</a>'
+				),
 				"page_id" => 2,
 				"diameter_km" => 12104,
 				"distance_from_sun_million_km" => 108.2,
 				"creation_date" => "2024-01-05 14:30:00",
 			],
 			[
-				"title" => "Earth",
+				"title" => $codex->htmlSnippet(
+					'<a href="https://en.wikipedia.org/wiki/Earth">Earth</a>'
+				),
 				"page_id" => 3,
 				"diameter_km" => 12742,
 				"distance_from_sun_million_km" => 149.6,
 				"creation_date" => "2024-01-10 10:00:00",
 			],
 			[
-				"title" => "Mars",
+				"title" => $codex->htmlSnippet(
+					'<a href="https://en.wikipedia.org/wiki/Mars">Mars</a>'
+				),
 				"page_id" => 4,
 				"diameter_km" => 6779,
 				"distance_from_sun_million_km" => 227.9,
 				"creation_date" => "2024-02-01 16:15:00",
 			],
 			[
-				"title" => "Jupiter",
+				"title" => $codex->htmlSnippet(
+					'<a href="https://en.wikipedia.org/wiki/Jupiter">Jupiter</a>'
+				),
 				"page_id" => 5,
 				"diameter_km" => 139820,
 				"distance_from_sun_million_km" => 778.5,
 				"creation_date" => "2024-02-05 08:45:00",
 			],
 			[
-				"title" => "Saturn",
+				"title" => $codex->htmlSnippet(
+					'<a href="https://en.wikipedia.org/wiki/Saturn">Saturn</a>'
+				),
 				"page_id" => 6,
 				"diameter_km" => 116460,
 				"distance_from_sun_million_km" => 1434,
 				"creation_date" => "2024-02-15 19:30:00",
 			],
 			[
-				"title" => "Uranus",
+				"title" => $codex->htmlSnippet(
+					'<a href="https://en.wikipedia.org/wiki/Uranus">Uranus</a>'
+				),
 				"page_id" => 7,
 				"diameter_km" => 50724,
 				"distance_from_sun_million_km" => 2871,
 				"creation_date" => "2024-03-01 12:00:00",
 			],
 			[
-				"title" => "Neptune",
+				"title" => $codex->htmlSnippet(
+					'<a href="https://en.wikipedia.org/wiki/Neptune">Neptune</a>'
+				),
 				"page_id" => 8,
 				"diameter_km" => 49244,
 				"distance_from_sun_million_km" => 4495,
 				"creation_date" => "2024-03-10 18:00:00",
 			],
 			[
-				"title" => "Pluto",
+				"title" => $codex->htmlSnippet(
+					'<a href="https://en.wikipedia.org/wiki/Pluto">Pluto</a>'
+				),
 				"page_id" => 9,
 				"diameter_km" => 2376,
 				"distance_from_sun_million_km" => 5906,
 				"creation_date" => "2024-04-01 10:00:00",
 			],
 			[
-				"title" => "Ceres",
+				"title" => $codex->htmlSnippet(
+					'<a href="https://en.wikipedia.org/wiki/Ceres_(dwarf_planet)">Ceres</a>'
+				),
 				"page_id" => 10,
 				"diameter_km" => 946,
 				"distance_from_sun_million_km" => 414,
 				"creation_date" => "2024-04-10 13:00:00",
 			],
 			[
-				"title" => "Haumea",
+				"title" => $codex->htmlSnippet(
+					'<a href="https://en.wikipedia.org/wiki/Haumea">Haumea</a>'
+				),
 				"page_id" => 11,
 				"diameter_km" => 1632,
 				"distance_from_sun_million_km" => 6484,
 				"creation_date" => "2024-05-01 11:00:00",
 			],
 			[
-				"title" => "Makemake",
+				"title" => $codex->htmlSnippet(
+					'<a href="https://en.wikipedia.org/wiki/Makemake">Makemake</a>'
+				),
 				"page_id" => 12,
 				"diameter_km" => 1434,
 				"distance_from_sun_million_km" => 6795,
 				"creation_date" => "2024-05-05 15:00:00",
 			],
 			[
-				"title" => "Eris",
+				"title" => $codex->htmlSnippet(
+					'<a href="https://en.wikipedia.org/wiki/Eris_(dwarf planet)">Eris</a>'
+				),
 				"page_id" => 13,
 				"diameter_km" => 2326,
 				"distance_from_sun_million_km" => 10105,
 				"creation_date" => "2024-06-01 09:00:00",
 			],
 			[
-				"title" => "Europa",
+				"title" => $codex->htmlSnippet(
+					'<a href="https://en.wikipedia.org/wiki/Europa_(moon)">Europa</a>'
+				),
 				"page_id" => 14,
 				"diameter_km" => 3122,
 				"distance_from_sun_million_km" => 778.5,
 				"creation_date" => "2024-06-10 10:30:00",
 			],
 			[
-				"title" => "Ganymede",
+				"title" => $codex->htmlSnippet(
+					'<a href="https://en.wikipedia.org/wiki/Ganymede_(moon)">Ganymede</a>'
+				),
 				"page_id" => 15,
 				"diameter_km" => 5268,
 				"distance_from_sun_million_km" => 778.5,
 				"creation_date" => "2024-07-01 14:15:00",
 			],
 			[
-				"title" => "Callisto",
+				"title" => $codex->htmlSnippet(
+					'<a href="https://en.wikipedia.org/wiki/Callisto_(moon)">Callisto</a>'
+				),
 				"page_id" => 16,
 				"diameter_km" => 4821,
 				"distance_from_sun_million_km" => 778.5,
 				"creation_date" => "2024-07-15 16:00:00",
 			],
 			[
-				"title" => "Titan",
+				"title" => $codex->htmlSnippet(
+					'<a href="https://en.wikipedia.org/wiki/Titan_(moon)">Titan</a>'
+				),
 				"page_id" => 17,
 				"diameter_km" => 5150,
 				"distance_from_sun_million_km" => 1434,
 				"creation_date" => "2024-08-01 09:45:00",
 			],
 			[
-				"title" => "Enceladus",
+				"title" => $codex->htmlSnippet(
+					'<a href="https://en.wikipedia.org/wiki/Enceladus">Enceladus</a>'
+				),
 				"page_id" => 18,
 				"diameter_km" => 504,
 				"distance_from_sun_million_km" => 1434,
 				"creation_date" => "2024-08-15 13:30:00",
 			],
 			[
-				"title" => "Triton",
+				"title" => $codex->htmlSnippet(
+					'<a href="https://en.wikipedia.org/wiki/Triton_(moon)">Triton</a>'
+				),
 				"page_id" => 19,
 				"diameter_km" => 2707,
 				"distance_from_sun_million_km" => 4495,
 				"creation_date" => "2024-09-01 11:15:00",
 			],
 			[
-				"title" => "Charon",
+				"title" => $codex->htmlSnippet(
+					'<a href="https://en.wikipedia.org/wiki/Charon_(moon)">Charon</a>'
+				),
 				"page_id" => 20,
 				"diameter_km" => 1212,
 				"distance_from_sun_million_km" => 5906,
 				"creation_date" => "2024-09-15 17:00:00",
 			],
 			[
-				"title" => "Oberon",
+				"title" => $codex->htmlSnippet(
+					'<a href="https://en.wikipedia.org/wiki/Oberon_(moon)">Oberon</a>'
+				),
 				"page_id" => 21,
 				"diameter_km" => 1523,
 				"distance_from_sun_million_km" => 2871,
 				"creation_date" => "2024-10-01 14:00:00",
 			],
 			[
-				"title" => "Rhea",
+				"title" => $codex->htmlSnippet(
+					'<a href="https://en.wikipedia.org/wiki/Rhea_(moon)">Rhea</a>'
+				),
 				"page_id" => 22,
 				"diameter_km" => 1528,
 				"distance_from_sun_million_km" => 1434,
 				"creation_date" => "2024-10-05 20:00:00",
 			],
 			[
-				"title" => "Dione",
+				"title" => $codex->htmlSnippet(
+					'<a href="https://en.wikipedia.org/wiki/Dione_(moon)">Dione</a>'
+				),
 				"page_id" => 23,
 				"diameter_km" => 1122,
 				"distance_from_sun_million_km" => 1434,
 				"creation_date" => "2024-10-10 13:30:00",
 			],
 			[
-				"title" => "Iapetus",
+				"title" => $codex->htmlSnippet(
+					'<a href="https://en.wikipedia.org/wiki/Iapetus_(moon)">Iapetus</a>'
+				),
 				"page_id" => 24,
 				"diameter_km" => 1469,
 				"distance_from_sun_million_km" => 1434,
 				"creation_date" => "2024-10-15 15:00:00",
 			],
 			[
-				"title" => "Tethys",
+				"title" => $codex->htmlSnippet(
+					'<a href="https://en.wikipedia.org/wiki/Tethys_(moon)">Tethys</a>'
+				),
 				"page_id" => 25,
 				"diameter_km" => 1060,
 				"distance_from_sun_million_km" => 1434,
 				"creation_date" => "2024-10-20 10:00:00",
 			],
 			[
-				"title" => "Umbriel",
+				"title" => $codex->htmlSnippet(
+					'<a href="https://en.wikipedia.org/wiki/Umbriel">Umbriel</a>'
+				),
 				"page_id" => 26,
 				"diameter_km" => 1190,
 				"distance_from_sun_million_km" => 2871,
 				"creation_date" => "2024-10-25 12:00:00",
 			],
 			[
-				"title" => "Ariel",
+				"title" => $codex->htmlSnippet(
+					'<a href="https://en.wikipedia.org/wiki/Ariel_(moon)">Ariel</a>'
+				),
 				"page_id" => 27,
 				"diameter_km" => 1158,
 				"distance_from_sun_million_km" => 2871,
 				"creation_date" => "2024-11-01 14:30:00",
 			],
 			[
-				"title" => "Miranda",
+				"title" => $codex->htmlSnippet(
+					'<a href="https://en.wikipedia.org/wiki/Miranda_(moon)">Miranda</a>'
+				),
 				"page_id" => 28,
 				"diameter_km" => 471,
 				"distance_from_sun_million_km" => 2871,
 				"creation_date" => "2024-11-05 09:00:00",
 			],
 			[
-				"title" => "Phobos",
+				"title" => $codex->htmlSnippet(
+					'<a href="https://en.wikipedia.org/wiki/Phobos_(moon)">Phobos</a>'
+				),
 				"page_id" => 29,
 				"diameter_km" => 22.4,
 				"distance_from_sun_million_km" => 227.9,
 				"creation_date" => "2024-11-10 16:30:00",
 			],
 			[
-				"title" => "Deimos",
+				"title" => $codex->htmlSnippet(
+					'<a href="https://en.wikipedia.org/wiki/Deimos_(moon)">Deimos</a>'
+				),
 				"page_id" => 30,
 				"diameter_km" => 12.4,
 				"distance_from_sun_million_km" => 227.9,

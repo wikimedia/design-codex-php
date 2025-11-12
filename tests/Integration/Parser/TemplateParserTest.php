@@ -46,7 +46,7 @@ class TemplateParserTest extends TestCase {
 					'status' => 'success',
 					'showStatusIcon' => true,
 					'attributes' => 'id="info-chip" role="status"',
-					'text' => 'Operation completed',
+					'text-html' => 'Operation completed',
 				],
 				'<div class="cdx-info-chip cdx-info-chip--success" id="info-chip" role="status">
                     <span class="cdx-info-chip__icon"></span>
@@ -58,7 +58,7 @@ class TemplateParserTest extends TestCase {
 					'status' => 'warning',
 					'showStatusIcon' => true,
 					'attributes' => 'id="info-chip" role="status"',
-					'text' => 'Operation pending',
+					'text-html' => 'Operation pending',
 				],
 				'<div class="cdx-info-chip cdx-info-chip--warning" id="info-chip" role="status">
 					<span class="cdx-info-chip__icon"></span>
@@ -95,16 +95,20 @@ class TemplateParserTest extends TestCase {
 	}
 
 	/**
-	 * Test that escaping is disabled, and `{{...}}` is equivalent to `{{{...}}}` (we use custom PHP escaping instead
-	 * of Mustache escaping).
+	 * Test that escaping is enabled, and `{{...}}` escapes while `{{{...}}}` does not.
 	 *
 	 * @since 0.1.0
 	 */
-	public function testEscapingIsDisabled(): void {
+	public function testEscapingIsEnabled(): void {
 		$templateParser = CodexServices::getInstance()->getService( 'TemplateParser' );
-
 		$rawValue = '<script>alert( "dQw4w9WgXcQ" )</script>';
-		$result = $templateParser->processTemplate( 'accordion', [ 'description' => $rawValue ] );
+
+		// {{ does escape
+		$result = $templateParser->processTemplate( 'accordion', [ 'id' => $rawValue ] );
+		$this->assertStringNotContainsString( $rawValue, $result );
+
+		// {{{ does not escape
+		$result = $templateParser->processTemplate( 'accordion', [ 'description-html' => $rawValue ] );
 		$this->assertStringContainsString( $rawValue, $result );
 	}
 }

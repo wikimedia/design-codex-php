@@ -1,4 +1,4 @@
-<div class="cdx-table{{#renderClasses}}{{{attributes}}}{{/renderClasses}}"{{! }}{{#id}} id="{{ id }}"{{/id}}>
+<div class="cdx-table{{#renderClasses}}{{{attributes}}}{{/renderClasses}}"{{! }}{{#id}} id="{{ id }}"{{/id}}{{#renderAttributes}}{{{attributes}}}{{/renderAttributes}}>
     <div class="cdx-table__header">
       {{^hideCaption}}
         {{#caption}}
@@ -7,11 +7,11 @@
           </div>
         {{/caption}}
       {{/hideCaption}}
-      {{#headerContent}}
+      {{#headerContent-html}}
         <div class="cdx-table__header__header-content">
-          {{{ headerContent }}}
+          {{{ headerContent-html }}}
         </div>
-      {{/headerContent}}
+      {{/headerContent-html}}
     </div>
     <div class="cdx-table__table-wrapper">
       <table class="cdx-table__table {{!
@@ -26,12 +26,12 @@
             <th scope="col" class="{{ align }} {{#sortable}}cdx-table__table__cell--has-sort{{/sortable}}">
               {{#sortable}}
                 <a class="cdx-table__table__sort-button cdx-button--fake-button cdx-button--fake-button--enabled" href="{{ sortUrl }}" aria-selected="{{ isCurrentSort }}">
-                  {{ label }}
+                  {{{ label-html }}}
                   <span class="cdx-icon cdx-icon--small cdx-table__sort-icon {{ sortIconClass }}"></span>
                 </a>
               {{/sortable}}
               {{^sortable}}
-                <span class="cdx-table__th-content">{{ label }}</span>
+                <span class="cdx-table__th-content">{{{ label-html }}}</span>
               {{/sortable}}
             </th>
           {{/columns}}
@@ -42,7 +42,7 @@
         {{#rows}}
           <tr>
             {{#columns}}
-              <td class="{{ align }}">{{{ cellData }}}</td>
+              <td class="{{ align }}">{{{ cellData-html }}}</td>
             {{/columns}}
           </tr>
         {{/rows}}
@@ -62,6 +62,6 @@
     {{/pager}}
     {{/hasData}}
     {{#footer}}
-      <div class="cdx-table__footer">{{ footer }}</div>
+      <div class="cdx-table__footer">{{{ footer-html }}}</div>
     {{/footer}}
   </div>

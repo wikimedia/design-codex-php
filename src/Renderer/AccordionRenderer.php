@@ -84,9 +84,9 @@ class AccordionRenderer implements IRenderer {
 		}
 
 		$accordionData = [
-			'id' => $this->sanitizer->sanitizeText( $component->getId() ),
-			'title' => $this->sanitizer->sanitizeText( $component->getTitle() ),
-			'description' => $this->sanitizer->sanitizeText( $component->getDescription() ),
+			'id' => $component->getId(),
+			'title-html' => $this->sanitizer->sanitizeText( $component->getTitle() ),
+			'description-html' => $this->sanitizer->sanitizeText( $component->getDescription() ),
 			'content-html' => $component->getContentHtml(),
 			'isOpen' => $component->isOpen(),
 			'attributes' => $this->resolve( $this->sanitizer->sanitizeAttributes( $component->getAttributes() ) )

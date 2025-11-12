@@ -20,6 +20,7 @@
 namespace Wikimedia\Codex\Builder;
 
 use InvalidArgumentException;
+use Wikimedia\Codex\Component\HtmlSnippet;
 use Wikimedia\Codex\Component\Message;
 use Wikimedia\Codex\Renderer\MessageRenderer;
 use Wikimedia\Codex\Traits\ContentSetter;
@@ -70,7 +71,7 @@ class MessageBuilder {
 	/**
 	 * The heading displayed at the top of the message content.
 	 */
-	protected string $heading = '';
+	protected string|HtmlSnippet $heading = '';
 
 	/**
 	 * The CSS class name for the icon.
@@ -162,10 +163,10 @@ class MessageBuilder {
 	 *     $message->setHeading('Error: Invalid Input');
 	 *
 	 * @since 0.1.0
-	 * @param string $heading The heading text to be displayed inside the message box.
+	 * @param string|HtmlSnippet $heading The heading text to be displayed inside the message box.
 	 * @return $this Returns the Message instance for method chaining.
 	 */
-	public function setHeading( string $heading ): self {
+	public function setHeading( string|HtmlSnippet $heading ): self {
 		$this->heading = $heading;
 
 		return $this;

@@ -21,6 +21,7 @@ namespace Wikimedia\Codex\Builder;
 
 use InvalidArgumentException;
 use Wikimedia\Codex\Component\Card;
+use Wikimedia\Codex\Component\HtmlSnippet;
 use Wikimedia\Codex\Component\Thumbnail;
 use Wikimedia\Codex\Renderer\CardRenderer;
 
@@ -48,17 +49,17 @@ class CardBuilder {
 	/**
 	 * The title text displayed on the card.
 	 */
-	protected string $title = '';
+	protected string|HtmlSnippet $title = '';
 
 	/**
 	 * The description text displayed on the card.
 	 */
-	protected string $description = '';
+	protected string|HtmlSnippet $description = '';
 
 	/**
 	 * Optional supporting text for additional details on the card.
 	 */
-	protected string $supportingText = '';
+	protected string|HtmlSnippet $supportingText = '';
 
 	/**
 	 * The URL the card links to, if the card is clickable.
@@ -115,10 +116,10 @@ class CardBuilder {
 	 * piece of text on the card.
 	 *
 	 * @since 0.1.0
-	 * @param string $title The title text displayed on the card.
+	 * @param string|HtmlSnippet $title The title text displayed on the card.
 	 * @return $this Returns the Card instance for method chaining.
 	 */
-	public function setTitle( string $title ): self {
+	public function setTitle( string|HtmlSnippet $title ): self {
 		if ( trim( $title ) === '' ) {
 			throw new InvalidArgumentException( 'Card title cannot be empty.' );
 		}
@@ -135,10 +136,10 @@ class CardBuilder {
 	 * more context about what the card represents.
 	 *
 	 * @since 0.1.0
-	 * @param string $description The description text displayed on the card.
+	 * @param string|HtmlSnippet $description The description text displayed on the card.
 	 * @return $this Returns the Card instance for method chaining.
 	 */
-	public function setDescription( string $description ): self {
+	public function setDescription( string|HtmlSnippet $description ): self {
 		$this->description = $description;
 
 		return $this;
@@ -153,10 +154,10 @@ class CardBuilder {
 	 * notes, or other relevant details.
 	 *
 	 * @since 0.1.0
-	 * @param string $supportingText The supporting text displayed on the card.
+	 * @param string|HtmlSnippet $supportingText The supporting text displayed on the card.
 	 * @return $this Returns the Card instance for method chaining.
 	 */
-	public function setSupportingText( string $supportingText ): self {
+	public function setSupportingText( string|HtmlSnippet $supportingText ): self {
 		$this->supportingText = $supportingText;
 
 		return $this;

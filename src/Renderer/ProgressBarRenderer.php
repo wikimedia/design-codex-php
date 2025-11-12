@@ -84,10 +84,10 @@ class ProgressBarRenderer implements IRenderer {
 		}
 
 		$progressBarData = [
-			'id' => $this->sanitizer->sanitizeText( $component->getId() ),
+			'id' => $component->getId(),
 			'isInline' => $component->isInline(),
 			'isDisabled' => $component->isDisabled(),
-			'label' => $this->sanitizer->sanitizeText( $component->getLabel() ),
+			'label' => $component->getLabel(),
 			'attributes' => $this->resolve( $this->sanitizer->sanitizeAttributes( $component->getAttributes() ) ),
 		];
 

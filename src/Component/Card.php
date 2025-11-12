@@ -42,17 +42,17 @@ class Card {
 	/**
 	 * The title text displayed on the card.
 	 */
-	protected string $title;
+	protected string|HtmlSnippet $title;
 
 	/**
 	 * The description text displayed on the card.
 	 */
-	protected string $description;
+	protected string|HtmlSnippet $description;
 
 	/**
 	 * Optional supporting text for additional details on the card.
 	 */
-	protected string $supportingText;
+	protected string|HtmlSnippet $supportingText;
 
 	/**
 	 * The URL the card links to, if the card is clickable.
@@ -85,9 +85,9 @@ class Card {
 	 * Initializes a Card instance with the specified properties.
 	 *
 	 * @param string $id The ID for the card.
-	 * @param string $title The title text displayed on the card.
-	 * @param string $description The description text displayed on the card.
-	 * @param string $supportingText The supporting text displayed on the card.
+	 * @param string|HtmlSnippet $title The title text displayed on the card.
+	 * @param string|HtmlSnippet $description The description text displayed on the card.
+	 * @param string|HtmlSnippet $supportingText The supporting text displayed on the card.
 	 * @param string $url The URL the card links to, if clickable.
 	 * @param string|null $iconClass The CSS class for an optional icon in the card.
 	 * @param Thumbnail|null $thumbnail The Thumbnail object representing the card's thumbnail.
@@ -96,9 +96,9 @@ class Card {
 	 */
 	public function __construct(
 		string $id,
-		string $title,
-		string $description,
-		string $supportingText,
+		string|HtmlSnippet $title,
+		string|HtmlSnippet $description,
+		string|HtmlSnippet $supportingText,
 		string $url,
 		?string $iconClass,
 		?Thumbnail $thumbnail,
@@ -136,9 +136,9 @@ class Card {
 	 * The title usually represents the main topic or subject of the card.
 	 *
 	 * @since 0.1.0
-	 * @return string The title of the card.
+	 * @return string|HtmlSnippet The title of the card.
 	 */
-	public function getTitle(): string {
+	public function getTitle(): string|HtmlSnippet {
 		return $this->title;
 	}
 
@@ -149,9 +149,9 @@ class Card {
 	 * the card's content. The description is typically rendered below the title.
 	 *
 	 * @since 0.1.0
-	 * @return string The description of the card.
+	 * @return string|HtmlSnippet The description of the card.
 	 */
-	public function getDescription(): string {
+	public function getDescription(): string|HtmlSnippet {
 		return $this->description;
 	}
 
@@ -163,9 +163,9 @@ class Card {
 	 * of the card, below the title and description.
 	 *
 	 * @since 0.1.0
-	 * @return string The supporting text of the card.
+	 * @return string|HtmlSnippet The supporting text of the card.
 	 */
-	public function getSupportingText(): string {
+	public function getSupportingText(): string|HtmlSnippet {
 		return $this->supportingText;
 	}
 

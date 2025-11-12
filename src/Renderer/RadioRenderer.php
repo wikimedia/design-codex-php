@@ -86,30 +86,30 @@ class RadioRenderer implements IRenderer {
 		$label = $component->getLabel();
 
 		$labelData = [
-			'id' => $this->sanitizer->sanitizeText( $label->getId() ),
+			'id' => $label->getId(),
 			'coreClass' => 'cdx-radio__label',
-			'labelText' => $label->getLabelText(),
+			'labelText-html' => $this->sanitizer->sanitizeText( $label->getLabelText() ),
 			'optionalFlag' => $label->isOptional(),
 			'isVisuallyHidden' => $label->isVisuallyHidden(),
 			'inputId' => $component->getInputId(),
 			'description' => $this->sanitizer->sanitizeText( $label->getDescription() ),
-			'descriptionId' => $this->sanitizer->sanitizeText( $label->getDescriptionId() ?? '' ),
+			'descriptionId' => $label->getDescriptionId(),
 			'isDisabled' => $label->isDisabled(),
-			'iconClass' => $this->sanitizer->sanitizeText( $label->getIconClass() ?? '' ),
+			'iconClass' => $label->getIconClass(),
 			'attributes' => $this->resolve(
 				$this->sanitizer->sanitizeAttributes( $label->getAttributes() )
 			),
 		];
 
 		$radioData = [
-			'id' => $this->sanitizer->sanitizeText( $component->getInputId() ),
-			'name' => $this->sanitizer->sanitizeText( $component->getName() ),
-			'value' => $this->sanitizer->sanitizeText( $component->getValue() ),
+			'id' => $component->getInputId(),
+			'name' => $component->getName(),
+			'value' => $component->getValue(),
 			'inputId' => $component->getInputId(),
 			'isChecked' => $component->isChecked(),
 			'isDisabled' => $component->isDisabled(),
 			'isInline' => $component->isInline(),
-			'ariaDescribedby' => $this->sanitizer->sanitizeText( $label->getDescriptionId() ?? '' ),
+			'ariaDescribedby' => $label->getDescriptionId(),
 			'inputAttributes' =>
 				$this->resolve( $this->sanitizer->sanitizeAttributes( $component->getInputAttributes() ) ),
 			'wrapperAttributes' =>

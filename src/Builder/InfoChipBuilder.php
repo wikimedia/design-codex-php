@@ -19,6 +19,7 @@
 namespace Wikimedia\Codex\Builder;
 
 use InvalidArgumentException;
+use Wikimedia\Codex\Component\HtmlSnippet;
 use Wikimedia\Codex\Component\InfoChip;
 use Wikimedia\Codex\Renderer\InfoChipRenderer;
 
@@ -56,7 +57,7 @@ class InfoChipBuilder {
 	/**
 	 * The text displayed inside the InfoChip.
 	 */
-	protected string $text = '';
+	protected string|HtmlSnippet $text = '';
 
 	/**
 	 * The status type, it determines the chip's visual style.
@@ -107,13 +108,10 @@ class InfoChipBuilder {
 	 * The text provides the primary information that the chip conveys.
 	 *
 	 * @since 0.1.0
-	 * @param string $text The text to be displayed inside the info chip.
+	 * @param string|HtmlSnippet $text The text to be displayed inside the info chip.
 	 * @return $this Returns the InfoChip instance for method chaining.
 	 */
-	public function setText( string $text ): self {
-		if ( trim( $text ) === '' ) {
-			throw new InvalidArgumentException( 'InfoChip text cannot be empty.' );
-		}
+	public function setText( string|HtmlSnippet $text ): self {
 		$this->text = $text;
 
 		return $this;

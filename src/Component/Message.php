@@ -57,7 +57,7 @@ class Message {
 	/**
 	 * The heading displayed at the top of the message content.
 	 */
-	private string $heading;
+	private string|HtmlSnippet $heading;
 
 	/**
 	 * The CSS class name for the icon.
@@ -83,7 +83,7 @@ class Message {
 	 * @param string $contentHtml The content displayed inside the message box.
 	 * @param string $type The type of the message.
 	 * @param bool $inline Whether the message box should be displayed inline.
-	 * @param string $heading The heading displayed at the top of the message content.
+	 * @param string|HtmlSnippet $heading The heading displayed at the top of the message content.
 	 * @param string $iconClass The CSS class name for the icon.
 	 * @param array $attributes Additional HTML attributes for the message box.
 	 * @param MessageRenderer $renderer The renderer to use for rendering the message.
@@ -93,7 +93,7 @@ class Message {
 		string $contentHtml,
 		string $type,
 		bool $inline,
-		string $heading,
+		string|HtmlSnippet $heading,
 		string $iconClass,
 		array $attributes,
 		MessageRenderer $renderer
@@ -167,9 +167,9 @@ class Message {
 	 * The heading helps to quickly convey the primary purpose or topic of the message.
 	 *
 	 * @since 0.1.0
-	 * @return string The heading text of the message box.
+	 * @return string|HtmlSnippet The heading text of the message box.
 	 */
-	public function getHeading(): string {
+	public function getHeading(): string|HtmlSnippet {
 		return $this->heading;
 	}
 

@@ -1,8 +1,7 @@
 <div class="cdx-checkbox{{!
-  }}{{#isInline}} cdx-checkbox--inline{{/isInline}}{{#renderClasses}}{{wrapperAttributes}}{{/renderClasses}}"{{!
-  }}{{#wrapperId}} id="{{ wrapperId }}"{{/wrapperId}}{{!
+  }}{{#isInline}} cdx-checkbox--inline{{/isInline}}{{#renderClasses}}{{{wrapperAttributes}}}{{/renderClasses}}"{{!
   }}{{#renderAttributes}}{{{ wrapperAttributes }}}{{/renderAttributes}}>
-  <input class="cdx-checkbox__input{{#renderClasses}}{{inputAttributes}}{{/renderClasses}}" type="checkbox"{{#inputId}} id="{{ inputId }}"{{/inputId}} name="{{ name }}" value="{{ value }}"{{!
+  <input class="cdx-checkbox__input{{#renderClasses}}{{{inputAttributes}}}{{/renderClasses}}" type="checkbox"{{#inputId}} id="{{ inputId }}"{{/inputId}} name="{{ name }}" value="{{ value }}"{{!
     }}{{#isChecked}} checked{{/isChecked}}{{!
     }}{{#isDisabled}} disabled{{/isDisabled}}{{!
     }}{{#ariaDescribedby}} aria-describedby="{{ ariaDescribedby }}"{{/ariaDescribedby}}{{!

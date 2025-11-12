@@ -84,16 +84,16 @@ class TextAreaRenderer implements IRenderer {
 		}
 
 		$textareaData = [
-			'id' => $this->sanitizer->sanitizeText( $component->getId() ),
-			'name' => $this->sanitizer->sanitizeText( $component->getName() ),
-			'placeholder' => $this->sanitizer->sanitizeText( $component->getPlaceholder() ),
-			'value' => $this->sanitizer->sanitizeText( $component->getValue() ),
+			'id' => $component->getId(),
+			'name' => $component->getName(),
+			'placeholder' => $component->getPlaceholder(),
+			'value' => $component->getValue(),
 			'isDisabled' => $component->isDisabled(),
 			'isReadonly' => $component->isReadonly(),
 			'hasStartIcon' => $component->hasStartIcon(),
 			'hasEndIcon' => $component->hasEndIcon(),
-			'startIconClass' => $this->sanitizer->sanitizeText( $component->getStartIconClass() ),
-			'endIconClass' => $this->sanitizer->sanitizeText( $component->getEndIconClass() ),
+			'startIconClass' => $component->getStartIconClass(),
+			'endIconClass' => $component->getEndIconClass(),
 			'status' => $component->getStatus(),
 			'textAreaAttributes' => $this->resolve(
 				$this->sanitizer->sanitizeAttributes( $component->getTextareaAttributes() )

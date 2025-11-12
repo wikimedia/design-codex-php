@@ -6,18 +6,18 @@
   {{#isLegend}}
     <span class="cdx-label__label">
       {{#icon}}<span class="cdx-label__label__icon {{ icon }}"></span>{{/icon}}{{!
-      }}<span class="cdx-label__label__text">{{ labelText }}</span>{{!
+      }}<span class="cdx-label__label__text">{{{ labelText-html }}}</span>{{!
       }}{{#optionalFlag}} <span class="cdx-label__label__optional-flag">{{#i18n}}cdx-label-optional-flag{{/i18n}}</span>{{/optionalFlag}}
     </span>
   {{/isLegend}}
   {{^isLegend}}
     <label {{#inputId}}for="{{ inputId }}" {{/inputId}}class="cdx-label__label">
       {{#icon}}<span class="cdx-label__label__icon {{ icon }}"></span>{{/icon}}{{!
-      }}<span class="cdx-label__label__text">{{ labelText }}</span>{{!
+      }}<span class="cdx-label__label__text">{{{ labelText-html }}}</span>{{!
       }}{{#optionalFlag}} <span class="cdx-label__label__optional-flag">{{#i18n}}cdx-label-optional-flag{{/i18n}}</span>{{/optionalFlag}}
     </label>
   {{/isLegend}}
-  {{#description}}
-    <span {{#descriptionId}}id="{{ descriptionId }}" {{/descriptionId}}class="cdx-label__description">{{{ description }}}</span>
-  {{/description}}
+  {{#description-html}}
+    <span {{#descriptionId}}id="{{ descriptionId }}" {{/descriptionId}}class="cdx-label__description">{{{ description-html }}}</span>
+  {{/description-html}}
 </{{#isLegend}}legend{{/isLegend}}{{^isLegend}}div{{/isLegend}}>

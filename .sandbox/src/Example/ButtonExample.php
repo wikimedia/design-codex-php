@@ -56,7 +56,7 @@ class ButtonExample {
 
 		$progressive = $codex
 			->button()
-			->setLabel( "Progressive" )
+			->setLabel( "Progressive primary" )
 			->setAction( "progressive" )
 			->setWeight( "primary" )
 			->setSize( "medium" )
@@ -70,7 +70,7 @@ class ButtonExample {
 
 		$destructive = $codex
 			->button()
-			->setLabel( "Destructive" )
+			->setLabel( "Destructive primary" )
 			->setAction( "destructive" )
 			->setWeight( "primary" )
 			->setSize( "medium" )

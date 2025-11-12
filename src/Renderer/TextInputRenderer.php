@@ -84,16 +84,16 @@ class TextInputRenderer implements IRenderer {
 		}
 
 		$textInputData = [
-			'inputId' => $this->sanitizer->sanitizeText( $component->getInputId() ),
-			'type' => $this->sanitizer->sanitizeText( $component->getType() ),
-			'name' => $this->sanitizer->sanitizeText( $component->getName() ),
+			'inputId' => $component->getInputId(),
+			'type' => $component->getType(),
+			'name' => $component->getName(),
 			'isDisabled' => $component->isDisabled(),
-			'value' => $this->sanitizer->sanitizeText( $component->getValue() ),
-			'placeholder' => $this->sanitizer->sanitizeText( $component->getPlaceholder() ),
+			'value' => $component->getValue(),
+			'placeholder' => $component->getPlaceholder(),
 			'hasStartIcon' => $component->hasStartIcon(),
-			'startIconClass' => $this->sanitizer->sanitizeText( $component->getStartIconClass() ),
+			'startIconClass' => $component->getStartIconClass(),
 			'hasEndIcon' => $component->hasEndIcon(),
-			'endIconClass' => $this->sanitizer->sanitizeText( $component->getEndIconClass() ),
+			'endIconClass' => $component->getEndIconClass(),
 			'status' => $component->getStatus(),
 			'inputAttributes' => $this->resolve(
 				$this->sanitizer->sanitizeAttributes( $component->getInputAttributes() )

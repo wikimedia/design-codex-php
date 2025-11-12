@@ -113,15 +113,15 @@ class TableRenderer implements IRenderer {
 			'useRowHeaders' => $component->getUseRowHeaders(),
 			'paginationPosition' => $component->getPaginationPosition(),
 			'totalRows' => $component->getTotalRows(),
-			'caption' => $this->sanitizer->sanitizeText( $component->getCaption() ),
+			'caption' => $component->getCaption(),
 			'columns' => $this->prepareColumns( $component ),
 			'rows' => $this->prepareRows( $component ),
 			'hideCaption' => $component->getHideCaption(),
-			'headerContent' => $component->getHeaderContent(),
+			'headerContent-html' => $this->sanitizer->sanitizeText( $component->getHeaderContent() ?? '' ),
 			'hasData' => (bool)count( $component->getData() ),
 			'pager' => $pager ? $pager->getHtml() : '',
 			'attributes' => $this->resolve( $this->sanitizer->sanitizeAttributes( $component->getAttributes() ) ),
-			'footer' => $this->sanitizer->sanitizeText( $component->getFooter() ?? '' ),
+			'footer-html' => $this->sanitizer->sanitizeText( $component->getFooter() ?? '' ),
 		];
 		return $this->templateParser->processTemplate( 'table', $tableData );
 	}
@@ -142,9 +142,9 @@ class TableRenderer implements IRenderer {
 		foreach ( $table->getColumns() as $column ) {
 			$isCurrentSortColumn = $table->getCurrentSortColumn() === $column['id'];
 			$columns[] = [
-				'id' => $this->sanitizer->sanitizeText( $column['id'] ),
-				'label' => $this->sanitizer->sanitizeText( $column['label'] ),
-				'align' => isset( $column['align'] ) ? $this->sanitizer->sanitizeText( $column['align'] ) : '',
+				'id' => $column['id'],
+				'label-html' => $this->sanitizer->sanitizeText( $column['label'] ),
+				'align' => $column['align'] ?? '',
 				'sortable' => !empty( $column['sortable'] ),
 				'isCurrentSort' => $isCurrentSortColumn,
 				'sortUrl' => $this->buildSortUrl( $table, $column['id'] ),
@@ -170,10 +170,10 @@ class TableRenderer implements IRenderer {
 		foreach ( $table->getData() as $row ) {
 			$rowData = [];
 			foreach ( $table->getColumns() as $column ) {
-				$cellData = $row[$column['id']] ?? '';
-				$align = isset( $column['align'] ) ? $this->sanitizer->sanitizeText( $column['align'] ) : '';
+				$cellData = $this->sanitizer->sanitizeText( $row[$column['id']] ?? '' );
+				$align = $column['align'] ?? '';
 				$rowData[] = [
-					'cellData' => $cellData,
+					'cellData-html' => $cellData,
 					'align' => $align,
 				];
 			}

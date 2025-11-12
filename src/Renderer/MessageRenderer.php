@@ -84,10 +84,10 @@ class MessageRenderer implements IRenderer {
 		}
 
 		$messageData = [
-			'id' => $this->sanitizer->sanitizeText( $component->getId() ),
-			'type' => $this->sanitizer->sanitizeText( $component->getType() ),
+			'id' => $component->getId(),
+			'type' => $component->getType(),
 			'isInline' => $component->isInline(),
-			'iconClass' => $this->sanitizer->sanitizeText( $component->getIconClass() ),
+			'iconClass' => $component->getIconClass(),
 			'content-html' => $component->getContentHtml(),
 			'heading' => $this->sanitizer->sanitizeText( $component->getHeading() ),
 			'isPolite' => $component->getType() !== 'error',

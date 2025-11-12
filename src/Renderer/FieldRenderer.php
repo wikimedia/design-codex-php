@@ -92,21 +92,21 @@ class FieldRenderer implements IRenderer {
 		$label = $component->getLabel();
 
 		$labelData = [
-			'id' => $this->sanitizer->sanitizeText( $label->getId() ),
+			'id' => $label->getId(),
 			'isLegend' => $component->isFieldset(),
-			'inputId' => $this->sanitizer->sanitizeText( $label->getInputId() ),
-			'labelText' => $label->getLabelText(),
+			'inputId' => $label->getInputId(),
+			'labelText-html' => $this->sanitizer->sanitizeText( $label->getLabelText() ),
 			'optionalFlag' => $label->isOptional(),
 			'isVisuallyHidden' => $label->isVisuallyHidden(),
-			'description' => $this->sanitizer->sanitizeText( $label->getDescription() ),
-			'descriptionId' => $this->sanitizer->sanitizeText( $label->getDescriptionId() ),
-			'icon' => $this->sanitizer->sanitizeText( $label->getIconClass() ),
+			'description-html' => $this->sanitizer->sanitizeText( $label->getDescription() ),
+			'descriptionId' => $label->getDescriptionId(),
+			'icon' => $label->getIconClass(),
 			'isDisabled' => $label->isDisabled(),
 			'attributes' => $this->resolve( $this->sanitizer->sanitizeAttributes( $label->getAttributes() ) ),
 		];
 
 		$fieldData = [
-			'id' => $this->sanitizer->sanitizeText( $component->getId() ),
+			'id' => $component->getId(),
 			'isFieldset' => $component->isFieldset(),
 			'fields' => $component->getFields(),
 			'attributes' => $this->resolve( $this->sanitizer->sanitizeAttributes( $component->getAttributes() ) ),

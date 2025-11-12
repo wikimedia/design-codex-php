@@ -13,11 +13,10 @@ class AccordionExample {
 		return $codex
 			->accordion()
 			->setTitle( "Accordion Example" )
-			->setDescription( "This is an example of an accordion." )
-			->setContent(
-				$codex
-					->htmlSnippet( "<p>This is the content of the accordion.</p>" )
-			)
+			->setDescription( $codex->htmlSnippet( 'Accordion <em>description</em>' ) )
+			->setContent( $codex->htmlSnippet(
+				"<p>This is the <strong>content</strong> of the accordion.</p>"
+			) )
 			->setOpen( false )
 			->setAttributes( [
 				"class" => "foo bar baz",

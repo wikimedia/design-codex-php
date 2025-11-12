@@ -87,7 +87,7 @@ class ButtonRenderer implements IRenderer {
 
 		$buttonData = [
 			'id' => $this->sanitizer->sanitizeText( $component->getId() ),
-			'label' => $this->sanitizer->sanitizeText( $component->getLabel() ),
+			'label-html' => $this->sanitizer->sanitizeText( $component->getLabel() ),
 			'action' => $this->sanitizer->sanitizeText( $component->getAction() ),
 			'defaultAction' => $component->getAction() === 'default',
 			'weight' => $this->sanitizer->sanitizeText( $component->getWeight() ),

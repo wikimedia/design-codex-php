@@ -20,6 +20,7 @@
 namespace Wikimedia\Codex\Builder;
 
 use InvalidArgumentException;
+use Wikimedia\Codex\Component\HtmlSnippet;
 use Wikimedia\Codex\Component\Label;
 use Wikimedia\Codex\Renderer\LabelRenderer;
 
@@ -42,7 +43,7 @@ class LabelBuilder {
 	/**
 	 * The text displayed inside the label.
 	 */
-	protected string $labelText = '';
+	protected string|HtmlSnippet $labelText = '';
 
 	/**
 	 * The ID of the input/control this label is associated with.
@@ -67,7 +68,7 @@ class LabelBuilder {
 	/**
 	 * The description text that provides additional information about the input field.
 	 */
-	protected string $description = '';
+	protected string|HtmlSnippet $description = '';
 
 	/**
 	 * The ID of the description element, useful for the `aria-describedby` attribute.
@@ -115,14 +116,10 @@ class LabelBuilder {
 	 * The label text provides a descriptive title for the associated input field.
 	 *
 	 * @since 0.1.0
-	 * @param string $labelText The text of the label.
-	 * @param-taint $labelText exec_html Callers are responsible for escaping.
+	 * @param string|HtmlSnippet $labelText The text of the label.
 	 * @return $this Returns the Label instance for method chaining.
 	 */
-	public function setLabelText( string $labelText ): self {
-		if ( trim( $labelText ) === '' ) {
-			throw new InvalidArgumentException( "Label text cannot be empty." );
-		}
+	public function setLabelText( string|HtmlSnippet $labelText ): self {
 		$this->labelText = $labelText;
 
 		return $this;
@@ -219,10 +216,10 @@ class LabelBuilder {
 	 *     $label->setDescriptionText('Please enter a valid email.');
 	 *
 	 * @since 0.1.0
-	 * @param string $description The description text for the label.
+	 * @param string|HtmlSnippet $description The description text for the label.
 	 * @return $this Returns the Label instance for method chaining.
 	 */
-	public function setDescription( string $description ): self {
+	public function setDescription( string|HtmlSnippet $description ): self {
 		$this->description = $description;
 
 		return $this;

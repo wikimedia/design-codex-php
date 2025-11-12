@@ -62,7 +62,7 @@ class Table {
 	/**
 	 * The content for the table header.
 	 */
-	protected ?string $headerContent;
+	protected string|HtmlSnippet|null $headerContent;
 
 	/**
 	 * Array of columns for the table.
@@ -127,7 +127,7 @@ class Table {
 	/**
 	 * The footer content of the table.
 	 */
-	protected ?string $footer;
+	protected string|HtmlSnippet|null $footer;
 
 	/**
 	 * The renderer instance used to render the table.
@@ -143,11 +143,9 @@ class Table {
 	 * @param string $caption The caption for the table.
 	 * @param bool $hideCaption Whether the caption is hidden.
 	 * @param array $columns Array of columns.
-	 * @param-taint $columns exec_html Callers are responsible for escaping
 	 * @param array $data Array of row data.
 	 * @param bool $useRowHeaders Whether to use row headers.
-	 * @param ?string $headerContent The header content.
-	 * @param-taint $headerContent exec_html Callers are responsible for escaping
+	 * @param string|HtmlSnippet|null $headerContent The header content.
 	 * @param array $sort Array of sorting configurations.
 	 * @param ?string $currentSortColumn The current sorted column.
 	 * @param string $currentSortDirection The current sort direction.
@@ -157,7 +155,7 @@ class Table {
 	 * @param int $totalRows The total number of rows.
 	 * @param string $paginationPosition The pagination position.
 	 * @param ?Pager $pager The pager for handling pagination.
-	 * @param ?string $footer The footer content.
+	 * @param string|HtmlSnippet|null $footer The footer content.
 	 * @param TableRenderer $renderer The renderer instance.
 	 */
 	public function __construct(
@@ -167,7 +165,7 @@ class Table {
 		array $columns,
 		array $data,
 		bool $useRowHeaders,
-		?string $headerContent,
+		string|HtmlSnippet|null $headerContent,
 		array $sort,
 		?string $currentSortColumn,
 		string $currentSortDirection,
@@ -177,7 +175,7 @@ class Table {
 		int $totalRows,
 		string $paginationPosition,
 		?Pager $pager,
-		?string $footer,
+		string|HtmlSnippet|null $footer,
 		TableRenderer $renderer
 	) {
 		$this->id = $id;
@@ -294,9 +292,9 @@ class Table {
 	 * to the table.
 	 *
 	 * @since 0.1.0
-	 * @return string|null The footer content or null if not set.
+	 * @return string|HtmlSnippet|null The footer content or null if not set.
 	 */
-	public function getFooter(): ?string {
+	public function getFooter(): string|HtmlSnippet|null {
 		return $this->footer;
 	}
 
@@ -306,9 +304,9 @@ class Table {
 	 * This method returns the custom content for the table's header if it is set, such as actions or additional text.
 	 *
 	 * @since 0.1.0
-	 * @return string|null The header content or null if not set.
+	 * @return string|HtmlSnippet|null The header content or null if not set.
 	 */
-	public function getHeaderContent(): ?string {
+	public function getHeaderContent(): string|HtmlSnippet|null {
 		return $this->headerContent;
 	}
 

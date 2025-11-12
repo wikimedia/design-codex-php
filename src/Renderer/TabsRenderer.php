@@ -142,9 +142,9 @@ class TabsRenderer implements IRenderer {
 			$isHidden = !$isSelected;
 
 			$tabsData[] = [
-				'id' => $this->sanitizer->sanitizeText( $tab->getId() ),
-				'name' => $this->sanitizer->sanitizeText( $tab->getName() ),
-				'label' => $this->sanitizer->sanitizeText( $tab->getLabel() ),
+				'id' => $tab->getId(),
+				'name' => $tab->getName(),
+				'label' => $tab->getLabel(),
 				'content-html' => $tab->getContentHtml(),
 				'isSelected' => $isSelected,
 				'isHidden' => $isHidden,
@@ -153,7 +153,7 @@ class TabsRenderer implements IRenderer {
 		}
 
 		$data = [
-			'id' => $this->sanitizer->sanitizeText( $component->getId() ),
+			'id' => $component->getId(),
 			'tabs' => $tabsData,
 			'attributes' => $this->resolve(
 				$this->sanitizer->sanitizeAttributes( $component->getAttributes() )

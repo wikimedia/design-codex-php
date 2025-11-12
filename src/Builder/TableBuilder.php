@@ -19,6 +19,7 @@
 
 namespace Wikimedia\Codex\Builder;
 
+use Wikimedia\Codex\Component\HtmlSnippet;
 use Wikimedia\Codex\Component\Pager;
 use Wikimedia\Codex\Component\Table;
 use Wikimedia\Codex\Renderer\TableRenderer;
@@ -67,7 +68,7 @@ class TableBuilder {
 	/**
 	 * Content for the table header.
 	 */
-	protected ?string $headerContent = null;
+	protected string|HtmlSnippet|null $headerContent = null;
 
 	/**
 	 * Array of columns in the table.
@@ -132,7 +133,7 @@ class TableBuilder {
 	/**
 	 * Content for the table footer.
 	 */
-	protected ?string $footer = null;
+	protected string|HtmlSnippet|null $footer = null;
 
 	/**
 	 * The renderer instance used to render the table.
@@ -201,6 +202,7 @@ class TableBuilder {
 	 * Set the columns for the table.
 	 *
 	 * Each column is defined by an associative array with attributes such as 'id', 'label', 'sortable', etc.
+	 * The 'label' can be a string (plain text) or an HtmlSnippet object (raw HTML).
 	 *
 	 * Example usage:
 	 *
@@ -212,7 +214,6 @@ class TableBuilder {
 	 * @since 0.1.0
 	 * @param array $columns An array of columns, where each column is an associative array containing column
 	 *                       attributes.
-	 * @param-taint $columns exec_html Callers are responsible for escaping.
 	 * @return $this Returns the Table instance for method chaining.
 	 */
 	public function setColumns( array $columns ): self {
@@ -225,7 +226,7 @@ class TableBuilder {
 	 * Set the data for the table.
 	 *
 	 * The data array should correspond to the columns defined. Each row is an associative array where keys match
-	 * column IDs.
+	 * column IDs. The values can be strings (plain text) or HtmlSnippet objects (raw HTML).
 	 *
 	 * Example usage:
 	 *
@@ -390,10 +391,10 @@ class TableBuilder {
 	 * The footer is an optional section that can contain additional information or actions related to the table.
 	 *
 	 * @since 0.1.0
-	 * @param string $footer The footer content.
+	 * @param string|HtmlSnippet $footer The footer content.
 	 * @return $this Returns the Table instance for method chaining.
 	 */
-	public function setFooter( string $footer ): self {
+	public function setFooter( string|HtmlSnippet $footer ): self {
 		$this->footer = $footer;
 
 		return $this;
@@ -409,11 +410,10 @@ class TableBuilder {
 	 *     $table->setHeaderContent('Custom Actions');
 	 *
 	 * @since 0.1.0
-	 * @param string $headerContent The content to be displayed in the table header.
-	 * @param-taint $headerContent exec_html Callers are responsible for escaping.
+	 * @param string|HtmlSnippet $headerContent The content to be displayed in the table header.
 	 * @return $this Returns the Table instance for method chaining.
 	 */
-	public function setHeaderContent( string $headerContent ): self {
+	public function setHeaderContent( string|HtmlSnippet $headerContent ): self {
 		$this->headerContent = $headerContent;
 
 		return $this;

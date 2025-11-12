@@ -42,12 +42,12 @@ class Accordion {
 	/**
 	 * The accordion's header title.
 	 */
-	private string $title;
+	private string|HtmlSnippet $title;
 
 	/**
 	 * Additional text under the title.
 	 */
-	private string $description;
+	private string|HtmlSnippet $description;
 
 	/**
 	 * The content shown when the accordion is expanded.
@@ -75,8 +75,8 @@ class Accordion {
 	 * Initializes an Accordion instance with the specified properties.
 	 *
 	 * @param string $id The ID for the accordion.
-	 * @param string $title The accordion's header title.
-	 * @param string $description Additional text under the title.
+	 * @param string|HtmlSnippet $title The accordion's header title.
+	 * @param string|HtmlSnippet $description Additional text under the title.
 	 * @param string $contentHtml The content shown when the accordion is expanded.
 	 * @param bool $isOpen Determines if the accordion is expanded by default.
 	 * @param array $attributes Additional HTML attributes for the <details> element.
@@ -84,8 +84,8 @@ class Accordion {
 	 */
 	public function __construct(
 		string $id,
-		string $title,
-		string $description,
+		string|HtmlSnippet $title,
+		string|HtmlSnippet $description,
 		string $contentHtml,
 		bool $isOpen,
 		array $attributes,
@@ -123,7 +123,7 @@ class Accordion {
 	 * @since 0.1.0
 	 * @return string The title of the accordion.
 	 */
-	public function getTitle(): string {
+	public function getTitle(): string|HtmlSnippet {
 		return $this->title;
 	}
 
@@ -136,7 +136,7 @@ class Accordion {
 	 * @since 0.1.0
 	 * @return string The description of the accordion.
 	 */
-	public function getDescription(): string {
+	public function getDescription(): string|HtmlSnippet {
 		return $this->description;
 	}
 

@@ -97,13 +97,13 @@ class CardRenderer implements IRenderer {
 		}
 
 		$cardData = [
-			'id' => $this->sanitizer->sanitizeText( $component->getId() ),
+			'id' => $component->getId(),
 			'tag' => $component->getUrl() !== '' ? 'a' : 'span',
-			'title' => $this->sanitizer->sanitizeText( $component->getTitle() ),
-			'description' => $this->sanitizer->sanitizeText( $component->getDescription() ),
-			'supportingText' => $this->sanitizer->sanitizeText( $component->getSupportingText() ),
+			'title-html' => $this->sanitizer->sanitizeText( $component->getTitle() ),
+			'description-html' => $this->sanitizer->sanitizeText( $component->getDescription() ),
+			'supportingText-html' => $this->sanitizer->sanitizeText( $component->getSupportingText() ),
 			'url' => $this->sanitizer->sanitizeUrl( $component->getUrl() ),
-			'iconClass' => $this->sanitizer->sanitizeText( $component->getIconClass() ),
+			'iconClass' => $component->getIconClass(),
 			'thumbnail' => $thumbnailData,
 			'attributes' => $this->resolve( $this->sanitizer->sanitizeAttributes( $component->getAttributes() ) ),
 		];

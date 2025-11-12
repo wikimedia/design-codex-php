@@ -66,7 +66,9 @@ class InfoChipExample {
 
 		$infoChipNormalWithCustomIcon = $codex
 			->InfoChip()
-			->setText( "With Custom Icon" )
+			->setText(
+				$codex->htmlSnippet( "With <em>Custom</em> Icon" )
+			)
 			->setAttributes( [
 				"class" => "foo",
 				"bar" => "baz",

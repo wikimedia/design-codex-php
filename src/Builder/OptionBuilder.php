@@ -56,7 +56,7 @@ class OptionBuilder {
 	/**
 	 * Set the value for the option.
 	 *
-	 * The value is used for form submission when this option is selected. The value is HTML-escaped for safety.
+	 * The value is used for form submission when this option is selected.
 	 *
 	 * @since 0.1.0
 	 * @param string $value The unique value of the option.

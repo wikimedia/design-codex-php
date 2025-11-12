@@ -78,7 +78,6 @@ class TemplateParser {
 			Flags::FLAG_ADVARNAME |
 			Flags::FLAG_RUNTIMEPARTIAL |
 			Flags::FLAG_EXTHELPER |
-			Flags::FLAG_NOESCAPE |
 			Flags::FLAG_RENDER_DEBUG |
 			Flags::FLAG_MUSTACHE |
 			Flags::FLAG_ERROR_EXCEPTION |

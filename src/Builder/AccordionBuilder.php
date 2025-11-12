@@ -20,8 +20,8 @@
 
 namespace Wikimedia\Codex\Builder;
 
-use InvalidArgumentException;
 use Wikimedia\Codex\Component\Accordion;
+use Wikimedia\Codex\Component\HtmlSnippet;
 use Wikimedia\Codex\Renderer\AccordionRenderer;
 use Wikimedia\Codex\Traits\ContentSetter;
 
@@ -51,12 +51,12 @@ class AccordionBuilder {
 	/**
 	 * The accordion's header title.
 	 */
-	protected string $title = '';
+	protected string|HtmlSnippet $title = '';
 
 	/**
 	 * Additional text under the title.
 	 */
-	protected string $description = '';
+	protected string|HtmlSnippet $description = '';
 
 	/**
 	 * Determines if the accordion is expanded by default.
@@ -107,13 +107,10 @@ class AccordionBuilder {
 	 * of the content they will see when the accordion is expanded.
 	 *
 	 * @since 0.1.0
-	 * @param string $title The title text to be displayed in the accordion header.
+	 * @param string|HtmlSnippet $title The title text to be displayed in the accordion header.
 	 * @return $this Returns the Accordion instance for method chaining.
 	 */
-	public function setTitle( string $title ): self {
-		if ( trim( $title ) === '' ) {
-			throw new InvalidArgumentException( 'Title cannot be empty.' );
-		}
+	public function setTitle( string|HtmlSnippet $title ): self {
 		$this->title = $title;
 
 		return $this;
@@ -131,10 +128,10 @@ class AccordionBuilder {
 	 * allowing users to understand the content before deciding to expand it.
 	 *
 	 * @since 0.1.0
-	 * @param string $description The description text to be displayed in the accordion header.
+	 * @param string|HtmlSnippet $description The description text to be displayed in the accordion header.
 	 * @return $this Returns the Accordion instance for method chaining.
 	 */
-	public function setDescription( string $description ): self {
+	public function setDescription( string|HtmlSnippet $description ): self {
 		$this->description = $description;
 
 		return $this;

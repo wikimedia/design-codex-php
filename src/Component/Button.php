@@ -42,7 +42,7 @@ class Button {
 	/**
 	 * The text label displayed on the button.
 	 */
-	private string $label;
+	private string|HtmlSnippet $label;
 
 	/**
 	 * The visual action style of the button (e.g., default, progressive, destructive).
@@ -95,7 +95,7 @@ class Button {
 	 * Initializes a Button instance with the specified properties.
 	 *
 	 * @param string $id The ID for the button.
-	 * @param string $label The text label displayed on the button.
+	 * @param string|HtmlSnippet $label The text label displayed on the button.
 	 * @param string $action The visual action style of the button.
 	 * @param string $size The size of the button.
 	 * @param string $type The type of the button.
@@ -108,7 +108,7 @@ class Button {
 	 */
 	public function __construct(
 		string $id,
-		string $label,
+		string|HtmlSnippet $label,
 		string $action,
 		string $size,
 		string $type,
@@ -152,9 +152,9 @@ class Button {
 	 * to users about the button's action, ensuring that it is understandable and accessible.
 	 *
 	 * @since 0.1.0
-	 * @return string The label of the button.
+	 * @return string|HtmlSnippet The label of the button.
 	 */
-	public function getLabel(): string {
+	public function getLabel(): string|HtmlSnippet {
 		return $this->label;
 	}
 
