@@ -46,7 +46,7 @@ class TemplateParser {
 	private string $templateDir;
 
 	/**
-	 * Array of cached rendering functions.
+	 * @var array<string,callable> Array of cached rendering functions.
 	 */
 	private array $renderers = [];
 
@@ -97,8 +97,6 @@ class TemplateParser {
 	 * @suppress PhanTypeMismatchArgument
 	 */
 	public function compile( string $templateName ): callable {
-		unset( $this->renderers[$templateName] );
-
 		if ( isset( $this->renderers[$templateName] ) ) {
 			return $this->renderers[$templateName];
 		}
