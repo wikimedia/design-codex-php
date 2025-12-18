@@ -233,19 +233,16 @@ class TableRenderer implements IRenderer {
 			}
 		}
 
-		// Start with all current URL parameters to preserve them
-		$queryParams = $this->paramValidatorCallbacks->getAllParams();
-
-		// Override only the sort-specific parameters
-		$queryParams['offset'] = $this->paramValidatorCallbacks->getValue( 'offset', '', [] );
-		$queryParams['limit'] = $this->paramValidatorCallbacks->getValue( 'limit', 5, [] );
-
-		$queryParams['sort'] = $columnId;
-
-		$oppositeDirection = $table->oppositeSort( $table->getCurrentSortDirection() );
-		$queryParams['asc'] = ( $oppositeDirection === Table::SORT_ASCENDING ) ? 1 : '';
-		$queryParams['desc'] = ( $oppositeDirection === Table::SORT_DESCENDING ) ? 1 : '';
-
-		return '?' . http_build_query( $queryParams );
+		$isAscending = $table->getCurrentSortDirection() === Table::SORT_ASCENDING;
+		return '?' . http_build_query( [
+			// Start with all current URL parameters to preserve them
+			...$this->paramValidatorCallbacks->getAllParams(),
+			// Override only the sort-specific parameters
+			'offset' => $this->paramValidatorCallbacks->getValue( 'offset', '', [] ),
+			'limit' => $this->paramValidatorCallbacks->getValue( 'limit', 5, [] ),
+			'sort' => $columnId,
+			'asc' => $isAscending ? '' : 1,
+			'desc' => $isAscending ? 1 : '',
+		] );
 	}
 }

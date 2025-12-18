@@ -115,9 +115,7 @@ class ParamValidator {
 			$settings = [ self::PARAM_DEFAULT => $settings ];
 		}
 
-		if ( !isset( $settings[self::PARAM_TYPE] ) ) {
-			$settings[self::PARAM_TYPE] = gettype( $settings[self::PARAM_DEFAULT] ?? null );
-		}
+		$settings[self::PARAM_TYPE] ??= gettype( $settings[self::PARAM_DEFAULT] ?? null );
 
 		return $settings;
 	}
