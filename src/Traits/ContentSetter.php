@@ -15,7 +15,7 @@ namespace Wikimedia\Codex\Traits;
 use Wikimedia\Codex\Component\HtmlSnippet;
 
 /**
- * ContentSetter is a utility trait that adds the setContent() method. For backwards compatibilty,
+ * ContentSetter is a utility trait that adds the setContent() method. For backwards compatibility,
  * it also adds setContentText() and setContentHtml(). This trait is intended to be used in builder
  * classes.
  */
