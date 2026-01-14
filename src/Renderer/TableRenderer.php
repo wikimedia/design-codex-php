@@ -233,7 +233,10 @@ class TableRenderer implements IRenderer {
 			}
 		}
 
-		$queryParams = [];
+		// Start with all current URL parameters to preserve them
+		$queryParams = $this->paramValidatorCallbacks->getAllParams();
+
+		// Override only the sort-specific parameters
 		$queryParams['offset'] = $this->paramValidatorCallbacks->getValue( 'offset', '', [] );
 		$queryParams['limit'] = $this->paramValidatorCallbacks->getValue( 'limit', 5, [] );
 
