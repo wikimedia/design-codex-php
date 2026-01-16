@@ -170,7 +170,7 @@ Message sandbox
 <div class="cdx-message cdx-message--block cdx-message--success foo" aria-live="polite" id="success-message" data-type="confirmation">
   <span class="cdx-message__icon "></span>
   <div class="cdx-message__content">
-      <p><strong></strong></p>
+      <p><strong>Success</strong></p>
     The form has been submitted successfully.
   </div>
 </div>
