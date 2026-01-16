@@ -1,0 +1,539 @@
+Accordion sandbox
+<details class="cdx-accordion foo bar baz" foo="bar" baz="qux">
+  <summary>
+    <h3 class="cdx-accordion__header">
+      <span class="cdx-accordion__header__title">Accordion Example</span>
+      <span class="cdx-accordion__header__description">Accordion <em>description</em></span>
+    </h3>
+  </summary>
+  <div class="cdx-accordion__content">
+    <p>This is the <strong>content</strong> of the accordion.</p>
+  </div>
+</details>
+
+
+<!---- ---->
+
+Button sandbox
+<button class="cdx-button foo" id="example-button-1" type="button" id="example-button" data-toggle="example-action">
+    Default
+</button>
+<button class="cdx-button cdx-button--action-progressive" id="example-button-2" type="button" data-toggle="example-action">
+    Progressive
+</button>
+<button class="cdx-button cdx-button--action-destructive" id="example-button-3" type="button" data-toggle="example-action">
+    Destructive
+</button>
+<button class="cdx-button cdx-button--action-progressive cdx-button--weight-primary" id="example-button-4" type="button" data-toggle="example-action">
+    Progressive primary
+</button>
+<button class="cdx-button cdx-button--action-destructive cdx-button--weight-primary" id="example-button-5" type="button" data-toggle="example-action">
+    Destructive primary
+</button>
+<button class="cdx-button" id="example-button-6" type="button" disabled>
+    Disabled
+</button>
+<button class="cdx-button cdx-button--icon-only cdx-icon--add" type="button" aria-label="Icon-only button">
+</button>
+
+
+<!---- ---->
+
+Card sandbox
+<a class="cdx-card cdx-card--is-link foo" href="https://www.example.com" bar="baz">
+  <span class="cdx-card__thumbnail cdx-thumbnail">
+    <span class="cdx-thumbnail__image" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/64_365_Color_Macro_%285498808099%29.jpg/ 200px-64_365_Color_Macro_%285498808099%29.jpg');"></span>
+  </span>
+  <span class="cdx-card__text">
+    <span class="cdx-card__text__title">Codex Card Example</span>
+    <span class="cdx-card__text__description">This is an <strong>example</strong> card using the Codex design system.</span>
+    <span class="cdx-card__text__supporting-text">Additional supporting text goes here.</span>
+  </span>
+</a>
+
+
+<!---- ---->
+
+Checkbox sandbox
+<div class="cdx-checkbox foo">
+  <input class="cdx-checkbox__input bar" type="checkbox" id="password-reset-checkbox" name="" value="" aria-describedby="password-reset-checkbox-description" data-toggle="checkbox-option">
+  <span class="cdx-checkbox__icon"></span>
+    <div class="cdx-checkbox__label cdx-label">
+        <label for="password-reset-checkbox" class="cdx-label__label">
+          <span class="cdx-label__label__text">Send password reset emails only when both email address and username are provided.</span>
+        </label>
+        <span id="password-reset-checkbox-description" class="cdx-label__description">This improves privacy and helps prevent unsolicited emails.</span>
+    </div>
+</div>
+
+
+<!---- ---->
+
+Field sandbox
+<fieldset class="cdx-field foo" bar="baz" id="email-confirmation-fieldset" data-category="email-options">
+    <legend class="cdx-label">
+        <span class="cdx-label__label">
+          <span class="cdx-label__label__text">Email confirmation</span> <span class="cdx-label__label__optional-flag">(optional)</span>
+        </span>
+        <span class="cdx-label__description">Specify an email address in your preferences for these features to work.</span>
+    </legend>
+  <div class="cdx-field__control">
+      <div class="cdx-checkbox">
+  <input class="cdx-checkbox__input" type="checkbox" id="email-allow-others" name="" value="">
+  <span class="cdx-checkbox__icon"></span>
+    <div class="cdx-checkbox__label cdx-label">
+        <label for="email-allow-others" class="cdx-label__label">
+          <span class="cdx-label__label__text">Allow other users to email me</span>
+        </label>
+    </div>
+</div>
+
+      <div class="cdx-checkbox">
+  <input class="cdx-checkbox__input" type="checkbox" id="email-allow-new" name="" value="">
+  <span class="cdx-checkbox__icon"></span>
+    <div class="cdx-checkbox__label cdx-label">
+        <label for="email-allow-new" class="cdx-label__label">
+          <span class="cdx-label__label__text">Allow emails from brand-new users</span>
+        </label>
+    </div>
+</div>
+
+  </div>
+</fieldset>
+
+
+<!---- ---->
+
+InfoChip sandbox
+<div class="cdx-info-chip cdx-info-chip--notice foo" bar="baz">
+  <span class="cdx-info-chip--text">Info Chip</span>
+</div>
+<div class="cdx-info-chip cdx-info-chip--notice foo" bar="baz">
+  <span class="cdx-info-chip--text">Notice</span>
+</div>
+<div class="cdx-info-chip cdx-info-chip--warning foo" bar="baz">
+  <span class="cdx-info-chip__icon"></span>
+  <span class="cdx-info-chip--text">Warning</span>
+</div>
+<div class="cdx-info-chip cdx-info-chip--error foo" bar="baz">
+  <span class="cdx-info-chip__icon"></span>
+  <span class="cdx-info-chip--text">Error</span>
+</div>
+<div class="cdx-info-chip cdx-info-chip--success foo" bar="baz">
+  <span class="cdx-info-chip__icon"></span>
+  <span class="cdx-info-chip--text">Success</span>
+</div>
+<div class="cdx-info-chip cdx-info-chip--notice foo" bar="baz">
+  <span class="cdx-table__table__sort-icon--asc" aria-hidden="true"></span>
+  <span class="cdx-info-chip--text">With <em>Custom</em> Icon</span>
+</div>
+
+
+<!---- ---->
+
+Label sandbox
+<div class="cdx-label foo" id="username" data-info="username-input-label">
+    <label for="usernameInput" class="cdx-label__label">
+      <span class="cdx-label__label__text">Username</span> <span class="cdx-label__label__optional-flag">(optional)</span>
+    </label>
+    <span class="cdx-label__description">Please enter a your username.</span>
+</div>
+
+
+<!---- ---->
+
+Message sandbox
+<div class="cdx-message cdx-message--block cdx-message--notice foo" aria-live="polite" bar="baz">
+  <span class="cdx-message__icon "></span>
+  <div class="cdx-message__content">
+    This is a notice message.
+  </div>
+</div>
+<div class="cdx-message cdx-message--block cdx-message--warning foo" aria-live="polite" bar="baz">
+  <span class="cdx-message__icon "></span>
+  <div class="cdx-message__content">
+    This is a warning message.
+  </div>
+</div>
+<div class="cdx-message cdx-message--block cdx-message--error foo" role="alert" bar="baz">
+  <span class="cdx-message__icon "></span>
+  <div class="cdx-message__content">
+    This is an error message.
+  </div>
+</div>
+<div class="cdx-message cdx-message--block cdx-message--success foo" aria-live="polite" bar="baz">
+  <span class="cdx-message__icon "></span>
+  <div class="cdx-message__content">
+    This is a success message.
+  </div>
+</div>
+<div class="cdx-message cdx-message--block cdx-message--success foo" aria-live="polite" id="success-message" data-type="confirmation">
+  <span class="cdx-message__icon "></span>
+  <div class="cdx-message__content">
+      <p><strong></strong></p>
+    The form has been submitted successfully.
+  </div>
+</div>
+<div class="cdx-message cdx-message--inline cdx-message--notice foo" aria-live="polite" bar="baz">
+  <span class="cdx-message__icon "></span>
+  <div class="cdx-message__content">
+    The form has been submitted successfully.
+  </div>
+</div>
+
+
+<!---- ---->
+
+ProgressBar sandbox
+<div class="cdx-progress-bar foo" role="progressbar" aria-label="Loading content..." id="content-loading-progress" data-loading="true">
+  <div class="cdx-progress-bar__bar"></div>
+</div>
+
+
+<!---- ---->
+
+Radio sandbox
+<div class="cdx-radio bar">
+  <input class="cdx-radio__input foo" type="radio" id="password-reset-radio-1" name="password-reset-options" value="option1" aria-describedby="password-reset-radio-description-1" data-toggle="radio-option">
+  <span class="cdx-radio__icon"></span>
+    <div class="cdx-radio__label cdx-label" id="password-reset-radio-1">
+        <label for="password-reset-radio-1" class="cdx-label__label">
+          <span class="cdx-label__label__text">Send password reset emails only when both email address and username are provided.</span>
+        </label>
+    </div>
+</div>
+
+
+<!---- ---->
+
+Select sandbox
+<select class="cdx-select foo" class="foo" bar="baz" id="example-select" name="exampleSelection" data-category="selection">
+    <option value="val1">Standalone Option 1</option>
+    <option value="val2">Standalone Option 2</option>
+    <optgroup label="Group 1">
+        <option value="val3">Option in Group 1</option>
+        <option value="val4">Another Option in Group 1</option>
+    </optgroup>
+    <optgroup label="Group 2">
+        <option value="val5">Option in Group 2</option>
+        <option value="val6">Another Option in Group 2</option>
+    </optgroup>
+</select>
+
+
+<!---- ---->
+
+Table sandbox
+<form method="get"><div class="cdx-table foo" bar="baz">
+    <div class="cdx-table__header">
+          <div class="cdx-table__header__caption">
+            Articles
+          </div>
+        <div class="cdx-table__header__header-content">
+          List of the articles
+        </div>
+    </div>
+    <div class="cdx-table__table-wrapper">
+      <table class="cdx-table__table cdx-table__table--borders-vertical">
+          <caption>Articles</caption>
+        <thead>
+        <tr>
+            <th scope="col" class=" cdx-table__table__cell--has-sort">
+                <a class="cdx-table__table__sort-button cdx-button--fake-button cdx-button--fake-button--enabled" href="?offset&#x3D;&amp;limit&#x3D;5&amp;sort&#x3D;title&amp;asc&#x3D;&amp;desc&#x3D;1" aria-selected="false">
+                  Title
+                  <span class="cdx-icon cdx-icon--small cdx-table__sort-icon cdx-table__table__sort-icon--unsorted"></span>
+                </a>
+            </th>
+            <th scope="col" class=" cdx-table__table__cell--has-sort">
+                <a class="cdx-table__table__sort-button cdx-button--fake-button cdx-button--fake-button--enabled" href="?offset&#x3D;&amp;limit&#x3D;5&amp;sort&#x3D;page_id&amp;asc&#x3D;&amp;desc&#x3D;1" aria-selected="false">
+                  Page ID
+                  <span class="cdx-icon cdx-icon--small cdx-table__sort-icon cdx-table__table__sort-icon--unsorted"></span>
+                </a>
+            </th>
+            <th scope="col" class=" cdx-table__table__cell--has-sort">
+                <a class="cdx-table__table__sort-button cdx-button--fake-button cdx-button--fake-button--enabled" href="?offset&#x3D;&amp;limit&#x3D;5&amp;sort&#x3D;diameter_km&amp;asc&#x3D;&amp;desc&#x3D;1" aria-selected="false">
+                  Diameter (km)
+                  <span class="cdx-icon cdx-icon--small cdx-table__sort-icon cdx-table__table__sort-icon--unsorted"></span>
+                </a>
+            </th>
+            <th scope="col" class=" cdx-table__table__cell--has-sort">
+                <a class="cdx-table__table__sort-button cdx-button--fake-button cdx-button--fake-button--enabled" href="?offset&#x3D;&amp;limit&#x3D;5&amp;sort&#x3D;distance_from_sun_million_km&amp;asc&#x3D;&amp;desc&#x3D;1" aria-selected="false">
+                  <span>Distance from Sun (<abbr title="millions of kilometers">m. km</abbr>)</span>
+                  <span class="cdx-icon cdx-icon--small cdx-table__sort-icon cdx-table__table__sort-icon--unsorted"></span>
+                </a>
+            </th>
+            <th scope="col" class=" cdx-table__table__cell--has-sort">
+                <a class="cdx-table__table__sort-button cdx-button--fake-button cdx-button--fake-button--enabled" href="?offset&#x3D;&amp;limit&#x3D;5&amp;sort&#x3D;creation_date&amp;asc&#x3D;&amp;desc&#x3D;1" aria-selected="true">
+                  Creation Date
+                  <span class="cdx-icon cdx-icon--small cdx-table__sort-icon cdx-table__table__sort-icon--asc"></span>
+                </a>
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+          <tr>
+              <td class=""><a href="https://en.wikipedia.org/wiki/Mercury_(planet)">Mercury</a></td>
+              <td class="">1</td>
+              <td class="">4879</td>
+              <td class="">57.9</td>
+              <td class="">2024-01-01 12:00:00</td>
+          </tr>
+          <tr>
+              <td class=""><a href="https://en.wikipedia.org/wiki/Venus">Venus</a></td>
+              <td class="">2</td>
+              <td class="">12104</td>
+              <td class="">108.2</td>
+              <td class="">2024-01-05 14:30:00</td>
+          </tr>
+          <tr>
+              <td class=""><a href="https://en.wikipedia.org/wiki/Earth">Earth</a></td>
+              <td class="">3</td>
+              <td class="">12742</td>
+              <td class="">149.6</td>
+              <td class="">2024-01-10 10:00:00</td>
+          </tr>
+          <tr>
+              <td class=""><a href="https://en.wikipedia.org/wiki/Mars">Mars</a></td>
+              <td class="">4</td>
+              <td class="">6779</td>
+              <td class="">227.9</td>
+              <td class="">2024-02-01 16:15:00</td>
+          </tr>
+          <tr>
+              <td class=""><a href="https://en.wikipedia.org/wiki/Jupiter">Jupiter</a></td>
+              <td class="">5</td>
+              <td class="">139820</td>
+              <td class="">778.5</td>
+              <td class="">2024-02-05 08:45:00</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+      <div class="cdx-table-pager cdx-table__pagination--bottom">
+  <div class="cdx-table-pager__start">
+    <select class="cdx-select cdx-select" name="limit" onchange="this.form.submit();" class="cdx-select">
+    <option value="5" selected>5 rows</option>
+    <option value="10">10 rows</option>
+    <option value="25">25 rows</option>
+    <option value="50">50 rows</option>
+    <option value="100">100 rows</option>
+</select>
+
+  </div>
+   <div class="cdx-table-pager__status">
+                Showing results 1–5 of 30    </div>
+  <div class="cdx-table-pager__end">
+      <button class="cdx-button cdx-button--weight-quiet cdx-button--icon-only" type="submit" name="offset" aria-label="First page" disabled>
+          <span class="cdx-button__icon cdx-table-pager__icon--first" aria-hidden="true"></span>
+      </button>
+      <button class="cdx-button cdx-button--weight-quiet cdx-button--icon-only" type="submit" name="offset" aria-label="Previous page" disabled>
+          <span class="cdx-button__icon cdx-table-pager__icon--previous" aria-hidden="true"></span>
+      </button>
+      <button class="cdx-button cdx-button--weight-quiet cdx-button--icon-only" type="submit" name="offset" value="20240205084500" aria-label="Next page">
+          <span class="cdx-button__icon cdx-table-pager__icon--next" aria-hidden="true"></span>
+      </button>
+      <button class="cdx-button cdx-button--weight-quiet cdx-button--icon-only" type="submit" name="offset" value="20241020100000" aria-label="Last page">
+          <span class="cdx-button__icon cdx-table-pager__icon--last" aria-hidden="true"></span>
+      </button>
+  </div>
+</div>
+
+  </div>
+</form>
+
+<!---- ---->
+
+Tabs sandbox
+<div class="cdx-tabs foo" bar="baz" id="example-tabs" data-category="feedback">
+  <form class="cdx-tabs__header" method="get">
+    <div class="cdx-tabs__list" tabindex="-1" role="tablist">
+        <button id="tab1-label" class="cdx-tabs__list__item" role="tab" aria-selected="true" aria-controls="tab1" value="tab1" name="tab" type="submit">Tab 1</button>
+        <button id="tab2-label" class="cdx-tabs__list__item" role="tab" aria-selected="false" aria-controls="tab2" value="tab2" name="tab" type="submit">Tab 2</button>
+        <button id="tab3-label" class="cdx-tabs__list__item" role="tab" aria-selected="false" aria-controls="tab3" value="tab3" name="tab" type="submit">Tab 3</button>
+    </div>
+  </form>
+  <div class="cdx-tabs__content">
+      <section id="tab1" aria-hidden="false" aria-labelledby="tab1-label" class="cdx-tab" role="tabpanel" tabindex="-1">
+        <p>Content 1.</p>
+      </section>
+      <section id="tab2" aria-hidden="true" aria-labelledby="tab2-label" class="cdx-tab" role="tabpanel" tabindex="-1">
+        <p>Content 2.</p>
+      </section>
+      <section id="tab3" aria-hidden="true" aria-labelledby="tab3-label" class="cdx-tab" role="tabpanel" tabindex="-1">
+        <p>Content 3.</p>
+      </section>
+  </div>
+</div>
+
+
+<!---- ---->
+
+TextArea sandbox
+<div class="cdx-text-area cdx-text-area--status-default bar" some-attribute="some-value">
+  <textarea class="cdx-text-area__textarea foo" name="user-message" id="user-message" placeholder="Enter your message..."  data-category="feedback" aria-label="Message">This is a default message.</textarea>
+</div>
+
+
+<!---- ---->
+
+TextInput sandbox
+<div class="cdx-text-input cdx-text-input--status-default cdx-text-input--has-start-icon foo" data-toggle="example-action">
+  <input class="cdx-text-input__input bar" type="text" id="username-input" name="username" value="" placeholder="Enter your username" autocomplete="username" aria-label="Username"/>
+    <span class="cdx-text-input__icon cdx-text-input__start-icon cdx-icon--login"></span>
+</div>
+
+
+<!---- ---->
+
+Thumbnail sandbox
+<span class="cdx-thumbnail foo" bar="baz">
+  <span class="cdx-thumbnail__image" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/64_365_Color_Macro_%285498808099%29.jpg/200px-64_365_Color_Macro_%285498808099%29.jpg');"></span>
+</span>
+<span class="cdx-thumbnail foo" bar="baz">
+</span>
+
+
+<!---- ---->
+
+ToggleSwitch sandbox
+<span class="cdx-toggle-switch">
+  <input class="cdx-toggle-switch__input" type="checkbox" id="visual-editing-mode" aria-describedby="visual-editing-mode-description" foo="bar">
+  <span class="cdx-toggle-switch__switch">
+    <span class="cdx-toggle-switch__switch__grip"></span>
+  </span>
+        <div class="cdx-toggle-switch__label cdx-label" id="visual-editing-mode">
+            <label for="visual-editing-mode" class="cdx-label__label">
+              <span class="cdx-label__label__text">Visual editing mode</span>
+            </label>
+            <span id="visual-editing-mode-description" class="cdx-label__description">Turn on to use the visual editor. You can switch back to source mode at any time</span>
+        </div>
+</span>
+
+
+<!---- ---->
+
+basic accordion closed with text content
+<details class="cdx-accordion" id="some-id">
+  <summary>
+    <h3 class="cdx-accordion__header">
+      <span class="cdx-accordion__header__title">Some title</span>
+      <span class="cdx-accordion__header__description">Some description</span>
+    </h3>
+  </summary>
+  <div class="cdx-accordion__content">
+    Some plain text content
+  </div>
+</details>
+
+
+<!---- ---->
+
+basic accordion open with HTML content
+<details class="cdx-accordion" id="some-id" open>
+  <summary>
+    <h3 class="cdx-accordion__header">
+      <span class="cdx-accordion__header__title">Some title</span>
+      <span class="cdx-accordion__header__description">Some description</span>
+    </h3>
+  </summary>
+  <div class="cdx-accordion__content">
+    <p>Some content</p>
+  </div>
+</details>
+
+
+<!---- ---->
+
+accordion without description with text content
+<details class="cdx-accordion">
+  <summary>
+    <h3 class="cdx-accordion__header">
+      <span class="cdx-accordion__header__title">Some title</span>
+          </h3>
+  </summary>
+  <div class="cdx-accordion__content">
+    Some plain text content
+  </div>
+</details>
+
+
+<!---- ---->
+
+default button
+<button class="cdx-button" type="button">
+    Click Me
+</button>
+
+
+<!---- ---->
+
+primary progressive large button with icon
+<button class="cdx-button cdx-button--action-progressive cdx-button--weight-primary cdx-button--size-large" type="submit" data-action="submit-form">
+    <span class="cdx-button__icon icon-submit" aria-hidden="true"></span>
+    Submit
+</button>
+
+
+<!---- ---->
+
+destructive quiet medium icon-only disabled button
+<button class="cdx-button cdx-button--action-destructive cdx-button--weight-quiet cdx-button--icon-only" id="delete-btn" type="button" aria-label="Delete Item" disabled>
+    <span class="cdx-button__icon icon-delete" aria-hidden="true"></span>
+</button>
+
+
+<!---- ---->
+
+button with custom attributes and no icon
+<button class="cdx-button" type="button" data-toggle="modal" aria-expanded="false">
+    Learn More
+</button>
+
+
+<!---- ---->
+
+infoChip notice
+<div class="cdx-info-chip cdx-info-chip--notice" id="some-id">
+  <span class="cdx-info-chip--text">Some text</span>
+</div>
+
+
+<!---- ---->
+
+infoChip error
+<div class="cdx-info-chip cdx-info-chip--error" id="some-id">
+  <span class="cdx-info-chip__icon"></span>
+  <span class="cdx-info-chip--text">Some text</span>
+</div>
+
+
+<!---- ---->
+
+default progress bar
+<div class="cdx-progress-bar" role="progressbar" aria-label="Some progress">
+  <div class="cdx-progress-bar__bar"></div>
+</div>
+
+
+<!---- ---->
+
+inline progress bar
+<div class="cdx-progress-bar cdx-progress-bar--inline" role="progressbar" aria-label="Some processing">
+  <div class="cdx-progress-bar__bar"></div>
+</div>
+
+
+<!---- ---->
+
+disabled progress bar
+<div class="cdx-progress-bar cdx-progress-bar--disabled" role="progressbar" aria-label="Some disabled progress">
+  <div class="cdx-progress-bar__bar"></div>
+</div>
+
+
+<!---- ---->
+
+inline and disabled progress bar with attributes
+<div class="cdx-progress-bar cdx-progress-bar--inline cdx-progress-bar--disabled" role="progressbar" aria-label="Some progress" id="some-progress" data-test="some-value">
+  <div class="cdx-progress-bar__bar"></div>
+</div>

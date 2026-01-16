@@ -65,7 +65,8 @@
 		"start-sandbox": [
 			"cd .sandbox && npm install",
 			"php -S localhost:8000 -t .sandbox"
-		]
+		],
+		"update-snapshots": "php build/updateSnapshots.php"
 	},
 	"config": {
 		"prepend-autoloader": false,

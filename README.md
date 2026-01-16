@@ -75,6 +75,8 @@ The following scripts are defined for testing and code fixing purposes:
 - `phan`: Run the Phan static analyzer.
 - `phpcs`: Run the PHP Code Sniffer.
 - `start-sandbox`: Start the sandbox environment for testing.
+- `update-snapshots`: Update the snapshot tests. Run this if the snapshot
+  tests fail but the change in output was intentional.
 
 Example usage:
 
