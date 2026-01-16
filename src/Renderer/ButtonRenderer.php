@@ -86,16 +86,16 @@ class ButtonRenderer implements IRenderer {
 		}
 
 		$buttonData = [
-			'id' => $this->sanitizer->sanitizeText( $component->getId() ),
+			'id' => $component->getId(),
 			'label-html' => $this->sanitizer->sanitizeText( $component->getLabel() ),
-			'action' => $this->sanitizer->sanitizeText( $component->getAction() ),
+			'action' => $component->getAction(),
 			'defaultAction' => $component->getAction() === 'default',
-			'weight' => $this->sanitizer->sanitizeText( $component->getWeight() ),
-			'type' => $this->sanitizer->sanitizeText( $component->getType() ),
+			'weight' => $component->getWeight(),
+			'type' => $component->getType(),
 			'defaultWeight' => $component->getWeight() === 'normal',
-			'size' => $this->sanitizer->sanitizeText( $component->getSize() ),
+			'size' => $component->getSize(),
 			'defaultSize' => $component->getSize() === 'medium',
-			'iconClass' => $this->sanitizer->sanitizeText( $component->getIconClass() ),
+			'iconClass' => $component->getIconClass(),
 			'isDisabled' => $component->isDisabled(),
 			'iconOnly' => $component->isIconOnly(),
 			'attributes' => $this->resolve( $this->sanitizer->sanitizeAttributes( $component->getAttributes() ) ),
