@@ -10,27 +10,23 @@ class CardExample {
 	 * @return string
 	 */
 	public static function create( Codex $codex ): string {
-		return $codex
-			->Card()
-			->setTitle( "Codex Card Example" )
-			->setDescription( $codex->htmlSnippet(
-				"This is an <strong>example</strong> card using the Codex design system."
-			) )
-			->setSupportingText( "Additional supporting text goes here." )
-			->setThumbnail( $codex->Thumbnail()
+		return $codex->Card(
+			title: 'Codex Card Example',
+			description: $codex->htmlSnippet(
+				'This is an <strong>example</strong> card using the Codex design system.'
+			),
+			supportingText: 'Additional supporting text goes here.',
+			thumbnail: $codex->Thumbnail()
 				->setBackgroundImage(
-					"https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/" .
-					"64_365_Color_Macro_%285498808099%29.jpg/ " .
-					"200px-64_365_Color_Macro_%285498808099%29.jpg"
-				)
-				->build()
-			)
-			->setUrl( "https://www.example.com" )
-			->setAttributes( [
-				"class" => "foo",
-				"bar" => "baz",
-			] )
-			->build()
-			->getHtml();
+					'https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/' .
+					'64_365_Color_Macro_%285498808099%29.jpg/ ' .
+					'200px-64_365_Color_Macro_%285498808099%29.jpg'
+				)->build(),
+			url: 'https://www.example.com',
+			attributes: [
+				'class' => 'foo',
+				'bar' => 'baz',
+			]
+		);
 	}
 }

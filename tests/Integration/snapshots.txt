@@ -15,22 +15,22 @@ Accordion sandbox
 <!---- ---->
 
 Button sandbox
-<button class="cdx-button foo" id="example-button-1" type="button" id="example-button" data-toggle="example-action">
+<button class="cdx-button foo" type="button" id="example-button-1" data-toggle="example-action">
     Default
 </button>
-<button class="cdx-button cdx-button--action-progressive" id="example-button-2" type="button" data-toggle="example-action">
+<button class="cdx-button cdx-button--action-progressive" type="button" id="example-button-2" data-toggle="example-action">
     Progressive
 </button>
-<button class="cdx-button cdx-button--action-destructive" id="example-button-3" type="button" data-toggle="example-action">
+<button class="cdx-button cdx-button--action-destructive" type="button" id="example-button-3" data-toggle="example-action">
     Destructive
 </button>
-<button class="cdx-button cdx-button--action-progressive cdx-button--weight-primary" id="example-button-4" type="button" data-toggle="example-action">
+<button class="cdx-button cdx-button--action-progressive cdx-button--weight-primary" type="button" id="example-button-4" data-toggle="example-action">
     Progressive primary
 </button>
-<button class="cdx-button cdx-button--action-destructive cdx-button--weight-primary" id="example-button-5" type="button" data-toggle="example-action">
+<button class="cdx-button cdx-button--action-destructive cdx-button--weight-primary" type="button" id="example-button-5" data-toggle="example-action">
     Destructive primary
 </button>
-<button class="cdx-button" id="example-button-6" type="button" disabled>
+<button class="cdx-button" type="button" id="example-button-6" disabled>
     Disabled
 </button>
 <button class="cdx-button cdx-button--icon-only cdx-icon--add" type="button" aria-label="Icon-only button">
@@ -480,7 +480,7 @@ primary progressive large button with icon
 <!---- ---->
 
 destructive quiet medium icon-only disabled button
-<button class="cdx-button cdx-button--action-destructive cdx-button--weight-quiet cdx-button--icon-only" id="delete-btn" type="button" aria-label="Delete Item" disabled>
+<button class="cdx-button cdx-button--action-destructive cdx-button--weight-quiet cdx-button--icon-only" type="button" aria-label="Delete Item" id="delete-btn" disabled>
     <span class="cdx-button__icon icon-delete" aria-hidden="true"></span>
 </button>
 

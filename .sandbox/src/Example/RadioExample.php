@@ -10,33 +10,24 @@ class RadioExample {
 	 * @return string
 	 */
 	public static function create( Codex $codex ): string {
-		return $codex
-			->Radio()
-			->setInputId( "password-reset-radio-1" )
-			->setName( "password-reset-options" )
-			->setLabel(
-				$codex
-					->Label()
-					->setLabelText(
-						"Send password reset emails only when both email address and username are provided."
-					)
-					->setDescription(
-						"This improves privacy and helps prevent unsolicited emails."
-					)
-					->setDescriptionId( "password-reset-radio-description-1" )
-					->build()
-			)
-			->setValue( "option1" )
-			->setChecked( false )
-			->setInline( false )
-			->setInputAttributes( [
+		return $codex->Radio(
+			inputId: "password-reset-radio-1",
+			name: "password-reset-options",
+			label: $codex->Label(
+				labelText: "Send password reset emails only when both email address and username are provided.",
+				description: "This improves privacy and helps prevent unsolicited emails.",
+				descriptionId: "password-reset-radio-description-1"
+			),
+			value: "option1",
+			checked: false,
+			inline: false,
+			inputAttributes: [
 				"class" => "foo",
 				"data-toggle" => "radio-option",
-			] )
-			->setWrapperAttributes( [
+			],
+			wrapperAttributes: [
 				"class" => "bar",
-			] )
-			->build()
-			->getHtml();
+			]
+		);
 	}
 }

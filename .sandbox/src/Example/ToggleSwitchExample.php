@@ -10,24 +10,18 @@ class ToggleSwitchExample {
 	 * @return string
 	 */
 	public static function create( Codex $codex ): string {
-		return $codex
-			->ToggleSwitch()
-			->setInputId( "visual-editing-mode" )
-			->setLabel(
-				$codex
-					->Label()
-					->setLabelText( "Visual editing mode" )
-					->setDescription(
-						"Turn on to use the visual editor. You can switch back to source mode at any time" )
-					->setDescriptionId( "visual-editing-mode-description" )
-					->build()
-			)
-			->setChecked( false )
-			->setDisabled( false )
-			->setInputAttributes( [
+		return $codex->ToggleSwitch(
+			inputId: 'visual-editing-mode',
+			label: $codex->Label(
+				labelText: 'Visual editing mode',
+				description: 'Turn on to use the visual editor. You can switch back to source mode at any time',
+				descriptionId: 'visual-editing-mode-description'
+			),
+			checked: false,
+			disabled: false,
+			inputAttributes: [
 				'foo' => 'bar'
-			] )
-			->build()
-			->getHtml();
+			]
+		);
 	}
 }

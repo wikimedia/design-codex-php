@@ -10,73 +10,59 @@ class InfoChipExample {
 	 * @return string
 	 */
 	public static function create( Codex $codex ): string {
-		$infoChip = $codex
-			->InfoChip()
-			->setText( "Info Chip" )
-			->setAttributes( [
-				"class" => "foo",
-				"bar" => "baz",
-			] )
-			->build()
-			->getHtml();
+		$infoChip = $codex->InfoChip(
+			text: 'Info Chip',
+			attributes: [
+				'class' => 'foo',
+				'bar' => 'baz',
+			]
+		);
 
-		$infoChipNormal = $codex
-			->InfoChip()
-			->setText( "Notice" )
-			->setAttributes( [
-				"class" => "foo",
-				"bar" => "baz",
-			] )
-			->setStatus( "notice" )
-			->build()
-			->getHtml();
+		$infoChipNormal = $codex->InfoChip(
+			text: 'Notice',
+			attributes: [
+				'class' => 'foo',
+				'bar' => 'baz',
+			],
+			status: 'notice'
+		);
 
-		$infoChipWarning = $codex
-			->InfoChip()
-			->setText( "Warning" )
-			->setAttributes( [
-				"class" => "foo",
-				"bar" => "baz",
-			] )
-			->setStatus( "warning" )
-			->build()
-			->getHtml();
+		$infoChipWarning = $codex->InfoChip(
+			text: 'Warning',
+			attributes: [
+				'class' => 'foo',
+				'bar' => 'baz',
+			],
+			status: 'warning'
+		);
 
-		$infoChipError = $codex
-			->InfoChip()
-			->setText( "Error" )
-			->setAttributes( [
-				"class" => "foo",
-				"bar" => "baz",
-			] )
-			->setStatus( "error" )
-			->build()
-			->getHtml();
+		$infoChipError = $codex->InfoChip(
+			text: 'Error',
+			attributes: [
+				'class' => 'foo',
+				'bar' => 'baz',
+			],
+			status: 'error'
+		);
 
-		$infoChipSuccess = $codex
-			->InfoChip()
-			->setText( "Success" )
-			->setAttributes( [
-				"class" => "foo",
-				"bar" => "baz",
-			] )
-			->setStatus( "success" )
-			->build()
-			->getHtml();
+		$infoChipSuccess = $codex->InfoChip(
+			text: 'Success',
+			attributes: [
+				'class' => 'foo',
+				'bar' => 'baz',
+			],
+			status: 'success'
+		);
 
-		$infoChipNormalWithCustomIcon = $codex
-			->InfoChip()
-			->setText(
-				$codex->htmlSnippet( "With <em>Custom</em> Icon" )
-			)
-			->setAttributes( [
-				"class" => "foo",
-				"bar" => "baz",
-			] )
-			->setStatus( "notice" )
-			->setIcon( 'cdx-table__table__sort-icon--asc' )
-			->build()
-			->getHtml();
+		$infoChipNormalWithCustomIcon = $codex->InfoChip(
+			text: $codex->htmlSnippet( 'With <em>Custom</em> Icon' ),
+			attributes: [
+				'class' => 'foo',
+				'bar' => 'baz',
+			],
+			status: 'notice',
+			icon: 'cdx-table__table__sort-icon--asc'
+		);
 
 		return $infoChip . $infoChipNormal . $infoChipWarning . $infoChipError . $infoChipSuccess .
 			$infoChipNormalWithCustomIcon;

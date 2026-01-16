@@ -10,96 +10,83 @@ class ButtonExample {
 	 * @return string
 	 */
 	public static function create( Codex $codex ): string {
-		$default = $codex
-			->button()
-			->setLabel( "Default" )
-			->setAction( "default" )
-			->setWeight( "normal" )
-			->setSize( "medium" )
-			->setIconOnly( false )
-			->setId( "example-button-1" )
-			->setAttributes( [
-				"class" => "foo",
-				"id" => "example-button",
-				"data-toggle" => "example-action",
-			] )
-			->build()
-			->getHtml();
+		$default = $codex->button(
+			label: 'Default',
+			action: 'default',
+			weight: 'normal',
+			size: 'medium',
+			iconOnly: false,
+			attributes: [
+				'class' => 'foo',
+				'id' => 'example-button-1',
+				'data-toggle' => 'example-action',
+			]
+		);
 
-		$progressiveNormal = $codex
-			->button()
-			->setLabel( "Progressive" )
-			->setAction( "progressive" )
-			->setWeight( "normal" )
-			->setSize( "medium" )
-			->setIconOnly( false )
-			->setId( "example-button-2" )
-			->setAttributes( [
-				"data-toggle" => "example-action",
-			] )
-			->build()
-			->getHtml();
+		$progressiveNormal = $codex->button(
+			label: 'Progressive',
+			action: 'progressive',
+			weight: 'normal',
+			size: 'medium',
+			iconOnly: false,
+			attributes: [
+				'id' => 'example-button-2',
+				'data-toggle' => 'example-action',
+			]
+		);
 
-		$destructiveNormal = $codex
-			->button()
-			->setLabel( "Destructive" )
-			->setAction( "destructive" )
-			->setWeight( "normal" )
-			->setSize( "medium" )
-			->setIconOnly( false )
-			->setId( "example-button-3" )
-			->setAttributes( [
-				"data-toggle" => "example-action",
-			] )
-			->build()
-			->getHtml();
+		$destructiveNormal = $codex->button(
+			label: 'Destructive',
+			action: 'destructive',
+			weight: 'normal',
+			size: 'medium',
+			iconOnly: false,
+			attributes: [
+				'id' => 'example-button-3',
+				'data-toggle' => 'example-action',
+			]
+		);
 
-		$progressive = $codex
-			->button()
-			->setLabel( "Progressive primary" )
-			->setAction( "progressive" )
-			->setWeight( "primary" )
-			->setSize( "medium" )
-			->setIconOnly( false )
-			->setId( "example-button-4" )
-			->setAttributes( [
-				"data-toggle" => "example-action",
-			] )
-			->build()
-			->getHtml();
+		$progressive = $codex->button(
+			label: 'Progressive primary',
+			action: 'progressive',
+			weight: 'primary',
+			size: 'medium',
+			iconOnly: false,
+			attributes: [
+				'id' => 'example-button-4',
+				'data-toggle' => 'example-action',
+			]
+		);
 
-		$destructive = $codex
-			->button()
-			->setLabel( "Destructive primary" )
-			->setAction( "destructive" )
-			->setWeight( "primary" )
-			->setSize( "medium" )
-			->setIconOnly( false )
-			->setId( "example-button-5" )
-			->setAttributes( [
-				"data-toggle" => "example-action",
-			] )
-			->build()
-			->getHtml();
+		$destructive = $codex->button(
+			label: 'Destructive primary',
+			action: 'destructive',
+			weight: 'primary',
+			size: 'medium',
+			iconOnly: false,
+			attributes: [
+				'id' => 'example-button-5',
+				'data-toggle' => 'example-action',
+			]
+		);
 
-		$disabled = $codex
-			->button()
-			->setLabel( "Disabled" )
-			->setDisabled( true )
-			->setId( "example-button-6" )
-			->build()
-			->getHtml();
+		$disabled = $codex->button(
+			label: 'Disabled',
+			disabled: true,
+			attributes: [
+				'id' => 'example-button-6',
+			]
+		);
 
-		$iconOnly = $codex
-			->button()
-			->setIconOnly( true )
-			->setAttributes( [
+		$iconOnly = $codex->button(
+			iconOnly: true,
+			attributes: [
 				// Note that class is used to apply an icon image.
-				"class" => "cdx-icon--add",
-				"aria-label" => "Icon-only button",
-			] )
-			->build()
-			->getHtml();
+				'class' => 'cdx-icon--add',
+				'aria-label' => 'Icon-only button',
+			]
+		);
 
 		return $default .
 			$progressiveNormal .

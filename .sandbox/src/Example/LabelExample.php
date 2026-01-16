@@ -10,19 +10,17 @@ class LabelExample {
 	 * @return string
 	 */
 	public static function create( Codex $codex ): string {
-		return $codex
-			->Label()
-			->setLabelText( "Username" )
-			->setOptional( true )
-			->setDescription( "Please enter a your username." )
-			->setId( "username" )
-			->setAttributes( [
-				"class" => "foo",
-				"data-info" => "username-input-label",
-			] )
-			->setIsLegend( false )
-			->setInputId( "usernameInput" )
-			->build()
-			->getHtml();
+		return $codex->Label(
+			labelText: 'Username',
+			optional: true,
+			description: 'Please enter a your username.',
+			attributes: [
+				'id' => 'username',
+				'class' => 'foo',
+				'data-info' => 'username-input-label',
+			],
+			isLegend: false,
+			inputId: 'usernameInput'
+		);
 	}
 }

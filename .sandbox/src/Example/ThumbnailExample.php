@@ -10,27 +10,21 @@ class ThumbnailExample {
 	 * @return string
 	 */
 	public static function create( Codex $codex ): string {
-		$thumbnail = $codex
-			->Thumbnail()
-			->setBackgroundImage(
-				"https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/64_365_Color_Macro_%285498808099%29.jpg/" .
-				"200px-64_365_Color_Macro_%285498808099%29.jpg"
-			)
-			->setAttributes( [
+		$thumbnail = $codex->Thumbnail(
+			backgroundImage: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/" .
+				"64_365_Color_Macro_%285498808099%29.jpg/200px-64_365_Color_Macro_%285498808099%29.jpg",
+			attributes: [
 				"class" => "foo",
 				"bar" => "baz",
-			] )
-			->build()
-			->getHtml();
+			]
+		);
 
-		$thumbnailPlaceholder = $codex
-			->Thumbnail()
-			->setAttributes( [
+		$thumbnailPlaceholder = $codex->Thumbnail(
+			attributes: [
 				"class" => "foo",
 				"bar" => "baz",
-			] )
-			->build()
-			->getHtml();
+			]
+		);
 
 		return $thumbnail . $thumbnailPlaceholder;
 	}

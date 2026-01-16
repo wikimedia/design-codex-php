@@ -14,35 +14,26 @@ class TabsExample {
 		Codex $codex
 	): string {
 		$tab1 = $codex
-			->Tab()
-			->setName( "tab1" )
-			->setLabel( "Tab 1" )
-			->setContent(
-				$codex
-					->htmlSnippet( "<p>Content 1.</p>" )
-			)
-			->setSelected( true )
-			->build();
+			->Tab(
+				name: 'tab1',
+				label: 'Tab 1',
+				content: $codex->htmlSnippet( '<p>Content 1.</p>' ),
+				selected: true
+			);
 
 		$tab2 = $codex
-			->Tab()
-			->setName( "tab2" )
-			->setLabel( "Tab 2" )
-			->setContent(
-				$codex
-					->htmlSnippet( "<p>Content 2.</p>" )
-			)
-			->build();
+			->Tab(
+				name: 'tab2',
+				label: 'Tab 2',
+				content: $codex->htmlSnippet( '<p>Content 2.</p>' )
+			);
 
 		$tab3 = $codex
-			->Tab()
-			->setName( "tab3" )
-			->setLabel( "Tab 3" )
-			->setContent(
-				$codex
-					->htmlSnippet( "<p>Content 3.</p>" )
-			)
-			->build();
+			->Tab(
+				name: 'tab3',
+				label: 'Tab 3',
+				content: $codex->htmlSnippet( '<p>Content 3.</p>' )
+			);
 
 		return $codex
 			->Tabs()

@@ -287,41 +287,37 @@ class TableExample {
 		int $startOrdinal,
 		int $endOrdinal
 	): string {
-		$tableHtml = $codex
-			->Table()
-			->setCaption( "Articles" )
-			->setHideCaption( false )
-			->setHeaderContent( "List of the articles" )
-			->setColumns( self::getColumns( $codex ) )
-			->setData( $paginatedData )
-			->setPager(
-				$codex
-					->Pager()
-					->setTotalPages( $totalPages )
-					->setTotalResults( $totalRecords )
-					->setLimit( $limit )
-					->setCurrentOffset( $offsetFormatted )
-					->setFirstOffset( $offsets["firstOffset"] ?? null )
-					->setPrevOffset( $offsets["prevOffset"] ?? null )
-					->setNextOffset( $offsets["nextOffset"] ?? null )
-					->setLastOffset( $offsets["lastOffset"] ?? null )
-					->setOrdinals( $startOrdinal, $endOrdinal )
-					->setPaginationSizeOptions( [ 5, 10, 25, 50, 100 ] )
-					->setPaginationSizeDefault( 5 )
-					->setPosition( "bottom" )
-					->build()
-			)
-			->setCurrentSortColumn( $sortColumn )
-			->setCurrentSortDirection( $sortDirection )
-			->setShowVerticalBorders( true )
-			->setPaginationPosition( "bottom" )
-			->setFooter( "Displaying sample data for demonstration purposes." )
-			->setAttributes( [
+		$tableHtml = $codex->Table(
+			caption: "Articles",
+			hideCaption: false,
+			headerContent: "List of the articles",
+			columns: self::getColumns( $codex ),
+			data: $paginatedData,
+			pager: $codex->Pager(
+				totalPages: $totalPages,
+				totalResults: $totalRecords,
+				limit: $limit,
+				currentOffset: $offsetFormatted,
+				firstOffset: $offsets["firstOffset"] ?? null,
+				prevOffset: $offsets["prevOffset"] ?? null,
+				nextOffset: $offsets["nextOffset"] ?? null,
+				lastOffset: $offsets["lastOffset"] ?? null,
+				startOrdinal: $startOrdinal,
+				endOrdinal: $endOrdinal,
+				paginationSizeOptions: [ 5, 10, 25, 50, 100 ],
+				paginationSizeDefault: 5,
+				position: "bottom"
+			),
+			currentSortColumn: $sortColumn,
+			currentSortDirection: $sortDirection,
+			showVerticalBorders: true,
+			paginationPosition: "bottom",
+			footer: "Displaying sample data for demonstration purposes.",
+			attributes: [
 				"class" => "foo",
 				"bar" => "baz",
-			] )
-			->build()
-			->getHtml();
+			]
+		);
 
 		$formHtml = '<form method="get">' . $tableHtml . '</form>';
 

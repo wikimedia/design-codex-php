@@ -10,17 +10,13 @@ class ProgressBarExample {
 	 * @return string
 	 */
 	public static function create( Codex $codex ): string {
-		return $codex
-			->ProgressBar()
-			->setLabel( "Loading content..." )
-			->setInline( false )
-			->setDisabled( false )
-			->setAttributes( [
-				"class" => "foo",
-				"id" => "content-loading-progress",
-				"data-loading" => "true",
-			] )
-			->build()
-			->getHtml();
+		return $codex->ProgressBar(
+			label: 'Loading content...',
+			attributes: [
+				'class' => 'foo',
+				'id' => 'content-loading-progress',
+				'data-loading' => 'true',
+			]
+		);
 	}
 }

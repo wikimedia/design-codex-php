@@ -53,130 +53,107 @@ class SnapshotTest extends TestCase {
 			// Additional tests per component
 
 			// Accordion
-			[ 'basic accordion closed with text content', static fn ( Codex $codex ) => $codex->accordion()
-				->setTitle( 'Some title' )
-				->setDescription( 'Some description' )
-				->setContent( 'Some plain text content' )
-				->setOpen( false )
-				->setAttributes( [ 'id' => 'some-id' ] )
-				->build()
-				->getHtml()
-			],
-			[ 'basic accordion open with HTML content', static fn ( Codex $codex ) => $codex->accordion()
-				->setTitle( 'Some title' )
-				->setDescription( 'Some description' )
-				->setContent( new HtmlSnippet( '<p>Some content</p>' ) )
-				->setOpen( true )
-				->setAttributes( [ 'id' => 'some-id' ] )
-				->build()
-				->getHtml()
-			],
-			[ 'accordion without description with text content', static fn ( Codex $codex ) => $codex->accordion()
-				->setTitle( 'Some title' )
-				->setDescription( '' )
-				->setContent( 'Some plain text content' )
-				->setOpen( false )
-				->build()
-				->getHtml()
-			],
+			[ 'basic accordion closed with text content', static fn ( Codex $codex ) => $codex->accordion(
+				title: 'Some title',
+				description: 'Some description',
+				content: 'Some plain text content',
+				open: false,
+				attributes: [ 'id' => 'some-id' ]
+			) ],
+			[ 'basic accordion open with HTML content', static fn ( Codex $codex ) => $codex->accordion(
+				title: 'Some title',
+				description: 'Some description',
+				content: new HtmlSnippet( '<p>Some content</p>' ),
+				open: true,
+				attributes: [ 'id' => 'some-id' ]
+			) ],
+			[ 'accordion without description with text content', static fn ( Codex $codex ) => $codex->accordion(
+				title: 'Some title',
+				description: '',
+				content: 'Some plain text content',
+				open: false
+			) ],
 
 			// Button
-			[ 'default button', static fn ( Codex $codex ) => $codex->button()
-				->setLabel( 'Click Me' )
-				->build()
-				->getHtml()
-			],
-			[ 'primary progressive large button with icon', static fn ( Codex $codex ) => $codex->button()
-				->setLabel( 'Submit' )
-				->setAction( 'progressive' )
-				->setWeight( 'primary' )
-				->setSize( 'large' )
-				->setType( 'submit' )
-				->setIconClass( 'icon-submit' )
-				->setAttributes( [ 'data-action' => 'submit-form' ] )
-				->build()
-				->getHtml()
-			],
-			[ 'destructive quiet medium icon-only disabled button', static fn ( Codex $codex ) => $codex->button()
-				->setId( 'delete-btn' )
-				->setLabel( 'Delete' )
-				->setAction( 'destructive' )
-				->setWeight( 'quiet' )
-				->setSize( 'medium' )
-				->setType( 'button' )
-				->setIconClass( 'icon-delete' )
-				->setIconOnly( true )
-				->setDisabled( true )
-				->setAttributes( [ 'aria-label' => 'Delete Item' ] )
-				->build()
-				->getHtml()
-			],
-			[ 'button with custom attributes and no icon', static fn ( Codex $codex ) => $codex->button()
-				->setLabel( 'Learn More' )
-				->setAction( 'default' )
-				->setWeight( 'normal' )
-				->setSize( 'medium' )
-				->setType( 'button' )
-				->setAttributes( [
+			[ 'default button', static fn ( Codex $codex ) => $codex->button(
+				label: 'Click Me'
+			) ],
+			[ 'primary progressive large button with icon', static fn ( Codex $codex ) => $codex->button(
+				label: 'Submit',
+				action: 'progressive',
+				weight: 'primary',
+				size: 'large',
+				type: 'submit',
+				iconClass: 'icon-submit',
+				attributes: [ 'data-action' => 'submit-form' ]
+			) ],
+			[ 'destructive quiet medium icon-only disabled button', static fn ( Codex $codex ) => $codex->button(
+				label: 'Delete',
+				action: 'destructive',
+				weight: 'quiet',
+				size: 'medium',
+				type: 'button',
+				iconClass: 'icon-delete',
+				iconOnly: true,
+				disabled: true,
+				attributes: [
+					'aria-label' => 'Delete Item',
+					'id' => 'delete-btn'
+				],
+			) ],
+			[ 'button with custom attributes and no icon', static fn ( Codex $codex ) => $codex->button(
+				label: 'Learn More',
+				action: 'default',
+				weight: 'normal',
+				size: 'medium',
+				type: 'button',
+				iconClass: null,
+				iconOnly: false,
+				disabled: false,
+				attributes: [
 					'data-toggle' => 'modal',
 					'aria-expanded' => 'false',
-				] )
-				->build()
-				->getHtml()
-			],
+				]
+			) ],
 
 			// InfoChip
-			[ 'infoChip notice', static fn ( Codex $codex ) => $codex->infoChip()
-				->setText( 'Some text' )
-				->setAttributes( [ 'id' => 'some-id' ] )
-				->setStatus( 'notice' )
-				->build()
-				->getHtml()
-			],
-			[ 'infoChip error', static fn ( Codex $codex ) => $codex->infoChip()
-				->setText( 'Some text' )
-				->setAttributes( [ 'id' => 'some-id' ] )
-				->setStatus( 'error' )
-				->build()
-				->getHtml()
-			],
-			// [ 'infoChip with invalid status', static fn ( Codex $codex ) => $codex->infoChip()
-			// 	->setText( 'Some text' )
-			// 	->setAttributes( [ 'id' => 'some-id' ] )
-			// 	->setStatus( 'foo' )
-			// 	->build()
-			// 	->getHtml()
-			// ],
+			[ 'infoChip notice', static fn ( Codex $codex ) => $codex->infoChip(
+				text: 'Some text',
+				attributes: [ 'id' => 'some-id' ],
+				status: 'notice'
+			) ],
+			[ 'infoChip error', static fn ( Codex $codex ) => $codex->infoChip(
+				text: 'Some text',
+				attributes: [ 'id' => 'some-id' ],
+				status: 'error'
+			) ],
+			// [ 'infoChip with invalid status', static fn ( Codex $codex ) => $codex->infoChip(
+			// 	text: 'Some text',
+			// 	attributes: [ 'id' => 'some-id' ],
+			// 	status: 'foo'
+			// ) ],
 
 			// ProgressBar
-			[ 'default progress bar', static fn ( Codex $codex ) => $codex->progressBar()
-				->setLabel( 'Some progress' )
-				->build()
-				->getHtml()
-			],
-			[ 'inline progress bar', static fn ( Codex $codex ) => $codex->progressBar()
-				->setLabel( 'Some processing' )
-				->setInline( true )
-				->build()
-				->getHtml()
-			],
-			[ 'disabled progress bar', static fn ( Codex $codex ) => $codex->progressBar()
-				->setLabel( 'Some disabled progress' )
-				->setDisabled( true )
-				->build()
-				->getHtml()
-			],
-			[ 'inline and disabled progress bar with attributes', static fn ( Codex $codex ) => $codex->progressBar()
-				->setLabel( 'Some progress' )
-				->setInline( true )
-				->setDisabled( true )
-				->setAttributes( [
+			[ 'default progress bar', static fn ( Codex $codex ) => $codex->progressBar(
+				label: 'Some progress'
+			) ],
+			[ 'inline progress bar', static fn ( Codex $codex ) => $codex->progressBar(
+				label: 'Some processing',
+				inline: true
+			) ],
+			[ 'disabled progress bar', static fn ( Codex $codex ) => $codex->progressBar(
+				label: 'Some disabled progress',
+				disabled: true
+			) ],
+			[ 'inline and disabled progress bar with attributes', static fn ( Codex $codex ) => $codex->progressBar(
+				label: 'Some progress',
+				inline: true,
+				disabled: true,
+				attributes: [
 					'id' => 'some-progress',
 					'data-test' => 'some-value',
-				] )
-				->build()
-				->getHtml()
-			],
+				]
+			) ],
 		];
 	}
 

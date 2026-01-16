@@ -10,74 +10,62 @@ class MessageExample {
 	 * @return string
 	 */
 	public static function create( Codex $codex ): string {
-		$noticeBlock = $codex
-			->Message()
-			->setContentText( "This is a notice message." )
-			->setType( "notice" )
-			->setAttributes( [
-				"class" => "foo",
-				"bar" => "baz",
-			] )
-			->build()
-			->getHtml();
+		$noticeBlock = $codex->Message(
+			content: 'This is a notice message.',
+			type: 'notice',
+			attributes: [
+				'class' => 'foo',
+				'bar' => 'baz',
+			]
+		);
 
-		$warningBlock = $codex
-			->Message()
-			->setContentText( "This is a warning message." )
-			->setType( "warning" )
-			->setAttributes( [
-				"class" => "foo",
-				"bar" => "baz",
-			] )
-			->build()
-			->getHtml();
+		$warningBlock = $codex->Message(
+			content: 'This is a warning message.',
+			type: 'warning',
+			attributes: [
+				'class' => 'foo',
+				'bar' => 'baz',
+			]
+		);
 
-		$errorBlock = $codex
-			->Message()
-			->setContentText( "This is an error message." )
-			->setType( "error" )
-			->setAttributes( [
-				"class" => "foo",
-				"bar" => "baz",
-			] )
-			->build()
-			->getHtml();
+		$errorBlock = $codex->Message(
+			content: 'This is an error message.',
+			type: 'error',
+			attributes:  [
+				'class' => 'foo',
+				'bar' => 'baz',
+			]
+		);
 
-		$successBlock = $codex
-			->Message()
-			->setContentText( "This is a success message." )
-			->setType( "success" )
-			->setAttributes( [
-				"class" => "foo",
-				"bar" => "baz",
-			] )
-			->build()
-			->getHtml();
+		$successBlock = $codex->Message(
+			content: 'This is a success message.',
+			type: 'success',
+			attributes: [
+				'class' => 'foo',
+				'bar' => 'baz',
+			]
+		);
 
-		$multiline = $codex
-			->Message()
-			->setContentText( "The form has been submitted successfully." )
-			->setType( "success" )
-			->setHeading( "Success" )
-			->setAttributes( [
-				"class" => "foo",
-				"id" => "success-message",
-				"data-type" => "confirmation",
-			] )
-			->build()
-			->getHtml();
+		$multiline = $codex->Message(
+			content: 'The form has been submitted successfully.',
+			type: 'success',
+			heading: 'Success',
+			attributes: [
+				'class' => 'foo',
+				'id' => 'success-message',
+				'data-type' => 'confirmation',
+			]
+		);
 
-		$noticeInline = $codex
-			->Message()
-			->setContentText( "The form has been submitted successfully." )
-			->setType( "notice" )
-			->setInline( true )
-			->setAttributes( [
-				"class" => "foo",
-				"bar" => "baz",
-			] )
-			->build()
-			->getHtml();
+		$noticeInline = $codex->Message(
+			content: 'The form has been submitted successfully.',
+			type: 'notice',
+			inline: true,
+			attributes: [
+				'class' => 'foo',
+				'bar' => 'baz',
+			]
+		);
 
 		return $noticeBlock .
 			$warningBlock .

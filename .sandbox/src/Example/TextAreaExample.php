@@ -10,22 +10,20 @@ class TextAreaExample {
 	 * @return string
 	 */
 	public static function create( Codex $codex ): string {
-		return $codex
-			->TextArea()
-			->setName( "user-message" )
-			->setPlaceholder( "Enter your message..." )
-			->setValue( "This is a default message." )
-			->setId( "user-message" )
-			->setTextAreaAttributes( [
-				"class" => "foo",
-				"data-category" => "feedback",
-				"aria-label" => "Message"
-			] )
-			->setWrapperAttributes( [
-				"class" => "bar",
-				"some-attribute" => "some-value"
-			] )
-			->build()
-			->getHtml();
+		return $codex->TextArea(
+			name: 'user-message',
+			placeholder: 'Enter your message...',
+			value: 'This is a default message.',
+			inputId: 'user-message',
+			textAreaAttributes: [
+				'class' => 'foo',
+				'data-category' => 'feedback',
+				'aria-label' => 'Message'
+			],
+			wrapperAttributes: [
+				'class' => 'bar',
+				'some-attribute' => 'some-value'
+			]
+		);
 	}
 }

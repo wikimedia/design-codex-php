@@ -10,28 +10,26 @@ class TextInputExample {
 	 * @return string
 	 */
 	public static function create( Codex $codex ): string {
-		return $codex
-			->TextInput()
-			->setType( "text" )
-			->setName( "username" )
-			->setInputId( "username-input" )
-			->setPlaceholder( "Enter your username" )
-			->setHasStartIcon( true )
+		return $codex->TextInput(
+			type: "text",
+			name: "username",
+			inputId: "username-input",
+			placeholder: "Enter your username",
+			hasStartIcon: true,
 			// Icon image is set in this page's CSS via this class.
-			->setStartIconClass( 'cdx-icon--login' )
-			->setHasEndIcon( false )
-			->setDisabled( false )
-			->setStatus( 'default' )
-			->setWrapperAttributes( [
+			startIconClass: 'cdx-icon--login',
+			hasEndIcon: false,
+			disabled: false,
+			status: 'default',
+			wrapperAttributes: [
 				"class" => "foo",
 				"data-toggle" => "example-action",
-			] )
-			->setInputAttributes( [
+			],
+			inputAttributes: [
 				"class" => "bar",
 				"autocomplete" => "username",
 				"aria-label" => "Username"
-			] )
-			->build()
-			->getHtml();
+			]
+		);
 	}
 }
