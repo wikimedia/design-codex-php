@@ -17,6 +17,8 @@
 
 namespace Wikimedia\Codex\Contract\Renderer;
 
+use Wikimedia\Codex\Contract\Component;
+
 /**
  * IRenderer defines the interface for rendering any component.
  *
@@ -39,8 +41,8 @@ interface IRenderer {
 	 * consistent with the Codex design system's guidelines.
 	 *
 	 * @since 0.1.0
-	 * @param mixed $component The Component object to render.
+	 * @param Component $component The Component object to render.
 	 * @return string The generated HTML markup for the component.
 	 */
-	public function render( $component ): string;
+	public function render( Component $component ): string;
 }

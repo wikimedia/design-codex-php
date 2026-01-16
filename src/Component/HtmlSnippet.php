@@ -17,11 +17,7 @@
 namespace Wikimedia\Codex\Component;
 
 /**
- * HtmlSnippet
- *
- * This class is part of the Codex PHP library and is responsible for
- * representing an immutable object. It is primarily intended for use
- * with a builder class to construct its instances.
+ * Wrapper class for raw HTML strings.
  *
  * @category Component
  * @package  Codex\Component

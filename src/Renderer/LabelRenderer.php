@@ -20,6 +20,7 @@ namespace Wikimedia\Codex\Renderer;
 
 use InvalidArgumentException;
 use Wikimedia\Codex\Component\Label;
+use Wikimedia\Codex\Contract\Component;
 use Wikimedia\Codex\Contract\Renderer\IRenderer;
 use Wikimedia\Codex\Parser\TemplateParser;
 use Wikimedia\Codex\Traits\AttributeResolver;
@@ -75,10 +76,10 @@ class LabelRenderer implements IRenderer {
 	 * Uses the provided Label component to generate HTML markup adhering to the Codex design system.
 	 *
 	 * @since 0.1.0
-	 * @param Label $component The Label component to render.
+	 * @param Component $component The Label component to render.
 	 * @return string The rendered HTML string for the component.
 	 */
-	public function render( $component ): string {
+	public function render( Component $component ): string {
 		if ( !$component instanceof Label ) {
 			throw new InvalidArgumentException( "Expected instance of Label, got " . get_class( $component ) );
 		}

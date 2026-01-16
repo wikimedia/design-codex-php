@@ -212,7 +212,7 @@ Select sandbox
     <option value="val2">Standalone Option 2</option>
     <optgroup label="Group 1">
         <option value="val3">Option in Group 1</option>
-        <option value="val4">Another Option in Group 1</option>
+        <option value="val4" selected>Another Option in Group 1</option>
     </optgroup>
     <optgroup label="Group 2">
         <option value="val5">Option in Group 2</option>
@@ -390,6 +390,9 @@ Thumbnail sandbox
   <span class="cdx-thumbnail__image" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/64_365_Color_Macro_%285498808099%29.jpg/200px-64_365_Color_Macro_%285498808099%29.jpg');"></span>
 </span>
 <span class="cdx-thumbnail foo" bar="baz">
+  <span class="cdx-thumbnail__placeholder">
+    <span class="cdx-thumbnail__placeholder__icon"></span>
+  </span>
 </span>
 
 

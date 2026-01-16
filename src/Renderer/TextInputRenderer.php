@@ -20,6 +20,7 @@ namespace Wikimedia\Codex\Renderer;
 
 use InvalidArgumentException;
 use Wikimedia\Codex\Component\TextInput;
+use Wikimedia\Codex\Contract\Component;
 use Wikimedia\Codex\Contract\Renderer\IRenderer;
 use Wikimedia\Codex\Parser\TemplateParser;
 use Wikimedia\Codex\Traits\AttributeResolver;
@@ -75,10 +76,10 @@ class TextInputRenderer implements IRenderer {
 	 * Uses the provided TextInput component to generate HTML markup adhering to the Codex design system.
 	 *
 	 * @since 0.1.0
-	 * @param TextInput $component The TextInput component to render.
+	 * @param Component $component The TextInput component to render.
 	 * @return string The rendered HTML string for the component.
 	 */
-	public function render( $component ): string {
+	public function render( Component $component ): string {
 		if ( !$component instanceof TextInput ) {
 			throw new InvalidArgumentException( "Expected instance of TextInput, got " . get_class( $component ) );
 		}

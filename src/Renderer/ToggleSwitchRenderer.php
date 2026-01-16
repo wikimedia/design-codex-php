@@ -20,6 +20,7 @@ namespace Wikimedia\Codex\Renderer;
 
 use InvalidArgumentException;
 use Wikimedia\Codex\Component\ToggleSwitch;
+use Wikimedia\Codex\Contract\Component;
 use Wikimedia\Codex\Contract\Renderer\IRenderer;
 use Wikimedia\Codex\Parser\TemplateParser;
 use Wikimedia\Codex\Traits\AttributeResolver;
@@ -70,31 +71,34 @@ class ToggleSwitchRenderer implements IRenderer {
 	 * Renders the HTML for a ToggleSwitch component.
 	 *
 	 * @since 0.1.0
-	 * @param ToggleSwitch $component The ToggleSwitch component to render.
+	 * @param Component $component The ToggleSwitch component to render.
 	 * @return string The rendered HTML string for the component.
 	 */
-	public function render( $component ): string {
+	public function render( Component $component ): string {
 		if ( !$component instanceof ToggleSwitch ) {
 			throw new InvalidArgumentException( "Expected instance of ToggleSwitch, got " . get_class( $component ) );
 		}
 
 		$label = $component->getLabel();
+		$labelData = null;
 
-		$labelData = [
-			'id' => $label->getId(),
-			'coreClass' => 'cdx-toggle-switch__label',
-			'labelText-html' => $this->sanitizer->sanitizeText( $label->getLabelText() ),
-			'optionalFlag' => $label->isOptional(),
-			'isVisuallyHidden' => $label->isVisuallyHidden(),
-			'inputId' => $component->getInputId(),
-			'description-html' => $this->sanitizer->sanitizeText( $label->getDescription() ),
-			'descriptionId' => $label->getDescriptionId() ?? '',
-			'isDisabled' => $label->isDisabled(),
-			'iconClass' => $label->getIconClass() ?? '',
-			'attributes' => $this->resolve(
-				$this->sanitizer->sanitizeAttributes( $label->getAttributes() )
-			),
-		];
+		if ( $label ) {
+			$labelData = [
+				'id' => $label->getId(),
+				'coreClass' => 'cdx-toggle-switch__label',
+				'labelText-html' => $this->sanitizer->sanitizeText( $label->getLabelText() ),
+				'optionalFlag' => $label->isOptional(),
+				'isVisuallyHidden' => $label->isVisuallyHidden(),
+				'inputId' => $component->getInputId(),
+				'description-html' => $this->sanitizer->sanitizeText( $label->getDescription() ),
+				'descriptionId' => $label->getDescriptionId() ?? '',
+				'isDisabled' => $label->isDisabled(),
+				'iconClass' => $label->getIconClass() ?? '',
+				'attributes' => $this->resolve(
+					$this->sanitizer->sanitizeAttributes( $label->getAttributes() )
+				),
+			];
+		}
 
 		$toggleData = [
 			'name' => $component->getName(),
@@ -102,7 +106,7 @@ class ToggleSwitchRenderer implements IRenderer {
 			'inputId' => $component->getInputId(),
 			'isChecked' => $component->isChecked(),
 			'isDisabled' => $component->isDisabled(),
-			'ariaDescribedby' => $label->getDescriptionId() ?? '',
+			'ariaDescribedby' => $label?->getDescriptionId() ?? '',
 			'inputAttributes' => $this->resolve(
 				$this->sanitizer->sanitizeAttributes( $component->getInputAttributes() )
 			),

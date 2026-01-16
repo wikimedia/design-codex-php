@@ -16,14 +16,12 @@
 
 namespace Wikimedia\Codex\Component;
 
+use Wikimedia\Codex\Contract\Component;
 use Wikimedia\Codex\Renderer\AccordionRenderer;
+use Wikimedia\Codex\Traits\ContentSetter;
 
 /**
  * Accordion
- *
- * This class is part of the Codex PHP library and is responsible for
- * representing an immutable object. It is primarily intended for use
- * with a builder class to construct its instances.
  *
  * @category Component
  * @package  Codex\Component
@@ -32,72 +30,20 @@ use Wikimedia\Codex\Renderer\AccordionRenderer;
  * @license  https://www.gnu.org/copyleft/gpl.html GPL-2.0-or-later
  * @link     https://doc.wikimedia.org/codex/main/ Codex Documentation
  */
-class Accordion {
+class Accordion extends Component {
+	use ContentSetter;
 
-	/**
-	 * The ID for the accordion.
-	 */
-	private string $id;
+	private string $id = '';
 
-	/**
-	 * The accordion's header title.
-	 */
-	private string|HtmlSnippet $title;
-
-	/**
-	 * Additional text under the title.
-	 */
-	private string|HtmlSnippet $description;
-
-	/**
-	 * The content shown when the accordion is expanded.
-	 */
-	private string $contentHtml;
-
-	/**
-	 * Determines if the accordion is expanded by default.
-	 */
-	private bool $isOpen;
-
-	/**
-	 * Additional HTML attributes for the <details> element.
-	 */
-	private array $attributes;
-
-	/**
-	 * The renderer instance used to render the accordion.
-	 */
-	private AccordionRenderer $renderer;
-
-	/**
-	 * Constructor for the Accordion component.
-	 *
-	 * Initializes an Accordion instance with the specified properties.
-	 *
-	 * @param string $id The ID for the accordion.
-	 * @param string|HtmlSnippet $title The accordion's header title.
-	 * @param string|HtmlSnippet $description Additional text under the title.
-	 * @param string $contentHtml The content shown when the accordion is expanded.
-	 * @param bool $isOpen Determines if the accordion is expanded by default.
-	 * @param array $attributes Additional HTML attributes for the <details> element.
-	 * @param AccordionRenderer $renderer The renderer to use for rendering the accordion.
-	 */
 	public function __construct(
-		string $id,
-		string|HtmlSnippet $title,
-		string|HtmlSnippet $description,
-		string $contentHtml,
-		bool $isOpen,
-		array $attributes,
-		AccordionRenderer $renderer
+		AccordionRenderer $renderer,
+		private string|HtmlSnippet $title,
+		private string|HtmlSnippet $description,
+		private string|HtmlSnippet $content,
+		private bool $open,
+		private array $attributes
 	) {
-		$this->id = $id;
-		$this->title = $title;
-		$this->description = $description;
-		$this->contentHtml = $contentHtml;
-		$this->isOpen = $isOpen;
-		$this->attributes = $attributes;
-		$this->renderer = $renderer;
+		parent::__construct( $renderer );
 	}
 
 	/**
@@ -147,10 +93,10 @@ class Accordion {
 	 * The content can include various HTML elements such as text, images, and more.
 	 *
 	 * @since 0.1.0
-	 * @return string The content of the accordion, as HTML
+	 * @return string|HtmlSnippet The content of the accordion, as HTML
 	 */
-	public function getContentHtml(): string {
-		return $this->contentHtml;
+	public function getContent(): string|HtmlSnippet {
+		return $this->content;
 	}
 
 	/**
@@ -163,7 +109,7 @@ class Accordion {
 	 * @return bool True if the accordion is open by default, false otherwise.
 	 */
 	public function isOpen(): bool {
-		return $this->isOpen;
+		return $this->open;
 	}
 
 	/**
@@ -181,16 +127,117 @@ class Accordion {
 	}
 
 	/**
-	 * Get the component's HTML representation.
+	 * Set the accordion's HTML ID attribute.
 	 *
-	 * This method generates the HTML markup for the component, incorporating relevant properties
-	 * and any additional attributes. The component is structured using appropriate HTML elements
-	 * as defined by the implementation.
+	 * @deprecated Use setAttributes() to set the ID
+	 * @since 0.1.0
+	 * @param string $id The ID for the accordion element.
+	 * @return $this
+	 */
+	public function setId( string $id ): self {
+		$this->id = $id;
+
+		return $this;
+	}
+
+	/**
+	 * Set the title for the accordion header.
+	 *
+	 * This method specifies the title text that appears in the accordion's header section.
+	 * The title serves as the main clickable element that users interact with to expand or collapse
+	 * the accordion content. The title is rendered inside a `<span>` element with the class
+	 * `cdx-accordion__header__title`, which is nested within an `<h3>` header inside the `<summary>` element.
+	 *
+	 * The title should be concise yet descriptive enough to give users a clear understanding
+	 * of the content they will see when the accordion is expanded.
 	 *
 	 * @since 0.1.0
-	 * @return string The generated HTML string for the component.
+	 * @param string|HtmlSnippet $title The title text to be displayed in the accordion header.
+	 * @return $this Returns the Accordion instance for method chaining.
 	 */
-	public function getHtml(): string {
-		return $this->renderer->render( $this );
+	public function setTitle( string|HtmlSnippet $title ): self {
+		$this->title = $title;
+
+		return $this;
+	}
+
+	/**
+	 * Set the description for the accordion header.
+	 *
+	 * The description is an optional text that provides additional context or details about the accordion's content.
+	 * This text is displayed beneath the title in the header section and is wrapped in a `<span>` element with
+	 * the class `cdx-accordion__header__description`. This description is particularly useful when the title alone
+	 * does not fully convey the nature of the accordion's content.
+	 *
+	 * This method is especially helpful for making the accordion more accessible and informative,
+	 * allowing users to understand the content before deciding to expand it.
+	 *
+	 * @since 0.1.0
+	 * @param string|HtmlSnippet $description The description text to be displayed in the accordion header.
+	 * @return $this Returns the Accordion instance for method chaining.
+	 */
+	public function setDescription( string|HtmlSnippet $description ): self {
+		$this->description = $description;
+
+		return $this;
+	}
+
+	/**
+	 * Set the content of the accordion.
+	 *
+	 * @param string|HtmlSnippet $content Text or HTML to be displayed inside the accordion.
+	 * @return $this Returns the Accordion instance for method chaining.
+	 */
+	public function setContent( string|HtmlSnippet $content ): self {
+		$this->content = $content;
+
+		return $this;
+	}
+
+	/**
+	 * Set whether the accordion should be open by default.
+	 *
+	 * By default, accordions are rendered in a collapsed state. However, setting this property to `true`
+	 * will cause the accordion to be expanded when the page initially loads. This adds the `open` attribute
+	 * to the `<details>` element, making the content visible without interaction.
+	 *
+	 * This feature is useful in scenarios where critical content needs to be immediately visible, without requiring
+	 * any action to expand the accordion.
+	 *
+	 * @since 0.1.0
+	 * @param bool $isOpen Indicates whether the accordion should be open by default.
+	 * @return $this Returns the Accordion instance for method chaining.
+	 */
+	public function setOpen( bool $isOpen ): self {
+		$this->open = $isOpen;
+
+		return $this;
+	}
+
+	/**
+	 * Set additional HTML attributes for the `<details>` element.
+	 *
+	 * This method allows custom attributes to be added to the `<details>` element, such as `id`, `class`, `data-*`,
+	 * `role`, or any other valid HTML attributes. These attributes can be used to further customize the accordion
+	 * behavior, integrate it with JavaScript, or enhance accessibility.
+	 *
+	 * The values of these attributes are automatically escaped to prevent XSS vulnerabilities.
+	 *
+	 * Example usage:
+	 *
+	 *     $accordion->setAttributes([
+	 *         'id' => 'some-id',
+	 *         'data-toggle' => 'collapse'
+	 *     ]);
+	 *
+	 * @since 0.1.0
+	 * @param array $attributes An associative array of HTML attributes.
+	 * @return $this Returns the Accordion instance for method chaining.
+	 */
+	public function setAttributes( array $attributes ): self {
+		foreach ( $attributes as $key => $value ) {
+			$this->attributes[$key] = $value;
+		}
+		return $this;
 	}
 }

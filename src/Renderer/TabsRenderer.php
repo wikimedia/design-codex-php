@@ -22,6 +22,7 @@ use InvalidArgumentException;
 use UnexpectedValueException;
 use Wikimedia\Codex\Component\Tab;
 use Wikimedia\Codex\Component\Tabs;
+use Wikimedia\Codex\Contract\Component;
 use Wikimedia\Codex\Contract\Renderer\IRenderer;
 use Wikimedia\Codex\ParamValidator\ParamDefinitions;
 use Wikimedia\Codex\ParamValidator\ParamValidator;
@@ -99,10 +100,10 @@ class TabsRenderer implements IRenderer {
 	 * Uses the provided Tabs component to generate HTML markup adhering to the Codex design system.
 	 *
 	 * @since 0.1.0
-	 * @param Tabs $component The Tabs object to render.
+	 * @param Component $component The Tabs object to render.
 	 * @return string The rendered HTML string for the component.
 	 */
-	public function render( $component ): string {
+	public function render( Component $component ): string {
 		if ( !$component instanceof Tabs ) {
 			throw new InvalidArgumentException( "Expected instance of Tabs, got " . get_class( $component ) );
 		}
@@ -145,7 +146,7 @@ class TabsRenderer implements IRenderer {
 				'id' => $tab->getId(),
 				'name' => $tab->getName(),
 				'label' => $tab->getLabel(),
-				'content-html' => $tab->getContentHtml(),
+				'content-html' => $this->sanitizer->sanitizeText( $tab->getContent() ),
 				'isSelected' => $isSelected,
 				'isHidden' => $isHidden,
 				'disabled' => $tab->isDisabled(),

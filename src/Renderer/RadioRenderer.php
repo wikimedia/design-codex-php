@@ -20,6 +20,7 @@ namespace Wikimedia\Codex\Renderer;
 
 use InvalidArgumentException;
 use Wikimedia\Codex\Component\Radio;
+use Wikimedia\Codex\Contract\Component;
 use Wikimedia\Codex\Contract\Renderer\IRenderer;
 use Wikimedia\Codex\Parser\TemplateParser;
 use Wikimedia\Codex\Traits\AttributeResolver;
@@ -75,31 +76,34 @@ class RadioRenderer implements IRenderer {
 	 * Uses the provided Radio component to generate HTML markup adhering to the Codex design system.
 	 *
 	 * @since 0.1.0
-	 * @param Radio $component The Radio component to render.
+	 * @param Component $component The Radio component to render.
 	 * @return string The rendered HTML string for the component.
 	 */
-	public function render( $component ): string {
+	public function render( Component $component ): string {
 		if ( !$component instanceof Radio ) {
 			throw new InvalidArgumentException( "Expected instance of Radio, got " . get_class( $component ) );
 		}
 
 		$label = $component->getLabel();
+		$labelData = null;
 
-		$labelData = [
-			'id' => $label->getId(),
-			'coreClass' => 'cdx-radio__label',
-			'labelText-html' => $this->sanitizer->sanitizeText( $label->getLabelText() ),
-			'optionalFlag' => $label->isOptional(),
-			'isVisuallyHidden' => $label->isVisuallyHidden(),
-			'inputId' => $component->getInputId(),
-			'description' => $this->sanitizer->sanitizeText( $label->getDescription() ),
-			'descriptionId' => $label->getDescriptionId(),
-			'isDisabled' => $label->isDisabled(),
-			'iconClass' => $label->getIconClass(),
-			'attributes' => $this->resolve(
-				$this->sanitizer->sanitizeAttributes( $label->getAttributes() )
-			),
-		];
+		if ( $label ) {
+			$labelData = [
+				'id' => $label->getId(),
+				'coreClass' => 'cdx-radio__label',
+				'labelText-html' => $this->sanitizer->sanitizeText( $label->getLabelText() ),
+				'optionalFlag' => $label->isOptional(),
+				'isVisuallyHidden' => $label->isVisuallyHidden(),
+				'inputId' => $component->getInputId(),
+				'description' => $this->sanitizer->sanitizeText( $label->getDescription() ),
+				'descriptionId' => $label->getDescriptionId(),
+				'isDisabled' => $label->isDisabled(),
+				'iconClass' => $label->getIconClass(),
+				'attributes' => $this->resolve(
+					$this->sanitizer->sanitizeAttributes( $label->getAttributes() )
+				),
+			];
+		}
 
 		$radioData = [
 			'name' => $component->getName(),
@@ -108,7 +112,7 @@ class RadioRenderer implements IRenderer {
 			'isChecked' => $component->isChecked(),
 			'isDisabled' => $component->isDisabled(),
 			'isInline' => $component->isInline(),
-			'ariaDescribedby' => $label->getDescriptionId(),
+			'ariaDescribedby' => $label?->getDescriptionId(),
 			'inputAttributes' =>
 				$this->resolve( $this->sanitizer->sanitizeAttributes( $component->getInputAttributes() ) ),
 			'wrapperAttributes' =>

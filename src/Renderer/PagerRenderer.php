@@ -20,8 +20,9 @@ namespace Wikimedia\Codex\Renderer;
 
 use InvalidArgumentException;
 use UnexpectedValueException;
-use Wikimedia\Codex\Builder\PagerBuilder;
 use Wikimedia\Codex\Component\Pager;
+use Wikimedia\Codex\Component\Select;
+use Wikimedia\Codex\Contract\Component;
 use Wikimedia\Codex\Contract\ILocalizer;
 use Wikimedia\Codex\Contract\Renderer\IRenderer;
 use Wikimedia\Codex\ParamValidator\ParamDefinitions;
@@ -87,12 +88,32 @@ class PagerRenderer implements IRenderer {
 	/**
 	 * Array of icon classes for the pager buttons.
 	 */
-	private array $iconClasses = [
+	private const ICON_CLASSES = [
 		"first" => "cdx-table-pager__icon--first",
 		"previous" => "cdx-table-pager__icon--previous",
 		"next" => "cdx-table-pager__icon--next",
 		"last" => "cdx-table-pager__icon--last",
 	];
+
+	/**
+	 * Action for the first page.
+	 */
+	private const ACTION_FIRST = 'first';
+
+	/**
+	 * Action for the previous page.
+	 */
+	private const ACTION_PREVIOUS = 'previous';
+
+	/**
+	 * Action for the next page.
+	 */
+	private const ACTION_NEXT = 'next';
+
+	/**
+	 * Action for the last page.
+	 */
+	private const ACTION_LAST = 'last';
 
 	/**
 	 * Constructor to initialize the PagerRenderer with necessary dependencies.
@@ -126,10 +147,10 @@ class PagerRenderer implements IRenderer {
 	 * Uses the provided Pager to generate HTML markup adhering to the Codex design system.
 	 *
 	 * @since 0.1.0
-	 * @param Pager $component The Pager object to render.
+	 * @param Component $component The Pager object to render.
 	 * @return string The rendered HTML string for the component.
 	 */
-	public function render( $component ): string {
+	public function render( Component $component ): string {
 		if ( !$component instanceof Pager ) {
 			throw new InvalidArgumentException( "Expected instance of Pager, got " . get_class( $component ) );
 		}
@@ -142,11 +163,11 @@ class PagerRenderer implements IRenderer {
 			'totalResults' => $component->getTotalResults(),
 			'isPending' => $component->getEndOrdinal() < $component->getStartOrdinal(),
 			'hasTotalResults' => $component->getTotalResults() > 0,
-			'select' => $this->buildSelect( $component ),
-			'firstButton' => $this->buildButtonData( $component, PagerBuilder::ACTION_FIRST ),
-			'prevButton' => $this->buildButtonData( $component, PagerBuilder::ACTION_PREVIOUS ),
-			'nextButton' => $this->buildButtonData( $component, PagerBuilder::ACTION_NEXT ),
-			'lastButton' => $this->buildButtonData( $component, PagerBuilder::ACTION_LAST ),
+			'select' => $this->buildSelect( $component )->getHtml(),
+			'firstButton' => $this->buildButtonData( $component, self::ACTION_FIRST ),
+			'prevButton' => $this->buildButtonData( $component, self::ACTION_PREVIOUS ),
+			'nextButton' => $this->buildButtonData( $component, self::ACTION_NEXT ),
+			'lastButton' => $this->buildButtonData( $component, self::ACTION_LAST ),
 			'hiddenFields' => $this->buildHiddenFields(),
 		];
 
@@ -158,9 +179,9 @@ class PagerRenderer implements IRenderer {
 	 *
 	 * @since 0.1.0
 	 * @param Pager $pager
-	 * @return string The select dropdown data for Mustache.
+	 * @return Select The select component
 	 */
-	protected function buildSelect( Pager $pager ): string {
+	protected function buildSelect( Pager $pager ): Select {
 		$sizeOptions = $pager->getPaginationSizeOptions();
 		$currentLimit = $pager->getLimit();
 
@@ -183,7 +204,7 @@ class PagerRenderer implements IRenderer {
 				'name' => 'limit',
 				'onchange' => 'this.form.submit();',
 				'class' => 'cdx-select',
-			] )->build()->getHtml();
+			] );
 	}
 
 	/**
@@ -193,29 +214,29 @@ class PagerRenderer implements IRenderer {
 	 *
 	 * @since 0.1.0
 	 * @param Pager $pager The Pager object.
-	 * @param string $action The action for the button (e.g., PagerBuilder::ACTION_FIRST).
+	 * @param string $action The action for the button (one of the ACTION_* constants).
 	 * @return array The data array for the pagination button.
 	 */
 	protected function buildButtonData( Pager $pager, string $action ): array {
-		$iconClass = $this->iconClasses[$action] ?? '';
+		$iconClass = self::ICON_CLASSES[$action] ?? '';
 		$dir = '';
 		switch ( $action ) {
-			case PagerBuilder::ACTION_FIRST:
+			case self::ACTION_FIRST:
 				$disabled = $pager->isFirstDisabled();
 				$ariaLabelKey = 'cdx-table-pager-button-first-page';
 				$offset = $pager->getFirstOffset();
 				break;
-			case PagerBuilder::ACTION_PREVIOUS:
+			case self::ACTION_PREVIOUS:
 				$disabled = $pager->isPrevDisabled();
 				$ariaLabelKey = 'cdx-table-pager-button-prev-page';
 				$offset = $pager->getPrevOffset();
 				break;
-			case PagerBuilder::ACTION_NEXT:
+			case self::ACTION_NEXT:
 				$disabled = $pager->isNextDisabled();
 				$ariaLabelKey = 'cdx-table-pager-button-next-page';
 				$offset = $pager->getNextOffset();
 				break;
-			case PagerBuilder::ACTION_LAST:
+			case self::ACTION_LAST:
 				$disabled = $pager->isLastDisabled();
 				$ariaLabelKey = 'cdx-table-pager-button-last-page';
 				$offset = $pager->getLastOffset();

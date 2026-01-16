@@ -19,8 +19,8 @@
 namespace Wikimedia\Codex\Renderer;
 
 use InvalidArgumentException;
-use Wikimedia\Codex\Component\Option;
 use Wikimedia\Codex\Component\Select;
+use Wikimedia\Codex\Contract\Component;
 use Wikimedia\Codex\Contract\Renderer\IRenderer;
 use Wikimedia\Codex\Parser\TemplateParser;
 use Wikimedia\Codex\Traits\AttributeResolver;
@@ -76,10 +76,10 @@ class SelectRenderer implements IRenderer {
 	 * Uses the provided Select component to generate HTML markup adhering to the Codex design system.
 	 *
 	 * @since 0.1.0
-	 * @param Select $component The Select object to render.
+	 * @param Component $component The Select object to render.
 	 * @return string The rendered HTML string for the component.
 	 */
-	public function render( $component ): string {
+	public function render( Component $component ): string {
 		if ( !$component instanceof Select ) {
 			throw new InvalidArgumentException( "Expected instance of Select, got " . get_class( $component ) );
 		}
@@ -89,8 +89,8 @@ class SelectRenderer implements IRenderer {
 			'isDisabled' => $component->isDisabled(),
 			'selectedOption' => $component->getSelectedOption(),
 			'attributes' => $this->resolve( $this->sanitizer->sanitizeAttributes( $component->getAttributes() ) ),
-			'options' => $this->prepareOptions( $component ),
-			'optGroups' => $this->prepareOptGroups( $component ),
+			'options' => $this->prepareOptions( $component->getOptions() ),
+			'optGroups' => $this->prepareOptGroups( $component->getOptGroups() ),
 		];
 
 		return $this->templateParser->processTemplate( 'select', $selectData );
@@ -100,52 +100,46 @@ class SelectRenderer implements IRenderer {
 	 * Prepare options for rendering.
 	 *
 	 * @since 0.1.0
-	 * @param Select $object The Select component object.
-	 * @return array An array of sanitized option data for rendering.
+	 * @param array $options An array of options, like from Select::getOptions()
+	 * @return array An array of normalized option data for rendering.
 	 */
-	private function prepareOptions( Select $object ): array {
-		$options = [];
-		foreach ( $object->getOptions() as $option ) {
-			if ( !$option instanceof Option ) {
-				throw new InvalidArgumentException( "Expected instance of Option in options" );
+	private function prepareOptions( array $options ): array {
+		$newOptions = [];
+		foreach ( $options as $key => $option ) {
+			if ( is_string( $key ) ) {
+				$newOptions[] = [
+					'value' => $key,
+					'text' => $option,
+					'selected' => false
+				];
+			} elseif ( is_array( $option ) ) {
+				$newOptions[] = [
+					'value' => $option['value'],
+					'text' => $option['text'],
+					'selected' => $option['selected'] ?? false
+				];
 			}
-			$options[] = [
-				'value' => $option->getValue(),
-				'text' => $option->getText(),
-				'isSelected' => $option->isSelected(),
-			];
 		}
 
-		return $options;
+		return $newOptions;
 	}
 
 	/**
 	 * Prepare optGroups for rendering.
 	 *
 	 * @since 0.1.0
-	 * @param Select $object The Select component object containing optGroups.
+	 * @param array $optGroups Array of option groups, from Select::getOptGroups()
 	 * @return array Prepared array of optGroups with their respective options for rendering.
 	 */
-	private function prepareOptGroups( Select $object ): array {
-		$optGroups = [];
-		foreach ( $object->getOptGroups() as $label => $groupOptions ) {
-			$group = [
+	private function prepareOptGroups( array $optGroups ): array {
+		$newOptGroups = [];
+		foreach ( $optGroups as $label => $groupOptions ) {
+			$newOptGroups[] = [
 				'label' => $label,
-				'options' => [],
+				'options' => $this->prepareOptions( $groupOptions )
 			];
-			foreach ( $groupOptions as $option ) {
-				if ( !$option instanceof Option ) {
-					throw new InvalidArgumentException( "Expected instance of Option in optGroups" );
-				}
-				$group['options'][] = [
-					'value' => $option->getValue(),
-					'text' => $option->getText(),
-					'isSelected' => $option->isSelected(),
-				];
-			}
-			$optGroups[] = $group;
 		}
 
-		return $optGroups;
+		return $newOptGroups;
 	}
 }

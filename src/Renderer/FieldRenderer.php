@@ -20,6 +20,7 @@ namespace Wikimedia\Codex\Renderer;
 
 use InvalidArgumentException;
 use Wikimedia\Codex\Component\Field;
+use Wikimedia\Codex\Contract\Component;
 use Wikimedia\Codex\Contract\Renderer\IRenderer;
 use Wikimedia\Codex\Parser\TemplateParser;
 use Wikimedia\Codex\Traits\AttributeResolver;
@@ -81,29 +82,32 @@ class FieldRenderer implements IRenderer {
 	 * Uses the provided Field component to generate HTML markup adhering to the Codex design system.
 	 *
 	 * @since 0.1.0
-	 * @param Field $component The Field component to render.
+	 * @param Component $component The Field component to render.
 	 * @return string The rendered HTML string for the component.
 	 */
-	public function render( $component ): string {
+	public function render( Component $component ): string {
 		if ( !$component instanceof Field ) {
 			throw new InvalidArgumentException( "Expected instance of Field, got " . get_class( $component ) );
 		}
 
 		$label = $component->getLabel();
+		$labelData = null;
 
-		$labelData = [
-			'id' => $label->getId(),
-			'isLegend' => $component->isFieldset(),
-			'inputId' => $label->getInputId(),
-			'labelText-html' => $this->sanitizer->sanitizeText( $label->getLabelText() ),
-			'optionalFlag' => $label->isOptional(),
-			'isVisuallyHidden' => $label->isVisuallyHidden(),
-			'description-html' => $this->sanitizer->sanitizeText( $label->getDescription() ),
-			'descriptionId' => $label->getDescriptionId(),
-			'icon' => $label->getIconClass(),
-			'isDisabled' => $label->isDisabled(),
-			'attributes' => $this->resolve( $this->sanitizer->sanitizeAttributes( $label->getAttributes() ) ),
-		];
+		if ( $label ) {
+			$labelData = [
+				'id' => $label->getId(),
+				'isLegend' => $component->isFieldset(),
+				'inputId' => $label->getInputId(),
+				'labelText-html' => $this->sanitizer->sanitizeText( $label->getLabelText() ),
+				'optionalFlag' => $label->isOptional(),
+				'isVisuallyHidden' => $label->isVisuallyHidden(),
+				'description-html' => $this->sanitizer->sanitizeText( $label->getDescription() ),
+				'descriptionId' => $label->getDescriptionId(),
+				'icon' => $label->getIconClass(),
+				'isDisabled' => $label->isDisabled(),
+				'attributes' => $this->resolve( $this->sanitizer->sanitizeAttributes( $label->getAttributes() ) ),
+			];
+		}
 
 		$fieldData = [
 			'id' => $component->getId(),

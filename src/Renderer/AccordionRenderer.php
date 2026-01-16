@@ -20,6 +20,7 @@ namespace Wikimedia\Codex\Renderer;
 
 use InvalidArgumentException;
 use Wikimedia\Codex\Component\Accordion;
+use Wikimedia\Codex\Contract\Component;
 use Wikimedia\Codex\Contract\Renderer\IRenderer;
 use Wikimedia\Codex\Parser\TemplateParser;
 use Wikimedia\Codex\Traits\AttributeResolver;
@@ -75,10 +76,10 @@ class AccordionRenderer implements IRenderer {
 	 * Uses the provided Accordion component to generate HTML markup adhering to the Codex design system.
 	 *
 	 * @since 0.1.0
-	 * @param Accordion $component The Accordion object to render.
+	 * @param Component $component The Accordion object to render.
 	 * @return string The rendered HTML string for the component.
 	 */
-	public function render( $component ): string {
+	public function render( Component $component ): string {
 		if ( !$component instanceof Accordion ) {
 			throw new InvalidArgumentException( "Expected instance of Accordion, got " . get_class( $component ) );
 		}
@@ -87,7 +88,7 @@ class AccordionRenderer implements IRenderer {
 			'id' => $component->getId(),
 			'title-html' => $this->sanitizer->sanitizeText( $component->getTitle() ),
 			'description-html' => $this->sanitizer->sanitizeText( $component->getDescription() ),
-			'content-html' => $component->getContentHtml(),
+			'content-html' => $this->sanitizer->sanitizeText( $component->getContent() ),
 			'isOpen' => $component->isOpen(),
 			'attributes' => $this->resolve( $this->sanitizer->sanitizeAttributes( $component->getAttributes() ) )
 		];

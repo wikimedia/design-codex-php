@@ -15,27 +15,11 @@ namespace Wikimedia\Codex\Traits;
 use Wikimedia\Codex\Component\HtmlSnippet;
 
 /**
- * ContentSetter is a utility trait that adds the setContent() method. For backwards compatibility,
- * it also adds setContentText() and setContentHtml(). This trait is intended to be used in builder
- * classes.
+ * ContentSetter is a utility trait that adds the setContentText() and setContentHtml() methods
+ * to classes that already have a setContent() method, for backwards compatibility.
  */
 trait ContentSetter {
-	protected string $contentHtml = '';
-
-	/**
-	 * Set the content of the component. A string is interpreted as plain text, and will be
-	 * HTML-escaped. To pass in raw HTML, wrap it in an HtmlSnippet.
-	 *
-	 * @param string|HtmlSnippet $content
-	 */
-	public function setContent( $content ): self {
-		// This logic unfortunately duplicates the logic in Sanitizer::sanitizeText, but we can't
-		// dependency-inject Sanitizer here
-		$this->contentHtml = $content instanceof HtmlSnippet ?
-			$content->getContent() :
-			htmlspecialchars( $content, ENT_QUOTES, 'UTF-8' );
-		return $this;
-	}
+	abstract public function setContent( string|HtmlSnippet $content ): self;
 
 	/**
 	 * @deprecated since 0.7.2, use setContent instead

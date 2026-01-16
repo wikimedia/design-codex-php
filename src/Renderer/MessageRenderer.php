@@ -20,6 +20,7 @@ namespace Wikimedia\Codex\Renderer;
 
 use InvalidArgumentException;
 use Wikimedia\Codex\Component\Message;
+use Wikimedia\Codex\Contract\Component;
 use Wikimedia\Codex\Contract\Renderer\IRenderer;
 use Wikimedia\Codex\Parser\TemplateParser;
 use Wikimedia\Codex\Traits\AttributeResolver;
@@ -75,10 +76,10 @@ class MessageRenderer implements IRenderer {
 	 * Uses the provided Message component to generate HTML markup adhering to the Codex design system.
 	 *
 	 * @since 0.1.0
-	 * @param Message $component The Message object to render.
+	 * @param Component $component The Message object to render.
 	 * @return string The rendered HTML string for the component.
 	 */
-	public function render( $component ): string {
+	public function render( Component $component ): string {
 		if ( !$component instanceof Message ) {
 			throw new InvalidArgumentException( "Expected instance of Message, got " . get_class( $component ) );
 		}
@@ -88,7 +89,7 @@ class MessageRenderer implements IRenderer {
 			'type' => $component->getType(),
 			'isInline' => $component->isInline(),
 			'iconClass' => $component->getIconClass(),
-			'content-html' => $component->getContentHtml(),
+			'content-html' => $this->sanitizer->sanitizeText( $component->getContent() ),
 			'heading-html' => $this->sanitizer->sanitizeText( $component->getHeading() ),
 			'isPolite' => $component->getType() !== 'error',
 			'isAlert' => $component->getType() === 'error',
