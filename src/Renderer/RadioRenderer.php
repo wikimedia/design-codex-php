@@ -102,7 +102,6 @@ class RadioRenderer implements IRenderer {
 		];
 
 		$radioData = [
-			'id' => $component->getInputId(),
 			'name' => $component->getName(),
 			'value' => $component->getValue(),
 			'inputId' => $component->getInputId(),

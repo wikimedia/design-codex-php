@@ -97,7 +97,6 @@ class ToggleSwitchRenderer implements IRenderer {
 		];
 
 		$toggleData = [
-			'id' => $component->getInputId(),
 			'name' => $component->getName(),
 			'value' => $component->getValue(),
 			'inputId' => $component->getInputId(),

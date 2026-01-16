@@ -196,7 +196,7 @@ Radio sandbox
 <div class="cdx-radio bar">
   <input class="cdx-radio__input foo" type="radio" id="password-reset-radio-1" name="password-reset-options" value="option1" aria-describedby="password-reset-radio-description-1" data-toggle="radio-option">
   <span class="cdx-radio__icon"></span>
-    <div class="cdx-radio__label cdx-label" id="password-reset-radio-1">
+    <div class="cdx-radio__label cdx-label">
         <label for="password-reset-radio-1" class="cdx-label__label">
           <span class="cdx-label__label__text">Send password reset emails only when both email address and username are provided.</span>
         </label>
@@ -401,7 +401,7 @@ ToggleSwitch sandbox
   <span class="cdx-toggle-switch__switch">
     <span class="cdx-toggle-switch__switch__grip"></span>
   </span>
-        <div class="cdx-toggle-switch__label cdx-label" id="visual-editing-mode">
+        <div class="cdx-toggle-switch__label cdx-label">
             <label for="visual-editing-mode" class="cdx-label__label">
               <span class="cdx-label__label__text">Visual editing mode</span>
             </label>
