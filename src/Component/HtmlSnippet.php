@@ -56,4 +56,24 @@ class HtmlSnippet {
 	public function getContent(): string {
 		return $this->content;
 	}
+
+	/**
+	 * Backwards compatibility for the pre-0.8.0 API.
+	 * @deprecated
+	 * @param string $content
+	 * @return HtmlSnippet
+	 */
+	public function setContent( string $content ): self {
+		$this->content = $content;
+		return $this;
+	}
+
+	/**
+	 * Backwards compatibility for the pre-0.8.0 API.
+	 * @deprecated
+	 * @return HtmlSnippet
+	 */
+	public function build(): self {
+		return $this;
+	}
 }

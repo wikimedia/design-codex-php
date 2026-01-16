@@ -245,7 +245,7 @@ class Codex {
 	 * @param string $html HTML string
 	 * @return HtmlSnippet
 	 */
-	public function htmlSnippet( string $html ): HtmlSnippet {
+	public function htmlSnippet( string $html = '' ): HtmlSnippet {
 		return new HtmlSnippet( $html );
 	}
 
