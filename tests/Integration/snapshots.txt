@@ -239,32 +239,32 @@ Table sandbox
         <thead>
         <tr>
             <th scope="col" class=" cdx-table__table__cell--has-sort">
-                <a class="cdx-table__table__sort-button cdx-button--fake-button cdx-button--fake-button--enabled" href="?offset&#x3D;&amp;limit&#x3D;5&amp;sort&#x3D;title&amp;asc&#x3D;&amp;desc&#x3D;1" aria-selected="false">
-                  Title
+                <a class="cdx-table__table__sort-button cdx-button cdx-button--fake-button cdx-button--fake-button--enabled cdx-button--weight-quiet" href="?offset&#x3D;&amp;limit&#x3D;5&amp;sort&#x3D;title&amp;asc&#x3D;&amp;desc&#x3D;1" aria-selected="false">
+                  <span class="cdx-table__table__sort-label">Title</span>
                   <span class="cdx-icon cdx-icon--small cdx-table__sort-icon cdx-table__table__sort-icon--unsorted"></span>
                 </a>
             </th>
             <th scope="col" class=" cdx-table__table__cell--has-sort">
-                <a class="cdx-table__table__sort-button cdx-button--fake-button cdx-button--fake-button--enabled" href="?offset&#x3D;&amp;limit&#x3D;5&amp;sort&#x3D;page_id&amp;asc&#x3D;&amp;desc&#x3D;1" aria-selected="false">
-                  Page ID
+                <a class="cdx-table__table__sort-button cdx-button cdx-button--fake-button cdx-button--fake-button--enabled cdx-button--weight-quiet" href="?offset&#x3D;&amp;limit&#x3D;5&amp;sort&#x3D;page_id&amp;asc&#x3D;&amp;desc&#x3D;1" aria-selected="false">
+                  <span class="cdx-table__table__sort-label">Page ID</span>
                   <span class="cdx-icon cdx-icon--small cdx-table__sort-icon cdx-table__table__sort-icon--unsorted"></span>
                 </a>
             </th>
             <th scope="col" class=" cdx-table__table__cell--has-sort">
-                <a class="cdx-table__table__sort-button cdx-button--fake-button cdx-button--fake-button--enabled" href="?offset&#x3D;&amp;limit&#x3D;5&amp;sort&#x3D;diameter_km&amp;asc&#x3D;&amp;desc&#x3D;1" aria-selected="false">
-                  Diameter (km)
+                <a class="cdx-table__table__sort-button cdx-button cdx-button--fake-button cdx-button--fake-button--enabled cdx-button--weight-quiet" href="?offset&#x3D;&amp;limit&#x3D;5&amp;sort&#x3D;diameter_km&amp;asc&#x3D;&amp;desc&#x3D;1" aria-selected="false">
+                  <span class="cdx-table__table__sort-label">Diameter (km)</span>
                   <span class="cdx-icon cdx-icon--small cdx-table__sort-icon cdx-table__table__sort-icon--unsorted"></span>
                 </a>
             </th>
             <th scope="col" class=" cdx-table__table__cell--has-sort">
-                <a class="cdx-table__table__sort-button cdx-button--fake-button cdx-button--fake-button--enabled" href="?offset&#x3D;&amp;limit&#x3D;5&amp;sort&#x3D;distance_from_sun_million_km&amp;asc&#x3D;&amp;desc&#x3D;1" aria-selected="false">
-                  <span>Distance from Sun (<abbr title="millions of kilometers">m. km</abbr>)</span>
+                <a class="cdx-table__table__sort-button cdx-button cdx-button--fake-button cdx-button--fake-button--enabled cdx-button--weight-quiet" href="?offset&#x3D;&amp;limit&#x3D;5&amp;sort&#x3D;distance_from_sun_million_km&amp;asc&#x3D;&amp;desc&#x3D;1" aria-selected="false">
+                  <span class="cdx-table__table__sort-label"><span>Distance from Sun (<abbr title="millions of kilometers">m. km</abbr>)</span></span>
                   <span class="cdx-icon cdx-icon--small cdx-table__sort-icon cdx-table__table__sort-icon--unsorted"></span>
                 </a>
             </th>
             <th scope="col" class=" cdx-table__table__cell--has-sort">
-                <a class="cdx-table__table__sort-button cdx-button--fake-button cdx-button--fake-button--enabled" href="?offset&#x3D;&amp;limit&#x3D;5&amp;sort&#x3D;creation_date&amp;asc&#x3D;&amp;desc&#x3D;1" aria-selected="true">
-                  Creation Date
+                <a class="cdx-table__table__sort-button cdx-button cdx-button--fake-button cdx-button--fake-button--enabled cdx-button--weight-quiet" href="?offset&#x3D;&amp;limit&#x3D;5&amp;sort&#x3D;creation_date&amp;asc&#x3D;&amp;desc&#x3D;1" aria-selected="true">
+                  <span class="cdx-table__table__sort-label">Creation Date</span>
                   <span class="cdx-icon cdx-icon--small cdx-table__sort-icon cdx-table__table__sort-icon--asc"></span>
                 </a>
             </th>

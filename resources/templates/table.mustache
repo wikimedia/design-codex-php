@@ -25,8 +25,8 @@
           {{#columns}}
             <th scope="col" class="{{ align }} {{#sortable}}cdx-table__table__cell--has-sort{{/sortable}}">
               {{#sortable}}
-                <a class="cdx-table__table__sort-button cdx-button--fake-button cdx-button--fake-button--enabled" href="{{ sortUrl }}" aria-selected="{{ isCurrentSort }}">
-                  {{{ label-html }}}
+                <a class="cdx-table__table__sort-button cdx-button cdx-button--fake-button cdx-button--fake-button--enabled cdx-button--weight-quiet" href="{{ sortUrl }}" aria-selected="{{ isCurrentSort }}">
+                  <span class="cdx-table__table__sort-label">{{{ label-html }}}</span>
                   <span class="cdx-icon cdx-icon--small cdx-table__sort-icon {{ sortIconClass }}"></span>
                 </a>
               {{/sortable}}
