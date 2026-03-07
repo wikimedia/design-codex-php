@@ -23,7 +23,6 @@ namespace Wikimedia\Codex\Parser;
 use LightnCandy\Flags;
 use LightnCandy\LightnCandy;
 use RuntimeException;
-use Wikimedia\Codex\Contract\ILocalizer;
 
 /**
  * TemplateParser is responsible for compiling and rendering Mustache templates.
@@ -56,21 +55,14 @@ class TemplateParser {
 	private int $compileFlags;
 
 	/**
-	 * The localization instance implementing ILocalizer.
-	 */
-	private ILocalizer $localizer;
-
-	/**
 	 * Constructor to initialize the TemplateParser.
 	 *
 	 * @since 0.3.0
 	 *
 	 * @param string $templateDir Path to the template directory.
-	 * @param ILocalizer $localizer The localizer instance for supporting translations and localization.
 	 */
-	public function __construct( string $templateDir, ILocalizer $localizer ) {
+	public function __construct( string $templateDir ) {
 		$this->templateDir = $templateDir;
-		$this->localizer = $localizer;
 
 		$this->compileFlags =
 			Flags::FLAG_ERROR_EXCEPTION |
@@ -116,25 +108,6 @@ class TemplateParser {
 		$phpCode = LightnCandy::compile( $templateContent, [
 			'flags' => $this->compileFlags,
 			'helpers' => [
-				'i18n' => function ( $options ) {
-					// Extract the block content as the string
-					$rawText = trim( $options['fn']() );
-
-					$renderedText = trim( $rawText );
-					// Split by '|' to separate the key and parameters.
-					// XXX This assumes that the expanded content of parameters does not contain pipes.
-					$parts = explode( '|', $renderedText );
-					// The first part is the message key, the rest are parameters
-					$key = trim( array_shift( $parts ) );
-					$params = [];
-					foreach ( $parts as $part ) {
-						$params[] = trim( $part );
-					}
-
-					$message = $this->localizer->msg( $key, ...$params );
-
-					return htmlspecialchars( $message, ENT_QUOTES, 'UTF-8' );
-				},
 				'renderClasses' => static function ( $options ) {
 					$renderedAttributes = $options['fn']();
 					if ( preg_match( '/class="([^"]*)"/', $renderedAttributes, $matches ) ) {

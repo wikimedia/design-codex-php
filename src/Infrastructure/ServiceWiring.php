@@ -75,13 +75,17 @@ return [
 
 	'CheckboxRenderer' => static function ( ServiceContainer $services ) {
 		return new CheckboxRenderer(
-			$services->getService( 'Sanitizer' ), $services->getService( 'TemplateParser' )
+			$services->getService( 'Sanitizer' ),
+			$services->getService( 'TemplateParser' ),
+			$services->getService( 'Localization' )
 		);
 	},
 
 	'FieldRenderer' => static function ( ServiceContainer $services ) {
 		return new FieldRenderer(
-			$services->getService( 'Sanitizer' ), $services->getService( 'TemplateParser' ),
+			$services->getService( 'Sanitizer' ),
+			$services->getService( 'TemplateParser' ),
+			$services->getService( 'Localization' )
 		);
 	},
 
@@ -93,7 +97,9 @@ return [
 
 	'LabelRenderer' => static function ( ServiceContainer $services ) {
 		return new LabelRenderer(
-			$services->getService( 'Sanitizer' ), $services->getService( 'TemplateParser' )
+			$services->getService( 'Sanitizer' ),
+			$services->getService( 'TemplateParser' ),
+			$services->getService( 'Localization' )
 		);
 	},
 
@@ -141,7 +147,9 @@ return [
 
 	'RadioRenderer' => static function ( ServiceContainer $services ) {
 		return new RadioRenderer(
-			$services->getService( 'Sanitizer' ), $services->getService( 'TemplateParser' )
+			$services->getService( 'Sanitizer' ),
+			$services->getService( 'TemplateParser' ),
+			$services->getService( 'Localization' )
 		);
 	},
 
@@ -159,6 +167,7 @@ return [
 		return new TableRenderer(
 			$services->getService( 'Sanitizer' ),
 			$services->getService( 'TemplateParser' ),
+			$services->getService( 'Localization' ),
 			$services->getService( 'ParamValidator' ),
 			$services->getService( 'ParamValidatorCallbacks' )
 		);
@@ -175,9 +184,8 @@ return [
 
 	'TemplateParser' => static function ( ServiceContainer $services ) {
 		$templatePath = __DIR__ . '/../../resources/templates';
-		$localization = $services->getService( 'Localization' );
 
-		return new TemplateParser( $templatePath, $localization );
+		return new TemplateParser( $templatePath );
 	},
 
 	'TextAreaRenderer' => static function ( ServiceContainer $services ) {
@@ -200,7 +208,9 @@ return [
 
 	'ToggleSwitchRenderer' => static function ( ServiceContainer $services ) {
 		return new ToggleSwitchRenderer(
-			$services->getService( 'Sanitizer' ), $services->getService( 'TemplateParser' ),
+			$services->getService( 'Sanitizer' ),
+			$services->getService( 'TemplateParser' ),
+			$services->getService( 'Localization' )
 		);
 	},
 ];

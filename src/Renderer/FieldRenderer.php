@@ -21,6 +21,7 @@ namespace Wikimedia\Codex\Renderer;
 use InvalidArgumentException;
 use Wikimedia\Codex\Component\Field;
 use Wikimedia\Codex\Contract\Component;
+use Wikimedia\Codex\Contract\ILocalizer;
 use Wikimedia\Codex\Contract\Renderer;
 use Wikimedia\Codex\Parser\TemplateParser;
 use Wikimedia\Codex\Utility\Codex;
@@ -42,15 +43,6 @@ use Wikimedia\Codex\Utility\Sanitizer;
  * @link     https://doc.wikimedia.org/codex/main/ Codex Documentation
  */
 class FieldRenderer extends Renderer {
-	/**
-	 * The sanitizer instance used for content sanitization.
-	 */
-	private Sanitizer $sanitizer;
-
-	/**
-	 * The template parser instance.
-	 */
-	private TemplateParser $templateParser;
 
 	/**
 	 * The codex instance.
@@ -63,10 +55,13 @@ class FieldRenderer extends Renderer {
 	 * @since 0.1.0
 	 * @param Sanitizer $sanitizer The sanitizer instance used for content sanitization.
 	 * @param TemplateParser $templateParser The template parser instance.
+	 * @param ILocalizer $localizer The localizer instance used for i18n messages.
 	 */
-	public function __construct( Sanitizer $sanitizer, TemplateParser $templateParser ) {
-		$this->sanitizer = $sanitizer;
-		$this->templateParser = $templateParser;
+	public function __construct(
+		private readonly Sanitizer $sanitizer,
+		private readonly TemplateParser $templateParser,
+		private readonly ILocalizer $localizer,
+	) {
 		$this->codex = new Codex();
 	}
 
@@ -93,7 +88,9 @@ class FieldRenderer extends Renderer {
 				'isLegend' => $component->isFieldset(),
 				'inputId' => $label->getInputId(),
 				'labelText-html' => $this->sanitizer->sanitizeText( $label->getLabelText() ),
-				'optionalFlag' => $label->isOptional(),
+				'optionalFlag' => $label->isOptional() ?
+					$this->localizer->msg( 'cdx-label-optional-flag' ) :
+					null,
 				'isVisuallyHidden' => $label->isVisuallyHidden(),
 				'description-html' => $this->sanitizer->sanitizeText( $label->getDescription() ),
 				'descriptionId' => $label->getDescriptionId(),

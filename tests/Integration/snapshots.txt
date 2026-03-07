@@ -322,7 +322,8 @@ Table sandbox
 
   </div>
    <div class="cdx-table-pager__status">
-                Showing results 1–5 of 30    </div>
+        Showing results 1–5 of 30
+   </div>
   <div class="cdx-table-pager__end">
       <button class="cdx-button cdx-button--weight-quiet cdx-button--icon-only" type="submit" name="offset" aria-label="First page" disabled>
           <span class="cdx-button__icon cdx-table-pager__icon--first" aria-hidden="true"></span>

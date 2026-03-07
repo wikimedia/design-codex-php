@@ -21,6 +21,7 @@ namespace Wikimedia\Codex\Renderer;
 use InvalidArgumentException;
 use Wikimedia\Codex\Component\ToggleSwitch;
 use Wikimedia\Codex\Contract\Component;
+use Wikimedia\Codex\Contract\ILocalizer;
 use Wikimedia\Codex\Contract\Renderer;
 use Wikimedia\Codex\Parser\TemplateParser;
 use Wikimedia\Codex\Utility\Sanitizer;
@@ -43,25 +44,18 @@ use Wikimedia\Codex\Utility\Sanitizer;
 class ToggleSwitchRenderer extends Renderer {
 
 	/**
-	 * The sanitizer instance used for content sanitization.
-	 */
-	private Sanitizer $sanitizer;
-
-	/**
-	 * The template parser instance.
-	 */
-	private TemplateParser $templateParser;
-
-	/**
 	 * Constructor to initialize the ToggleSwitchRenderer with a sanitizer and a template parser.
 	 *
 	 * @since 0.1.0
 	 * @param Sanitizer $sanitizer The sanitizer instance used for content sanitization.
 	 * @param TemplateParser $templateParser The template parser instance.
+	 * @param ILocalizer $localizer The localizer instance used for i18n messages.
 	 */
-	public function __construct( Sanitizer $sanitizer, TemplateParser $templateParser ) {
-		$this->sanitizer = $sanitizer;
-		$this->templateParser = $templateParser;
+	public function __construct(
+		private readonly Sanitizer $sanitizer,
+		private readonly TemplateParser $templateParser,
+		private readonly ILocalizer $localizer
+	) {
 	}
 
 	/**
@@ -84,7 +78,9 @@ class ToggleSwitchRenderer extends Renderer {
 				'id' => $label->getId(),
 				'coreClass' => 'cdx-toggle-switch__label',
 				'labelText-html' => $this->sanitizer->sanitizeText( $label->getLabelText() ),
-				'optionalFlag' => $label->isOptional(),
+				'optionalFlag' => $label->isOptional() ?
+					$this->localizer->msg( 'cdx-label-optional-flag' ) :
+					null,
 				'isVisuallyHidden' => $label->isVisuallyHidden(),
 				'inputId' => $component->getInputId(),
 				'description-html' => $this->sanitizer->sanitizeText( $label->getDescription() ),

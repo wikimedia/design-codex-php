@@ -22,6 +22,7 @@ use InvalidArgumentException;
 use UnexpectedValueException;
 use Wikimedia\Codex\Component\Table;
 use Wikimedia\Codex\Contract\Component;
+use Wikimedia\Codex\Contract\ILocalizer;
 use Wikimedia\Codex\Contract\Renderer;
 use Wikimedia\Codex\ParamValidator\ParamDefinitions;
 use Wikimedia\Codex\ParamValidator\ParamValidator;
@@ -47,44 +48,22 @@ use Wikimedia\Codex\Utility\Sanitizer;
 class TableRenderer extends Renderer {
 
 	/**
-	 * The sanitizer instance used for content sanitization.
-	 */
-	private Sanitizer $sanitizer;
-
-	/**
-	 * The template parser instance.
-	 */
-	private TemplateParser $templateParser;
-
-	/**
-	 * The param validator.
-	 */
-	protected ParamValidator $paramValidator;
-
-	/**
-	 * The param validator callbacks.
-	 */
-	protected ParamValidatorCallbacks $paramValidatorCallbacks;
-
-	/**
 	 * Constructor to initialize the TableRenderer with necessary dependencies.
 	 *
 	 * @since 0.1.0
 	 * @param Sanitizer $sanitizer The sanitizer instance for cleaning user-provided data and HTML attributes.
 	 * @param TemplateParser $templateParser The template parser instance for rendering Mustache templates.
+	 * @param ILocalizer $localizer The localizer instance for i18n messages.
 	 * @param ParamValidator $paramValidator The parameter validator instance to validate query parameters.
 	 * @param ParamValidatorCallbacks $paramValidatorCallbacks The callbacks instance for fetching validated parameters.
 	 */
 	public function __construct(
-		Sanitizer $sanitizer,
-		TemplateParser $templateParser,
-		ParamValidator $paramValidator,
-		ParamValidatorCallbacks $paramValidatorCallbacks
+		private readonly Sanitizer $sanitizer,
+		private readonly TemplateParser $templateParser,
+		private readonly ILocalizer $localizer,
+		private readonly ParamValidator $paramValidator,
+		private readonly ParamValidatorCallbacks $paramValidatorCallbacks
 	) {
-		$this->sanitizer = $sanitizer;
-		$this->templateParser = $templateParser;
-		$this->paramValidator = $paramValidator;
-		$this->paramValidatorCallbacks = $paramValidatorCallbacks;
 	}
 
 	/**
@@ -114,6 +93,8 @@ class TableRenderer extends Renderer {
 			'hideCaption' => $component->getHideCaption(),
 			'headerContent-html' => $this->sanitizer->sanitizeText( $component->getHeaderContent() ?? '' ),
 			'hasData' => (bool)count( $component->getData() ),
+			'noDataMessage' => count( $component->getData() ) === 0 ?
+				$this->localizer->msg( 'cdx-table-no-data-message' ) : '',
 			'pager' => $pager ? $pager->getHtml() : '',
 			'attributes' => $this->resolveAttributes(
 				$this->sanitizer->sanitizeAttributes( $component->getAttributes() )

@@ -149,14 +149,22 @@ class PagerRenderer extends Renderer {
 			throw new InvalidArgumentException( "Expected instance of Pager, got " . get_class( $component ) );
 		}
 
+		$isPending = $component->getEndOrdinal() < $component->getStartOrdinal();
+		$totalResults = $component->getTotalResults();
+
 		$pagerData = [
 			'id' => $component->getId(),
 			'position' => $component->getPosition(),
-			'startOrdinal' => $component->getStartOrdinal(),
-			'endOrdinal' => $component->getEndOrdinal(),
-			'totalResults' => $component->getTotalResults(),
-			'isPending' => $component->getEndOrdinal() < $component->getStartOrdinal(),
-			'hasTotalResults' => $component->getTotalResults() > 0,
+			'status' => $isPending ?
+				$this->localizer->msg( 'cdx-table-pagination-status-message-pending' ) :
+				$this->localizer->msg(
+					$totalResults > 0 ?
+						'cdx-table-pagination-status-message-determinate-long' :
+						'cdx-table-pagination-status-message-indeterminate-long',
+					$component->getStartOrdinal(),
+					$component->getEndOrdinal(),
+					$totalResults
+				),
 			'select' => $this->buildSelect( $component )->getHtml(),
 			'firstButton' => $this->buildButtonData( $component, self::ACTION_FIRST ),
 			'prevButton' => $this->buildButtonData( $component, self::ACTION_PREVIOUS ),
