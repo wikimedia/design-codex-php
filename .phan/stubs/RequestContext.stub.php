@@ -3,8 +3,9 @@
 namespace MediaWiki\Context;
 
 use MediaWiki\Message\Message;
+use MediaWiki\Language\MessageLocalizer;
 
-class RequestContext {
+class RequestContext implements MessageLocalizer {
 
 	/**
 	 * Get the main request context.
