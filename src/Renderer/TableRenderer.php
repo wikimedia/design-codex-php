@@ -22,12 +22,11 @@ use InvalidArgumentException;
 use UnexpectedValueException;
 use Wikimedia\Codex\Component\Table;
 use Wikimedia\Codex\Contract\Component;
-use Wikimedia\Codex\Contract\Renderer\IRenderer;
+use Wikimedia\Codex\Contract\Renderer;
 use Wikimedia\Codex\ParamValidator\ParamDefinitions;
 use Wikimedia\Codex\ParamValidator\ParamValidator;
 use Wikimedia\Codex\ParamValidator\ParamValidatorCallbacks;
 use Wikimedia\Codex\Parser\TemplateParser;
-use Wikimedia\Codex\Traits\AttributeResolver;
 use Wikimedia\Codex\Utility\Sanitizer;
 
 /**
@@ -45,12 +44,7 @@ use Wikimedia\Codex\Utility\Sanitizer;
  * @license  https://www.gnu.org/copyleft/gpl.html GPL-2.0-or-later
  * @link     https://doc.wikimedia.org/codex/main/ Codex Documentation
  */
-class TableRenderer implements IRenderer {
-
-	/**
-	 * Use the AttributeResolver trait
-	 */
-	use AttributeResolver;
+class TableRenderer extends Renderer {
 
 	/**
 	 * The sanitizer instance used for content sanitization.
@@ -121,7 +115,9 @@ class TableRenderer implements IRenderer {
 			'headerContent-html' => $this->sanitizer->sanitizeText( $component->getHeaderContent() ?? '' ),
 			'hasData' => (bool)count( $component->getData() ),
 			'pager' => $pager ? $pager->getHtml() : '',
-			'attributes' => $this->resolve( $this->sanitizer->sanitizeAttributes( $component->getAttributes() ) ),
+			'attributes' => $this->resolveAttributes(
+				$this->sanitizer->sanitizeAttributes( $component->getAttributes() )
+			),
 			'footer-html' => $this->sanitizer->sanitizeText( $component->getFooter() ?? '' ),
 		];
 		return $this->templateParser->processTemplate( 'table', $tableData );

@@ -1,27 +1,27 @@
 <?php
 /**
- * AttributeResolverTest.php
+ * RendererTest.php
  *
- * This class contains unit tests to verify the correct behavior of the AttributeResolver trait, which is responsible
- * for converting associative arrays of HTML attributes into a string format suitable for use in HTML tags.
+ * This class contains unit tests to verify the correct behavior of the abstract Renderer class.
  *
- * @category Tests\Unit\Traits
- * @package  Codex\Tests\Unit\Traits
+ * @category Tests\Unit
+ * @package  Codex\Tests\Unit
  * @since    0.1.0
  * @author   Doğu Abaris <abaris@null.net>
  * @license  https://www.gnu.org/copyleft/gpl.html GPL-2.0-or-later
  * @link     https://doc.wikimedia.org/codex/main/ Codex Documentation
  */
 
-namespace Wikimedia\Codex\Tests\Unit\Traits;
+namespace Wikimedia\Codex\Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
-use Wikimedia\Codex\Traits\AttributeResolver;
+use Wikimedia\Codex\Contract\Component;
+use Wikimedia\Codex\Contract\Renderer;
 
 /**
- * AttributeResolverTest
+ * RendererTest
  *
- * This test verifies the AttributeResolver trait's handling of HTML attributes.
+ * This test verifies the abstract Renderer class's handling of HTML attributes.
  *
  * @category Tests\Unit\Traits
  * @package  Codex\Tests\Unit\Traits
@@ -29,10 +29,17 @@ use Wikimedia\Codex\Traits\AttributeResolver;
  * @author   Doğu Abaris <abaris@null.net>
  * @license  https://www.gnu.org/copyleft/gpl.html GPL-2.0-or-later
  * @link     https://doc.wikimedia.org/codex/main/ Codex Documentation
- * @covers   \Wikimedia\Codex\Traits\AttributeResolver
+ * @covers   \Wikimedia\Codex\Contract\Renderer
  */
-class AttributeResolverTest extends TestCase {
-	use AttributeResolver;
+class RendererTest extends TestCase {
+
+	private function getTestRenderer(): Renderer {
+		return new class() extends Renderer {
+			public function render( Component $component ): string {
+				return '';
+			}
+		};
+	}
 
 	/**
 	 * Test that an empty array of attributes returns an empty string.
@@ -41,7 +48,7 @@ class AttributeResolverTest extends TestCase {
 	 * @return void
 	 */
 	public function testEmptyAttributes(): void {
-		$result = $this->resolve( [] );
+		$result = $this->getTestRenderer()->resolveAttributes( [] );
 		$this->assertSame( '', $result, 'Empty attributes should return an empty string.' );
 	}
 
@@ -57,7 +64,7 @@ class AttributeResolverTest extends TestCase {
 				'id' => 'button1',
 				'type' => 'submit',
 			];
-		$result = $this->resolve( $attributes );
+		$result = $this->getTestRenderer()->resolveAttributes( $attributes );
 		$this->assertSame( 'id="button1" type="submit"', $result );
 	}
 
@@ -74,7 +81,7 @@ class AttributeResolverTest extends TestCase {
 				'readonly' => false,
 				'required' => true,
 			];
-		$result = $this->resolve( $attributes );
+		$result = $this->getTestRenderer()->resolveAttributes( $attributes );
 		$this->assertSame( 'disabled required', $result );
 	}
 
@@ -86,7 +93,7 @@ class AttributeResolverTest extends TestCase {
 	 */
 	public function testArrayAttributes(): void {
 		$attributes = [ 'foo' => 'bar' ];
-		$result = $this->resolve( $attributes );
+		$result = $this->getTestRenderer()->resolveAttributes( $attributes );
 		$this->assertSame( 'foo="bar"', $result );
 	}
 }

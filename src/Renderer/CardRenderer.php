@@ -21,9 +21,8 @@ namespace Wikimedia\Codex\Renderer;
 use InvalidArgumentException;
 use Wikimedia\Codex\Component\Card;
 use Wikimedia\Codex\Contract\Component;
-use Wikimedia\Codex\Contract\Renderer\IRenderer;
+use Wikimedia\Codex\Contract\Renderer;
 use Wikimedia\Codex\Parser\TemplateParser;
-use Wikimedia\Codex\Traits\AttributeResolver;
 use Wikimedia\Codex\Utility\Sanitizer;
 
 /**
@@ -41,12 +40,7 @@ use Wikimedia\Codex\Utility\Sanitizer;
  * @license  https://www.gnu.org/copyleft/gpl.html GPL-2.0-or-later
  * @link     https://doc.wikimedia.org/codex/main/ Codex Documentation
  */
-class CardRenderer implements IRenderer {
-
-	/**
-	 * Use the AttributeResolver trait
-	 */
-	use AttributeResolver;
+class CardRenderer extends Renderer {
 
 	/**
 	 * The sanitizer instance used for content sanitization.
@@ -93,7 +87,8 @@ class CardRenderer implements IRenderer {
 				'backgroundImage' => $this->sanitizer->sanitizeText( $thumbnail->getBackgroundImage() ),
 				'useDefaultPlaceholder' => (bool)$component->getThumbnail(),
 				'placeholderClass' => $this->sanitizer->sanitizeText( $thumbnail->getPlaceholderClass() ),
-				'attributes' => $this->resolve( $this->sanitizer->sanitizeAttributes( $thumbnail->getAttributes() ) ),
+				'attributes' => $this->resolveAttributes(
+					$this->sanitizer->sanitizeAttributes( $thumbnail->getAttributes() ) ),
 			];
 		}
 
@@ -106,7 +101,9 @@ class CardRenderer implements IRenderer {
 			'url' => $this->sanitizer->sanitizeUrl( $component->getUrl() ),
 			'iconClass' => $component->getIconClass(),
 			'thumbnail' => $thumbnailData,
-			'attributes' => $this->resolve( $this->sanitizer->sanitizeAttributes( $component->getAttributes() ) ),
+			'attributes' => $this->resolveAttributes(
+				$this->sanitizer->sanitizeAttributes( $component->getAttributes() )
+			),
 		];
 
 		return $this->templateParser->processTemplate( 'card', $cardData );

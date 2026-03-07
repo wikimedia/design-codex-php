@@ -21,9 +21,8 @@ namespace Wikimedia\Codex\Renderer;
 use InvalidArgumentException;
 use Wikimedia\Codex\Component\TextInput;
 use Wikimedia\Codex\Contract\Component;
-use Wikimedia\Codex\Contract\Renderer\IRenderer;
+use Wikimedia\Codex\Contract\Renderer;
 use Wikimedia\Codex\Parser\TemplateParser;
-use Wikimedia\Codex\Traits\AttributeResolver;
 use Wikimedia\Codex\Utility\Sanitizer;
 
 /**
@@ -41,12 +40,7 @@ use Wikimedia\Codex\Utility\Sanitizer;
  * @license  https://www.gnu.org/copyleft/gpl.html GPL-2.0-or-later
  * @link     https://doc.wikimedia.org/codex/main/ Codex Documentation
  */
-class TextInputRenderer implements IRenderer {
-
-	/**
-	 * Use the AttributeResolver trait
-	 */
-	use AttributeResolver;
+class TextInputRenderer extends Renderer {
 
 	/**
 	 * The sanitizer instance used for content sanitization.
@@ -96,10 +90,10 @@ class TextInputRenderer implements IRenderer {
 			'hasEndIcon' => $component->hasEndIcon(),
 			'endIconClass' => $component->getEndIconClass(),
 			'status' => $component->getStatus(),
-			'inputAttributes' => $this->resolve(
+			'inputAttributes' => $this->resolveAttributes(
 				$this->sanitizer->sanitizeAttributes( $component->getInputAttributes() )
 			),
-			'wrapperAttributes' => $this->resolve(
+			'wrapperAttributes' => $this->resolveAttributes(
 				$this->sanitizer->sanitizeAttributes( $component->getWrapperAttributes() )
 			),
 		];

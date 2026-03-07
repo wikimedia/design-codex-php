@@ -24,12 +24,11 @@ use Wikimedia\Codex\Component\Pager;
 use Wikimedia\Codex\Component\Select;
 use Wikimedia\Codex\Contract\Component;
 use Wikimedia\Codex\Contract\ILocalizer;
-use Wikimedia\Codex\Contract\Renderer\IRenderer;
+use Wikimedia\Codex\Contract\Renderer;
 use Wikimedia\Codex\ParamValidator\ParamDefinitions;
 use Wikimedia\Codex\ParamValidator\ParamValidator;
 use Wikimedia\Codex\ParamValidator\ParamValidatorCallbacks;
 use Wikimedia\Codex\Parser\TemplateParser;
-use Wikimedia\Codex\Traits\AttributeResolver;
 use Wikimedia\Codex\Utility\Codex;
 use Wikimedia\Codex\Utility\Sanitizer;
 
@@ -48,12 +47,7 @@ use Wikimedia\Codex\Utility\Sanitizer;
  * @license  https://www.gnu.org/copyleft/gpl.html GPL-2.0-or-later
  * @link     https://doc.wikimedia.org/codex/main/ Codex Documentation
  */
-class PagerRenderer implements IRenderer {
-
-	/**
-	 * Use the AttributeResolver trait
-	 */
-	use AttributeResolver;
+class PagerRenderer extends Renderer {
 
 	/**
 	 * The sanitizer instance used for content sanitization.
@@ -253,7 +247,7 @@ class PagerRenderer implements IRenderer {
 			'type' => 'submit',
 			'name' => 'offset',
 			'value' => $offset,
-			'attributes' => $this->resolve( $this->sanitizer->sanitizeAttributes( [
+			'attributes' => $this->resolveAttributes( $this->sanitizer->sanitizeAttributes( [
 				'aria-label' => $this->localizer->msg( $ariaLabelKey ),
 			] ) ),
 		];

@@ -21,9 +21,8 @@ namespace Wikimedia\Codex\Renderer;
 use InvalidArgumentException;
 use Wikimedia\Codex\Component\Accordion;
 use Wikimedia\Codex\Contract\Component;
-use Wikimedia\Codex\Contract\Renderer\IRenderer;
+use Wikimedia\Codex\Contract\Renderer;
 use Wikimedia\Codex\Parser\TemplateParser;
-use Wikimedia\Codex\Traits\AttributeResolver;
 use Wikimedia\Codex\Utility\Sanitizer;
 
 /**
@@ -41,12 +40,7 @@ use Wikimedia\Codex\Utility\Sanitizer;
  * @license  https://www.gnu.org/copyleft/gpl.html GPL-2.0-or-later
  * @link     https://doc.wikimedia.org/codex/main/ Codex Documentation
  */
-class AccordionRenderer implements IRenderer {
-
-	/**
-	 * Use the AttributeResolver trait
-	 */
-	use AttributeResolver;
+class AccordionRenderer extends Renderer {
 
 	/**
 	 * The sanitizer instance used for content sanitization.
@@ -90,7 +84,9 @@ class AccordionRenderer implements IRenderer {
 			'description-html' => $this->sanitizer->sanitizeText( $component->getDescription() ),
 			'content-html' => $this->sanitizer->sanitizeText( $component->getContent() ),
 			'isOpen' => $component->isOpen(),
-			'attributes' => $this->resolve( $this->sanitizer->sanitizeAttributes( $component->getAttributes() ) )
+			'attributes' => $this->resolveAttributes(
+				$this->sanitizer->sanitizeAttributes( $component->getAttributes() )
+			)
 		];
 
 		return $this->templateParser->processTemplate( 'accordion', $accordionData );

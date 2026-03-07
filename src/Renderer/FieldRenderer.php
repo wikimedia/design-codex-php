@@ -21,9 +21,8 @@ namespace Wikimedia\Codex\Renderer;
 use InvalidArgumentException;
 use Wikimedia\Codex\Component\Field;
 use Wikimedia\Codex\Contract\Component;
-use Wikimedia\Codex\Contract\Renderer\IRenderer;
+use Wikimedia\Codex\Contract\Renderer;
 use Wikimedia\Codex\Parser\TemplateParser;
-use Wikimedia\Codex\Traits\AttributeResolver;
 use Wikimedia\Codex\Utility\Codex;
 use Wikimedia\Codex\Utility\Sanitizer;
 
@@ -42,12 +41,7 @@ use Wikimedia\Codex\Utility\Sanitizer;
  * @license  https://www.gnu.org/copyleft/gpl.html GPL-2.0-or-later
  * @link     https://doc.wikimedia.org/codex/main/ Codex Documentation
  */
-class FieldRenderer implements IRenderer {
-	/**
-	 * Use the AttributeResolver trait
-	 */
-	use AttributeResolver;
-
+class FieldRenderer extends Renderer {
 	/**
 	 * The sanitizer instance used for content sanitization.
 	 */
@@ -105,7 +99,9 @@ class FieldRenderer implements IRenderer {
 				'descriptionId' => $label->getDescriptionId(),
 				'icon' => $label->getIconClass(),
 				'isDisabled' => $label->isDisabled(),
-				'attributes' => $this->resolve( $this->sanitizer->sanitizeAttributes( $label->getAttributes() ) ),
+				'attributes' => $this->resolveAttributes(
+					$this->sanitizer->sanitizeAttributes( $label->getAttributes() )
+				),
 			];
 		}
 
@@ -113,7 +109,9 @@ class FieldRenderer implements IRenderer {
 			'id' => $component->getId(),
 			'isFieldset' => $component->isFieldset(),
 			'fields' => $component->getFields(),
-			'attributes' => $this->resolve( $this->sanitizer->sanitizeAttributes( $component->getAttributes() ) ),
+			'attributes' => $this->resolveAttributes(
+				$this->sanitizer->sanitizeAttributes( $component->getAttributes() )
+			),
 			'label' => $labelData,
 		];
 

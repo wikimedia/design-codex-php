@@ -21,9 +21,8 @@ namespace Wikimedia\Codex\Renderer;
 use InvalidArgumentException;
 use Wikimedia\Codex\Component\Select;
 use Wikimedia\Codex\Contract\Component;
-use Wikimedia\Codex\Contract\Renderer\IRenderer;
+use Wikimedia\Codex\Contract\Renderer;
 use Wikimedia\Codex\Parser\TemplateParser;
-use Wikimedia\Codex\Traits\AttributeResolver;
 use Wikimedia\Codex\Utility\Sanitizer;
 
 /**
@@ -41,12 +40,7 @@ use Wikimedia\Codex\Utility\Sanitizer;
  * @license  https://www.gnu.org/copyleft/gpl.html GPL-2.0-or-later
  * @link     https://doc.wikimedia.org/codex/main/ Codex Documentation
  */
-class SelectRenderer implements IRenderer {
-
-	/**
-	 * Use the AttributeResolver trait
-	 */
-	use AttributeResolver;
+class SelectRenderer extends Renderer {
 
 	/**
 	 * The sanitizer instance used for content sanitization.
@@ -88,7 +82,9 @@ class SelectRenderer implements IRenderer {
 			'id' => $component->getId(),
 			'isDisabled' => $component->isDisabled(),
 			'selectedOption' => $component->getSelectedOption(),
-			'attributes' => $this->resolve( $this->sanitizer->sanitizeAttributes( $component->getAttributes() ) ),
+			'attributes' => $this->resolveAttributes(
+				$this->sanitizer->sanitizeAttributes( $component->getAttributes() )
+			),
 			'options' => $this->prepareOptions( $component->getOptions() ),
 			'optGroups' => $this->prepareOptGroups( $component->getOptGroups() ),
 		];

@@ -21,9 +21,8 @@ namespace Wikimedia\Codex\Renderer;
 use InvalidArgumentException;
 use Wikimedia\Codex\Component\Checkbox;
 use Wikimedia\Codex\Contract\Component;
-use Wikimedia\Codex\Contract\Renderer\IRenderer;
+use Wikimedia\Codex\Contract\Renderer;
 use Wikimedia\Codex\Parser\TemplateParser;
-use Wikimedia\Codex\Traits\AttributeResolver;
 use Wikimedia\Codex\Utility\Sanitizer;
 
 /**
@@ -41,12 +40,7 @@ use Wikimedia\Codex\Utility\Sanitizer;
  * @license  https://www.gnu.org/copyleft/gpl.html GPL-2.0-or-later
  * @link     https://doc.wikimedia.org/codex/main/ Codex Documentation
  */
-class CheckboxRenderer implements IRenderer {
-
-	/**
-	 * Use the AttributeResolver trait
-	 */
-	use AttributeResolver;
+class CheckboxRenderer extends Renderer {
 
 	/**
 	 * The sanitizer instance used for content sanitization.
@@ -99,7 +93,9 @@ class CheckboxRenderer implements IRenderer {
 				'descriptionId' => $label->getDescriptionId() ?? '',
 				'isDisabled' => $label->isDisabled(),
 				'iconClass' => $label->getIconClass() ?? '',
-				'attributes' => $this->resolve( $this->sanitizer->sanitizeAttributes( $label->getAttributes() ) ),
+				'attributes' => $this->resolveAttributes(
+					$this->sanitizer->sanitizeAttributes( $label->getAttributes() )
+				),
 			];
 		}
 
@@ -111,10 +107,10 @@ class CheckboxRenderer implements IRenderer {
 			'isDisabled' => $component->isDisabled(),
 			'isInline' => $component->isInline(),
 			'ariaDescribedby' => $label?->getDescriptionId() ?? '',
-			'inputAttributes' => $this->resolve(
+			'inputAttributes' => $this->resolveAttributes(
 				$this->sanitizer->sanitizeAttributes( $component->getInputAttributes() )
 			),
-			'wrapperAttributes' => $this->resolve(
+			'wrapperAttributes' => $this->resolveAttributes(
 				$this->sanitizer->sanitizeAttributes( $component->getWrapperAttributes() )
 			),
 			'label' => $labelData,

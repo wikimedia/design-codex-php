@@ -3,10 +3,9 @@
 namespace Wikimedia\Codex\Contract;
 
 use Stringable;
-use Wikimedia\Codex\Contract\Renderer\IRenderer;
 
 abstract class Component implements Stringable {
-	protected function __construct( protected IRenderer $renderer ) {
+	protected function __construct( protected Renderer $renderer ) {
 	}
 
 	/**

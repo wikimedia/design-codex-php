@@ -23,12 +23,11 @@ use UnexpectedValueException;
 use Wikimedia\Codex\Component\Tab;
 use Wikimedia\Codex\Component\Tabs;
 use Wikimedia\Codex\Contract\Component;
-use Wikimedia\Codex\Contract\Renderer\IRenderer;
+use Wikimedia\Codex\Contract\Renderer;
 use Wikimedia\Codex\ParamValidator\ParamDefinitions;
 use Wikimedia\Codex\ParamValidator\ParamValidator;
 use Wikimedia\Codex\ParamValidator\ParamValidatorCallbacks;
 use Wikimedia\Codex\Parser\TemplateParser;
-use Wikimedia\Codex\Traits\AttributeResolver;
 use Wikimedia\Codex\Utility\Sanitizer;
 
 /**
@@ -46,12 +45,7 @@ use Wikimedia\Codex\Utility\Sanitizer;
  * @license  https://www.gnu.org/copyleft/gpl.html GPL-2.0-or-later
  * @link     https://doc.wikimedia.org/codex/main/ Codex Documentation
  */
-class TabsRenderer implements IRenderer {
-
-	/**
-	 * Use the AttributeResolver trait
-	 */
-	use AttributeResolver;
+class TabsRenderer extends Renderer {
 
 	/**
 	 * The sanitizer instance used for content sanitization.
@@ -156,7 +150,7 @@ class TabsRenderer implements IRenderer {
 		$data = [
 			'id' => $component->getId(),
 			'tabs' => $tabsData,
-			'attributes' => $this->resolve(
+			'attributes' => $this->resolveAttributes(
 				$this->sanitizer->sanitizeAttributes( $component->getAttributes() )
 			),
 		];

@@ -21,9 +21,8 @@ namespace Wikimedia\Codex\Renderer;
 use InvalidArgumentException;
 use Wikimedia\Codex\Component\ToggleSwitch;
 use Wikimedia\Codex\Contract\Component;
-use Wikimedia\Codex\Contract\Renderer\IRenderer;
+use Wikimedia\Codex\Contract\Renderer;
 use Wikimedia\Codex\Parser\TemplateParser;
-use Wikimedia\Codex\Traits\AttributeResolver;
 use Wikimedia\Codex\Utility\Sanitizer;
 
 /**
@@ -41,9 +40,7 @@ use Wikimedia\Codex\Utility\Sanitizer;
  * @license  https://www.gnu.org/copyleft/gpl.html GPL-2.0-or-later
  * @link     https://doc.wikimedia.org/codex/main/ Codex Documentation
  */
-class ToggleSwitchRenderer implements IRenderer {
-
-	use AttributeResolver;
+class ToggleSwitchRenderer extends Renderer {
 
 	/**
 	 * The sanitizer instance used for content sanitization.
@@ -94,7 +91,7 @@ class ToggleSwitchRenderer implements IRenderer {
 				'descriptionId' => $label->getDescriptionId() ?? '',
 				'isDisabled' => $label->isDisabled(),
 				'iconClass' => $label->getIconClass() ?? '',
-				'attributes' => $this->resolve(
+				'attributes' => $this->resolveAttributes(
 					$this->sanitizer->sanitizeAttributes( $label->getAttributes() )
 				),
 			];
@@ -107,10 +104,10 @@ class ToggleSwitchRenderer implements IRenderer {
 			'isChecked' => $component->isChecked(),
 			'isDisabled' => $component->isDisabled(),
 			'ariaDescribedby' => $label?->getDescriptionId() ?? '',
-			'inputAttributes' => $this->resolve(
+			'inputAttributes' => $this->resolveAttributes(
 				$this->sanitizer->sanitizeAttributes( $component->getInputAttributes() )
 			),
-			'wrapperAttributes' => $this->resolve(
+			'wrapperAttributes' => $this->resolveAttributes(
 				$this->sanitizer->sanitizeAttributes( $component->getWrapperAttributes() )
 			),
 			'label' => $labelData,
