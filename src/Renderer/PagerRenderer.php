@@ -116,6 +116,7 @@ class PagerRenderer extends Renderer {
 	 * @param Sanitizer $sanitizer The sanitizer instance for cleaning user-provided data and attributes.
 	 * @param TemplateParser $templateParser The template parser instance for rendering Mustache templates.
 	 * @param ILocalizer $localizer The localizer instance for supporting translations and localization.
+	 * @param Codex $codex The Codex instance for creating instances of other components
 	 * @param ParamValidator $paramValidator The parameter validator instance for validating query parameters.
 	 * @param ParamValidatorCallbacks $paramValidatorCallbacks The callback instance for accessing validated
 	 *                                                         parameter values.
@@ -124,13 +125,14 @@ class PagerRenderer extends Renderer {
 		Sanitizer $sanitizer,
 		TemplateParser $templateParser,
 		ILocalizer $localizer,
+		Codex $codex,
 		ParamValidator $paramValidator,
 		ParamValidatorCallbacks $paramValidatorCallbacks
 	) {
 		$this->sanitizer = $sanitizer;
 		$this->templateParser = $templateParser;
 		$this->localizer = $localizer;
-		$this->codex = new Codex();
+		$this->codex = $codex;
 		$this->paramValidator = $paramValidator;
 		$this->paramValidatorCallbacks = $paramValidatorCallbacks;
 	}

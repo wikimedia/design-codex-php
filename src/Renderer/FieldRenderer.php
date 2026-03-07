@@ -45,24 +45,20 @@ use Wikimedia\Codex\Utility\Sanitizer;
 class FieldRenderer extends Renderer {
 
 	/**
-	 * The codex instance.
-	 */
-	private Codex $codex;
-
-	/**
 	 * Constructor to initialize the FieldRenderer with a sanitizer and a template parser.
 	 *
 	 * @since 0.1.0
 	 * @param Sanitizer $sanitizer The sanitizer instance used for content sanitization.
 	 * @param TemplateParser $templateParser The template parser instance.
 	 * @param ILocalizer $localizer The localizer instance used for i18n messages.
+	 * @param Codex $codex The Codex instance for creating other components.
 	 */
 	public function __construct(
 		private readonly Sanitizer $sanitizer,
 		private readonly TemplateParser $templateParser,
 		private readonly ILocalizer $localizer,
+		private readonly Codex $codex
 	) {
-		$this->codex = new Codex();
 	}
 
 	/**

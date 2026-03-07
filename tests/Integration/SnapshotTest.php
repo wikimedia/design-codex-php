@@ -2,8 +2,10 @@
 
 namespace Wikimedia\Codex\Tests\Integration;
 
+use Krinkle\Intuition\Intuition;
 use PHPUnit\Framework\TestCase;
 use Wikimedia\Codex\Component\HtmlSnippet;
+use Wikimedia\Codex\Localization\IntuitionLocalization;
 use Wikimedia\Codex\Sandbox\Example\AccordionExample;
 use Wikimedia\Codex\Sandbox\Example\ButtonExample;
 use Wikimedia\Codex\Sandbox\Example\CardExample;
@@ -28,6 +30,12 @@ class SnapshotTest extends TestCase {
 	private const SNAPSHOT_FILE = __DIR__ . '/snapshots.txt';
 
 	private ?array $snapshots = null;
+
+	public static function getCodex( string $langCode = 'en' ): Codex {
+		$intuition = new Intuition( [ 'domain' => 'codex', 'lang' => $langCode ] );
+		$intuition->registerDomain( 'codex', __DIR__ . '/../../i18n' );
+		return new Codex( new IntuitionLocalization( $intuition ) );
+	}
 
 	public static function provideSnapshots(): array {
 		return [
@@ -116,6 +124,12 @@ class SnapshotTest extends TestCase {
 				]
 			) ],
 
+			// Label
+			[ 'label with optional notice in Dutch', static fn ( Codex $codex ) => $codex->label(
+				labelText: 'Label text',
+				optional: true
+			), 'nl' ],
+
 			// InfoChip
 			[ 'infoChip notice', static fn ( Codex $codex ) => $codex->infoChip(
 				text: 'Some text',
@@ -161,16 +175,19 @@ class SnapshotTest extends TestCase {
 	 * @dataProvider provideSnapshots
 	 * @covers Wikimedia\Codex\Utility\Codex
 	 */
-	public function testSnapshots( string $name, callable $callback ) {
-		$codex = new Codex();
-		$this->assertSame( $this->getSnapshot( $name ), (string)$callback( $codex ), $name );
+	public function testSnapshots( string $name, callable $callback, string $langCode = 'en' ) {
+		$this->assertSame(
+			$this->getSnapshot( $name ),
+			(string)$callback( self::getCodex( $langCode ) ),
+			$name
+		);
 	}
 
-	public static function writeSnapshots( Codex $codex ) {
+	public static function writeSnapshots() {
 		$snapshotBlocks = [];
 		foreach ( self::provideSnapshots() as $snapshot ) {
 			[ $name, $callback ] = $snapshot;
-			$snapshotBlocks[] = $name . "\n" . (string)$callback( $codex );
+			$snapshotBlocks[] = $name . "\n" . (string)$callback( self::getCodex( $snapshot[2] ?? 'en' ) );
 		}
 
 		file_put_contents( self::SNAPSHOT_FILE, implode( self::SNAPSHOT_DELIMITER, $snapshotBlocks ) );

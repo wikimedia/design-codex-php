@@ -19,6 +19,8 @@
 
 namespace Wikimedia\Codex\Utility;
 
+use Krinkle\Intuition\Intuition;
+use MediaWiki\Context\RequestContext;
 use Wikimedia\Codex\Component\Accordion;
 use Wikimedia\Codex\Component\Button;
 use Wikimedia\Codex\Component\Card;
@@ -39,7 +41,28 @@ use Wikimedia\Codex\Component\TextArea;
 use Wikimedia\Codex\Component\TextInput;
 use Wikimedia\Codex\Component\Thumbnail;
 use Wikimedia\Codex\Component\ToggleSwitch;
+use Wikimedia\Codex\Contract\ILocalizer;
 use Wikimedia\Codex\Infrastructure\CodexServices;
+use Wikimedia\Codex\Localization\IntuitionLocalization;
+use Wikimedia\Codex\Localization\MediaWikiLocalization;
+use Wikimedia\Codex\Renderer\AccordionRenderer;
+use Wikimedia\Codex\Renderer\ButtonRenderer;
+use Wikimedia\Codex\Renderer\CardRenderer;
+use Wikimedia\Codex\Renderer\CheckboxRenderer;
+use Wikimedia\Codex\Renderer\FieldRenderer;
+use Wikimedia\Codex\Renderer\InfoChipRenderer;
+use Wikimedia\Codex\Renderer\LabelRenderer;
+use Wikimedia\Codex\Renderer\MessageRenderer;
+use Wikimedia\Codex\Renderer\PagerRenderer;
+use Wikimedia\Codex\Renderer\ProgressBarRenderer;
+use Wikimedia\Codex\Renderer\RadioRenderer;
+use Wikimedia\Codex\Renderer\SelectRenderer;
+use Wikimedia\Codex\Renderer\TableRenderer;
+use Wikimedia\Codex\Renderer\TabsRenderer;
+use Wikimedia\Codex\Renderer\TextAreaRenderer;
+use Wikimedia\Codex\Renderer\TextInputRenderer;
+use Wikimedia\Codex\Renderer\ThumbnailRenderer;
+use Wikimedia\Codex\Renderer\ToggleSwitchRenderer;
 
 /**
  * Codex UI
@@ -62,13 +85,31 @@ class Codex {
 	 */
 	private CodexServices $services;
 
+	private ILocalizer $localizer;
+
 	/**
-	 * Constructor initializes CodexServices.
+	 * Create a new Codex instance. This object can be used to create and render Codex components.
 	 *
-	 * @since 0.1.0
+	 * @param ILocalizer|null $localizer Localizer object for i18n.
+	 *   NOTE: Omitting this parameter is deprecated and will not be supported in version 1.0.
 	 */
-	public function __construct() {
+	public function __construct( ?ILocalizer $localizer = null ) {
 		$this->services = CodexServices::getInstance();
+		$this->localizer = $localizer ?? $this->getFallbackLocalizer();
+	}
+
+	/**
+	 * Derive a localizer from the global state, if one wasn't passed to the constructor.
+	 */
+	private function getFallbackLocalizer(): ILocalizer {
+		if ( defined( 'MW_INSTALL_PATH' ) ) {
+			$messageLocalizer = RequestContext::getMain();
+			return new MediaWikiLocalization( $messageLocalizer );
+		} else {
+			$intuition = new Intuition( 'codex' );
+			$intuition->registerDomain( 'codex', __DIR__ . '/../../i18n' );
+			return new IntuitionLocalization( $intuition );
+		}
 	}
 
 	/**
@@ -90,7 +131,10 @@ class Codex {
 		array $attributes = []
 	): Accordion {
 		return new Accordion(
-			$this->services->getService( 'AccordionRenderer' ),
+			new AccordionRenderer(
+				$this->services->getService( 'Sanitizer' ),
+				$this->services->getService( 'TemplateParser' )
+			),
 			$title,
 			$description,
 			$content,
@@ -126,7 +170,10 @@ class Codex {
 		array $attributes = [],
 	): Button {
 		return new Button(
-			$this->services->getService( 'ButtonRenderer' ),
+			new ButtonRenderer(
+				$this->services->getService( 'Sanitizer' ),
+				$this->services->getService( 'TemplateParser' )
+			),
 			$label,
 			$action,
 			$size,
@@ -162,7 +209,10 @@ class Codex {
 		array $attributes = [],
 	): Card {
 		return new Card(
-			$this->services->getService( 'CardRenderer' ),
+			new CardRenderer(
+				$this->services->getService( 'Sanitizer' ),
+				$this->services->getService( 'TemplateParser' )
+			),
 			$title,
 			$description,
 			$supportingText,
@@ -200,7 +250,11 @@ class Codex {
 		array $wrapperAttributes = []
 	): Checkbox {
 		return new Checkbox(
-			$this->services->getService( 'CheckboxRenderer' ),
+			new CheckboxRenderer(
+				$this->services->getService( 'Sanitizer' ),
+				$this->services->getService( 'TemplateParser' ),
+				$this->localizer
+			),
 			$inputId,
 			$name,
 			$label,
@@ -230,7 +284,12 @@ class Codex {
 		array $attributes = []
 	): Field {
 		return new Field(
-			$this->services->getService( 'FieldRenderer' ),
+			new FieldRenderer(
+				$this->services->getService( 'Sanitizer' ),
+				$this->services->getService( 'TemplateParser' ),
+				$this->localizer,
+				$this
+			),
 			$label,
 			$isFieldset,
 			$fields,
@@ -268,7 +327,10 @@ class Codex {
 		array $attributes = []
 	): InfoChip {
 		return new InfoChip(
-			$this->services->getService( 'InfoChipRenderer' ),
+			new InfoChipRenderer(
+				$this->services->getService( 'Sanitizer' ),
+				$this->services->getService( 'TemplateParser' )
+			),
 			$text,
 			$status,
 			$icon,
@@ -305,7 +367,11 @@ class Codex {
 		array $attributes = []
 	): Label {
 		return new Label(
-			$this->services->getService( 'LabelRenderer' ),
+			new LabelRenderer(
+				$this->services->getService( 'Sanitizer' ),
+				$this->services->getService( 'TemplateParser' ),
+				$this->localizer
+			),
 			$labelText,
 			$inputId,
 			$optional,
@@ -341,7 +407,10 @@ class Codex {
 		array $attributes = []
 	): Message {
 		return new Message(
-			$this->services->getService( 'MessageRenderer' ),
+			new MessageRenderer(
+				$this->services->getService( 'Sanitizer' ),
+				$this->services->getService( 'TemplateParser' )
+			),
 			$content,
 			$type,
 			$inline,
@@ -392,7 +461,14 @@ class Codex {
 		int $endOrdinal = 1
 	): Pager {
 		return new Pager(
-			$this->services->getService( 'PagerRenderer' ),
+			new PagerRenderer(
+				$this->services->getService( 'Sanitizer' ),
+				$this->services->getService( 'TemplateParser' ),
+				$this->localizer,
+				$this,
+				$this->services->getService( 'ParamValidator' ),
+				$this->services->getService( 'ParamValidatorCallbacks' )
+			),
 			$paginationSizeOptions,
 			$paginationSizeDefault,
 			$totalPages,
@@ -426,7 +502,10 @@ class Codex {
 		array $attributes = []
 	): ProgressBar {
 		return new ProgressBar(
-			$this->services->getService( 'ProgressBarRenderer' ),
+			new ProgressBarRenderer(
+				$this->services->getService( 'Sanitizer' ),
+				$this->services->getService( 'TemplateParser' )
+			),
 			$label,
 			$inline,
 			$disabled,
@@ -461,7 +540,11 @@ class Codex {
 		array $wrapperAttributes = []
 	): Radio {
 		return new Radio(
-			$this->services->getService( 'RadioRenderer' ),
+			new RadioRenderer(
+				$this->services->getService( 'Sanitizer' ),
+				$this->services->getService( 'TemplateParser' ),
+				$this->localizer
+			),
 			$inputId,
 			$name,
 			$label,
@@ -493,7 +576,10 @@ class Codex {
 		array $attributes = []
 	): Select {
 		return new Select(
-			$this->services->getService( 'SelectRenderer' ),
+			new SelectRenderer(
+				$this->services->getService( 'Sanitizer' ),
+				$this->services->getService( 'TemplateParser' )
+			),
 			$options,
 			$optGroups,
 			$selectedOption,
@@ -572,7 +658,13 @@ class Codex {
 		array $attributes = []
 	): Table {
 		return new Table(
-			$this->services->getService( 'TableRenderer' ),
+			new TableRenderer(
+				$this->services->getService( 'Sanitizer' ),
+				$this->services->getService( 'TemplateParser' ),
+				$this->localizer,
+				$this->services->getService( 'ParamValidator' ),
+				$this->services->getService( 'ParamValidatorCallbacks' )
+			),
 			$caption,
 			$hideCaption,
 			$columns,
@@ -605,7 +697,12 @@ class Codex {
 		array $attributes = []
 	): Tabs {
 		return new Tabs(
-			$this->services->getService( 'TabsRenderer' ),
+			new TabsRenderer(
+				$this->services->getService( 'Sanitizer' ),
+				$this->services->getService( 'TemplateParser' ),
+				$this->services->getService( 'ParamValidator' ),
+				$this->services->getService( 'ParamValidatorCallbacks' )
+			),
 			$tabs,
 			$attributes
 		);
@@ -647,7 +744,10 @@ class Codex {
 		string $status = 'default'
 	): TextArea {
 		return new TextArea(
-			$this->services->getService( 'TextAreaRenderer' ),
+			new TextAreaRenderer(
+				$this->services->getService( 'Sanitizer' ),
+				$this->services->getService( 'TemplateParser' )
+			),
 			$name,
 			$value,
 			$inputId,
@@ -699,7 +799,10 @@ class Codex {
 		?string $endIconClass = null,
 	): TextInput {
 		return new TextInput(
-			$this->services->getService( 'TextInputRenderer' ),
+			new TextInputRenderer(
+				$this->services->getService( 'Sanitizer' ),
+				$this->services->getService( 'TemplateParser' )
+			),
 			$type,
 			$name,
 			$value,
@@ -731,7 +834,10 @@ class Codex {
 		array $attributes = []
 	): Thumbnail {
 		return new Thumbnail(
-			$this->services->getService( 'ThumbnailRenderer' ),
+			new ThumbnailRenderer(
+				$this->services->getService( 'Sanitizer' ),
+				$this->services->getService( 'TemplateParser' )
+			),
 			$backgroundImage,
 			$placeholderClass,
 			$attributes
@@ -763,7 +869,11 @@ class Codex {
 		array $wrapperAttributes = []
 	): ToggleSwitch {
 		return new ToggleSwitch(
-			$this->services->getService( 'ToggleSwitchRenderer' ),
+			new ToggleSwitchRenderer(
+				$this->services->getService( 'Sanitizer' ),
+				$this->services->getService( 'TemplateParser' ),
+				$this->localizer
+			),
 			$inputId,
 			$name,
 			$label,
