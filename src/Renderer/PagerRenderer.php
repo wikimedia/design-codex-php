@@ -219,7 +219,6 @@ class PagerRenderer implements IRenderer {
 	 */
 	protected function buildButtonData( Pager $pager, string $action ): array {
 		$iconClass = self::ICON_CLASSES[$action] ?? '';
-		$dir = '';
 		switch ( $action ) {
 			case self::ACTION_FIRST:
 				$disabled = $pager->isFirstDisabled();
@@ -240,7 +239,7 @@ class PagerRenderer implements IRenderer {
 				$disabled = $pager->isLastDisabled();
 				$ariaLabelKey = 'cdx-table-pager-button-last-page';
 				$offset = $pager->getLastOffset();
-				$dir = 'prev';
+				// FIXME this should maybe set dir=prev as well, but that's not easy with a button
 				break;
 			default:
 				throw new InvalidArgumentException( "Unknown action: $action" );
@@ -250,12 +249,13 @@ class PagerRenderer implements IRenderer {
 			'isDisabled' => $disabled,
 			'weight' => 'quiet',
 			'iconOnly' => true,
-			'ariaLabelKey' => $ariaLabelKey,
 			'iconClass' => $iconClass,
 			'type' => 'submit',
 			'name' => 'offset',
 			'value' => $offset,
-			'dir' => $dir,
+			'attributes' => $this->resolve( $this->sanitizer->sanitizeAttributes( [
+				'aria-label' => $this->localizer->msg( $ariaLabelKey ),
+			] ) ),
 		];
 	}
 
