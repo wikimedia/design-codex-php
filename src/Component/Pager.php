@@ -55,7 +55,8 @@ class Pager extends Component {
 		private ?int $firstOffset,
 		private ?int $lastOffset,
 		private int $startOrdinal,
-		private int $endOrdinal
+		private int $endOrdinal,
+		private array $attributes,
 	) {
 		parent::__construct( $renderer );
 	}
@@ -283,6 +284,19 @@ class Pager extends Component {
 	 */
 	public function getPaginationSizeDefault(): int {
 		return $this->paginationSizeDefault;
+	}
+
+	/**
+	 * Get the additional HTML attributes for the outer `<div>` element.
+	 *
+	 * This method returns an associative array of HTML attributes that are applied to the outer `<div>` element of the
+	 * progress bar. These attributes can include `id`, `data-*`, `aria-*`, or any other valid HTML attributes.
+	 *
+	 * @since 0.1.0
+	 * @return array The additional attributes as an array.
+	 */
+	public function getAttributes(): array {
+		return $this->attributes;
 	}
 
 	/**
@@ -551,6 +565,30 @@ class Pager extends Component {
 		}
 		$this->paginationSizeDefault = $paginationSizeDefault;
 
+		return $this;
+	}
+
+	/**
+	 * Set additional HTML attributes for the outer `<div>` element.
+	 *
+	 * This method allows custom HTML attributes to be added to the outer `<div>` element of the pager
+	 * such as `id`, `data-*`, `aria-*`, or any other valid attributes. These attributes can be used to
+	 * enhance accessibility or integrate with JavaScript.
+	 *
+	 * The values of these attributes are automatically escaped to prevent XSS vulnerabilities.
+	 *
+	 * Example usage:
+	 *
+	 *     $pager->setAttributes( [ 'class' => 'my-pager' ] );
+	 *
+	 * @since 0.8.0
+	 * @param array $attributes An associative array of HTML attributes.
+	 * @return $this Returns the Pager instance for method chaining.
+	 */
+	public function setAttributes( array $attributes ): self {
+		foreach ( $attributes as $key => $value ) {
+			$this->attributes[$key] = $value;
+		}
 		return $this;
 	}
 }

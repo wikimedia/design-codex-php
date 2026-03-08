@@ -306,7 +306,11 @@ class TableExample {
 				endOrdinal: $endOrdinal,
 				paginationSizeOptions: [ 5, 10, 25, 50, 100 ],
 				paginationSizeDefault: 5,
-				position: "bottom"
+				position: "bottom",
+				attributes: [
+					'class' => 'foo-bar',
+					'baz' => 'quux',
+				],
 			),
 			currentSortColumn: $sortColumn,
 			currentSortDirection: $sortDirection,

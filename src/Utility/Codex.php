@@ -458,7 +458,8 @@ class Codex {
 		?int $firstOffset = null,
 		?int $lastOffset = null,
 		int $startOrdinal = 1,
-		int $endOrdinal = 1
+		int $endOrdinal = 1,
+		array $attributes = [],
 	): Pager {
 		return new Pager(
 			new PagerRenderer(
@@ -481,7 +482,8 @@ class Codex {
 			$firstOffset,
 			$lastOffset,
 			$startOrdinal,
-			$endOrdinal
+			$endOrdinal,
+			$attributes,
 		);
 	}
 

@@ -168,6 +168,8 @@ class PagerRenderer extends Renderer {
 			'nextButton' => $this->buildButtonData( $component, self::ACTION_NEXT ),
 			'lastButton' => $this->buildButtonData( $component, self::ACTION_LAST ),
 			'hiddenFields' => $this->buildHiddenFields(),
+			'extraClasses' => $this->getExtraClasses( $component->getAttributes() ),
+			'attributes' => $this->getOtherAttributes( $component->getAttributes() ),
 		];
 
 		return $this->templateParser->processTemplate( 'pager', $pagerData );

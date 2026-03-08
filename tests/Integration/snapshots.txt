@@ -310,7 +310,7 @@ Table sandbox
         </tbody>
       </table>
     </div>
-      <div class="cdx-table-pager cdx-table__pagination--bottom">
+      <div class="cdx-table-pager cdx-table__pagination--bottom foo-bar" baz="quux">
   <div class="cdx-table-pager__start">
     <select class="cdx-select" name="limit" onchange="this.form.submit();">
     <option value="5" selected>5 rows</option>
