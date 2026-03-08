@@ -84,9 +84,9 @@ class CardRenderer extends Renderer {
 			$thumbnailData = [
 				'id' => $this->sanitizer->sanitizeText( $thumbnail->getId() ),
 				'coreClass' => 'cdx-card__thumbnail',
-				'backgroundImage' => $this->sanitizer->sanitizeText( $thumbnail->getBackgroundImage() ),
-				'useDefaultPlaceholder' => (bool)$component->getThumbnail(),
-				'placeholderClass' => $this->sanitizer->sanitizeText( $thumbnail->getPlaceholderClass() ),
+				'backgroundImage' => $thumbnail->getBackgroundImage() ?
+					$this->sanitizer->sanitizeUrl( $thumbnail->getBackgroundImage() ) : null,
+				'placeholderClass' => $thumbnail->getPlaceholderClass(),
 				'attributes' => $this->resolveAttributes(
 					$this->sanitizer->sanitizeAttributes( $thumbnail->getAttributes() ) ),
 			];
