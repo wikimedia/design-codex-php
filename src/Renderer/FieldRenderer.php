@@ -22,6 +22,7 @@ namespace Wikimedia\Codex\Renderer;
 
 use InvalidArgumentException;
 use Wikimedia\Codex\Component\Field;
+use Wikimedia\Codex\Component\HtmlSnippet;
 use Wikimedia\Codex\Contract\Component;
 use Wikimedia\Codex\Contract\ILocalizer;
 use Wikimedia\Codex\Contract\Renderer;
@@ -103,7 +104,16 @@ class FieldRenderer extends Renderer {
 		$fieldData = [
 			'id' => $component->getId(),
 			'isFieldset' => $component->isFieldset(),
-			'fields' => $component->getFields(),
+			'fields-html' => array_map( static function ( $field ) {
+				if ( $field instanceof Component ) {
+					return $field->getHtml();
+				}
+				if ( $field instanceof HtmlSnippet ) {
+					return $field->getContent();
+				}
+				// Raw strings are deprecated; deprecation warning is thrown in Field.php
+				return $field;
+			}, $component->getFields() ),
 			'extraClasses' => $this->getExtraClasses( $component->getAttributes() ),
 			'attributes' => $this->getOtherAttributes( $component->getAttributes() ),
 			'label' => $labelData,

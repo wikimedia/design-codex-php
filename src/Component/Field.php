@@ -41,6 +41,15 @@ class Field extends Component {
 		private array $fields,
 		private array $attributes
 	) {
+		foreach ( $this->fields as $field ) {
+			if ( is_string( $field ) ) {
+				trigger_error(
+					"Passing raw HTML strings to setFields() is deprecated and will be removed in 1.0.0. " .
+					"Please use HtmlSnippet objects instead.",
+					E_USER_DEPRECATED
+				);
+			}
+		}
 		parent::__construct( $renderer );
 	}
 
@@ -90,7 +99,7 @@ class Field extends Component {
 	 * within the fieldset or div.
 	 *
 	 * @since 0.1.0
-	 * @return array The fields included in the fieldset or div.
+	 * @return array<Component|HtmlSnippet|string> The fields included in the fieldset or div.
 	 */
 	public function getFields(): array {
 		return $this->fields;
@@ -157,14 +166,26 @@ class Field extends Component {
 	/**
 	 * Set the fields within the fieldset.
 	 *
-	 * This method accepts an array of fields (as HTML strings) to be included within the fieldset or a `<div>`.
+	 * This method accepts an array of fields to be included within the fieldset or a `<div>`.
 	 * It allows grouping of related fields together under a common legend or label for better organization.
 	 *
+	 * Fields may be Component objects, HtmlSnippet objects, or raw HTML strings. Passing in strings
+	 * is deprecated and will be removed in 1.0.0.
+	 *
 	 * @since 0.1.0
-	 * @param array $fields The array of fields to include in the fieldset.
+	 * @param array<Component|HtmlSnippet|string> $fields The array of fields to include in the fieldset.
 	 * @return $this Returns the Field instance for method chaining.
 	 */
 	public function setFields( array $fields ): self {
+		foreach ( $fields as $field ) {
+			if ( is_string( $field ) ) {
+				trigger_error(
+					"Passing raw HTML strings to setFields() is deprecated and will be removed in 1.0.0. " .
+					"Please use HtmlSnippet objects instead.",
+					E_USER_DEPRECATED
+				);
+			}
+		}
 		$this->fields = $fields;
 
 		return $this;

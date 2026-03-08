@@ -43,6 +43,7 @@ use Wikimedia\Codex\Component\TextArea;
 use Wikimedia\Codex\Component\TextInput;
 use Wikimedia\Codex\Component\Thumbnail;
 use Wikimedia\Codex\Component\ToggleSwitch;
+use Wikimedia\Codex\Contract\Component;
 use Wikimedia\Codex\Contract\ILocalizer;
 use Wikimedia\Codex\Infrastructure\CodexServices;
 use Wikimedia\Codex\Localization\IntuitionLocalization;
@@ -281,7 +282,8 @@ class Codex {
 	 * @since 0.1.0
 	 * @param ?Label $label The label for the field or fieldset.
 	 * @param bool $isFieldset Indicates if fields are wrapped in a fieldset.
-	 * @param string[] $fields An array of fields (HTML strings).
+	 * @param array<Component|HtmlSnippet|string> $fields An array of fields.
+	 *   Strings are interpreted as raw HTML. Passing in strings is deprecated.
 	 * @param array $attributes Additional HTML attributes for the wrapper div or fieldset.
 	 * @return Field The Field component instance.
 	 */
