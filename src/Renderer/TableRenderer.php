@@ -58,12 +58,13 @@ class TableRenderer extends Renderer {
 	 * @param ParamValidatorCallbacks $paramValidatorCallbacks The callbacks instance for fetching validated parameters.
 	 */
 	public function __construct(
-		private readonly Sanitizer $sanitizer,
+		Sanitizer $sanitizer,
 		private readonly TemplateParser $templateParser,
 		private readonly ILocalizer $localizer,
 		private readonly ParamValidator $paramValidator,
 		private readonly ParamValidatorCallbacks $paramValidatorCallbacks
 	) {
+		parent::__construct( $sanitizer );
 	}
 
 	/**
@@ -96,9 +97,8 @@ class TableRenderer extends Renderer {
 			'noDataMessage' => count( $component->getData() ) === 0 ?
 				$this->localizer->msg( 'cdx-table-no-data-message' ) : '',
 			'pager' => $pager ? $pager->getHtml() : '',
-			'attributes' => $this->resolveAttributes(
-				$this->sanitizer->sanitizeAttributes( $component->getAttributes() )
-			),
+			'extraClasses' => $this->getExtraClasses( $component->getAttributes() ),
+			'attributes' => $this->getOtherAttributes( $component->getAttributes() ),
 			'footer-html' => $this->sanitizer->sanitizeText( $component->getFooter() ?? '' ),
 		];
 		return $this->templateParser->processTemplate( 'table', $tableData );

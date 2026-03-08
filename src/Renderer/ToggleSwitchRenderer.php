@@ -52,10 +52,11 @@ class ToggleSwitchRenderer extends Renderer {
 	 * @param ILocalizer $localizer The localizer instance used for i18n messages.
 	 */
 	public function __construct(
-		private readonly Sanitizer $sanitizer,
+		Sanitizer $sanitizer,
 		private readonly TemplateParser $templateParser,
 		private readonly ILocalizer $localizer
 	) {
+		parent::__construct( $sanitizer );
 	}
 
 	/**
@@ -87,9 +88,8 @@ class ToggleSwitchRenderer extends Renderer {
 				'descriptionId' => $label->getDescriptionId() ?? '',
 				'isDisabled' => $label->isDisabled(),
 				'iconClass' => $label->getIconClass() ?? '',
-				'attributes' => $this->resolveAttributes(
-					$this->sanitizer->sanitizeAttributes( $label->getAttributes() )
-				),
+				'extraClasses' => $this->getExtraClasses( $label->getAttributes() ),
+				'attributes' => $this->getOtherAttributes( $label->getAttributes() )
 			];
 		}
 
@@ -100,12 +100,10 @@ class ToggleSwitchRenderer extends Renderer {
 			'isChecked' => $component->isChecked(),
 			'isDisabled' => $component->isDisabled(),
 			'ariaDescribedby' => $label?->getDescriptionId() ?? '',
-			'inputAttributes' => $this->resolveAttributes(
-				$this->sanitizer->sanitizeAttributes( $component->getInputAttributes() )
-			),
-			'wrapperAttributes' => $this->resolveAttributes(
-				$this->sanitizer->sanitizeAttributes( $component->getWrapperAttributes() )
-			),
+			'inputExtraClasses' => $this->getExtraClasses( $component->getInputAttributes() ),
+			'inputAttributes' => $this->getOtherAttributes( $component->getInputAttributes() ),
+			'wrapperExtraClasses' => $this->getExtraClasses( $component->getWrapperAttributes() ),
+			'wrapperAttributes' => $this->getOtherAttributes( $component->getWrapperAttributes() ),
 			'label' => $labelData,
 		];
 

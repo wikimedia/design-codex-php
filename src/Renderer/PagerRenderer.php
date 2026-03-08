@@ -50,11 +50,6 @@ use Wikimedia\Codex\Utility\Sanitizer;
 class PagerRenderer extends Renderer {
 
 	/**
-	 * The sanitizer instance used for content sanitization.
-	 */
-	private Sanitizer $sanitizer;
-
-	/**
 	 * The template parser instance.
 	 */
 	private TemplateParser $templateParser;
@@ -129,7 +124,7 @@ class PagerRenderer extends Renderer {
 		ParamValidator $paramValidator,
 		ParamValidatorCallbacks $paramValidatorCallbacks
 	) {
-		$this->sanitizer = $sanitizer;
+		parent::__construct( $sanitizer );
 		$this->templateParser = $templateParser;
 		$this->localizer = $localizer;
 		$this->codex = $codex;
@@ -256,9 +251,10 @@ class PagerRenderer extends Renderer {
 			'type' => 'submit',
 			'name' => 'offset',
 			'value' => $offset,
-			'attributes' => $this->resolveAttributes( $this->sanitizer->sanitizeAttributes( [
+			'attributes' => $this->getOtherAttributes( [
 				'aria-label' => $this->localizer->msg( $ariaLabelKey ),
-			] ) ),
+			] ),
+			'extraClasses' => ''
 		];
 	}
 

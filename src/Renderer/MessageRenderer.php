@@ -43,11 +43,6 @@ use Wikimedia\Codex\Utility\Sanitizer;
 class MessageRenderer extends Renderer {
 
 	/**
-	 * The sanitizer instance used for content sanitization.
-	 */
-	private Sanitizer $sanitizer;
-
-	/**
 	 * The template parser instance.
 	 */
 	private TemplateParser $templateParser;
@@ -60,7 +55,7 @@ class MessageRenderer extends Renderer {
 	 * @param TemplateParser $templateParser The template parser instance.
 	 */
 	public function __construct( Sanitizer $sanitizer, TemplateParser $templateParser ) {
-		$this->sanitizer = $sanitizer;
+		parent::__construct( $sanitizer );
 		$this->templateParser = $templateParser;
 	}
 
@@ -87,9 +82,8 @@ class MessageRenderer extends Renderer {
 			'heading-html' => $this->sanitizer->sanitizeText( $component->getHeading() ),
 			'isPolite' => $component->getType() !== 'error',
 			'isAlert' => $component->getType() === 'error',
-			'attributes' => $this->resolveAttributes(
-				$this->sanitizer->sanitizeAttributes( $component->getAttributes() )
-			),
+			'extraClasses' => $this->getExtraClasses( $component->getAttributes() ),
+			'attributes' => $this->getOtherAttributes( $component->getAttributes() )
 		];
 
 		return $this->templateParser->processTemplate( 'message', $messageData );

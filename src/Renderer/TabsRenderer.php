@@ -48,11 +48,6 @@ use Wikimedia\Codex\Utility\Sanitizer;
 class TabsRenderer extends Renderer {
 
 	/**
-	 * The sanitizer instance used for content sanitization.
-	 */
-	private Sanitizer $sanitizer;
-
-	/**
 	 * The template parser instance.
 	 */
 	private TemplateParser $templateParser;
@@ -82,7 +77,7 @@ class TabsRenderer extends Renderer {
 		ParamValidator $paramValidator,
 		ParamValidatorCallbacks $paramValidatorCallbacks
 	) {
-		$this->sanitizer = $sanitizer;
+		parent::__construct( $sanitizer );
 		$this->templateParser = $templateParser;
 		$this->paramValidator = $paramValidator;
 		$this->paramValidatorCallbacks = $paramValidatorCallbacks;
@@ -150,9 +145,8 @@ class TabsRenderer extends Renderer {
 		$data = [
 			'id' => $component->getId(),
 			'tabs' => $tabsData,
-			'attributes' => $this->resolveAttributes(
-				$this->sanitizer->sanitizeAttributes( $component->getAttributes() )
-			),
+			'extraClasses' => $this->getExtraClasses( $component->getAttributes() ),
+			'attributes' => $this->getOtherAttributes( $component->getAttributes() )
 		];
 
 		return $this->templateParser->processTemplate( 'tabs', $data );

@@ -43,11 +43,6 @@ use Wikimedia\Codex\Utility\Sanitizer;
 class CardRenderer extends Renderer {
 
 	/**
-	 * The sanitizer instance used for content sanitization.
-	 */
-	private Sanitizer $sanitizer;
-
-	/**
 	 * The template parser instance.
 	 */
 	private TemplateParser $templateParser;
@@ -60,7 +55,7 @@ class CardRenderer extends Renderer {
 	 * @param TemplateParser $templateParser The template parser instance.
 	 */
 	public function __construct( Sanitizer $sanitizer, TemplateParser $templateParser ) {
-		$this->sanitizer = $sanitizer;
+		parent::__construct( $sanitizer );
 		$this->templateParser = $templateParser;
 	}
 
@@ -87,8 +82,8 @@ class CardRenderer extends Renderer {
 				'backgroundImage' => $thumbnail->getBackgroundImage() ?
 					$this->sanitizer->sanitizeUrl( $thumbnail->getBackgroundImage() ) : null,
 				'placeholderClass' => $thumbnail->getPlaceholderClass(),
-				'attributes' => $this->resolveAttributes(
-					$this->sanitizer->sanitizeAttributes( $thumbnail->getAttributes() ) ),
+				'extraClasses' => $this->getExtraClasses( $thumbnail->getAttributes() ),
+				'attributes' => $this->getOtherAttributes( $thumbnail->getAttributes() )
 			];
 		}
 
@@ -101,9 +96,8 @@ class CardRenderer extends Renderer {
 			'url' => $this->sanitizer->sanitizeUrl( $component->getUrl() ),
 			'iconClass' => $component->getIconClass(),
 			'thumbnail' => $thumbnailData,
-			'attributes' => $this->resolveAttributes(
-				$this->sanitizer->sanitizeAttributes( $component->getAttributes() )
-			),
+			'extraClasses' => $this->getExtraClasses( $component->getAttributes() ),
+			'attributes' => $this->getOtherAttributes( $component->getAttributes() )
 		];
 
 		return $this->templateParser->processTemplate( 'card', $cardData );

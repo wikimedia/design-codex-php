@@ -43,11 +43,6 @@ use Wikimedia\Codex\Utility\Sanitizer;
 class TextAreaRenderer extends Renderer {
 
 	/**
-	 * The sanitizer instance used for content sanitization.
-	 */
-	private Sanitizer $sanitizer;
-
-	/**
 	 * The template parser instance.
 	 */
 	private TemplateParser $templateParser;
@@ -60,7 +55,7 @@ class TextAreaRenderer extends Renderer {
 	 * @param TemplateParser $templateParser The template parser instance.
 	 */
 	public function __construct( Sanitizer $sanitizer, TemplateParser $templateParser ) {
-		$this->sanitizer = $sanitizer;
+		parent::__construct( $sanitizer );
 		$this->templateParser = $templateParser;
 	}
 
@@ -90,12 +85,10 @@ class TextAreaRenderer extends Renderer {
 			'startIconClass' => $component->getStartIconClass(),
 			'endIconClass' => $component->getEndIconClass(),
 			'status' => $component->getStatus(),
-			'inputAttributes' => $this->resolveAttributes(
-				$this->sanitizer->sanitizeAttributes( $component->getInputAttributes() )
-			),
-			'wrapperAttributes' => $this->resolveAttributes(
-				$this->sanitizer->sanitizeAttributes( $component->getWrapperAttributes() )
-			),
+			'inputExtraClasses' => $this->getExtraClasses( $component->getInputAttributes() ),
+			'inputAttributes' => $this->getOtherAttributes( $component->getInputAttributes() ),
+			'wrapperExtraClasses' => $this->getExtraClasses( $component->getWrapperAttributes() ),
+			'wrapperAttributes' => $this->getOtherAttributes( $component->getWrapperAttributes() ),
 		];
 
 		return $this->templateParser->processTemplate( 'text-area', $textareaData );

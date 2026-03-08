@@ -17,6 +17,7 @@ namespace Wikimedia\Codex\Tests\Unit;
 use PHPUnit\Framework\TestCase;
 use Wikimedia\Codex\Contract\Component;
 use Wikimedia\Codex\Contract\Renderer;
+use Wikimedia\Codex\Utility\Sanitizer;
 
 /**
  * RendererTest
@@ -34,66 +35,78 @@ use Wikimedia\Codex\Contract\Renderer;
 class RendererTest extends TestCase {
 
 	private function getTestRenderer(): Renderer {
-		return new class() extends Renderer {
+		return new class( new Sanitizer() ) extends Renderer {
 			public function render( Component $component ): string {
 				return '';
 			}
 		};
 	}
 
-	/**
-	 * Test that an empty array of attributes returns an empty string.
-	 *
-	 * @since 0.1.0
-	 * @return void
-	 */
-	public function testEmptyAttributes(): void {
-		$result = $this->getTestRenderer()->resolveAttributes( [] );
-		$this->assertSame( '', $result, 'Empty attributes should return an empty string.' );
-	}
-
-	/**
-	 * Test resolving a basic array of attributes.
-	 *
-	 * @since 0.1.0
-	 * @return void
-	 */
-	public function testBasicAttributes(): void {
-		$attributes =
+	public static function provideExtraClassesAndOtherAttributes() {
+		yield 'empty attributes' => [
+			[],
+			'',
+			''
+		];
+		yield 'basic attributes' => [
 			[
 				'id' => 'button1',
-				'type' => 'submit',
-			];
-		$result = $this->getTestRenderer()->resolveAttributes( $attributes );
-		$this->assertSame( 'id="button1" type="submit"', $result );
-	}
-
-	/**
-	 * Test handling boolean attributes (true or false).
-	 *
-	 * @since 0.1.0
-	 * @return void
-	 */
-	public function testBooleanAttributes(): void {
-		$attributes =
+				'type' => 'submit'
+			],
+			' id="button1" type="submit"',
+			''
+		];
+		yield 'boolean attributes' => [
 			[
+				'id' => 'button1',
 				'disabled' => true,
-				'readonly' => false,
-				'required' => true,
-			];
-		$result = $this->getTestRenderer()->resolveAttributes( $attributes );
-		$this->assertSame( 'disabled required', $result );
+				'type' => 'submit',
+				'readonly' => true,
+				'required' => true
+			],
+			' id="button1" disabled type="submit" readonly required',
+			''
+		];
+		yield 'basic attributes with class' => [
+			[
+				'id' => 'button1',
+				'class' => 'foo',
+				'type' => 'submit'
+			],
+			' id="button1" type="submit"',
+			' foo'
+		];
+		yield 'class as array' => [
+			[
+				'id' => 'button1',
+				'class' => [ 'foo', 'bar', 'baz' ],
+				'type' => 'submit'
+			],
+			' id="button1" type="submit"',
+			' foo bar baz'
+		];
+		yield 'attributes with special characters' => [
+			[
+				'id' => 'button2',
+				'a"b' => 'c"d',
+				'e' => 'f"g<h>i&j\'l',
+				'class' => [ 'he"lp', 'yi>kes' ]
+			],
+			' id="button2" a&quot;b="c&quot;d" e="f&quot;g&lt;h&gt;i&amp;j&#039;l"',
+			' he&quot;lp yi&gt;kes'
+		];
 	}
 
 	/**
-	 * Test handling array attributes like class names.
-	 *
-	 * @since 0.1.0
-	 * @return void
+	 * @dataProvider provideExtraClassesAndOtherAttributes
 	 */
-	public function testArrayAttributes(): void {
-		$attributes = [ 'foo' => 'bar' ];
-		$result = $this->getTestRenderer()->resolveAttributes( $attributes );
-		$this->assertSame( 'foo="bar"', $result );
+	public function testExtraClassesAndOtherAttributes(
+		array $attributes,
+		string $expectedOtherAttrs,
+		string $expectedExtraClasses
+	) {
+		$renderer = $this->getTestRenderer();
+		$this->assertSame( $expectedOtherAttrs, $renderer->getOtherAttributes( $attributes ) );
+		$this->assertSame( $expectedExtraClasses, $renderer->getExtraClasses( $attributes ) );
 	}
 }

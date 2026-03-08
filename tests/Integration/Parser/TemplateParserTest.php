@@ -45,7 +45,7 @@ class TemplateParserTest extends TestCase {
 				[
 					'status' => 'success',
 					'showStatusIcon' => true,
-					'attributes' => 'id="info-chip" role="status"',
+					'attributes' => ' id="info-chip" role="status"',
 					'text-html' => 'Operation completed',
 				],
 				'<div class="cdx-info-chip cdx-info-chip--success" id="info-chip" role="status">
@@ -57,7 +57,7 @@ class TemplateParserTest extends TestCase {
 				[
 					'status' => 'warning',
 					'showStatusIcon' => true,
-					'attributes' => 'id="info-chip" role="status"',
+					'attributes' => ' id="info-chip" role="status"',
 					'text-html' => 'Operation pending',
 				],
 				'<div class="cdx-info-chip cdx-info-chip--warning" id="info-chip" role="status">

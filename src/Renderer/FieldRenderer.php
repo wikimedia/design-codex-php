@@ -54,11 +54,12 @@ class FieldRenderer extends Renderer {
 	 * @param Codex $codex The Codex instance for creating other components.
 	 */
 	public function __construct(
-		private readonly Sanitizer $sanitizer,
+		Sanitizer $sanitizer,
 		private readonly TemplateParser $templateParser,
 		private readonly ILocalizer $localizer,
 		private readonly Codex $codex
 	) {
+		parent::__construct( $sanitizer );
 	}
 
 	/**
@@ -92,9 +93,8 @@ class FieldRenderer extends Renderer {
 				'descriptionId' => $label->getDescriptionId(),
 				'icon' => $label->getIconClass(),
 				'isDisabled' => $label->isDisabled(),
-				'attributes' => $this->resolveAttributes(
-					$this->sanitizer->sanitizeAttributes( $label->getAttributes() )
-				),
+				'extraClasses' => $this->getExtraClasses( $label->getAttributes() ),
+				'attributes' => $this->getOtherAttributes( $label->getAttributes() )
 			];
 		}
 
@@ -102,9 +102,8 @@ class FieldRenderer extends Renderer {
 			'id' => $component->getId(),
 			'isFieldset' => $component->isFieldset(),
 			'fields' => $component->getFields(),
-			'attributes' => $this->resolveAttributes(
-				$this->sanitizer->sanitizeAttributes( $component->getAttributes() )
-			),
+			'extraClasses' => $this->getExtraClasses( $component->getAttributes() ),
+			'attributes' => $this->getOtherAttributes( $component->getAttributes() ),
 			'label' => $labelData,
 		];
 

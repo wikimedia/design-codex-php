@@ -208,7 +208,7 @@ Radio sandbox
 <!---- ---->
 
 Select sandbox
-<select class="cdx-select foo" class="foo" bar="baz" id="example-select" name="exampleSelection" data-category="selection">
+<select class="cdx-select foo" bar="baz" id="example-select" name="exampleSelection" data-category="selection">
     <option value="val1">Standalone Option 1</option>
     <option value="val2">Standalone Option 2</option>
     <optgroup label="Group 1">

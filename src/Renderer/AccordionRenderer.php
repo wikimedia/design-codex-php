@@ -43,11 +43,6 @@ use Wikimedia\Codex\Utility\Sanitizer;
 class AccordionRenderer extends Renderer {
 
 	/**
-	 * The sanitizer instance used for content sanitization.
-	 */
-	private Sanitizer $sanitizer;
-
-	/**
 	 * The template parser instance.
 	 */
 	private TemplateParser $templateParser;
@@ -60,7 +55,7 @@ class AccordionRenderer extends Renderer {
 	 * @param TemplateParser $templateParser The template parser instance used for rendering templates.
 	 */
 	public function __construct( Sanitizer $sanitizer, TemplateParser $templateParser ) {
-		$this->sanitizer = $sanitizer;
+		parent::__construct( $sanitizer );
 		$this->templateParser = $templateParser;
 	}
 
@@ -84,9 +79,8 @@ class AccordionRenderer extends Renderer {
 			'description-html' => $this->sanitizer->sanitizeText( $component->getDescription() ),
 			'content-html' => $this->sanitizer->sanitizeText( $component->getContent() ),
 			'isOpen' => $component->isOpen(),
-			'attributes' => $this->resolveAttributes(
-				$this->sanitizer->sanitizeAttributes( $component->getAttributes() )
-			)
+			'extraClasses' => $this->getExtraClasses( $component->getAttributes() ),
+			'attributes' => $this->getOtherAttributes( $component->getAttributes() )
 		];
 
 		return $this->templateParser->processTemplate( 'accordion', $accordionData );

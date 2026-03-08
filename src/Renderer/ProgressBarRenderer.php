@@ -43,11 +43,6 @@ use Wikimedia\Codex\Utility\Sanitizer;
 class ProgressBarRenderer extends Renderer {
 
 	/**
-	 * The sanitizer instance used for content sanitization.
-	 */
-	private Sanitizer $sanitizer;
-
-	/**
 	 * The template parser instance.
 	 */
 	private TemplateParser $templateParser;
@@ -60,7 +55,7 @@ class ProgressBarRenderer extends Renderer {
 	 * @param TemplateParser $templateParser The template parser instance.
 	 */
 	public function __construct( Sanitizer $sanitizer, TemplateParser $templateParser ) {
-		$this->sanitizer = $sanitizer;
+		parent::__construct( $sanitizer );
 		$this->templateParser = $templateParser;
 	}
 
@@ -83,9 +78,8 @@ class ProgressBarRenderer extends Renderer {
 			'isInline' => $component->isInline(),
 			'isDisabled' => $component->isDisabled(),
 			'label' => $component->getLabel(),
-			'attributes' => $this->resolveAttributes(
-				$this->sanitizer->sanitizeAttributes( $component->getAttributes() )
-			),
+			'extraClasses' => $this->getExtraClasses( $component->getAttributes() ),
+			'attributes' => $this->getOtherAttributes( $component->getAttributes() )
 		];
 
 		return $this->templateParser->processTemplate( 'progress-bar', $progressBarData );

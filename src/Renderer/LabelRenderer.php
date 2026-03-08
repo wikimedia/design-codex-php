@@ -52,10 +52,11 @@ class LabelRenderer extends Renderer {
 	 * @param ILocalizer $localizer The localizer instance used for i18n messages.
 	 */
 	public function __construct(
-		private readonly Sanitizer $sanitizer,
+		Sanitizer $sanitizer,
 		private readonly TemplateParser $templateParser,
 		private readonly ILocalizer $localizer
 	) {
+		parent::__construct( $sanitizer );
 	}
 
 	/**
@@ -85,9 +86,8 @@ class LabelRenderer extends Renderer {
 			'icon' => $component->getIconClass() ?? '',
 			'isVisuallyHidden' => $component->isVisuallyHidden(),
 			'isDisabled' => $component->isDisabled(),
-			'attributes' => $this->resolveAttributes(
-				$this->sanitizer->sanitizeAttributes( $component->getAttributes() )
-			),
+			'extraClasses' => $this->getExtraClasses( $component->getAttributes() ),
+			'attributes' => $this->getOtherAttributes( $component->getAttributes() )
 		];
 
 		return $this->templateParser->processTemplate( 'label', $labelData );

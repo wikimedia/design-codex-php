@@ -27,8 +27,7 @@ use RuntimeException;
 /**
  * TemplateParser is responsible for compiling and rendering Mustache templates.
  *
- * This class provides methods to compile Mustache templates into PHP rendering functions
- * and render templates with localization and custom helper support.
+ * This class provides methods to compile Mustache templates into PHP rendering functions.
  *
  * @category Parser
  * @package  Codex\Parser
@@ -69,7 +68,6 @@ class TemplateParser {
 			Flags::FLAG_HANDLEBARS |
 			Flags::FLAG_ADVARNAME |
 			Flags::FLAG_RUNTIMEPARTIAL |
-			Flags::FLAG_EXTHELPER |
 			Flags::FLAG_RENDER_DEBUG |
 			Flags::FLAG_MUSTACHE |
 			Flags::FLAG_ERROR_EXCEPTION |
@@ -107,22 +105,6 @@ class TemplateParser {
 
 		$phpCode = LightnCandy::compile( $templateContent, [
 			'flags' => $this->compileFlags,
-			'helpers' => [
-				'renderClasses' => static function ( $options ) {
-					$renderedAttributes = $options['fn']();
-					if ( preg_match( '/class="([^"]*)"/', $renderedAttributes, $matches ) ) {
-						return ' ' . $matches[1];
-					}
-
-					return '';
-				},
-				'renderAttributes' => static function ( $options ) {
-					$renderedAttributes = $options['fn']();
-					$attribs = trim( preg_replace( '/\s*class="[^"]*"/', '', $renderedAttributes ) );
-
-					return $attribs !== '' ? ' ' . $attribs : '';
-				},
-			],
 			'basedir' => $this->templateDir,
 			'fileext' => '.mustache',
 			'partialresolver' => function ( $cx, $partialName ) use ( $templateName ) {

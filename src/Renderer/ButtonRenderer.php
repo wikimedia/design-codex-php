@@ -43,11 +43,6 @@ use Wikimedia\Codex\Utility\Sanitizer;
 class ButtonRenderer extends Renderer {
 
 	/**
-	 * The sanitizer instance used for content sanitization.
-	 */
-	private Sanitizer $sanitizer;
-
-	/**
 	 * The template parser instance.
 	 */
 	private TemplateParser $templateParser;
@@ -60,7 +55,7 @@ class ButtonRenderer extends Renderer {
 	 * @param TemplateParser $templateParser The template parser instance used for rendering templates.
 	 */
 	public function __construct( Sanitizer $sanitizer, TemplateParser $templateParser ) {
-		$this->sanitizer = $sanitizer;
+		parent::__construct( $sanitizer );
 		$this->templateParser = $templateParser;
 	}
 
@@ -93,9 +88,8 @@ class ButtonRenderer extends Renderer {
 			'iconClass' => $component->getIconClass(),
 			'isDisabled' => $component->isDisabled(),
 			'iconOnly' => $component->isIconOnly(),
-			'attributes' => $this->resolveAttributes(
-				$this->sanitizer->sanitizeAttributes( $component->getAttributes() )
-			),
+			'extraClasses' => $this->getExtraClasses( $component->getAttributes() ),
+			'attributes' => $this->getOtherAttributes( $component->getAttributes() )
 		];
 
 		return $this->templateParser->processTemplate( 'button', $buttonData );
