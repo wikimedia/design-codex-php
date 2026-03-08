@@ -197,7 +197,6 @@ class PagerRenderer extends Renderer {
 			->setAttributes( [
 				'name' => 'limit',
 				'onchange' => 'this.form.submit();',
-				'class' => 'cdx-select',
 			] );
 	}
 
