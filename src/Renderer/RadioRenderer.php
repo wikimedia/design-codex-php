@@ -95,7 +95,7 @@ class RadioRenderer implements IRenderer {
 				'optionalFlag' => $label->isOptional(),
 				'isVisuallyHidden' => $label->isVisuallyHidden(),
 				'inputId' => $component->getInputId(),
-				'description' => $this->sanitizer->sanitizeText( $label->getDescription() ),
+				'description-html' => $this->sanitizer->sanitizeText( $label->getDescription() ),
 				'descriptionId' => $label->getDescriptionId(),
 				'isDisabled' => $label->isDisabled(),
 				'iconClass' => $label->getIconClass(),

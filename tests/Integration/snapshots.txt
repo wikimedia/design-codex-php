@@ -200,6 +200,7 @@ Radio sandbox
         <label for="password-reset-radio-1" class="cdx-label__label">
           <span class="cdx-label__label__text">Send password reset emails only when both email address and username are provided.</span>
         </label>
+        <span id="password-reset-radio-description-1" class="cdx-label__description">This improves privacy and helps prevent unsolicited emails.</span>
     </div>
 </div>
 
@@ -338,6 +339,7 @@ Table sandbox
   </div>
 </div>
 
+      <div class="cdx-table__footer">Displaying sample data for demonstration purposes.</div>
   </div>
 </form>
 
