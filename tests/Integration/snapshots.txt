@@ -53,6 +53,13 @@ Card sandbox
     <span class="cdx-card__text__supporting-text">Additional supporting text goes here.</span>
   </span>
 </a>
+<span class="cdx-card">
+  <span class="cdx-card__text">
+    <span class="cdx-card__text__title">Codex Card Example (No URL)</span>
+    <span class="cdx-card__text__description">This is an <strong>example</strong> card without a URL set.</span>
+    <span class="cdx-card__text__supporting-text">This card is not clickable.</span>
+  </span>
+</span>
 
 
 <!---- ---->
