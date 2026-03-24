@@ -17,6 +17,8 @@ class CheckboxExample {
 				description: 'This improves privacy and helps prevent unsolicited emails.',
 				descriptionId: 'password-reset-checkbox-description'
 			),
+			name: 'password-reset',
+			value: '1',
 			wrapperAttributes: [
 				'class' => 'foo',
 			],

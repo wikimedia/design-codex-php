@@ -13,7 +13,7 @@ class LabelExample {
 		return $codex->Label(
 			labelText: 'Username',
 			optional: true,
-			description: 'Please enter a your username.',
+			description: 'Please enter your username.',
 			attributes: [
 				'id' => 'username',
 				'class' => 'foo',

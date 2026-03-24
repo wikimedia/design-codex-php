@@ -42,7 +42,7 @@ Button sandbox
 Card sandbox
 <a class="cdx-card cdx-card--is-link foo" href="https://www.example.com" bar="baz">
   <span class="cdx-card__thumbnail cdx-thumbnail">
-    <span class="cdx-thumbnail__image" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/64_365_Color_Macro_%285498808099%29.jpg/ 200px-64_365_Color_Macro_%285498808099%29.jpg');"></span>
+    <span class="cdx-thumbnail__image" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/64_365_Color_Macro_%285498808099%29.jpg/200px-64_365_Color_Macro_%285498808099%29.jpg');"></span>
   </span>
   <span class="cdx-card__text">
     <span class="cdx-card__text__title">Codex Card Example</span>
@@ -56,7 +56,7 @@ Card sandbox
 
 Checkbox sandbox
 <div class="cdx-checkbox foo">
-  <input class="cdx-checkbox__input bar" type="checkbox" id="password-reset-checkbox" name="" value="" aria-describedby="password-reset-checkbox-description" data-toggle="checkbox-option">
+  <input class="cdx-checkbox__input bar" type="checkbox" id="password-reset-checkbox" name="password-reset" value="1" aria-describedby="password-reset-checkbox-description" data-toggle="checkbox-option">
   <span class="cdx-checkbox__icon"></span>
     <div class="cdx-checkbox__label cdx-label">
         <label for="password-reset-checkbox" class="cdx-label__label">
@@ -136,7 +136,7 @@ Label sandbox
     <label for="usernameInput" class="cdx-label__label">
       <span class="cdx-label__label__text">Username</span> <span class="cdx-label__label__optional-flag">(optional)</span>
     </label>
-    <span class="cdx-label__description">Please enter a your username.</span>
+    <span class="cdx-label__description">Please enter your username.</span>
 </div>
 
 
@@ -507,6 +507,15 @@ infoChip notice
 
 infoChip error
 <div class="cdx-info-chip cdx-info-chip--error" id="some-id">
+  <span class="cdx-info-chip__icon"></span>
+  <span class="cdx-info-chip--text">Some text</span>
+</div>
+
+
+<!---- ---->
+
+infoChip with invalid status
+<div class="cdx-info-chip cdx-info-chip--foo" id="some-id">
   <span class="cdx-info-chip__icon"></span>
   <span class="cdx-info-chip--text">Some text</span>
 </div>

@@ -127,11 +127,11 @@ class SnapshotTest extends TestCase {
 				attributes: [ 'id' => 'some-id' ],
 				status: 'error'
 			) ],
-			// [ 'infoChip with invalid status', static fn ( Codex $codex ) => $codex->infoChip(
-			// 	text: 'Some text',
-			// 	attributes: [ 'id' => 'some-id' ],
-			// 	status: 'foo'
-			// ) ],
+			[ 'infoChip with invalid status', static fn ( Codex $codex ) => $codex->infoChip(
+				text: 'Some text',
+				attributes: [ 'id' => 'some-id' ],
+				status: 'foo'
+			) ],
 
 			// ProgressBar
 			[ 'default progress bar', static fn ( Codex $codex ) => $codex->progressBar(
