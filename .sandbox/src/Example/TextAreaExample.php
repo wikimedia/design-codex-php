@@ -15,7 +15,7 @@ class TextAreaExample {
 			placeholder: 'Enter your message...',
 			value: 'This is a default message.',
 			inputId: 'user-message',
-			textAreaAttributes: [
+			inputAttributes: [
 				'class' => 'foo',
 				'data-category' => 'feedback',
 				'aria-label' => 'Message'

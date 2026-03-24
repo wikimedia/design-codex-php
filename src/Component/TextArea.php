@@ -46,7 +46,7 @@ class TextArea extends Component {
 		private string $name,
 		private string $value,
 		private string $inputId,
-		private array $textAreaAttributes,
+		private array $inputAttributes,
 		private array $wrapperAttributes,
 		private bool $disabled,
 		private bool $readonly,
@@ -107,8 +107,8 @@ class TextArea extends Component {
 	 * @since 0.1.0
 	 * @return array The additional attributes as an array.
 	 */
-	public function getTextareaAttributes(): array {
-		return $this->textAreaAttributes;
+	public function getInputAttributes(): array {
+		return $this->inputAttributes;
 	}
 
 	/**
@@ -296,21 +296,28 @@ class TextArea extends Component {
 	 *
 	 * Example usage:
 	 *
-	 *     $textArea->setTextAreaAttributes([
+	 *     $textArea->setinputAttributes([
 	 *         'id' => 'text-area-id',
 	 *         'data-category' => 'input',
 	 *     ]);
 	 *
 	 * @since 0.1.0
-	 * @param array $textAreaAttributes An associative array of HTML attributes for the textarea element.
+	 * @param array $inputAttributes An associative array of HTML attributes for the textarea element.
 	 * @return $this Returns the TextArea instance for method chaining.
 	 */
-	public function setTextAreaAttributes( array $textAreaAttributes ): self {
-		foreach ( $textAreaAttributes as $key => $value ) {
-			$this->textAreaAttributes[$key] = $value;
+	public function setinputAttributes( array $inputAttributes ): self {
+		foreach ( $inputAttributes as $key => $value ) {
+			$this->inputAttributes[$key] = $value;
 		}
 
 		return $this;
+	}
+
+	/**
+	 * @deprecated Use setInputAttributes() instead
+	 */
+	public function setTextAreaAttributes( array $textAreaAttributes ): self {
+		return $this->setInputAttributes( $textAreaAttributes );
 	}
 
 	/**

@@ -618,7 +618,7 @@ class Codex {
 	 * @param string $name The name attribute for the textarea.
 	 * @param string $value The initial contents of the textarea.
 	 * @param string $inputId The ID attribute for the textarea element.
-	 * @param array $textAreaAttributes Additional HTML attributes for the textarea element.
+	 * @param array $inputAttributes Additional HTML attributes for the textarea element.
 	 * @param array $wrapperAttributes Additional HTML attributes for the wrapper element.
 	 * @param bool $disabled Indicates whether the textarea is disabled.
 	 * @param bool $readonly Indicates whether the textarea is read-only.
@@ -635,7 +635,7 @@ class Codex {
 		string $name = '',
 		string $value = '',
 		string $inputId = '',
-		array $textAreaAttributes = [],
+		array $inputAttributes = [],
 		array $wrapperAttributes = [],
 		bool $disabled = false,
 		bool $readonly = false,
@@ -651,7 +651,7 @@ class Codex {
 			$name,
 			$value,
 			$inputId,
-			$textAreaAttributes,
+			$inputAttributes,
 			$wrapperAttributes,
 			$disabled,
 			$readonly,

@@ -90,8 +90,8 @@ class TextAreaRenderer extends Renderer {
 			'startIconClass' => $component->getStartIconClass(),
 			'endIconClass' => $component->getEndIconClass(),
 			'status' => $component->getStatus(),
-			'textAreaAttributes' => $this->resolveAttributes(
-				$this->sanitizer->sanitizeAttributes( $component->getTextareaAttributes() )
+			'inputAttributes' => $this->resolveAttributes(
+				$this->sanitizer->sanitizeAttributes( $component->getInputAttributes() )
 			),
 			'wrapperAttributes' => $this->resolveAttributes(
 				$this->sanitizer->sanitizeAttributes( $component->getWrapperAttributes() )
