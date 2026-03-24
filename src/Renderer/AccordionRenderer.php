@@ -80,6 +80,7 @@ class AccordionRenderer extends Renderer {
 			'content-html' => $this->sanitizer->sanitizeText( $component->getContent() ),
 			'isOpen' => $component->isOpen(),
 			'extraClasses' => $this->getExtraClasses( $component->getAttributes() ),
+			'separation' => $component->getSeparation() === 'none' ? null : $component->getSeparation(),
 			'attributes' => $this->getOtherAttributes( $component->getAttributes() ),
 		];
 

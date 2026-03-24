@@ -120,6 +120,7 @@ class Codex {
 	 * @param string|HtmlSnippet $description Additional text under the title.
 	 * @param string|HtmlSnippet $content The content shown when the accordion is expanded.
 	 * @param bool $open Determines if the accordion is expanded by default.
+	 * @param string $separation The visual prominence of the separation ('none', 'minimal', 'divider', 'outline').
 	 * @param array $attributes Additional HTML attributes for the <details> element.
 	 * @return Accordion The Accordion component instance.
 	 */
@@ -128,6 +129,7 @@ class Codex {
 		string|HtmlSnippet $description = '',
 		string|HtmlSnippet $content = '',
 		bool $open = false,
+		string $separation = 'none',
 		array $attributes = []
 	): Accordion {
 		return new Accordion(
@@ -139,6 +141,7 @@ class Codex {
 			$description,
 			$content,
 			$open,
+			$separation,
 			$attributes
 		);
 	}

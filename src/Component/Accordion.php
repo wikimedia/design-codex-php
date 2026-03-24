@@ -16,6 +16,7 @@
 
 namespace Wikimedia\Codex\Component;
 
+use InvalidArgumentException;
 use Wikimedia\Codex\Contract\Component;
 use Wikimedia\Codex\Renderer\AccordionRenderer;
 use Wikimedia\Codex\Traits\ContentSetter;
@@ -33,6 +34,16 @@ use Wikimedia\Codex\Traits\ContentSetter;
 class Accordion extends Component {
 	use ContentSetter;
 
+	/**
+	 * Allowed styles for the separation.
+	 */
+	public const ALLOWED_SEPARATIONS = [
+		'none',
+		'minimal',
+		'divider',
+		'outline',
+	];
+
 	private string $id = '';
 
 	public function __construct(
@@ -41,6 +52,7 @@ class Accordion extends Component {
 		private string|HtmlSnippet $description,
 		private string|HtmlSnippet $content,
 		private bool $open,
+		private string $separation,
 		private array $attributes
 	) {
 		parent::__construct( $renderer );
@@ -97,6 +109,19 @@ class Accordion extends Component {
 	 */
 	public function getContent(): string|HtmlSnippet {
 		return $this->content;
+	}
+
+	/**
+	 * Get the style of the separations.
+	 *
+	 * This method returns the separation style of the accordion, which indicates its visual prominence
+	 * (e.g., 'none', 'minimal', 'divider', 'outline').
+	 *
+	 * @since @next
+	 * @return string The style of the separation.
+	 */
+	public function getSeparation(): string {
+		return $this->separation;
 	}
 
 	/**
@@ -210,6 +235,31 @@ class Accordion extends Component {
 	 */
 	public function setOpen( bool $isOpen ): self {
 		$this->open = $isOpen;
+
+		return $this;
+	}
+
+	/**
+	 * Set the style for the separations.
+	 *
+	 * This method sets the visual prominence of the separations, which can be:
+	 * - 'none': No visual separation between accordion items (Default).
+	 * - 'minimal': A low-emphasis style where only the header/title is highlighted.
+	 * - 'divider': A standard horizontal line between items.
+	 * - 'outline': Each accordion item is contained within its own border/box.
+	 *
+	 * The separation style is applied as a CSS class (`cdx-accordion--separation-{separation}`)
+	 * to the details element.
+	 *
+	 * @since @next
+	 * @param string $separation The style for the separation.
+	 * @return $this Returns the Accordion instance for method chaining.
+	 */
+	public function setSeparation( string $separation ): self {
+		if ( !in_array( $separation, self::ALLOWED_SEPARATIONS, true ) ) {
+			throw new InvalidArgumentException( "Invalid separation: $separation" );
+		}
+		$this->separation = $separation;
 
 		return $this;
 	}

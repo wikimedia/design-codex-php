@@ -2,7 +2,29 @@ Accordion sandbox
 <details class="cdx-accordion foo bar baz" foo="bar" baz="qux">
   <summary>
     <h3 class="cdx-accordion__header">
-      <span class="cdx-accordion__header__title">Accordion Example</span>
+      <span class="cdx-accordion__header__title">Accordion Separation - None</span>
+      <span class="cdx-accordion__header__description">Accordion <em>description</em></span>
+    </h3>
+  </summary>
+  <div class="cdx-accordion__content">
+    <p>This is the <strong>content</strong> of the accordion.</p>
+  </div>
+</details>
+<details class="cdx-accordion cdx-accordion--separation-divider foo bar baz" foo="bar" baz="qux">
+  <summary>
+    <h3 class="cdx-accordion__header">
+      <span class="cdx-accordion__header__title">Accordion Separation - Divider</span>
+      <span class="cdx-accordion__header__description">Accordion <em>description</em></span>
+    </h3>
+  </summary>
+  <div class="cdx-accordion__content">
+    <p>This is the <strong>content</strong> of the accordion.</p>
+  </div>
+</details>
+<details class="cdx-accordion cdx-accordion--separation-outline foo bar baz" foo="bar" baz="qux">
+  <summary>
+    <h3 class="cdx-accordion__header">
+      <span class="cdx-accordion__header__title">Accordion Separation - Outline</span>
       <span class="cdx-accordion__header__description">Accordion <em>description</em></span>
     </h3>
   </summary>
