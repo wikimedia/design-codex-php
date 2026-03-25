@@ -30,11 +30,14 @@ Button sandbox
 <button class="cdx-button cdx-button--action-destructive cdx-button--weight-primary" type="button" id="example-button-5" data-toggle="example-action">
     Destructive primary
 </button>
-<button class="cdx-button" type="button" id="example-button-6" disabled>
+<button class="cdx-button" type="button" disabled id="example-button-6">
     Disabled
 </button>
 <button class="cdx-button cdx-button--icon-only cdx-icon--add" type="button" aria-label="Icon-only button">
 </button>
+<a class="cdx-button cdx-button--fake-button cdx-button--fake-button--enabled" href="" id="example-button-7">
+    Link Button Example
+</a>
 
 
 <!---- ---->
@@ -325,10 +328,10 @@ Table sandbox
         Showing results 1–5 of 30
    </div>
   <div class="cdx-table-pager__end">
-      <button class="cdx-button cdx-button--weight-quiet cdx-button--icon-only" type="submit" name="offset" aria-label="First page" disabled>
+      <button class="cdx-button cdx-button--weight-quiet cdx-button--icon-only" type="submit" name="offset" disabled aria-label="First page">
           <span class="cdx-button__icon cdx-table-pager__icon--first" aria-hidden="true"></span>
       </button>
-      <button class="cdx-button cdx-button--weight-quiet cdx-button--icon-only" type="submit" name="offset" aria-label="Previous page" disabled>
+      <button class="cdx-button cdx-button--weight-quiet cdx-button--icon-only" type="submit" name="offset" disabled aria-label="Previous page">
           <span class="cdx-button__icon cdx-table-pager__icon--previous" aria-hidden="true"></span>
       </button>
       <button class="cdx-button cdx-button--weight-quiet cdx-button--icon-only" type="submit" name="offset" value="20240205084500" aria-label="Next page">
@@ -483,7 +486,7 @@ primary progressive large button with icon
 <!---- ---->
 
 destructive quiet medium icon-only disabled button
-<button class="cdx-button cdx-button--action-destructive cdx-button--weight-quiet cdx-button--icon-only" type="button" aria-label="Delete Item" id="delete-btn" disabled>
+<button class="cdx-button cdx-button--action-destructive cdx-button--weight-quiet cdx-button--icon-only" type="button" disabled aria-label="Delete Item" id="delete-btn">
     <span class="cdx-button__icon icon-delete" aria-hidden="true"></span>
 </button>
 

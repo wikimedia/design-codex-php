@@ -87,6 +87,13 @@ class ButtonExample {
 				'aria-label' => 'Icon-only button',
 			]
 		);
+		$linkButton = $codex->button(
+			label: 'Link Button Example',
+			attributes: [
+				'id' => 'example-button-7',
+			],
+			href: '#'
+		);
 
 		return $default .
 			$progressiveNormal .
@@ -94,6 +101,7 @@ class ButtonExample {
 			$progressive .
 			$destructive .
 			$disabled .
-			$iconOnly;
+			$iconOnly .
+			$linkButton;
 	}
 }

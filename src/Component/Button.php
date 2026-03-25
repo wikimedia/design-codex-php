@@ -79,6 +79,7 @@ class Button extends Component {
 		private bool $iconOnly,
 		private bool $disabled,
 		private array $attributes,
+		private ?string $href = null,
 	) {
 		parent::__construct( $renderer );
 	}
@@ -421,6 +422,32 @@ class Button extends Component {
 			$this->attributes[$key] = $value;
 		}
 		return $this;
+	}
+
+	/**
+	 * Set the href for the button.
+	 *
+	 * If set, the button will render as an <a> element styled like a button.
+	 *
+	 * @param string|null $href The href for the button link.
+	 * @return $this Returns the Button instance for method chaining.
+	 */
+	public function setHref( ?string $href ): self {
+		$this->href = $href;
+
+		return $this;
+	}
+
+	/**
+	 * Get the href for the button.
+	 *
+	 * If an href is provided, the button will be rendered as an <a> element
+	 * styled to look like a button instead of a native <button>.
+	 *
+	 * @return string|null
+	 */
+	public function getHref(): ?string {
+		return $this->href;
 	}
 
 }

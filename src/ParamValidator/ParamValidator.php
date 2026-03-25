@@ -147,7 +147,7 @@ class ParamValidator {
 				throw new UnexpectedValueException( "Multi-value parameter '$name' must be an array." );
 			}
 
-			$limit = $options['useHighLimits'] ?? false ? $this->ismultiLimit2 : $this->ismultiLimit1;
+			$limit = ( $options['useHighLimits'] ?? false ) ? $this->ismultiLimit2 : $this->ismultiLimit1;
 
 			if ( count( $value ) > $limit ) {
 				throw new UnexpectedValueException( "Too many values for parameter '$name'. Limit: $limit" );

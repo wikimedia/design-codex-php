@@ -74,7 +74,7 @@ class ButtonRenderer extends Renderer {
 				"Expected instance of Button, got " . get_class( $component )
 			);
 		}
-
+		$isLink = $component->getHref() !== null;
 		$buttonData = [
 			'id' => $component->getId(),
 			'label-html' => $this->sanitizer->sanitizeText( $component->getLabel() ),
@@ -88,6 +88,12 @@ class ButtonRenderer extends Renderer {
 			'iconClass' => $component->getIconClass(),
 			'isDisabled' => $component->isDisabled(),
 			'iconOnly' => $component->isIconOnly(),
+			'isLink' => $isLink,
+			'fakeButtonClass' => $isLink ? (
+				$component->isDisabled()
+					? 'cdx-button--fake-button--disabled'
+					: 'cdx-button--fake-button--enabled'
+			) : '',
 			'extraClasses' => $this->getExtraClasses( $component->getAttributes() ),
 			'attributes' => $this->getOtherAttributes( $component->getAttributes() )
 		];

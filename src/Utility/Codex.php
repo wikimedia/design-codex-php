@@ -156,6 +156,7 @@ class Codex {
 	 * @param bool $iconOnly Indicates if the button is icon-only (no text).
 	 * @param bool $disabled Indicates if the button is disabled.
 	 * @param array $attributes Additional HTML attributes for the button element.
+	 * @param string|null $href The URL the button should redirect to.
 	 * @return Button The Button component instance.
 	 */
 	public function button(
@@ -168,6 +169,7 @@ class Codex {
 		bool $iconOnly = false,
 		bool $disabled = false,
 		array $attributes = [],
+		?string $href = null,
 	): Button {
 		return new Button(
 			new ButtonRenderer(
@@ -182,7 +184,8 @@ class Codex {
 			$iconClass,
 			$iconOnly,
 			$disabled,
-			$attributes
+			$attributes,
+			$href
 		);
 	}
 
