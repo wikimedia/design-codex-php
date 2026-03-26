@@ -13,10 +13,6 @@ class ButtonExample {
 	public static function create( Codex $codex ): string {
 		$default = $codex->button(
 			label: 'Default',
-			action: 'default',
-			weight: 'normal',
-			size: 'medium',
-			iconOnly: false,
 			attributes: [
 				'class' => 'foo',
 				'id' => 'example-button-1',
@@ -27,9 +23,6 @@ class ButtonExample {
 		$progressiveNormal = $codex->button(
 			label: 'Progressive',
 			action: 'progressive',
-			weight: 'normal',
-			size: 'medium',
-			iconOnly: false,
 			attributes: [
 				'id' => 'example-button-2',
 				'data-toggle' => 'example-action',
@@ -39,9 +32,6 @@ class ButtonExample {
 		$destructiveNormal = $codex->button(
 			label: 'Destructive',
 			action: 'destructive',
-			weight: 'normal',
-			size: 'medium',
-			iconOnly: false,
 			attributes: [
 				'id' => 'example-button-3',
 				'data-toggle' => 'example-action',
@@ -52,8 +42,6 @@ class ButtonExample {
 			label: 'Progressive primary',
 			action: 'progressive',
 			weight: 'primary',
-			size: 'medium',
-			iconOnly: false,
 			attributes: [
 				'id' => 'example-button-4',
 				'data-toggle' => 'example-action',
@@ -64,8 +52,6 @@ class ButtonExample {
 			label: 'Destructive primary',
 			action: 'destructive',
 			weight: 'primary',
-			size: 'medium',
-			iconOnly: false,
 			attributes: [
 				'id' => 'example-button-5',
 				'data-toggle' => 'example-action',
@@ -88,21 +74,52 @@ class ButtonExample {
 				'aria-label' => 'Icon-only button',
 			]
 		);
+
+		// Large button.
+		$large = $codex->button(
+			label: 'Large',
+			size: 'large',
+			attributes: [
+				'id' => 'example-button-8',
+				'data-toggle' => 'example-action',
+			]
+		);
+
+		// Small button.
+		$small = $codex->button(
+			label: 'Small',
+			size: 'small',
+			attributes: [
+				'id' => 'example-button-9',
+				'data-toggle' => 'example-action',
+			]
+		);
+
+		// Quiet button.
+		$quiet = $codex->button(
+			label: 'Quiet',
+			weight: 'quiet',
+			attributes: [
+				'id' => 'example-button-10',
+				'data-toggle' => 'example-action',
+			]
+		);
+
+		// Link buttons
 		$linkButton = $codex->button(
 			label: 'Link button',
 			attributes: [
-				'id' => 'example-button-7',
+				'id' => 'example-button-11',
 			],
 			href: '#'
 		);
 
-		// Link button.
 		$progressiveLinkButton = $codex->button(
 			label: 'Progressive link button',
 			action: 'progressive',
 			href: 'https://www.example.com',
 			attributes: [
-				'id' => 'example-button-8',
+				'id' => 'example-button-12',
 			]
 		);
 
@@ -112,7 +129,7 @@ class ButtonExample {
 			href: 'https://www.example.com',
 			disabled: true,
 			attributes: [
-				'id' => 'example-button-9',
+				'id' => 'example-button-13',
 			]
 		);
 
@@ -123,6 +140,9 @@ class ButtonExample {
 			$destructive .
 			$disabled .
 			$iconOnly .
+			$large .
+			$small .
+			$quiet .
 			$linkButton .
 			$progressiveLinkButton .
 			$disabledLinkButton;

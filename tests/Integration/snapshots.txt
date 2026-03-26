@@ -57,13 +57,22 @@ Button sandbox
 </button>
 <button class="cdx-button cdx-button--icon-only cdx-icon--add" type="button" aria-label="Icon-only button">
 </button>
-<a class="cdx-button cdx-button--fake-button cdx-button--fake-button--enabled" href="#" id="example-button-7">
+<button class="cdx-button cdx-button--size-large" type="button" id="example-button-8" data-toggle="example-action">
+    Large
+</button>
+<button class="cdx-button cdx-button--size-small" type="button" id="example-button-9" data-toggle="example-action">
+    Small
+</button>
+<button class="cdx-button cdx-button--weight-quiet" type="button" id="example-button-10" data-toggle="example-action">
+    Quiet
+</button>
+<a class="cdx-button cdx-button--fake-button cdx-button--fake-button--enabled" href="#" id="example-button-11">
     Link button
 </a>
-<a class="cdx-button cdx-button--fake-button cdx-button--fake-button--enabled cdx-button--action-progressive" href="https://www.example.com" id="example-button-8">
+<a class="cdx-button cdx-button--fake-button cdx-button--fake-button--enabled cdx-button--action-progressive" href="https://www.example.com" id="example-button-12">
     Progressive link button
 </a>
-<a class="cdx-button cdx-button--fake-button cdx-button--fake-button--disabled" href="https://www.example.com" aria-disabled="true" id="example-button-9">
+<a class="cdx-button cdx-button--fake-button cdx-button--fake-button--disabled" href="https://www.example.com" aria-disabled="true" id="example-button-13">
     Disabled link button
 </a>
 
