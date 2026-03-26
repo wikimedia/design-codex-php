@@ -75,6 +75,33 @@ Checkbox sandbox
         <span id="password-reset-checkbox-description" class="cdx-label__description">This improves privacy and helps prevent unsolicited emails.</span>
     </div>
 </div>
+<div class="cdx-checkbox">
+  <input class="cdx-checkbox__input" type="checkbox" id="checked-checkbox" name="" value="" checked>
+  <span class="cdx-checkbox__icon"></span>
+    <div class="cdx-checkbox__label cdx-label">
+        <label for="checked-checkbox" class="cdx-label__label">
+          <span class="cdx-label__label__text">This checkbox is checked by default.</span>
+        </label>
+    </div>
+</div>
+<div class="cdx-checkbox">
+  <input class="cdx-checkbox__input" type="checkbox" id="disabled-checkbox" name="" value="" disabled>
+  <span class="cdx-checkbox__icon"></span>
+    <div class="cdx-checkbox__label cdx-label">
+        <label for="disabled-checkbox" class="cdx-label__label">
+          <span class="cdx-label__label__text">This checkbox is disabled.</span>
+        </label>
+    </div>
+</div>
+<div class="cdx-checkbox cdx-checkbox--inline">
+  <input class="cdx-checkbox__input" type="checkbox" id="inline-checkbox" name="" value="">
+  <span class="cdx-checkbox__icon"></span>
+    <div class="cdx-checkbox__label cdx-label">
+        <label for="inline-checkbox" class="cdx-label__label">
+          <span class="cdx-label__label__text">This checkbox is inline.</span>
+        </label>
+    </div>
+</div>
 
 
 <!---- ---->
