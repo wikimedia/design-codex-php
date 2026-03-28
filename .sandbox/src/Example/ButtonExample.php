@@ -89,11 +89,31 @@ class ButtonExample {
 			]
 		);
 		$linkButton = $codex->button(
-			label: 'Link Button Example',
+			label: 'Link button',
 			attributes: [
 				'id' => 'example-button-7',
 			],
 			href: '#'
+		);
+
+		// Link button.
+		$progressiveLinkButton = $codex->button(
+			label: 'Progressive link button',
+			action: 'progressive',
+			href: 'https://www.example.com',
+			attributes: [
+				'id' => 'example-button-8',
+			]
+		);
+
+		// Disabled link button.
+		$disabledLinkButton = $codex->button(
+			label: 'Disabled link button',
+			href: 'https://www.example.com',
+			disabled: true,
+			attributes: [
+				'id' => 'example-button-9',
+			]
 		);
 
 		return $default .
@@ -103,6 +123,8 @@ class ButtonExample {
 			$destructive .
 			$disabled .
 			$iconOnly .
-			$linkButton;
+			$linkButton .
+			$progressiveLinkButton .
+			$disabledLinkButton;
 	}
 }

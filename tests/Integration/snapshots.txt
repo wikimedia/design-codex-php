@@ -58,7 +58,13 @@ Button sandbox
 <button class="cdx-button cdx-button--icon-only cdx-icon--add" type="button" aria-label="Icon-only button">
 </button>
 <a class="cdx-button cdx-button--fake-button cdx-button--fake-button--enabled" href="#" id="example-button-7">
-    Link Button Example
+    Link button
+</a>
+<a class="cdx-button cdx-button--fake-button cdx-button--fake-button--enabled cdx-button--action-progressive" href="https://www.example.com" id="example-button-8">
+    Progressive link button
+</a>
+<a class="cdx-button cdx-button--fake-button cdx-button--fake-button--disabled" href="https://www.example.com" aria-disabled="true" id="example-button-9">
+    Disabled link button
 </a>
 
 
