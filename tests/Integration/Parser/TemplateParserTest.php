@@ -50,7 +50,7 @@ class TemplateParserTest extends TestCase {
 				],
 				'<div class="cdx-info-chip cdx-info-chip--success" id="info-chip" role="status">
                     <span class="cdx-info-chip__icon"></span>
-                    <span class="cdx-info-chip--text">Operation completed</span>
+                    <span class="cdx-info-chip__text">Operation completed</span>
                 </div>',
 			],
 			'warning status without icon' => [
@@ -62,7 +62,7 @@ class TemplateParserTest extends TestCase {
 				],
 				'<div class="cdx-info-chip cdx-info-chip--warning" id="info-chip" role="status">
 					<span class="cdx-info-chip__icon"></span>
-                    <span class="cdx-info-chip--text">Operation pending</span>
+                    <span class="cdx-info-chip__text">Operation pending</span>
                 </div>',
 			],
 		];

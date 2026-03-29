@@ -106,26 +106,26 @@ Field sandbox
 
 InfoChip sandbox
 <div class="cdx-info-chip cdx-info-chip--notice foo" bar="baz">
-  <span class="cdx-info-chip--text">Info Chip</span>
+  <span class="cdx-info-chip__text">Info Chip</span>
 </div>
 <div class="cdx-info-chip cdx-info-chip--notice foo" bar="baz">
-  <span class="cdx-info-chip--text">Notice</span>
+  <span class="cdx-info-chip__text">Notice</span>
 </div>
 <div class="cdx-info-chip cdx-info-chip--warning foo" bar="baz">
   <span class="cdx-info-chip__icon"></span>
-  <span class="cdx-info-chip--text">Warning</span>
+  <span class="cdx-info-chip__text">Warning</span>
 </div>
 <div class="cdx-info-chip cdx-info-chip--error foo" bar="baz">
   <span class="cdx-info-chip__icon"></span>
-  <span class="cdx-info-chip--text">Error</span>
+  <span class="cdx-info-chip__text">Error</span>
 </div>
 <div class="cdx-info-chip cdx-info-chip--success foo" bar="baz">
   <span class="cdx-info-chip__icon"></span>
-  <span class="cdx-info-chip--text">Success</span>
+  <span class="cdx-info-chip__text">Success</span>
 </div>
 <div class="cdx-info-chip cdx-info-chip--notice foo" bar="baz">
   <span class="cdx-table__table__sort-icon--asc" aria-hidden="true"></span>
-  <span class="cdx-info-chip--text">With <em>Custom</em> Icon</span>
+  <span class="cdx-info-chip__text">With <em>Custom</em> Icon</span>
 </div>
 
 
@@ -510,7 +510,7 @@ label with optional notice in Dutch
 
 infoChip notice
 <div class="cdx-info-chip cdx-info-chip--notice" id="some-id">
-  <span class="cdx-info-chip--text">Some text</span>
+  <span class="cdx-info-chip__text">Some text</span>
 </div>
 
 
@@ -519,7 +519,7 @@ infoChip notice
 infoChip error
 <div class="cdx-info-chip cdx-info-chip--error" id="some-id">
   <span class="cdx-info-chip__icon"></span>
-  <span class="cdx-info-chip--text">Some text</span>
+  <span class="cdx-info-chip__text">Some text</span>
 </div>
 
 
@@ -528,7 +528,7 @@ infoChip error
 infoChip with invalid status
 <div class="cdx-info-chip cdx-info-chip--foo" id="some-id">
   <span class="cdx-info-chip__icon"></span>
-  <span class="cdx-info-chip--text">Some text</span>
+  <span class="cdx-info-chip__text">Some text</span>
 </div>
 
 
