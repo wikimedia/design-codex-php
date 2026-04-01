@@ -95,7 +95,7 @@ class ButtonRenderer extends Renderer {
 					: 'cdx-button--fake-button--enabled'
 			) : '',
 			'extraClasses' => $this->getExtraClasses( $component->getAttributes() ),
-			'attributes' => $this->getOtherAttributes( $component->getAttributes() )
+			'attributes' => $this->getOtherAttributes( $component->getAttributes() ),
 		];
 
 		return $this->templateParser->processTemplate( 'button', $buttonData );

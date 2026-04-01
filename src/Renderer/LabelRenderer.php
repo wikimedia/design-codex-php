@@ -87,7 +87,7 @@ class LabelRenderer extends Renderer {
 			'isVisuallyHidden' => $component->isVisuallyHidden(),
 			'isDisabled' => $component->isDisabled(),
 			'extraClasses' => $this->getExtraClasses( $component->getAttributes() ),
-			'attributes' => $this->getOtherAttributes( $component->getAttributes() )
+			'attributes' => $this->getOtherAttributes( $component->getAttributes() ),
 		];
 
 		return $this->templateParser->processTemplate( 'label', $labelData );

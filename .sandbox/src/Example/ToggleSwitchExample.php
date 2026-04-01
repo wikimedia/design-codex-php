@@ -20,7 +20,7 @@ class ToggleSwitchExample {
 			checked: false,
 			disabled: false,
 			inputAttributes: [
-				'foo' => 'bar'
+				'foo' => 'bar',
 			]
 		);
 	}

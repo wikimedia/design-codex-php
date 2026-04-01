@@ -100,13 +100,13 @@ class SelectRenderer extends Renderer {
 				$newOptions[] = [
 					'value' => $key,
 					'text' => $option,
-					'selected' => false
+					'selected' => false,
 				];
 			} elseif ( is_array( $option ) ) {
 				$newOptions[] = [
 					'value' => $option['value'],
 					'text' => $option['text'],
-					'selected' => $option['selected'] ?? false
+					'selected' => $option['selected'] ?? false,
 				];
 			}
 		}
@@ -126,7 +126,7 @@ class SelectRenderer extends Renderer {
 		foreach ( $optGroups as $label => $groupOptions ) {
 			$newOptGroups[] = [
 				'label' => $label,
-				'options' => $this->prepareOptions( $groupOptions )
+				'options' => $this->prepareOptions( $groupOptions ),
 			];
 		}
 

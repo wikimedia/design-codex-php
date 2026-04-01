@@ -18,11 +18,11 @@ class TextAreaExample {
 			inputAttributes: [
 				'class' => 'foo',
 				'data-category' => 'feedback',
-				'aria-label' => 'Message'
+				'aria-label' => 'Message',
 			],
 			wrapperAttributes: [
 				'class' => 'bar',
-				'some-attribute' => 'some-value'
+				'some-attribute' => 'some-value',
 			]
 		);
 	}

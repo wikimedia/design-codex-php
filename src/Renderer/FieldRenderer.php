@@ -94,7 +94,7 @@ class FieldRenderer extends Renderer {
 				'icon' => $label->getIconClass(),
 				'isDisabled' => $label->isDisabled(),
 				'extraClasses' => $this->getExtraClasses( $label->getAttributes() ),
-				'attributes' => $this->getOtherAttributes( $label->getAttributes() )
+				'attributes' => $this->getOtherAttributes( $label->getAttributes() ),
 			];
 		}
 

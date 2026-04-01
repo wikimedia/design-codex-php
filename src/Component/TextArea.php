@@ -38,7 +38,7 @@ class TextArea extends Component {
 		'notice',
 		'warning',
 		'error',
-		'success'
+		'success',
 	];
 
 	public function __construct(

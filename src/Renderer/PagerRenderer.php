@@ -256,7 +256,7 @@ class PagerRenderer extends Renderer {
 			'attributes' => $this->getOtherAttributes( [
 				'aria-label' => $this->localizer->msg( $ariaLabelKey ),
 			] ),
-			'extraClasses' => ''
+			'extraClasses' => '',
 		];
 	}
 

@@ -46,15 +46,15 @@ class RendererTest extends TestCase {
 		yield 'empty attributes' => [
 			[],
 			'',
-			''
+			'',
 		];
 		yield 'basic attributes' => [
 			[
 				'id' => 'button1',
-				'type' => 'submit'
+				'type' => 'submit',
 			],
 			' id="button1" type="submit"',
-			''
+			'',
 		];
 		yield 'boolean attributes' => [
 			[
@@ -62,38 +62,38 @@ class RendererTest extends TestCase {
 				'disabled' => true,
 				'type' => 'submit',
 				'readonly' => true,
-				'required' => true
+				'required' => true,
 			],
 			' id="button1" disabled type="submit" readonly required',
-			''
+			'',
 		];
 		yield 'basic attributes with class' => [
 			[
 				'id' => 'button1',
 				'class' => 'foo',
-				'type' => 'submit'
+				'type' => 'submit',
 			],
 			' id="button1" type="submit"',
-			' foo'
+			' foo',
 		];
 		yield 'class as array' => [
 			[
 				'id' => 'button1',
 				'class' => [ 'foo', 'bar', 'baz' ],
-				'type' => 'submit'
+				'type' => 'submit',
 			],
 			' id="button1" type="submit"',
-			' foo bar baz'
+			' foo bar baz',
 		];
 		yield 'attributes with special characters' => [
 			[
 				'id' => 'button2',
 				'a"b' => 'c"d',
 				'e' => 'f"g<h>i&j\'l',
-				'class' => [ 'he"lp', 'yi>kes' ]
+				'class' => [ 'he"lp', 'yi>kes' ],
 			],
 			' id="button2" a&quot;b="c&quot;d" e="f&quot;g&lt;h&gt;i&amp;j&#039;l"',
-			' he&quot;lp yi&gt;kes'
+			' he&quot;lp yi&gt;kes',
 		];
 	}
 

@@ -83,7 +83,7 @@ class CardRenderer extends Renderer {
 					$this->sanitizer->sanitizeUrl( $thumbnail->getBackgroundImage() ) : null,
 				'placeholderClass' => $thumbnail->getPlaceholderClass(),
 				'extraClasses' => $this->getExtraClasses( $thumbnail->getAttributes() ),
-				'attributes' => $this->getOtherAttributes( $thumbnail->getAttributes() )
+				'attributes' => $this->getOtherAttributes( $thumbnail->getAttributes() ),
 			];
 		}
 
@@ -97,7 +97,7 @@ class CardRenderer extends Renderer {
 			'iconClass' => $component->getIconClass(),
 			'thumbnail' => $thumbnailData,
 			'extraClasses' => $this->getExtraClasses( $component->getAttributes() ),
-			'attributes' => $this->getOtherAttributes( $component->getAttributes() )
+			'attributes' => $this->getOtherAttributes( $component->getAttributes() ),
 		];
 
 		return $this->templateParser->processTemplate( 'card', $cardData );

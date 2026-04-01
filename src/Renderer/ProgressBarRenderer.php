@@ -79,7 +79,7 @@ class ProgressBarRenderer extends Renderer {
 			'isDisabled' => $component->isDisabled(),
 			'label' => $component->getLabel(),
 			'extraClasses' => $this->getExtraClasses( $component->getAttributes() ),
-			'attributes' => $this->getOtherAttributes( $component->getAttributes() )
+			'attributes' => $this->getOtherAttributes( $component->getAttributes() ),
 		];
 
 		return $this->templateParser->processTemplate( 'progress-bar', $progressBarData );

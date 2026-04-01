@@ -57,7 +57,7 @@ class TextInput extends Component {
 		'default',
 		'error',
 		'warning',
-		'success'
+		'success',
 	];
 
 	public function __construct(

@@ -89,7 +89,7 @@ class ToggleSwitchRenderer extends Renderer {
 				'isDisabled' => $label->isDisabled(),
 				'iconClass' => $label->getIconClass() ?? '',
 				'extraClasses' => $this->getExtraClasses( $label->getAttributes() ),
-				'attributes' => $this->getOtherAttributes( $label->getAttributes() )
+				'attributes' => $this->getOtherAttributes( $label->getAttributes() ),
 			];
 		}
 

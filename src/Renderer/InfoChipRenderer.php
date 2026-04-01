@@ -80,7 +80,7 @@ class InfoChipRenderer extends Renderer {
 			'text-html' => $this->sanitizer->sanitizeText( $component->getText() ),
 			'icon' => $component->getIcon(),
 			'extraClasses' => $this->getExtraClasses( $component->getAttributes() ),
-			'attributes' => $this->getOtherAttributes( $component->getAttributes() )
+			'attributes' => $this->getOtherAttributes( $component->getAttributes() ),
 		];
 
 		return $this->templateParser->processTemplate( 'info-chip', $chipData );

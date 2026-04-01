@@ -80,7 +80,7 @@ class AccordionRenderer extends Renderer {
 			'content-html' => $this->sanitizer->sanitizeText( $component->getContent() ),
 			'isOpen' => $component->isOpen(),
 			'extraClasses' => $this->getExtraClasses( $component->getAttributes() ),
-			'attributes' => $this->getOtherAttributes( $component->getAttributes() )
+			'attributes' => $this->getOtherAttributes( $component->getAttributes() ),
 		];
 
 		return $this->templateParser->processTemplate( 'accordion', $accordionData );

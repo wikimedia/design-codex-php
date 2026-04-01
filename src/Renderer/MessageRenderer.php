@@ -83,7 +83,7 @@ class MessageRenderer extends Renderer {
 			'isPolite' => $component->getType() !== 'error',
 			'isAlert' => $component->getType() === 'error',
 			'extraClasses' => $this->getExtraClasses( $component->getAttributes() ),
-			'attributes' => $this->getOtherAttributes( $component->getAttributes() )
+			'attributes' => $this->getOtherAttributes( $component->getAttributes() ),
 		];
 
 		return $this->templateParser->processTemplate( 'message', $messageData );

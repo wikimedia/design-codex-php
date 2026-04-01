@@ -146,7 +146,7 @@ class TabsRenderer extends Renderer {
 			'id' => $component->getId(),
 			'tabs' => $tabsData,
 			'extraClasses' => $this->getExtraClasses( $component->getAttributes() ),
-			'attributes' => $this->getOtherAttributes( $component->getAttributes() )
+			'attributes' => $this->getOtherAttributes( $component->getAttributes() ),
 		];
 
 		return $this->templateParser->processTemplate( 'tabs', $data );

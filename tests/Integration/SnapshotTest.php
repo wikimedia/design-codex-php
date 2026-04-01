@@ -106,7 +106,7 @@ class SnapshotTest extends TestCase {
 				disabled: true,
 				attributes: [
 					'aria-label' => 'Delete Item',
-					'id' => 'delete-btn'
+					'id' => 'delete-btn',
 				],
 			) ],
 			[ 'button with custom attributes and no icon', static fn ( Codex $codex ) => $codex->button(

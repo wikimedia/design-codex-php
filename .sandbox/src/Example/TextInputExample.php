@@ -28,7 +28,7 @@ class TextInputExample {
 			inputAttributes: [
 				"class" => "bar",
 				"autocomplete" => "username",
-				"aria-label" => "Username"
+				"aria-label" => "Username",
 			]
 		);
 	}
