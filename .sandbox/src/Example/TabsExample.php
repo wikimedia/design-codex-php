@@ -14,38 +14,37 @@ class TabsExample {
 	public static function create(
 		Codex $codex
 	): string {
-		$tab1 = $codex
-			->Tab(
-				name: 'tab1',
-				label: 'Tab 1',
-				content: $codex->htmlSnippet( '<p>Content 1.</p>' ),
-				selected: true
-			);
+		$tab1 = $codex->Tab(
+			name: 'tab1',
+			label: 'Tab 1',
+			content: $codex->htmlSnippet( '<p>Content 1.</p>' ),
+			selected: true,
+		);
 
-		$tab2 = $codex
-			->Tab(
-				name: 'tab2',
-				label: 'Tab 2',
-				content: $codex->htmlSnippet( '<p>Content 2.</p>' )
-			);
+		$tab2 = $codex->Tab(
+			name: 'tab2',
+			label: 'Tab 2',
+			content: $codex->htmlSnippet( '<p>Content 2.</p>' ),
+		);
 
-		$tab3 = $codex
-			->Tab(
-				name: 'tab3',
-				label: 'Tab 3',
-				content: $codex->htmlSnippet( '<p>Content 3.</p>' )
-			);
+		$tab3 = $codex->Tab(
+			name: 'tab3',
+			label: 'Tab 3',
+			content: $codex->htmlSnippet( '<p>Content 3.</p>' ),
+		);
 
-		return $codex
-			->Tabs()
-			->setTab( [ $tab1, $tab2, $tab3 ] )
-			->setAttributes( [
+		return (string)$codex->Tabs(
+			tabs: [
+				$tab1,
+				$tab2,
+				$tab3,
+			],
+			attributes: [
 				"class" => "foo",
 				"bar" => "baz",
 				"id" => "example-tabs",
 				"data-category" => "feedback",
-			] )
-			->build()
-			->getHtml();
+			]
+		);
 	}
 }

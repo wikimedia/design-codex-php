@@ -47,20 +47,16 @@ use Wikimedia\Codex\Utility\Codex;
 
 $codex = new Codex();
 
-$accordion = $codex
-            ->accordion()
-            ->setTitle( "Accordion Example" )
-            ->setDescription( "This is an example of an accordion." )
-            ->setContentHtml(
-                $codex->htmlSnippet( "<p>This is the content.</p>" )
-            )
-            ->setOpen( false )
-            ->setAttributes( [
-                "class" => "foo",
-                "bar" => "baz",
-            ] )
-            ->build()
-            ->getHtml();
+$accordion = $codex->Accordion(
+    title: "Accordion Example",
+    description: $codex->htmlSnippet( "This is an example of an accordion." ),
+    content: $codex->htmlSnippet( "<p>This is the content.</p>" ),
+    open: false,
+    attributes: [
+        "class" => "foo",
+        "bar" => "baz",
+    ],
+);
 
 echo $accordion;
 ?>
