@@ -10,7 +10,7 @@ class SelectExample {
 	 * @return string
 	 */
 	public static function create( Codex $codex ): string {
-		return $codex->Select(
+		return (string)$codex->Select(
 			options: [
 				'val1' => 'Standalone Option 1',
 				'val2' => 'Standalone Option 2',

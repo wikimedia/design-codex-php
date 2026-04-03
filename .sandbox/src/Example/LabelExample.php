@@ -10,7 +10,7 @@ class LabelExample {
 	 * @return string
 	 */
 	public static function create( Codex $codex ): string {
-		return $codex->Label(
+		return (string)$codex->Label(
 			labelText: 'Username',
 			optional: true,
 			description: 'Please enter your username.',

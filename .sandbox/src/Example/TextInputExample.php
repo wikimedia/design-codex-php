@@ -10,7 +10,7 @@ class TextInputExample {
 	 * @return string
 	 */
 	public static function create( Codex $codex ): string {
-		return $codex->TextInput(
+		return (string)$codex->TextInput(
 			type: "text",
 			name: "username",
 			inputId: "username-input",

@@ -10,7 +10,7 @@ class RadioExample {
 	 * @return string
 	 */
 	public static function create( Codex $codex ): string {
-		return $codex->Radio(
+		return (string)$codex->Radio(
 			inputId: "password-reset-radio-1",
 			name: "password-reset-options",
 			label: $codex->Label(

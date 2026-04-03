@@ -42,7 +42,7 @@ class TableExample {
 
 		$sampleData = self::sortData( $sampleData, $sortColumn, $sortDirection );
 		$totalRecords = count( $sampleData );
-		$totalPages = ceil( $totalRecords / $limit );
+		$totalPages = (int)ceil( $totalRecords / $limit );
 
 		$paginatedData = self::paginateData(
 			$sampleData,
@@ -167,7 +167,7 @@ class TableExample {
 		if ( count( $paginatedData ) === $limit ) {
 			$lastItem = end( $paginatedData );
 			if ( !empty( $lastItem[$cursorColumn] ) ) {
-				$nextOffset = DateTime::createFromFormat(
+				$nextOffset = (int)DateTime::createFromFormat(
 					"Y-m-d H:i:s",
 					$lastItem[$cursorColumn]
 				)->format( "YmdHis" );
@@ -180,7 +180,7 @@ class TableExample {
 			"nextOffset" => $nextOffset,
 			"lastOffset" =>
 				count( $sampleData ) > $limit
-					? DateTime::createFromFormat(
+					? (int)DateTime::createFromFormat(
 					"Y-m-d H:i:s",
 					$sampleData[count( $sampleData ) - $limit - 1][
 					$cursorColumn
@@ -199,7 +199,7 @@ class TableExample {
 		string $sortDirection,
 		int $limit,
 		string $cursorColumn
-	): ?string {
+	): ?int {
 		if ( $currentOffset === null ) {
 			return null;
 		}
@@ -237,10 +237,10 @@ class TableExample {
 
 				/* TODO: When upgraded to 8.3, use $firstItemDateTime->modify('-1 day') instead of the code above */
 
-				return $firstItemDateTime->format( "YmdHis" );
+				return (int)$firstItemDateTime->format( "YmdHis" );
 			}
 
-			return $prevOffset;
+			return (int)$prevOffset;
 		}
 
 		return null;

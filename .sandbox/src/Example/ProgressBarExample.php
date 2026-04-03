@@ -10,7 +10,7 @@ class ProgressBarExample {
 	 * @return string
 	 */
 	public static function create( Codex $codex ): string {
-		return $codex->ProgressBar(
+		return (string)$codex->ProgressBar(
 			label: 'Loading content...',
 			attributes: [
 				'class' => 'foo',

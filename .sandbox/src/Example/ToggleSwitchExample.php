@@ -10,7 +10,7 @@ class ToggleSwitchExample {
 	 * @return string
 	 */
 	public static function create( Codex $codex ): string {
-		return $codex->ToggleSwitch(
+		return (string)$codex->ToggleSwitch(
 			inputId: 'visual-editing-mode',
 			label: $codex->Label(
 				labelText: 'Visual editing mode',

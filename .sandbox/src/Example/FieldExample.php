@@ -24,7 +24,7 @@ class FieldExample {
 			)
 		);
 
-		return $codex->Field(
+		return (string)$codex->Field(
 			label: $codex->Label(
 				labelText: 'Email confirmation',
 				description: 'Specify an email address in your preferences for these features to work.',

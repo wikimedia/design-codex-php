@@ -10,7 +10,7 @@ class TextAreaExample {
 	 * @return string
 	 */
 	public static function create( Codex $codex ): string {
-		return $codex->TextArea(
+		return (string)$codex->TextArea(
 			name: 'user-message',
 			placeholder: 'Enter your message...',
 			value: 'This is a default message.',
