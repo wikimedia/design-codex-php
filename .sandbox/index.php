@@ -1,4 +1,6 @@
 <?php
+declare( strict_types = 1 );
+
 /**
  * @file
  * Example usage of the Wikimedia Codex PHP library to generate components.
