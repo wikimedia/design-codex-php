@@ -20,6 +20,7 @@ namespace Wikimedia\Codex\Renderer;
 
 use InvalidArgumentException;
 use UnexpectedValueException;
+use Wikimedia\Codex\Component\HtmlSnippet;
 use Wikimedia\Codex\Component\Table;
 use Wikimedia\Codex\Contract\Component;
 use Wikimedia\Codex\Contract\ILocalizer;
@@ -148,7 +149,11 @@ class TableRenderer extends Renderer {
 		foreach ( $table->getData() as $row ) {
 			$rowData = [];
 			foreach ( $table->getColumns() as $column ) {
-				$cellData = $this->sanitizer->sanitizeText( $row[$column['id']] ?? '' );
+				$id = $row[$column['id']] ?? '';
+				if ( !$id instanceof HtmlSnippet ) {
+					$id = (string)$id;
+				}
+				$cellData = $this->sanitizer->sanitizeText( $id );
 				$align = $column['align'] ?? '';
 				$rowData[] = [
 					'cellData-html' => $cellData,
