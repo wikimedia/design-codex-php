@@ -461,8 +461,8 @@ Thumbnail sandbox
 <!---- ---->
 
 ToggleSwitch sandbox
-<span class="cdx-toggle-switch">
-  <input class="cdx-toggle-switch__input" type="checkbox" id="visual-editing-mode" aria-describedby="visual-editing-mode-description" foo="bar">
+<div><span class="cdx-toggle-switch">
+  <input class="cdx-toggle-switch__input" type="checkbox" id="visual-editing-mode" aria-describedby="visual-editing-mode-description" foo="bar" data-toggle="toggle-switch">
   <span class="cdx-toggle-switch__switch">
     <span class="cdx-toggle-switch__switch__grip"></span>
   </span>
@@ -473,7 +473,29 @@ ToggleSwitch sandbox
             <span id="visual-editing-mode-description" class="cdx-label__description">Turn on to use the visual editor. You can switch back to source mode at any time</span>
         </div>
 </span>
-
+</div><div><span class="cdx-toggle-switch">
+  <input class="cdx-toggle-switch__input" type="checkbox" id="toggle-checked" checked foo="bar" data-toggle="toggle-switch">
+  <span class="cdx-toggle-switch__switch">
+    <span class="cdx-toggle-switch__switch__grip"></span>
+  </span>
+        <div class="cdx-toggle-switch__label cdx-label">
+            <label for="toggle-checked" class="cdx-label__label">
+              <span class="cdx-label__label__text">This is a pre-checked Toggle Switch</span>
+            </label>
+        </div>
+</span>
+</div><div><span class="cdx-toggle-switch">
+  <input class="cdx-toggle-switch__input" type="checkbox" id="toggle-disabled" disabled foo="bar" data-toggle="toggle-switch">
+  <span class="cdx-toggle-switch__switch">
+    <span class="cdx-toggle-switch__switch__grip"></span>
+  </span>
+        <div class="cdx-toggle-switch__label cdx-label">
+            <label for="toggle-disabled" class="cdx-label__label">
+              <span class="cdx-label__label__text">This is a disabled Toggle Switch</span>
+            </label>
+        </div>
+</span>
+</div>
 
 <!---- ---->
 

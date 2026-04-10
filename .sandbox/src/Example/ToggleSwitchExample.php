@@ -10,7 +10,11 @@ class ToggleSwitchExample {
 	 * @return string
 	 */
 	public static function create( Codex $codex ): string {
-		return (string)$codex->ToggleSwitch(
+		$inputAttrs = [
+			'foo' => 'bar',
+			'data-toggle' => 'toggle-switch',
+		];
+		$defaultToggle = $codex->ToggleSwitch(
 			inputId: 'visual-editing-mode',
 			label: $codex->Label(
 				labelText: 'Visual editing mode',
@@ -19,9 +23,30 @@ class ToggleSwitchExample {
 			),
 			checked: false,
 			disabled: false,
-			inputAttributes: [
-				'foo' => 'bar',
-			]
+			inputAttributes: $inputAttrs
 		);
+
+		$checkedToggle = $codex->ToggleSwitch(
+			inputId: 'toggle-checked',
+			label: $codex->Label(
+				labelText: 'This is a pre-checked Toggle Switch'
+			),
+			checked: true,
+			disabled: false,
+			inputAttributes: $inputAttrs
+		);
+
+		$disabledToggle = $codex->ToggleSwitch(
+			inputId: 'toggle-disabled',
+			label: $codex->Label(
+				labelText: 'This is a disabled Toggle Switch'
+			),
+			checked: false,
+			disabled: true,
+			inputAttributes: $inputAttrs
+		);
+		return '<div>' . $defaultToggle . '</div>' .
+				'<div>' . $checkedToggle . '</div>' .
+				'<div>' . $disabledToggle . '</div>';
 	}
 }
