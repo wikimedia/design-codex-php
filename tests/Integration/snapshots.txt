@@ -57,7 +57,7 @@ Button sandbox
 </button>
 <button class="cdx-button cdx-button--icon-only cdx-icon--add" type="button" aria-label="Icon-only button">
 </button>
-<a class="cdx-button cdx-button--fake-button cdx-button--fake-button--enabled" href="" id="example-button-7">
+<a class="cdx-button cdx-button--fake-button cdx-button--fake-button--enabled" href="#" id="example-button-7">
     Link Button Example
 </a>
 

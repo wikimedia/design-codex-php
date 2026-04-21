@@ -91,6 +91,7 @@ class ButtonRenderer extends Renderer {
 			'isDisabled' => $component->isDisabled(),
 			'iconOnly' => $component->isIconOnly(),
 			'isLink' => $isLink,
+			'href' => $component->getHref(),
 			'fakeButtonClass' => $isLink ? (
 				$component->isDisabled()
 					? 'cdx-button--fake-button--disabled'
