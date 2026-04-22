@@ -98,6 +98,13 @@ class Codex {
 	 */
 	public function __construct( ?ILocalizer $localizer = null ) {
 		$this->services = CodexServices::getInstance();
+		if ( $localizer === null ) {
+			trigger_error(
+				'Not passing a localizer to the Codex constructor is deprecated and will not be supported ' .
+				'in version 1.0.',
+				E_USER_DEPRECATED
+			);
+		}
 		$this->localizer = $localizer ?? $this->getFallbackLocalizer();
 	}
 
