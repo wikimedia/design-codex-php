@@ -58,6 +58,14 @@ class RendererTest extends TestCase {
 			' id="button1" type="submit"',
 			'',
 		];
+		yield 'integer attributes' => [
+			[
+				'size' => 20,
+				'maxlength' => 40,
+			],
+			' size="20" maxlength="40"',
+			'',
+		];
 		yield 'boolean attributes' => [
 			[
 				'id' => 'button1',

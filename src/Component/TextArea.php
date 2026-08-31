@@ -107,7 +107,7 @@ class TextArea extends Component {
 	 * These attributes can be used to enhance accessibility or integrate with JavaScript.
 	 *
 	 * @since 0.1.0
-	 * @return array The additional attributes as an array.
+	 * @return array<string,string|int|true> The additional attributes as an array.
 	 */
 	public function getInputAttributes(): array {
 		return $this->inputAttributes;
@@ -120,7 +120,7 @@ class TextArea extends Component {
 	 * enhancing its behavior or styling.
 	 *
 	 * @since 0.1.0
-	 * @return array The additional attributes as an array.
+	 * @return array<string,string|int|true> The additional attributes as an array.
 	 */
 	public function getWrapperAttributes(): array {
 		return $this->wrapperAttributes;
@@ -304,7 +304,8 @@ class TextArea extends Component {
 	 *     ]);
 	 *
 	 * @since 0.1.0
-	 * @param array $inputAttributes An associative array of HTML attributes for the textarea element.
+	 * @param array<string,string|int|true> $inputAttributes An associative array of HTML attributes
+	 *  for the textarea element.
 	 * @return $this Returns the TextArea instance for method chaining.
 	 */
 	public function setinputAttributes( array $inputAttributes ): self {
@@ -333,7 +334,7 @@ class TextArea extends Component {
 	 *        $textArea->setWrapperAttributes(['id' => 'custom-wrapper']);
 	 *
 	 * @since 0.1.0
-	 * @param array $wrapperAttributes An associative array of HTML attributes.
+	 * @param array<string,string|int|true> $wrapperAttributes An associative array of HTML attributes.
 	 * @return $this Returns the TextArea instance for method chaining.
 	 */
 	public function setWrapperAttributes( array $wrapperAttributes ): self {

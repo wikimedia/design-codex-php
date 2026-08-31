@@ -66,7 +66,7 @@ class Sanitizer {
 	 * spaces. This method also handles escaping.
 	 *
 	 * @since 0.1.0
-	 * @param array $attributes Key-value pairs of HTML attributes.
+	 * @param array<string,string|int|true> $attributes Key-value pairs of HTML attributes.
 	 * @return string The attributes as a string, ready to be included in an HTML tag.
 	 */
 	public function resolveAttributes( array $attributes ): string {
@@ -90,15 +90,15 @@ class Sanitizer {
 	/**
 	 * Sanitize a single attribute value. Most code should not use this, but should use
 	 * resolveAttributes() instead.
-	 * @param string|string[] $attrValue Plain text attribute value, or array of plain text values
+	 * @param string|int|string[] $attrValue Plain text attribute value, or array of plain text values
 	 * @return string Escaped attribute value, safe for use in an HTML attribute string.
 	 *   This does NOT include the attribute name, or quotes.
 	 */
-	public function sanitizeAttributeValue( string|array $attrValue ): string {
+	public function sanitizeAttributeValue( string|int|array $attrValue ): string {
 		if ( is_array( $attrValue ) ) {
 			$attrValue = implode( ' ', $attrValue );
 		}
-		return $this->sanitizeText( $attrValue );
+		return $this->sanitizeText( (string)$attrValue );
 	}
 
 	/**

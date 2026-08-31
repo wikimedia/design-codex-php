@@ -27,7 +27,7 @@ abstract class Renderer {
 	 * Get extra classes to add to an existing class string. Should be used in templates like this:
 	 *     class="cdx-foo cdx-foo--bar{{{extraClasses}}}"
 	 *
-	 * @param array $attributes
+	 * @param array{class?: string|string[]} $attributes
 	 * @return string Escaped string suitable for inclusion in a class attribute value. Does not
 	 *   include the attribute name or quotes. Starts with a space, unless it's empty.
 	 */
@@ -40,7 +40,7 @@ abstract class Renderer {
 	 * Get non-class attributes to add to an HTML tag. Should be used in templates like this:
 	 *     <div class="..." {{{attributes}}}>
 	 *
-	 * @param array $attributes
+	 * @param array<string,string|int|true> $attributes
 	 * @param string[] $exclude Attribute names to exclude
 	 * @return string Attribute string suitable for inclusion in an HTML tag. Includes attribute
 	 *   names and quotes. Does not include the attributes in $exclude. Starts with a space, unless
