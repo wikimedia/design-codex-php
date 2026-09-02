@@ -21,48 +21,48 @@ class InfoChipExample {
 
 		$infoChipNormal = $codex->InfoChip(
 			text: 'Notice',
+			status: 'notice',
 			attributes: [
 				'class' => 'foo',
 				'bar' => 'baz',
 			],
-			status: 'notice'
 		);
 
 		$infoChipWarning = $codex->InfoChip(
 			text: 'Warning',
+			status: 'warning',
 			attributes: [
 				'class' => 'foo',
 				'bar' => 'baz',
 			],
-			status: 'warning'
 		);
 
 		$infoChipError = $codex->InfoChip(
 			text: 'Error',
+			status: 'error',
 			attributes: [
 				'class' => 'foo',
 				'bar' => 'baz',
 			],
-			status: 'error'
 		);
 
 		$infoChipSuccess = $codex->InfoChip(
 			text: 'Success',
+			status: 'success',
 			attributes: [
 				'class' => 'foo',
 				'bar' => 'baz',
 			],
-			status: 'success'
 		);
 
 		$infoChipNormalWithCustomIcon = $codex->InfoChip(
 			text: $codex->htmlSnippet( 'With <em>Custom</em> Icon' ),
+			status: 'notice',
+			icon: 'cdx-table__table__sort-icon--asc',
 			attributes: [
 				'class' => 'foo',
 				'bar' => 'baz',
 			],
-			status: 'notice',
-			icon: 'cdx-table__table__sort-icon--asc'
 		);
 
 		return $infoChip . $infoChipNormal . $infoChipWarning . $infoChipError . $infoChipSuccess .

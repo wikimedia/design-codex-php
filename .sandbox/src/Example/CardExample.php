@@ -18,12 +18,12 @@ class CardExample {
 				'This is an <strong>example</strong> card using the Codex design system.'
 			),
 			supportingText: 'Additional supporting text goes here.',
+			url: 'https://www.example.com',
 			thumbnail: $codex->Thumbnail(
 				backgroundImage: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/' .
 					'64_365_Color_Macro_%285498808099%29.jpg/' .
 					'200px-64_365_Color_Macro_%285498808099%29.jpg',
 				),
-			url: 'https://www.example.com',
 			attributes: [
 				'class' => 'foo',
 				'bar' => 'baz',

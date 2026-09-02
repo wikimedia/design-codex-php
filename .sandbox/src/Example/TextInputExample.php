@@ -16,21 +16,21 @@ class TextInputExample {
 			name: "username",
 			inputId: "username-input",
 			placeholder: "Enter your username",
-			hasStartIcon: true,
-			// Icon image is set in this page's CSS via this class.
-			startIconClass: 'cdx-icon--login',
-			hasEndIcon: false,
 			disabled: false,
 			status: 'default',
-			wrapperAttributes: [
-				"class" => "foo",
-				"data-toggle" => "example-action",
-			],
 			inputAttributes: [
 				"class" => "bar",
 				"autocomplete" => "username",
 				"aria-label" => "Username",
-			]
+			],
+			wrapperAttributes: [
+				'class' => 'foo',
+				'data-toggle' => 'example-action',
+			],
+			hasStartIcon: true,
+			hasEndIcon: false,
+			// Icon image is set in this page's CSS via this class.
+			startIconClass: 'cdx-icon--login',
 		);
 	}
 }

@@ -90,18 +90,18 @@ class SnapshotTest extends TestCase {
 			[ 'primary progressive large button with icon', static fn ( Codex $codex ) => $codex->button(
 				label: 'Submit',
 				action: 'progressive',
-				weight: 'primary',
 				size: 'large',
 				type: 'submit',
+				weight: 'primary',
 				iconClass: 'icon-submit',
 				attributes: [ 'data-action' => 'submit-form' ]
 			) ],
 			[ 'destructive quiet medium icon-only disabled button', static fn ( Codex $codex ) => $codex->button(
 				label: 'Delete',
 				action: 'destructive',
-				weight: 'quiet',
 				size: 'medium',
 				type: 'button',
+				weight: 'quiet',
 				iconClass: 'icon-delete',
 				iconOnly: true,
 				disabled: true,
@@ -113,9 +113,9 @@ class SnapshotTest extends TestCase {
 			[ 'button with custom attributes and no icon', static fn ( Codex $codex ) => $codex->button(
 				label: 'Learn More',
 				action: 'default',
-				weight: 'normal',
 				size: 'medium',
 				type: 'button',
+				weight: 'normal',
 				iconClass: null,
 				iconOnly: false,
 				disabled: false,
@@ -134,18 +134,18 @@ class SnapshotTest extends TestCase {
 			// InfoChip
 			[ 'infoChip notice', static fn ( Codex $codex ) => $codex->infoChip(
 				text: 'Some text',
+				status: 'notice',
 				attributes: [ 'id' => 'some-id' ],
-				status: 'notice'
 			) ],
 			[ 'infoChip error', static fn ( Codex $codex ) => $codex->infoChip(
 				text: 'Some text',
+				status: 'error',
 				attributes: [ 'id' => 'some-id' ],
-				status: 'error'
 			) ],
 			[ 'infoChip with invalid status', static fn ( Codex $codex ) => $codex->infoChip(
 				text: 'Some text',
+				status: 'foo',
 				attributes: [ 'id' => 'some-id' ],
-				status: 'foo'
 			) ],
 
 			// ProgressBar

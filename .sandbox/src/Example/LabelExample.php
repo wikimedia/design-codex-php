@@ -13,15 +13,15 @@ class LabelExample {
 	public static function create( Codex $codex ): string {
 		return (string)$codex->Label(
 			labelText: 'Username',
+			inputId: 'usernameInput',
 			optional: true,
+			isLegend: false,
 			description: 'Please enter your username.',
 			attributes: [
 				'id' => 'username',
 				'class' => 'foo',
 				'data-info' => 'username-input-label',
 			],
-			isLegend: false,
-			inputId: 'usernameInput'
 		);
 	}
 }

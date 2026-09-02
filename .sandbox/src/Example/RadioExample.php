@@ -52,8 +52,8 @@ class RadioExample {
 			),
 			value: 'option3',
 			checked: false,
-			inline: false,
 			disabled: true,
+			inline: false,
 			inputAttributes: $inputAttrs,
 			wrapperAttributes: $wrapperAttrs
 		);

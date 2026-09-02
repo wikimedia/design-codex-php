@@ -13,7 +13,6 @@ class TextAreaExample {
 	public static function create( Codex $codex ): string {
 		return (string)$codex->TextArea(
 			name: 'user-message',
-			placeholder: 'Enter your message...',
 			value: 'This is a default message.',
 			inputId: 'user-message',
 			inputAttributes: [
@@ -24,7 +23,8 @@ class TextAreaExample {
 			wrapperAttributes: [
 				'class' => 'bar',
 				'some-attribute' => 'some-value',
-			]
+			],
+			placeholder: 'Enter your message...',
 		);
 	}
 }

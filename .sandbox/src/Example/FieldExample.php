@@ -28,11 +28,11 @@ class FieldExample {
 		return (string)$codex->Field(
 			label: $codex->Label(
 				labelText: 'Email confirmation',
-				description: 'Specify an email address in your preferences for these features to work.',
-				optional: true
+				optional: true,
+				description: 'Specify an email address in your preferences for these features to work.'
 			),
-			fields: [ $checkbox1, $checkbox2 ],
 			isFieldset: true,
+			fields: [ $checkbox1, $checkbox2 ],
 			attributes: [
 				'class' => 'foo',
 				'bar' => 'baz',

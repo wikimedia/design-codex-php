@@ -117,20 +117,20 @@ class ButtonExample {
 		$progressiveLinkButton = $codex->button(
 			label: 'Progressive link button',
 			action: 'progressive',
-			href: 'https://www.example.com',
 			attributes: [
 				'id' => 'example-button-12',
-			]
+			],
+			href: 'https://www.example.com',
 		);
 
 		// Disabled link button.
 		$disabledLinkButton = $codex->button(
 			label: 'Disabled link button',
-			href: 'https://www.example.com',
 			disabled: true,
 			attributes: [
 				'id' => 'example-button-13',
-			]
+			],
+			href: 'https://www.example.com',
 		);
 
 		return $default .

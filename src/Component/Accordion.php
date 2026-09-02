@@ -81,7 +81,7 @@ class Accordion extends Component {
 	 * the accordion's content.
 	 *
 	 * @since 0.1.0
-	 * @return string The title of the accordion.
+	 * @return string|HtmlSnippet The title of the accordion.
 	 */
 	public function getTitle(): string|HtmlSnippet {
 		return $this->title;
@@ -94,7 +94,7 @@ class Accordion extends Component {
 	 * The description provides additional context or details about the accordion's content.
 	 *
 	 * @since 0.1.0
-	 * @return string The description of the accordion.
+	 * @return string|HtmlSnippet The description of the accordion.
 	 */
 	public function getDescription(): string|HtmlSnippet {
 		return $this->description;

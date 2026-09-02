@@ -13,19 +13,19 @@ class CheckboxExample {
 	public static function create( Codex $codex ): string {
 		$defaultCheckbox = $codex->Checkbox(
 			inputId: 'password-reset-checkbox',
+			name: 'password-reset',
 			label: $codex->Label(
 				labelText: 'Send password reset emails only when both email address and username are provided.',
 				description: 'This improves privacy and helps prevent unsolicited emails.',
 				descriptionId: 'password-reset-checkbox-description',
 			),
-			name: 'password-reset',
 			value: '1',
-			wrapperAttributes: [
-				'class' => 'foo',
-			],
 			inputAttributes: [
 				'class' => 'bar',
 				'data-toggle' => 'checkbox-option',
+			],
+			wrapperAttributes: [
+				'class' => 'foo',
 			],
 		);
 

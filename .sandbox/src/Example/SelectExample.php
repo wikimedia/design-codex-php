@@ -33,6 +33,7 @@ class SelectExample {
 					],
 				],
 			],
+			disabled: false,
 			attributes: [
 				'class' => 'foo',
 				'bar' => 'baz',
@@ -40,7 +41,6 @@ class SelectExample {
 				'name' => 'exampleSelection',
 				'data-category' => 'selection',
 			],
-			disabled: false
 		);
 	}
 }
