@@ -85,16 +85,29 @@ Card sandbox
     <span class="cdx-thumbnail__image" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/64_365_Color_Macro_%285498808099%29.jpg/200px-64_365_Color_Macro_%285498808099%29.jpg');"></span>
   </span>
   <span class="cdx-card__text">
-    <span class="cdx-card__text__title">Codex Card Example</span>
+    <span class="cdx-card__text__title">
+      Codex Card Example
+    </span>
     <span class="cdx-card__text__description">This is an <strong>example</strong> card using the Codex design system.</span>
     <span class="cdx-card__text__supporting-text">Additional supporting text goes here.</span>
   </span>
 </a>
 <span class="cdx-card">
   <span class="cdx-card__text">
-    <span class="cdx-card__text__title">Codex Card Example (No URL)</span>
+    <span class="cdx-card__text__title">
+      Codex Card Example (No URL)
+    </span>
     <span class="cdx-card__text__description">This is an <strong>example</strong> card without a URL set.</span>
     <span class="cdx-card__text__supporting-text">This card is not clickable.</span>
+  </span>
+</span>
+<span class="cdx-card">
+  <span class="cdx-card__text">
+    <span class="cdx-card__text__title">
+      <span class="cdx-card__icon demo-cdx-icon--robot"></span>Codex Card Example (With Icon)
+    </span>
+    <span class="cdx-card__text__description">This is an <strong>example</strong> card with an icon.</span>
+    <span class="cdx-card__text__supporting-text">This card has an icon instead of a thumbnail.</span>
   </span>
 </span>
 

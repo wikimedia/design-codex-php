@@ -2,11 +2,11 @@
 {{#thumbnail}}
   {{> thumbnail}}
 {{/thumbnail}}
-  {{#iconClass}}
-  <span class="cdx-card__icon {{ iconClass }}"></span>
-  {{/iconClass}}
   <span class="cdx-card__text">
-    <span class="cdx-card__text__title">{{{ title-html }}}</span>{{!
+    <span class="cdx-card__text__title">
+      {{#iconClass}}<span class="cdx-card__icon {{iconClass}}"></span>{{/iconClass}}{{!
+    }}{{{ title-html }}}
+    </span>{{!
     }}{{#description-html}}
     <span class="cdx-card__text__description">{{{ description-html }}}</span>{{/description-html}}{{!
     }}{{#supportingText-html}}

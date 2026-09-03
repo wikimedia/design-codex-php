@@ -188,6 +188,17 @@ body {
 	background-size: cover;
 }
 
+/* The sandbox has no Less build. These rules copy what the .cdx-mixin-css-icon() mixin sets. */
+.demo-cdx-icon--robot {
+	display: inline-block;
+	vertical-align: top;
+	width: 20px;
+	background-image: url('data:image/svg+xml,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%3F%3E%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2020%2020%22%3E%3Ctitle%3Erobot%3C%2Ftitle%3E%3Cpath%20d%3D%22M9%203h2v2h5.5A2.5%202.5%200%200%201%2019%207.5V15h-7v2h4a1%201%200%200%201%201%201v2H3v-2a1%201%200%200%201%201-1h4v-2H1V7.5A2.5%202.5%200%200%201%203.5%205H9M5.5%209a1.5%201.5%200%201%200%200%203%201.5%201.5%200%200%200%200-3m9%200a1.5%201.5%200%201%200%200%203%201.5%201.5%200%200%200%200-3%22%2F%3E%3Ccircle%20cx%3D%2210%22%20cy%3D%222%22%20r%3D%222%22%2F%3E%3C%2Fsvg%3E');
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: 20px;
+}
+
 [dir] .cdx-table__table__sort-button {
 	background-color: var(--background-color-transparent, transparent);
 	border: 0;

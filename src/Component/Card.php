@@ -247,10 +247,19 @@ class Card extends Component {
 	 *
 	 * This method specifies a CSS class for an icon to be displayed inside the card.
 	 * The icon can be used to visually represent the content or purpose of the card.
-	 * It is typically rendered at the top or side of the card, depending on the design.
+	 * It is rendered inline before the card title.
 	 *
+	 * The class is added to an empty `<span class="cdx-card__icon">` element. This
+	 * library does not supply the icon image. You must define the class in your own
+	 * stylesheet, for example with the Codex `.cdx-mixin-css-icon()` Less mixin:
+	 *
+	 *     .my-card-icon--robot {
+	 *         .cdx-mixin-css-icon( @cdx-icon-robot );
+	 *     }
+	 *
+	 * @see https://doc.wikimedia.org/codex/latest/components/demos/icon.html#css-only-version
 	 * @since 0.1.0
-	 * @param string $iconClass The CSS class for the icon.
+	 * @param string $iconClass The CSS class that supplies the icon image.
 	 * @return $this Returns the Card instance for method chaining.
 	 */
 	public function setIconClass( string $iconClass ): self {

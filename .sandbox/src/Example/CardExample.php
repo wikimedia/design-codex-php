@@ -39,7 +39,19 @@ class CardExample {
 			supportingText: 'This card is not clickable.'
 		);
 
+		// Card with icon.
+		$cardWithIcon = $codex->Card(
+			title: 'Codex Card Example (With Icon)',
+			description: $codex->htmlSnippet(
+				'This is an <strong>example</strong> card with an icon.'
+			),
+			supportingText: 'This card has an icon instead of a thumbnail.',
+			// Icon image is set in this page's CSS via this class.
+			iconClass: 'demo-cdx-icon--robot'
+		);
+
 		return $cardWithUrl .
-			$cardWithoutUrl;
+			$cardWithoutUrl .
+			$cardWithIcon;
 	}
 }
