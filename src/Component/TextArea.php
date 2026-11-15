@@ -298,7 +298,7 @@ class TextArea extends Component {
 	 *
 	 * Example usage:
 	 *
-	 *     $textArea->setinputAttributes([
+	 *     $textArea->setInputAttributes([
 	 *         'id' => 'text-area-id',
 	 *         'data-category' => 'input',
 	 *     ]);
@@ -308,7 +308,7 @@ class TextArea extends Component {
 	 *  for the textarea element.
 	 * @return $this Returns the TextArea instance for method chaining.
 	 */
-	public function setinputAttributes( array $inputAttributes ): self {
+	public function setInputAttributes( array $inputAttributes ): self {
 		foreach ( $inputAttributes as $key => $value ) {
 			$this->inputAttributes[$key] = $value;
 		}
